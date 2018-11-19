@@ -1,5 +1,7 @@
-# Fazenda Livre
-Fazenda Livre é um projeto que visa desenvolver uma estrutura de apoio ao desenvolvimento de software para a Secretaria Municipal da Fazenda de Niterói através da implantação de metodologias de planejamento e desenvolvimento.
+# SADP
+Sistema de análise da dívida pública. É uma iniciativa da prefeitura municipal de Niterói, através da Secretaria Municipal de Fazenda para desenvolver um sistema que controla as dívidas públicas de um município.
+
+
 
 ## Ferramentas
 - [Scrum](https://www.scrum.org/) para planejamento e acompanhamento de atividades
