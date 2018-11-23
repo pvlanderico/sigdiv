@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@debt) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :code, as: :string %>
+    <%= f.input :contract_value_cents %>
+    <%= f.input :signature_date %>
+    <%= f.association(:creditor) %>
+    <%= f.input :grace_period %>
+    <%= f.input :amortization_period %>
+    <%= f.input :purpose %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
