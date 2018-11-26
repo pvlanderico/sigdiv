@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Creditors</h1>
+<h1>Credores</h1>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nome</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,7 +16,7 @@
         <td><%= creditor.name %></td>
         <td><%= link_to 'Show', creditor %></td>
         <td><%= link_to 'Edit', edit_creditor_path(creditor) %></td>
-        <td><%= link_to 'Destroy', creditor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', creditor, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Creditor', new_creditor_path %>
+<%= link_to 'Cadastrar credor', new_creditor_path %>

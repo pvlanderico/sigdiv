@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Debts</h1>
+<h1>Dívidas</h1>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
-      <th>Code</th>
-      <th>Contract value cents</th>
-      <th>Signature date</th>
-      <th>Creditor</th>
-      <th>Grace period</th>
-      <th>Amortization period</th>
-      <th>Purpose</th>
+      <th>Código</th>
+      <th>valo do contrato</th>
+      <th>Data da assinatura</th>
+      <th>Credor</th>
+      <th>Prazo de carência</th>
+      <th>Prazo de amortização</th>
+      <th>Objetivo da operação</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,7 +28,7 @@
         <td><%= debt.purpose %></td>
         <td><%= link_to 'Show', debt %></td>
         <td><%= link_to 'Edit', edit_debt_path(debt) %></td>
-        <td><%= link_to 'Destroy', debt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', debt, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Debt', new_debt_path %>
+<%= link_to 'Cadastrar dívida', new_debt_path %>
