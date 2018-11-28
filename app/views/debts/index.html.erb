@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Código</th>
-      <th>valo do contrato</th>
+      <th>Valor do contrato</th>
       <th>Data da assinatura</th>
       <th>Credor</th>
       <th>Prazo de carência</th>
@@ -26,9 +26,9 @@
         <td><%= debt.grace_period %></td>
         <td><%= debt.amortization_period %></td>
         <td><%= debt.purpose %></td>
-        <td><%= link_to 'Show', debt %></td>
-        <td><%= link_to 'Edit', edit_debt_path(debt) %></td>
-        <td><%= link_to 'Destroy', debt, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+        <td><%= link_to fa_icon("eye 2x", title: "Mostrar"), debt %></td>
+        <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_path(debt) %></td>
+        <td><%= link_to fa_icon("trash 2x", title: "Remover"), debt, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'Cadastrar dívida', new_debt_path %>
+<%= link_to 'Cadastrar dívida', new_debt_path, class: 'btn btn-success pull-right' %>

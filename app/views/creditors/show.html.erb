@@ -5,5 +5,5 @@
   <%= @creditor.name %>
 </p>
 
-<%= link_to 'Edit', edit_creditor_path(@creditor) %> |
-<%= link_to t('back'), creditors_path %>
+<%= link_to 'Edit', edit_creditor_path(@creditor), class: 'btn' %> |
+<%= link_to t('back'), creditors_path, class: 'btn' %>

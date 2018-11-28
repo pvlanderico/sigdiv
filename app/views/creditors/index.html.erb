@@ -14,9 +14,9 @@
     <% @creditors.each do |creditor| %>
       <tr>
         <td><%= creditor.name %></td>
-        <td><%= link_to 'Show', creditor %></td>
-        <td><%= link_to 'Edit', edit_creditor_path(creditor) %></td>
-        <td><%= link_to 'Destroy', creditor, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+        <td><%= link_to fa_icon("eye 2x", title: "Mostrar"), creditor %></td>
+        <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_creditor_path(creditor) %></td>
+        <td><%= link_to fa_icon("trash 2x", title: "Remover"), creditor, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'Cadastrar credor', new_creditor_path %>
+<%= link_to 'Cadastrar credor', new_creditor_path, class: 'btn btn-success pull-right' %>
