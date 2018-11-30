@@ -28,7 +28,7 @@ class CreditorsController < ApplicationController
 
     respond_to do |format|
       if @creditor.save
-        format.html { redirect_to @creditor, notice: 'Creditor was successfully created.' }
+        format.html { redirect_to @creditor, notice: 'O registro foi salvo com sucesso.' }
         format.json { render :show, status: :created, location: @creditor }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CreditorsController < ApplicationController
   def update
     respond_to do |format|
       if @creditor.update(creditor_params)
-        format.html { redirect_to @creditor, notice: 'Creditor was successfully updated.' }
+        format.html { redirect_to @creditor, notice: 'O registro foi salvo com sucesso.' }
         format.json { render :show, status: :ok, location: @creditor }
       else
         format.html { render :edit }
