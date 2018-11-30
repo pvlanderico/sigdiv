@@ -19,8 +19,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Dívidas</a>
-            <a class="nav-item nav-link" href="#">Credores</a>
+            <%= link_to 'Dívidas', debts_path, class: "nav-item nav-link" %>
+            <%= link_to 'Credores', creditors_path, class: "nav-item nav-link" %>
           </div>
         </div>
       </div>
