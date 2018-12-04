@@ -4,6 +4,7 @@ class CreateCharges < ActiveRecord::Migration[5.2]
       t.string :name
       t.float :base
       t.string :formula
+      t.integer :debt_id
 
       t.timestamps
     end

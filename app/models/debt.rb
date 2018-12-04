@@ -6,9 +6,11 @@ class Debt < ApplicationRecord
 
 	has_many :charges, inverse_of: :debt
 
-	enum amortization_type: [:Sac, :Price, :Single]
-	enum amortization_frequencies: [:Mensal, :Trimestral, :Semestral]
-	enum legislation_level: [:Federal, :Estadual, :Municipal]
+	accepts_nested_attributes_for :charges, reject_if: :all_blank, allow_destroy: true
+
+	enum amortization_type: [:sac, :price, :single]
+	enum amortization_frequencies: [:mensal, :trimestral, :semestral]
+	enum legislation_level: [:federal, :estadual, :municipal]
 
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
 	validates :contract_value_cents, presence: true

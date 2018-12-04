@@ -15,6 +15,7 @@ class DebtsController < ApplicationController
   # GET /debts/new
   def new
     @debt = Debt.new
+    @debt.charges.build
   end
 
   # GET /debts/1/edit
@@ -80,6 +81,11 @@ class DebtsController < ApplicationController
                                    :amortization_frequency,
                                    :financial_agent,
                                    :applicable_legislation,
-                                   :legislation_level)
+                                   :legislation_level,
+                                   charges_attributes: [:id,
+                                                        :_destroy,
+                                                        :name,
+                                                        :base,
+                                                        :formula])
     end
 end

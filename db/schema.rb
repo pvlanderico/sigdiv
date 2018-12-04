@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_172415) do
     t.string "name"
     t.float "base"
     t.string "formula"
+    t.integer "debt_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

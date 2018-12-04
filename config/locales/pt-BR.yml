@@ -23,7 +23,7 @@ pt-BR:
         financial_agent: Agente financeiro
       charge:
         name: Nome
-        base: base
+        base: Base
         formula: Fórmula
     errors:
       messages:
