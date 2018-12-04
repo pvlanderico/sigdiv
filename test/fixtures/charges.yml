@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  base: 1.5
+  formula: MyString
+
+two:
+  name: MyString
+  base: 1.5
+  formula: MyString

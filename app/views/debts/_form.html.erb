@@ -9,7 +9,12 @@
     <%= f.input :signature_date %>
     <%= f.association(:creditor) %>
     <%= f.input :grace_period %>
+    <%= f.input :financial_agent, collection: Creditor.financial_agents%>
     <%= f.input :amortization_period %>
+    <%= f.input :amortization_type, as: :radio_buttons, collection: Debt.amortization_types %>
+    <%= f.input :amortization_frequency, as: :radio_buttons, collection: Debt.amortization_frequencies %>
+    <%= f.input :applicable_legislation %>
+    <%= f.input :legislation_level, as: :radio_buttons, collection: Debt.legislation_levels %>
     <%= f.input :purpose %>
   </div>
 

@@ -10,15 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_150845) do
+ActiveRecord::Schema.define(version: 2018_12_04_172415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "charges", force: :cascade do |t|
+    t.string "name"
+    t.float "base"
+    t.string "formula"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "creditors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "financial_agent", default: false
   end
 
   create_table "debts", force: :cascade do |t|
@@ -31,6 +40,11 @@ ActiveRecord::Schema.define(version: 2018_11_23_150845) do
     t.text "purpose"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amortization_type"
+    t.integer "amortization_frequency"
+    t.integer "financial_agent_id"
+    t.string "applicable_legislation"
+    t.integer "legislation_level"
   end
 
 end

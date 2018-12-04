@@ -12,9 +12,19 @@ pt-BR:
         creditor: Credor
         grace_period: Prazo de carência
         amortization_period: Prazo de amortização
+        amortization_type: Tipo de amortização
+        amortization_frequency: Periodicidade da amortização
         purpose: Objetivo da operação
+        financial_agent: Agente financeiro
+        applicable_legislation: Legislação aplicável
+        legislation_level: Esfera
       creditor:
         name: Nome
+        financial_agent: Agente financeiro
+      charge:
+        name: Nome
+        base: base
+        formula: Fórmula
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

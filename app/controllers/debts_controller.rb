@@ -69,6 +69,17 @@ class DebtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debt_params
-      params.require(:debt).permit(:code, :contract_value_cents, :signature_date, :creditor_id, :grace_period, :amortization_period, :purpose)
+      params.require(:debt).permit(:code, 
+                                   :contract_value_cents, 
+                                   :signature_date, 
+                                   :creditor_id, 
+                                   :grace_period, 
+                                   :amortization_period, 
+                                   :purpose,
+                                   :amortization_type,
+                                   :amortization_frequency,
+                                   :financial_agent,
+                                   :applicable_legislation,
+                                   :legislation_level)
     end
 end
