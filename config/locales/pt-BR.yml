@@ -15,9 +15,9 @@ pt-BR:
         amortization_type: Tipo de amortização
         amortization_frequency: Periodicidade da amortização
         purpose: Objetivo da operação
-        financial_agent: Agente financeiro
+        financial_agent_id: Agente financeiro
         applicable_legislation: Legislação aplicável
-        legislation_level: Esfera
+        legislation_level: Nível
       creditor:
         name: Nome
         financial_agent: Agente financeiro

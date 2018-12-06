@@ -1,7 +1,16 @@
 <div class='nested-fields'>
-	<%= f.input :name %>
-  <%= f.input :base %>
-  <%= f.input :formula %>
+	<div class="row">
+    <div class="col-sm">
+			<%= f.input :name %>
+		</div>
+		<div class="col-sm">
+			<%= f.input :base %>
+		</div>
+		<div class="col-sm">
+		  <%= f.input :formula %>
+		</div>
+	</div>
+	
   <%= link_to_remove_association "Remover encargo", f %>
   <hr>
 </div>

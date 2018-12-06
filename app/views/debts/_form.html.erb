@@ -4,30 +4,68 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :code, as: :string %>
-    <%= f.input :contract_value_cents %>
-    <%= f.input :signature_date %>
-    <%= f.association(:creditor) %>
-    <%= f.input :grace_period %>
-    <%= f.input :financial_agent_id, collection: Creditor.financial_agents %>
-    <%= f.input :amortization_period %>
-    <%= f.input :amortization_type, as: :radio_buttons, collection: Debt.amortization_types.keys, label_method: :titleize %>
-    <%= f.input :amortization_frequency, as: :radio_buttons, collection: Debt.amortization_frequencies.keys, label_method: :titleize %>
+    <div class="row">
+      <div class="col-sm">
+        <%= f.input :code, as: :string %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :contract_value_cents %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :signature_date %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm">
+        <%= f.association(:creditor) %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :financial_agent_id, collection: Creditor.financial_agents %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :grace_period %>       
+      </div>
+    </div>  
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm">
+        <%= f.input :amortization_period %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :amortization_type, as: :radio_buttons, collection: Debt.amortization_types.keys, label_method: :titleize %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :amortization_frequency, as: :radio_buttons, collection: Debt.amortization_frequencies.keys, label_method: :titleize %>
+      </div>
+    </div>
 
     <h3>Encargos</h3>
     <div id='charges'>
-      <%= f.simple_fields_for :charges do |charge| %>
-        <%= render 'charge_fields', f: charge %>
-      <% end %>
-      
-
-    </div>
-    <div class='links'>
+      <div class='links'>
         <%= link_to_add_association 'Adicionar encargo', f, :charges %>
       </div>
+    
+      <%= f.simple_fields_for :charges do |charge| %>
+        <%= render 'charge_fields', f: charge %>
+      <% end %>      
+    </div>
 
-    <%= f.input :applicable_legislation %>
-    <%= f.input :legislation_level, as: :radio_buttons, collection: Debt.legislation_levels.keys, label_method: :titleize %>
+    <br>
+
+    <div class="row">
+      <div class="col-sm">
+        <%= f.input :applicable_legislation %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :legislation_level, as: :radio_buttons, collection: Debt.legislation_levels.keys, label_method: :titleize %>
+      </div>
+    </div>
+
     <%= f.input :purpose %>
   </div>
 
