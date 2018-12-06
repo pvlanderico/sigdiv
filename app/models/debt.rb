@@ -18,6 +18,20 @@ class Debt < ApplicationRecord
 	validates :amortization_period, presence: true
 
 	def next_instalment
+		charges_total # + interest + amortization
+	end
+
+	private
+
+	def interest
+		#todo
+	end
+
+	def amortization
+		#todo
+	end
+
+	def charges_total
 		charges.reduce(0) { |sum, charge| sum + charge.total }
 	end
 end
