@@ -16,4 +16,8 @@ class Debt < ApplicationRecord
 	validates :contract_value_cents, presence: true
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
+
+	def next_instalment
+		charges.reduce(0) { |sum, charge| sum + charge.total }
+	end
 end
