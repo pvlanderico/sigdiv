@@ -64,3 +64,9 @@ div {
 label {
   display: block;
 }
+
+hr.dashed-hr {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}

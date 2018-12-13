@@ -43,17 +43,19 @@
         <%= f.input :amortization_frequency, as: :radio_buttons, collection: Debt.amortization_frequencies.keys, label_method: :titleize %>
       </div>
     </div>
+    <hr class="dashed-hr">
 
     <h3>Encargos</h3>
     <div id='charges'>
-      <div class='links'>
-        <%= link_to_add_association 'Adicionar encargo', f, :charges %>
-      </div>
     
       <%= f.simple_fields_for :charges do |charge| %>
         <%= render 'charge_fields', f: charge %>
       <% end %>      
     </div>
+    <div class='links'>
+      <%= link_to_add_association 'Adicionar encargo', f, :charges %>
+    </div>
+    <hr class="dashed-hr">
 
     <br>
 

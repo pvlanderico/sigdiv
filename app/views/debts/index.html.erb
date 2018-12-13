@@ -21,7 +21,7 @@
     <% @debts.each do |debt| %>
       <tr>
         <td><%= debt.code %></td>
-        <td><%= debt.contract_value_cents %></td>
+        <td><%= humanized_money_with_symbol debt.contract_value_cents %></td>
         <td><%= debt.signature_date %></td>
         <td><%= debt.creditor_id %></td>
         <td><%= debt.grace_period %></td>
