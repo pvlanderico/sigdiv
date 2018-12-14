@@ -26,12 +26,9 @@
     <thead>
       <tr>
         <th>Código</th>
-        <th>Valor do contrato</th>
+        <th>Identificador</th>
         <th>Data da assinatura</th>
         <th>Credor</th>
-        <th>Prazo de carência</th>
-        <th>Prazo de amortização</th>
-        <th>Objetivo da operação</th>
         <th>Próxima parcela</th>
         <th colspan="3"></th>
       </tr>
@@ -41,12 +38,9 @@
       <% @debts.each do |debt| %>
         <tr>
           <td><%= debt.code %></td>
-          <td><%= humanized_money_with_symbol debt.contract_value_cents %></td>
+          <td><%= debt.name %></td>
           <td><%= debt.signature_date.strftime("%d-%m-%Y") %></td>
-          <td><%= debt.creditor_id %></td>
-          <td><%= debt.grace_period.strftime("%d-%m-%Y") %></td>
-          <td><%= debt.amortization_period.strftime("%d-%m-%Y") %></td>
-          <td><%= debt.purpose %></td>
+          <td><%= debt.creditor.name %></td>
           <td><%= debt.next_instalment %></td>
           <td><%= link_to fa_icon("eye 2x", title: "Mostrar"), debt %></td>
           <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_path(debt) %></td>
