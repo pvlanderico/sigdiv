@@ -1,41 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Dívidas</h1>
+<h1>Lista de operações</h1>
+<hr>
 
-<table class='table table-striped table-hover'>
-  <thead>
-    <tr>
-      <th>Código</th>
-      <th>Valor do contrato</th>
-      <th>Data da assinatura</th>
-      <th>Credor</th>
-      <th>Prazo de carência</th>
-      <th>Prazo de amortização</th>
-      <th>Objetivo da operação</th>
-      <th>Próxima parcela</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @debts.each do |debt| %>
-      <tr>
-        <td><%= debt.code %></td>
-        <td><%= humanized_money_with_symbol debt.contract_value_cents %></td>
-        <td><%= debt.signature_date %></td>
-        <td><%= debt.creditor_id %></td>
-        <td><%= debt.grace_period %></td>
-        <td><%= debt.amortization_period %></td>
-        <td><%= debt.purpose %></td>
-        <td><%= debt.next_instalment %></td>
-        <td><%= link_to fa_icon("eye 2x", title: "Mostrar"), debt %></td>
-        <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_path(debt) %></td>
-        <td><%= link_to fa_icon("trash 2x", title: "Remover"), debt, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<form class="form-inline my-2 my-lg-0" action="<%= debts_path %>" accept-charset="UTF-8" method="get">        
+  
+  <input class="form-control mr-sm-2" type="search" placeholder="Código" aria-label="Search" name="code_query">
+  <span class="mr-sm-2" >ou</span>
+  <input class="form-control mr-sm-2" type="search" placeholder="Identificador" aria-label="Search" name="name_query">
+  <input class="form-control mr-sm-2 datepicker" type="search" placeholder="Data de assinatura" aria-label="Search" name="signature_date_query">
+  <%= select_tag "creditor_query", options_from_collection_for_select(Creditor.all, :id, :name), class: 'form-control select optional mr-sm-2 col-sm-3', prompt: 'Selecionar credor' %>
+  
+  <button class="btn my-2 my-sm-0" type="submit"><%= fa_icon("search", title: "Buscar") %></button>
+</form>
 
 <br>
 
-<%= link_to 'Cadastrar dívida', new_debt_path, class: 'btn btn-success pull-right' %>
+<% if @debts.blank? %>
+  
+  <p><span class="mr-sm-2"><%= fa_icon("exclamation-triangle 2x") %></span>Não foram encontradas operações.<p>
+
+<% else %>
+
+  <table class='table table-striped table-hover'>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Valor do contrato</th>
+        <th>Data da assinatura</th>
+        <th>Credor</th>
+        <th>Prazo de carência</th>
+        <th>Prazo de amortização</th>
+        <th>Objetivo da operação</th>
+        <th>Próxima parcela</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @debts.each do |debt| %>
+        <tr>
+          <td><%= debt.code %></td>
+          <td><%= humanized_money_with_symbol debt.contract_value_cents %></td>
+          <td><%= debt.signature_date.strftime("%d-%m-%Y") %></td>
+          <td><%= debt.creditor_id %></td>
+          <td><%= debt.grace_period.strftime("%d-%m-%Y") %></td>
+          <td><%= debt.amortization_period.strftime("%d-%m-%Y") %></td>
+          <td><%= debt.purpose %></td>
+          <td><%= debt.next_instalment %></td>
+          <td><%= link_to fa_icon("eye 2x", title: "Mostrar"), debt %></td>
+          <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_path(debt) %></td>
+          <td><%= link_to fa_icon("trash 2x", title: "Remover"), debt, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<br>
+
+<%= link_to 'Cadastrar operação', new_debt_path, class: 'btn btn-success pull-right' %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_172415) do
+ActiveRecord::Schema.define(version: 2018_12_14_152402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 2018_12_04_172415) do
     t.integer "financial_agent_id"
     t.string "applicable_legislation"
     t.integer "legislation_level"
+    t.string "name"
+    t.text "notes"
+    t.integer "category"
   end
 
 end

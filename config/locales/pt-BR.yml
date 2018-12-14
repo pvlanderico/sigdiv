@@ -2,11 +2,13 @@
 pt-BR:
   activerecord:
     models:
-      debt: Dívida
+      debt: Operação
       creditor: Credor
     attributes:
       debt:
         code: Código
+        name: Identificador
+        category: Tipo
         contract_value_cents: Valor do contrato
         signature_date: Data da assinatura
         creditor: Credor
@@ -17,13 +19,14 @@ pt-BR:
         purpose: Objetivo da operação
         financial_agent_id: Agente financeiro
         applicable_legislation: Legislação aplicável
-        legislation_level: Nível
+        legislation_level: Esfera
+        notes: Observações
       creditor:
         name: Nome
         financial_agent: Agente financeiro
       charge:
         name: Nome
-        base: Base
+        base: '%'
         formula: Fórmula
     errors:
       messages:

@@ -9,10 +9,10 @@
         <%= f.input :code, as: :string %>
       </div>
       <div class="col-sm">
-        <%= f.input :contract_value_cents %>
+        <%= f.input :name %>
       </div>
       <div class="col-sm">
-        <%= f.input :signature_date %>
+        <%= f.input :signature_date, as: :string, input_html: { class: 'datepicker' }%>
       </div>
     </div>
 
@@ -26,9 +26,23 @@
         <%= f.input :financial_agent_id, collection: Creditor.financial_agents %>
       </div>
       <div class="col-sm">
-        <%= f.input :grace_period %>       
+        <%= f.input :category, as: :radio_buttons, collection: Debt.categories.keys, label_method: :titleize %>      
       </div>
     </div>  
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm">
+        <%= f.input :contract_value_cents %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :grace_period %> 
+      </div>
+      <div class="col-sm">
+        
+      </div>
+    </div>
 
     <br>
 
@@ -69,6 +83,7 @@
     </div>
 
     <%= f.input :purpose %>
+    <%= f.input :notes %>
   </div>
 
   <div class="form-actions">
