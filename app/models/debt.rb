@@ -18,7 +18,7 @@ class Debt < ApplicationRecord
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
 
-	def self.search code_query, name_query, creditor_query, signature_date_query
+	def self.search code_query, name_query, creditor_query, signature_year_query
 		result = Debt.all
 
 		if code_query.present? 
@@ -28,7 +28,7 @@ class Debt < ApplicationRecord
 		end
 
 		result = result.where("name LIKE ?", name_query) if name_query.present?
-		result = result.where(signature_date: unformat_date(signature_date_query)) if signature_date_query.present?
+		result = result.where(signature_date: date_range_from_year(signature_year_query.to_i)) if signature_year_query.present?
 
 		result
 	end
@@ -39,8 +39,8 @@ class Debt < ApplicationRecord
 
 	private
 
-		def self.unformat_date date
-			date.split('-').reverse.join('-')
+		def self.date_range_from_year year
+			Date.new(year)..(Date.new(year + 1) - 1.day)
 		end
 
 		def interest

@@ -4,7 +4,7 @@ class DebtsController < ApplicationController
   # GET /debts
   # GET /debts.json
   def index
-    @debts = Debt.search(params[:code_query], params[:name_query], params[:creditor_query], params[:signature_date_query])
+    @debts = Debt.search(params[:code_query], params[:name_query], params[:creditor_query], params[:signature_year_query])
   end
 
   # GET /debts/1
