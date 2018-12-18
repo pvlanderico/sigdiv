@@ -40,7 +40,7 @@
         <%= f.input :grace_period %> 
       </div>
       <div class="col-sm">
-        
+        <%= f.input :currency, as: :radio_buttons, collection: Debt.currencies.keys, label_method: :upcase %>
       </div>
     </div>
 

@@ -12,11 +12,13 @@ class Debt < ApplicationRecord
 	enum amortization_type: [:sac, :price, :single]
 	enum amortization_frequencies: [:mensal, :trimestral, :semestral]
 	enum legislation_level: [:federal, :estadual, :municipal]
+	enum currency: [:brl, :usd]
 
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
 	validates :contract_value_cents, presence: true
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
+	validates :currency, presence: true
 
 	def self.search code_query, name_query, creditor_query, signature_year_query
 		result = Debt.all
@@ -37,7 +39,15 @@ class Debt < ApplicationRecord
 		charges_total # + interest + amortization
 	end
 
+	def contract_value_brl
+		currency == Debt.currencies.keys[1] ? to_brl : contract_value_cents
+	end
+
 	private
+
+		def to_brl
+			contract_value_cents / BancoCentral.last(:dolar)[:value]
+		end
 
 		def self.date_range_from_year year
 			Date.new(year)..(Date.new(year + 1) - 1.day)

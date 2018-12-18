@@ -10,6 +10,7 @@ pt-BR:
         name: Identificador
         category: Tipo
         contract_value_cents: Valor do contrato
+        currency: Moeda
         signature_date: Data da assinatura
         creditor: Credor
         grace_period: Prazo de carência

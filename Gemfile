@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'cocoon'
 gem 'money-rails', '~>1.12'
 gem 'dentaku'
+gem 'banco_central'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
