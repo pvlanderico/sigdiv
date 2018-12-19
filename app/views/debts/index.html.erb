@@ -5,13 +5,13 @@
 
 <form class="form-inline my-2 my-lg-0" action="<%= debts_path %>" accept-charset="UTF-8" method="get">        
   
-  <input class="form-control mr-sm-2" type="search" placeholder="Código" aria-label="Search" name="code_query">
+  <input class="form-control mr-sm-2" type="search" placeholder="Código" aria-label="Search" name="code_query" value="<%= params[:code_query] %>">
   <span class="mr-sm-2" >ou</span>
-  <input class="form-control mr-sm-2" type="search" placeholder="Identificador" aria-label="Search" name="name_query">
-  <input class="form-control mr-sm-2" type="search" placeholder="Ano da assinatura" aria-label="Search" name="signature_year_query">
-  <%= select_tag "creditor_query", options_from_collection_for_select(Creditor.all, :id, :name), class: 'form-control select optional mr-sm-2 col-sm-3', prompt: 'Selecionar credor' %>
+  <input class="form-control mr-sm-2" type="search" placeholder="Identificador" aria-label="Search" name="name_query" value="<%= params[:name_query] %>">
+  <input class="form-control mr-sm-2" type="search" placeholder="Ano da assinatura" aria-label="Search" name="signature_year_query" value="<%= params[:signature_year_query] %>">
+  <%= select_tag "creditor_query", options_from_collection_for_select(Creditor.all, :id, :name, params[:creditor_query]), class: 'form-control select optional mr-sm-2 col-sm-3', prompt: 'Selecionar credor' %>
   
-  <button class="btn my-2 my-sm-0" type="submit"><%= fa_icon("search", title: "Buscar") %></button>
+  <button class="btn btn-light my-2 my-sm-0" type="submit"><%= fa_icon("search", title: "Buscar") %></button>
 </form>
 
 <br>
