@@ -32,4 +32,4 @@
 /config/master.key
 
 # Ignore local settings
-/config/settings.yml
+#/config/settings.yml

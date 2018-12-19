@@ -1,7 +1,7 @@
 ftp:
-  host: 201.48.33.241
-  port: 21
-  username: sadp
-  password: sadpF@zenda2018
-  folder: /
-  url: ftp://sadp:sadpF@zenda2018@201.48.33.241/
+  host: 
+  port: 
+  username: 
+  password: 
+  folder: 
+  url: 
