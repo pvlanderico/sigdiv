@@ -17,6 +17,9 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem 'simple_form'
 gem 'cocoon'
+gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp'
+
 gem 'money-rails', '~>1.12'
 gem 'dentaku'
 gem 'banco_central'

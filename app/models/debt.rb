@@ -1,4 +1,6 @@
 class Debt < ApplicationRecord
+	mount_uploader :contract, ContractUploader
+
 	monetize :contract_value_cents
 
 	belongs_to :creditor

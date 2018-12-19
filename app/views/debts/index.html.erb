@@ -46,7 +46,7 @@
           <td><%= debt.next_instalment %></td>
           <td><%= link_to fa_icon("eye 2x", title: "Mostrar"), debt %></td>
           <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_path(debt) %></td>
-          <td><%= link_to fa_icon("trash 2x", title: "Remover"), debt, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+          <td><%= link_to fa_icon("file 2x", title: "Ver contrato"), debt.contract.url %></td>
         </tr>
       <% end %>
     </tbody>

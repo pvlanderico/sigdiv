@@ -22,6 +22,7 @@ pt-BR:
         applicable_legislation: Legislação aplicável
         legislation_level: Esfera
         notes: Observações
+        contract: Contrato
       creditor:
         name: Nome
         financial_agent: Agente financeiro
