@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Anexos</h1>
+
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Arquivo</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attachments.each do |attachment| %>
+      <tr>
+        <td><%= attachment.name %></td>
+        <td><%= attachment.description %></td>
+        <td>
+          <%= link_to attachment.file.url do %>
+            <%= attachment.file_identifier %>  
+            <%= fa_icon('external-link', title: 'Abrir') %>
+          <% end %>
+        </td>
+        <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_attachment_path(@debt, attachment) %></td>
+        <td><%= link_to fa_icon("trash 2x", title: "Remover"), [@debt, attachment], method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo anexo', new_debt_attachment_path(params[:debt_id]), class: "btn btn-success pull-right" %>

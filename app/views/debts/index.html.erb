@@ -17,8 +17,8 @@
 <br>
 
 <% if @debts.blank? %>
-  
-  <p><span class="mr-sm-2"><%= fa_icon("exclamation-triangle 2x") %></span>Não foram encontradas operações.<p>
+
+  <p class="text-center"><span class="mr-sm-2"><%= fa_icon("exclamation-triangle 2x") %></span>Não foram encontradas operações.</p>
 
 <% else %>
 
@@ -46,7 +46,7 @@
           <td><%= debt.next_instalment %></td>
           <td><%= link_to fa_icon("eye 2x", title: "Mostrar"), debt %></td>
           <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_path(debt) %></td>
-          <td><%= link_to fa_icon("file 2x", title: "Ver contrato"), debt.contract.url %></td>
+          <td><%= link_to fa_icon("folder-open 2x", title: "Anexos"), debt_attachments_path(debt) %></td>
         </tr>
       <% end %>
     </tbody>

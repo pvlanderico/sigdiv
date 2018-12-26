@@ -1,12 +1,11 @@
-class Debt < ApplicationRecord
-	mount_uploader :contract, ContractUploader
-
+class Debt < ApplicationRecord	
 	monetize :contract_value_cents
 
 	belongs_to :creditor
 	belongs_to :financial_agent, class_name: :creditor, optional: true
 
 	has_many :charges, inverse_of: :debt
+	has_many :attachments
 
 	accepts_nested_attributes_for :charges, reject_if: :all_blank, allow_destroy: true
 

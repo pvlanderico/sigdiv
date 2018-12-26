@@ -4,6 +4,7 @@ pt-BR:
     models:
       debt: Operação
       creditor: Credor
+      attachment: Anexo
     attributes:
       debt:
         code: Código
@@ -30,6 +31,10 @@ pt-BR:
         name: Nome
         base: '%'
         formula: Fórmula
+      attachment:
+        name: Nome
+        description: Descrição
+        file: Arquivo
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

@@ -19,8 +19,8 @@
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
 <% end -%>
         <td><%%= link_to fa_icon("eye 2x", title: "Mostrar"), <%= model_resource_name %> %></td>
-        <td><%%= link_to fa_icon("eye 2x", title: "Editar"), edit_<%= singular_route_name %>_path(<%= singular_table_name %>) %></td>
-        <td><%%= link_to fa_icon("eye 2x", title: "Remover"), <%= model_resource_name %>, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+        <td><%%= link_to fa_icon("edit 2x", title: "Editar"), edit_<%= singular_route_name %>_path(<%= singular_table_name %>) %></td>
+        <td><%%= link_to fa_icon("trash 2x", title: "Remover"), <%= model_resource_name %>, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <%% end %>
   </tbody>

@@ -16,3 +16,9 @@
 @import "bootstrap";
 @import "font-awesome";
 
+hr.dashed-hr {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+
