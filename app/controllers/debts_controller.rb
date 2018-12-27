@@ -29,7 +29,7 @@ class DebtsController < ApplicationController
 
     respond_to do |format|
       if @debt.save
-        format.html { redirect_to @debt, notice: 'O registro foi salvo com sucesso.' }
+        format.html { redirect_to @debt, notice: I18n.t(:save_success) }
         format.json { render :show, status: :created, location: @debt }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class DebtsController < ApplicationController
   def update
     respond_to do |format|
       if @debt.update(debt_params)
-        format.html { redirect_to @debt, notice: 'O registro foi salvo com sucesso.' }
+        format.html { redirect_to @debt, notice: I18n.t(:save_success) }
         format.json { render :show, status: :ok, location: @debt }
       else
         format.html { render :edit }

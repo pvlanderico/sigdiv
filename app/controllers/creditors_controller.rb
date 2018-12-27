@@ -28,7 +28,7 @@ class CreditorsController < ApplicationController
 
     respond_to do |format|
       if @creditor.save
-        format.html { redirect_to @creditor, notice: 'O registro foi salvo com sucesso.' }
+        format.html { redirect_to @creditor, notice: I18n.t(:save_success) }
         format.json { render :show, status: :created, location: @creditor }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CreditorsController < ApplicationController
   def update
     respond_to do |format|
       if @creditor.update(creditor_params)
-        format.html { redirect_to @creditor, notice: 'O registro foi salvo com sucesso.' }
+        format.html { redirect_to @creditor, notice: I18n.t(:save_success) }
         format.json { render :show, status: :ok, location: @creditor }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CreditorsController < ApplicationController
   def destroy
     @creditor.destroy
     respond_to do |format|
-      format.html { redirect_to creditors_url, notice: 'Creditor was successfully destroyed.' }
+      format.html { redirect_to creditors_url, notice: I18n.t(:destroy_success) }
       format.json { head :no_content }
     end
   end

@@ -1,11 +1,11 @@
 class AttachmentsController < ApplicationController
   before_action :set_attachment, only: [:show, :edit, :update, :destroy]
+  before_action :set_debt, only: [:index, :new, :create, :edit]
 
   # GET /attachments
   # GET /attachments.json
-  def index
-    @attachments = Attachment.all
-    @debt = Debt.find(params[:debt_id])
+  def index   
+    @attachments = Attachment.all.where(debt_id: @debt.id)
   end
 
   # GET /attachments/1
@@ -15,25 +15,23 @@ class AttachmentsController < ApplicationController
 
   # GET /attachments/new
   def new
-    @attachment = Attachment.new
-    @debt = Debt.find(params[:debt_id])
+    @attachment = Attachment.new   
   end
 
   # GET /attachments/1/edit
-  def edit
-    @debt = Debt.find(params[:debt_id])
+  def edit   
   end
 
   # POST /attachments
   # POST /attachments.json
   def create
     @attachment = Attachment.new(attachment_params)
-    @debt = Debt.find(params[:debt_id])
+   
     @attachment.debt = @debt
 
     respond_to do |format|
       if @attachment.save
-        format.html { redirect_to debt_attachments_path(@debt.id), notice: 'Attachment was successfully created.' }
+        format.html { redirect_to debt_attachments_path(@debt.id), notice: I18n.t(:save_success) }
         format.json { render :show, status: :created, location: @attachment }
       else
         format.html { render :new }
@@ -47,7 +45,7 @@ class AttachmentsController < ApplicationController
   def update
     respond_to do |format|
       if @attachment.update(attachment_params)
-        format.html { redirect_to debt_attachments_path(@attachment.debt.id), notice: 'Attachment was successfully updated.' }
+        format.html { redirect_to debt_attachments_path(@attachment.debt.id), notice: I18n.t(:save_success) }
         format.json { render :show, status: :ok, location: @attachment }
       else
         format.html { render :edit }
@@ -61,7 +59,7 @@ class AttachmentsController < ApplicationController
   def destroy
     @attachment.destroy
     respond_to do |format|
-      format.html { redirect_to debt_attachments_url, notice: 'Attachment was successfully destroyed.' }
+      format.html { redirect_to debt_attachments_url, notice: I18n.t(:destroy_success) }
       format.json { head :no_content }
     end
   end
@@ -70,6 +68,10 @@ class AttachmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_attachment
       @attachment = Attachment.find(params[:id])
+    end
+
+    def set_debt
+      @debt = Debt.find(params[:debt_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

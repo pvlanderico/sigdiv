@@ -41,6 +41,8 @@ pt-BR:
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes  
+  save_success: O registro foi salvo com sucesso.
+  destroy_success: O registro foi removido com sucesso.
   back: Voltar
   simple_form:
     "yes": 'Sim'
