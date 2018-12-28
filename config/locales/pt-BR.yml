@@ -5,6 +5,7 @@ pt-BR:
       debt: Operação
       creditor: Credor
       attachment: Anexo
+      withdraw: Desembolso
     attributes:
       debt:
         code: Código
@@ -35,6 +36,9 @@ pt-BR:
         name: Nome
         description: Descrição
         file: Arquivo
+      withdraw:
+        value: Valor
+        date: Data
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
