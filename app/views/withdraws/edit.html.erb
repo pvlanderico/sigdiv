@@ -1,6 +1,9 @@
-<h1>Editing Withdraw</h1>
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Editar desembolso</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
-<%= render 'form', withdraw: @withdraw %>
+<%= render 'form', debt: @debt, withdraw: @withdraw %>
 
-<%= link_to 'Mostrar', @withdraw, class: 'btn' %> |
-<%= link_to 'Voltar', withdraws_path, class: 'btn' %>

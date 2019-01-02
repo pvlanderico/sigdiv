@@ -1,27 +1,29 @@
 class WithdrawsController < ApplicationController
   before_action :set_withdraw, only: [:edit, :update, :destroy]
+  before_action :set_debt, only: [:new, :edit, :create]
 
   # GET /withdraws/new
-  def new
+  def new  	
     @withdraw = Withdraw.new
     render :new, layout: false
   end
 
   # GET /withdraws/1/edit
   def edit
+  	render :edit, layout: false
   end
 
   # POST /withdraws
   # POST /withdraws.json
   def create
     @withdraw = Withdraw.new(withdraw_params)
-
+    @withdraw.debt = @debt
     respond_to do |format|
       if @withdraw.save
         format.html { redirect_to @withdraw, notice: 'Withdraw was successfully created.' }
         format.json { render :show, status: :created, location: @withdraw }
       else
-        format.html { render :new }
+        format.html { render :new, layout: false }
         format.json { render json: @withdraw.errors, status: :unprocessable_entity }
       end
     end
@@ -35,7 +37,7 @@ class WithdrawsController < ApplicationController
         format.html { redirect_to @withdraw, notice: 'Withdraw was successfully updated.' }
         format.json { render :show, status: :ok, location: @withdraw }
       else
-        format.html { render :edit }
+        format.html { render :edit, layout: false }
         format.json { render json: @withdraw.errors, status: :unprocessable_entity }
       end
     end
@@ -53,6 +55,10 @@ class WithdrawsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_debt
+    	@debt = Debt.find(params[:debt_id])
+    end
+
     def set_withdraw
       @withdraw = Withdraw.find(params[:id])
     end

@@ -1,17 +1,10 @@
-
-<%= simple_form_for(@withdraw, url: debt_withdraws_path) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.hidden_field :debt_id, value: params[:debt_id]%>
-    
+<%= simple_form_for withdraw, url: debt_withdraws_path(debt) do |f| %>
+  <div class="modal-body">
     <%= f.input :value %>
-    <%= f.input :date %>
-    <%= f.input :debt_id %>
+    <%= f.input :date, as: :date %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-success pull-right" %>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+    <%= f.button :submit, class: "btn btn-success" %>
   </div>
 <% end %>
