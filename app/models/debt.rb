@@ -6,6 +6,7 @@ class Debt < ApplicationRecord
 
 	has_many :charges, inverse_of: :debt
 	has_many :attachments
+	has_many :withdraws
 
 	accepts_nested_attributes_for :charges, reject_if: :all_blank, allow_destroy: true
 
@@ -42,6 +43,32 @@ class Debt < ApplicationRecord
 
 	def contract_value_brl
 		currency == Debt.currencies.keys[1] ? to_brl : contract_value_cents
+	end
+
+	def status
+		if in_grace_period?
+			return 'Carência'
+		elsif in_amortization_period?
+			return 'Amortização'
+		elsif finished?
+			return 'Finalizada'
+		end
+	end
+
+	def in_grace_period?
+		grace_period > Date.today && !finished?
+	end
+
+	def in_amortization_period?
+		grace_period < Date.today && !finished?
+	end
+
+	def finished?
+		balance == 0
+	end
+
+	def balance
+		contract_value_cents - withdraws.sum(:value_cents)
 	end
 
 	private
