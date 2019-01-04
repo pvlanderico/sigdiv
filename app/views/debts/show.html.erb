@@ -62,17 +62,24 @@
 
   function initSubmit(){
 
-    $('#new_withdraw.input[type=submit]').on('click', function(e) {
+    $('button.withdraw-save').on('click', function(e) {
       e.preventDefault();
 
-      $.post('<%= debt_withdraws_path(@debt) %>')
-      .success(function( data) {
-        console.log('ok');
+      $.post('<%= debt_withdraws_path(@debt) %>', getWithdraw())
+      .done(function(data) {
+        $('#withdrawModal').modal('hide');        
       })
-      .error(function( data ) {
-        $('#withdrawModal .modal-content').html(data);
-        console.log('u oh');
+      .fail(function(data) {
+        $('#withdrawModal .modal-content').html(data.responseText);
+        initSubmit();
       });
     });
+  }
+
+  function getWithdraw() {
+    return { withdraw: { value: $('#withdraw_value').val(),
+                         'date(3i)': $('#withdraw_date_3i').val(),
+                         'date(2i)': $('#withdraw_date_2i').val(),
+                         'date(1i)': $('#withdraw_date_1i').val() } }
   }
 </script>
