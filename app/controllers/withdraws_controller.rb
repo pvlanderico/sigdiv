@@ -20,7 +20,7 @@ class WithdrawsController < ApplicationController
     @withdraw.debt = @debt
     respond_to do |format|
       if @withdraw.save
-        format.html { render plain: 'Withdraw was successfully created.' }
+        format.html { redirect_to @debt, plain: 'Withdraw was successfully created.' }
         format.json { render :show, status: :created, location: @withdraw }
       else
         format.html { render :new, layout: false, status: :unprocessable_entity }

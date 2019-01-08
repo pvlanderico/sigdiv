@@ -4,41 +4,88 @@
   </div>
 <% end %>
 
-<p>
-  <strong>Code:</strong>
-  <%= @debt.code %>
-</p>
+<h2><strong><%= @debt.code %></strong></h2>
+<h3><%= @debt.name %></h3>
+<hr>
+
+<div class="row">
+  <div class="col-sm">
+    <strong>Valor do contrato: </strong><%= @debt.contract_value %>
+  </div>
+  <div class="col-sm">
+    <strong>Data de assinatura: </strong><%= @debt.signature_date.strftime("%d-%m-%Y") %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <strong>Credor: </strong> <%= @debt.creditor.name %>
+  </div>
+  <div class="col-sm">
+    <strong>Agente financeiro: </strong> <%= @debt.creditor.name %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <strong>Prazo de carência: </strong> <%= @debt.grace_period.strftime("%d-%m-%Y") %>
+  </div>
+  <div class="col-sm">
+    <strong>Prazo de amortização: </strong> <%= @debt.amortization_period.strftime("%d-%m-%Y")%>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <strong>Tipo de amortização: </strong> <%= @debt.amortization_type %>
+  </div>
+  <div class="col-sm">
+    <strong>Periodicidade da amortização: </strong> <%= @debt.amortization_frequency %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <strong>Legislação aplicável: </strong> <%= @debt.applicable_legislation %>
+  </div>
+  <div class="col-sm">
+    <strong>Esfera: </strong> <%= @debt.legislation_level %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <strong>Objetivo: </strong><%= @debt.purpose %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <strong>Observações: </strong><%= @debt.notes %>
+  </div>
+</div>
+<br>
+
+<table class="table table-hover debt-ops">
+  <tbody>
+  
+    <% @debt.withdraws.order(date: 'desc').each do |withdraw| %>
+      <tr>
+        <td>      
+          <span class="badge badge-danger badge-pill">D</span>
+          <%= withdraw.date.strftime("%d-%m-%Y") %>
+        </td>
+        <td class="text-right">
+         <%= withdraw.value %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2" class="text-right"><strong><%= @debt.balance %></strong></td>
+    </tr>
+  </tbody>
+</table>
 
 <p>
-  <strong>Contract value cents:</strong>
-  <%= @debt.contract_value_cents %>
+  <span class="badge badge-danger badge-pill">D</span> Desembolso
+  <span class="badge badge-primary badge-pill">P</span> Pagamento
 </p>
 
-<p>
-  <strong>Signature date:</strong>
-  <%= @debt.signature_date %>
-</p>
-
-<p>
-  <strong>Creditor:</strong>
-  <%= @debt.creditor_id %>
-</p>
-
-<p>
-  <strong>Grace period:</strong>
-  <%= @debt.grace_period %>
-</p>
-
-<p>
-  <strong>Amortization period:</strong>
-  <%= @debt.amortization_period %>
-</p>
-
-<p>
-  <strong>Purpose:</strong>
-  <%= @debt.purpose %>
-</p>
-
+<hr>
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#withdrawModal">Registrar desembolso</button>
 
 <%= link_to 'Edit', edit_debt_path(@debt), class: 'btn' %> |
