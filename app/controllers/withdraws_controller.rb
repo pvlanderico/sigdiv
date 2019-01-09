@@ -20,7 +20,8 @@ class WithdrawsController < ApplicationController
     @withdraw.debt = @debt
     respond_to do |format|
       if @withdraw.save
-        format.html { redirect_to @debt, plain: 'Withdraw was successfully created.' }
+      	params[:create] = true
+        format.html { redirect_to @debt, notice: 'O registro foi salvo com sucesso.' }
         format.json { render :show, status: :created, location: @withdraw }
       else
         format.html { render :new, layout: false, status: :unprocessable_entity }
@@ -34,7 +35,7 @@ class WithdrawsController < ApplicationController
   def update
     respond_to do |format|
       if @withdraw.update(withdraw_params)
-        format.html { redirect_to @withdraw, notice: 'Withdraw was successfully updated.' }
+        format.html { redirect_to @withdraw, notice: 'O registro foi salvo com sucesso.' }
         format.json { render :show, status: :ok, location: @withdraw }
       else
         format.html { render :edit, layout: false, status: :unprocessable_entity }
@@ -48,7 +49,7 @@ class WithdrawsController < ApplicationController
   def destroy
     @withdraw.destroy
     respond_to do |format|
-      format.html { redirect_to withdraws_url, notice: 'Withdraw was successfully destroyed.' }
+      format.html { redirect_to withdraws_url, notice: 'O registro foi removido com sucesso.' }
       format.json { head :no_content }
     end
   end

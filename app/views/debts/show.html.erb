@@ -6,90 +6,146 @@
 
 <h2><strong><%= @debt.code %></strong></h2>
 <h3><%= @debt.name %></h3>
-<hr>
 
-<div class="row">
-  <div class="col-sm">
-    <strong>Valor do contrato: </strong><%= @debt.contract_value %>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-data-tab" data-toggle="tab" href="#nav-data" role="tab" aria-controls="nav-data" aria-selected="true">Dados</a>
+    <a class="nav-item nav-link" id="nav-ops-tab" data-toggle="tab" href="#nav-ops" role="tab" aria-controls="nav-ops" aria-selected="false">Movimentações</a>
   </div>
-  <div class="col-sm">
-    <strong>Data de assinatura: </strong><%= @debt.signature_date.strftime("%d-%m-%Y") %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm">
-    <strong>Credor: </strong> <%= @debt.creditor.name %>
-  </div>
-  <div class="col-sm">
-    <strong>Agente financeiro: </strong> <%= @debt.creditor.name %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm">
-    <strong>Prazo de carência: </strong> <%= @debt.grace_period.strftime("%d-%m-%Y") %>
-  </div>
-  <div class="col-sm">
-    <strong>Prazo de amortização: </strong> <%= @debt.amortization_period.strftime("%d-%m-%Y")%>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm">
-    <strong>Tipo de amortização: </strong> <%= @debt.amortization_type %>
-  </div>
-  <div class="col-sm">
-    <strong>Periodicidade da amortização: </strong> <%= @debt.amortization_frequency %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm">
-    <strong>Legislação aplicável: </strong> <%= @debt.applicable_legislation %>
-  </div>
-  <div class="col-sm">
-    <strong>Esfera: </strong> <%= @debt.legislation_level %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm">
-    <strong>Objetivo: </strong><%= @debt.purpose %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm">
-    <strong>Observações: </strong><%= @debt.notes %>
-  </div>
-</div>
-<br>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">
+    <div class="card-group">
+      <div class="card">
+        <div class="card-header"><strong>Valor do contrato</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.contract_value %></p>      
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Data de assinatura</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.signature_date.strftime("%d-%m-%Y") %></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Credor</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.creditor.name %></p>      
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Agente Financeiro</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%=  %></p>      
+        </div>
+      </div> 
+    </div>
 
-<table class="table table-hover debt-ops">
-  <tbody>
-  
-    <% @debt.withdraws.order(date: 'desc').each do |withdraw| %>
-      <tr>
-        <td>      
-          <span class="badge badge-danger badge-pill">D</span>
-          <%= withdraw.date.strftime("%d-%m-%Y") %>
-        </td>
-        <td class="text-right">
-         <%= withdraw.value %>
-        </td>
-      </tr>
-    <% end %>
-    <tr>
-      <td colspan="2" class="text-right"><strong><%= @debt.balance %></strong></td>
-    </tr>
-  </tbody>
-</table>
+    <br>
 
-<p>
-  <span class="badge badge-danger badge-pill">D</span> Desembolso
-  <span class="badge badge-primary badge-pill">P</span> Pagamento
-</p>
+    <div class="card-group">
+      <div class="card">
+        <div class="card-header"><strong>Prazo de carência</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.grace_period.strftime("%d-%m-%Y") %></p>      
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Prazo de amortização</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.amortization_period.strftime("%d-%m-%Y")%></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Tipo de amortização</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.amortization_type %></p>      
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Periodicidade da amortização</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.amortization_frequency %></p>      
+        </div>
+      </div> 
+    </div>
 
-<hr>
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#withdrawModal">Registrar desembolso</button>
+    <br>
 
-<%= link_to 'Edit', edit_debt_path(@debt), class: 'btn' %> |
-<%= link_to 'Back', debts_path, class: 'btn' %>
+    <div class="card-group">
+      <div class="card">
+        <div class="card-header"><strong>Legislação aplicável</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.applicable_legislation %></p>      
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Esfera</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.legislation_level %></p>
+        </div>
+      </div>  
+    </div>
+
+    <br>
+
+    <div class="card-group">
+      <div class="card">
+        <div class="card-header"><strong>Objetivo</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.purpose %></p>      
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="card-group">
+      <div class="card">
+        <div class="card-header"><strong>Observações</strong></div>
+        <div class="card-body">
+          <p class="card-text"><%= @debt.notes %></p>      
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="tab-pane fade" id="nav-ops" role="tabpanel" aria-labelledby="nav-ops-tab">
+    <br>
+
+    <table class="table table-hover debt-ops">
+      <tbody>      
+        <% @debt.withdraws.order(date: 'desc').each do |withdraw| %>
+          <tr>
+            <td>      
+              <span class="badge badge-danger badge-pill">D</span>
+              <%= withdraw.date.strftime("%d-%m-%Y") %>
+            </td>
+            <td class="text-right">
+             <%= withdraw.value %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="2" class="text-right"><strong><%= @debt.balance %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <span class="badge badge-danger badge-pill">D</span> Desembolso
+      <span class="badge badge-primary badge-pill">P</span> Pagamento
+    </p>
+
+    <hr>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#withdrawModal">Registrar desembolso</button>
+
+  </div>
+</div>
+
+<%= link_to 'Editar', edit_debt_path(@debt), class: 'btn' %> |
+<%= link_to 'Voltar', debts_path, class: 'btn' %>
 
 <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="CadastroDesembolso" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -99,6 +155,10 @@
 </div>
 
 <script type="text/javascript">
+  <% if (request.referrer == debt_url(@debt)) %> 
+    $('#nav-ops-tab').tab('show');
+  <% end %>
+
   $('#withdrawModal').on('show.bs.modal', function (e) {
     $.get('<%= new_debt_withdraw_path(@debt) %>')
     .done(function( data ) {
