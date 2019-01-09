@@ -17,25 +17,25 @@
   <div class="tab-pane fade show active" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">
     <div class="card-group">
       <div class="card">
-        <div class="card-header"><strong>Valor do contrato</strong></div>
+        <div class="card-header alert-primary"><strong>Valor do contrato</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.contract_value %></p>      
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><strong>Data de assinatura</strong></div>
+        <div class="card-header alert-primary"><strong>Data de assinatura</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.signature_date.strftime("%d-%m-%Y") %></p>
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><strong>Credor</strong></div>
+        <div class="card-header alert-primary"><strong>Credor</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.creditor.name %></p>      
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><strong>Agente Financeiro</strong></div>
+        <div class="card-header alert-primary"><strong>Agente Financeiro</strong></div>
         <div class="card-body">
           <p class="card-text"><%=  %></p>      
         </div>
@@ -46,25 +46,25 @@
 
     <div class="card-group">
       <div class="card">
-        <div class="card-header"><strong>Prazo de carência</strong></div>
+        <div class="card-header alert-primary"><strong>Prazo de carência</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.grace_period.strftime("%d-%m-%Y") %></p>      
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><strong>Prazo de amortização</strong></div>
+        <div class="card-header alert-primary"><strong>Prazo de amortização</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.amortization_period.strftime("%d-%m-%Y")%></p>
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><strong>Tipo de amortização</strong></div>
+        <div class="card-header alert-primary"><strong>Tipo de amortização</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.amortization_type %></p>      
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><strong>Periodicidade da amortização</strong></div>
+        <div class="card-header alert-primary"><strong>Periodicidade da amortização</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.amortization_frequency %></p>      
         </div>
@@ -75,13 +75,13 @@
 
     <div class="card-group">
       <div class="card">
-        <div class="card-header"><strong>Legislação aplicável</strong></div>
+        <div class="card-header alert-primary"><strong>Legislação aplicável</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.applicable_legislation %></p>      
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><strong>Esfera</strong></div>
+        <div class="card-header alert-primary"><strong>Esfera</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.legislation_level %></p>
         </div>
@@ -92,7 +92,7 @@
 
     <div class="card-group">
       <div class="card">
-        <div class="card-header"><strong>Objetivo</strong></div>
+        <div class="card-header alert-primary"><strong>Objetivo</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.purpose %></p>      
         </div>
@@ -103,7 +103,7 @@
 
     <div class="card-group">
       <div class="card">
-        <div class="card-header"><strong>Observações</strong></div>
+        <div class="card-header alert-primary"><strong>Observações</strong></div>
         <div class="card-body">
           <p class="card-text"><%= @debt.notes %></p>      
         </div>
