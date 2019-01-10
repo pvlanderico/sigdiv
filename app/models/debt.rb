@@ -3,6 +3,7 @@ class Debt < ApplicationRecord
 
 	belongs_to :creditor
 	belongs_to :financial_agent, class_name: :creditor, optional: true
+	belongs_to :currency
 
 	has_many :charges, inverse_of: :debt
 	has_many :attachments
@@ -14,8 +15,7 @@ class Debt < ApplicationRecord
 	enum amortization_type: [:sac, :price, :single]
 	enum amortization_frequencies: [:mensal, :trimestral, :semestral]
 	enum legislation_level: [:federal, :estadual, :municipal]
-	enum currency: [:brl, :usd]
-
+	
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
 	validates :contract_value_cents, presence: true
 	validates :signature_date, presence: true
@@ -38,11 +38,11 @@ class Debt < ApplicationRecord
 	end
 
 	def next_instalment
-		charges_total # + interest + amortization
+		Money.new charges_total # + interest + amortization
 	end
 
 	def contract_value_brl
-		currency == Debt.currencies.keys[1] ? to_brl : contract_value_cents
+		contract_value_cents / currency.to_brl		
 	end
 
 	def status
@@ -68,14 +68,10 @@ class Debt < ApplicationRecord
 	end
 
 	def balance
-		contract_value_cents - withdraws.sum(:value_cents)
+		contract_value_brl - withdraws.sum(:value_cents)
 	end
 
 	private
-
-		def to_brl
-			contract_value_cents / BancoCentral.last(:dolar)[:value]
-		end
 
 		def self.date_range_from_year year
 			Date.new(year)..(Date.new(year + 1) - 1.day)

@@ -15,11 +15,43 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header alert-primary"><strong>Valor pago</strong></div>
+          <div class="card-body">
+            <p class="card-text">-</p>            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header alert-primary"><strong>Próxima parcela</strong></div>
+          <div class="card-body">
+            <p class="card-text"><%= humanized_money_with_symbol @debt.next_instalment %></p>            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header alert-primary"><strong>Status</strong></div>
+          <div class="card-body">
+            <p class="card-text"><%= @debt.status %></p>            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
     <div class="card-group">
       <div class="card">
         <div class="card-header alert-primary"><strong>Valor do contrato</strong></div>
         <div class="card-body">
-          <p class="card-text"><%= @debt.contract_value %></p>      
+          <p class="card-text">
+            <%= @debt.contract_value %>
+            <%= @debt.currency.name %>
+          </p>
         </div>
       </div>
       <div class="card">
@@ -114,6 +146,11 @@
   <div class="tab-pane fade" id="nav-ops" role="tabpanel" aria-labelledby="nav-ops-tab">
     <br>
 
+    <p>
+      <strong>Valor do contrato em reais: </strong>
+      <%= humanized_money_with_symbol @debt.contract_value_brl %>
+    </p>
+
     <table class="table table-hover debt-ops">
       <tbody>      
         <% @debt.withdraws.order(date: 'desc').each do |withdraw| %>
@@ -129,7 +166,7 @@
         <% end %>
         <tr>
           <td><strong>Saldo</strong></td>
-          <td class="text-right"><strong><%= @debt.balance %></strong></td>
+          <td class="text-right"><strong><%= humanized_money_with_symbol @debt.balance %></strong></td>
         </tr>
       </tbody>
     </table>

@@ -84,7 +84,7 @@ class DebtsController < ApplicationController
                                    :legislation_level,
                                    :name,
                                    :category,
-                                   :currency,
+                                   :currency_id,
                                    :notes,                                   
                                    charges_attributes: [:id,
                                                         :_destroy,
