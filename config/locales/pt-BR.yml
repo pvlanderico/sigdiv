@@ -6,6 +6,7 @@ pt-BR:
       creditor: Credor
       attachment: Anexo
       withdraw: Desembolso
+      currency: Moeda
     attributes:
       debt:
         code: Código
@@ -39,6 +40,10 @@ pt-BR:
       withdraw:
         value: Valor
         date: Data
+      currency:
+        name: Nome
+        formula: Fórmula
+        description: Descrição
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

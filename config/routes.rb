@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :currencies
   resources :creditors
   
   resources :debts do
