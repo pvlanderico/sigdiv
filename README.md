@@ -11,7 +11,18 @@ Sistema de Análise da Dívida Pública. É uma iniciativa da prefeitura municip
 
 Ubuntu 18.04
 rbenv
+
+sudo apt update
+sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+nano ~/.bashrc
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 Ruby 2.5.3p105
+rbenv install 2.5.3
+rbenv global 2.5.3
+
 Postgresql
 git
 Download do projeto
