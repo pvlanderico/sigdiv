@@ -22,7 +22,24 @@ eval "$(rbenv init -)"
 Ruby 2.5.3p105
 rbenv install 2.5.3
 rbenv global 2.5.3
+git clone https://github.com/smfazendaniteroi/sadp.git
+cd sadp
+
+gem install bundler -v 1.17.1
+bundle
+rbenv rehash
+nano config/settings.yml -> Pedir senha do ftp
 
 Postgresql
+apt get install postgresql
+sudo -u postgres psql
+create role sadp with createdb login password 'passwordDB';
+rails db:create
+rails db:migrate
+rails s
+
+
+
+
 git
 Download do projeto
