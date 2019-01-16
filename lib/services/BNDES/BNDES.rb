@@ -4,17 +4,22 @@ class BNDES
 	CURRENCY_FILE_URL =	"https://www.bndes.gov.br/Moedas/umCODE.txt"
 
 	class << self
-		def get_currency code
-			result = Hash.new
 
-			open(CURRENCY_FILE_URL.gsub!("CODE", code), "r") do |file|
-			  result = parse file
-			end
-			
-			result
-		end
+		def last code
+			get_currency(code).values.first
+		end		
 
 		private
+			def get_currency code
+				result = Hash.new
+
+				open(CURRENCY_FILE_URL.gsub("CODE", code.to_s), "r") do |file|
+				  result = parse file
+				end
+				
+				result
+			end
+
 			def parse file
 				result = Hash.new
 
