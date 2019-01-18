@@ -4,5 +4,5 @@ class Withdraw < ApplicationRecord
 	belongs_to :debt
 
 	validates :value, presence: true
-	validates :date, presence: true
+	validates :date, presence: true	
 end

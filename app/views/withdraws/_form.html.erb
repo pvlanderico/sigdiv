@@ -1,10 +1,32 @@
 <%= simple_form_for withdraw, url: debt_withdraws_path(debt) do |f| %>
   <div class="modal-body">
     <%= f.input :value %>
+    <%= f.input :exchange_rate %>
+    <label>Valor em reais:</label>
+    <input class="form-control" type="text" value="0,00" name="" id="withdraw_value_brl" disabled>
+    <br>
     <%= f.input :date, as: :date %>
+    <%= f.input :date, as: :date if debt.externo? %>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
     <button type="button" class="btn btn-success withdraw-save">Salvar</button>
   </div>
 <% end %>
+
+<script type="text/javascript">
+	updateBrlValue();
+
+	$('#withdraw_value').on('keyup', function(){
+		updateBrlValue();
+	});
+
+	$('#withdraw_exchange_rate').on('keyup', function(){
+		updateBrlValue();
+	});
+
+	function updateBrlValue(){
+		brlValue = $('#withdraw_value').val() * $('#withdraw_exchange_rate').val();
+		$('#withdraw_value_brl').val(brlValue);
+	}
+</script>

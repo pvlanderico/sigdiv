@@ -38,8 +38,10 @@ pt-BR:
         description: Descrição
         file: Arquivo
       withdraw:
-        value: Valor
-        date: Data
+        value: Valor em unidade monetária
+        date: Data de liberação
+        internalization_date: Data de internalização
+        exchange_rate: Taxa de conversão
       currency:
         name: Nome
         formula: Fórmula
