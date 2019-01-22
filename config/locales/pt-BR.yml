@@ -14,9 +14,11 @@ pt-BR:
         category: Tipo
         contract_value_cents: Valor do contrato
         currency: Moeda
+        interest_rate_formula: Fórmula da taxa de juros
         signature_date: Data da assinatura
         creditor: Credor
         grace_period: Prazo de carência
+        grace_period_rate_frequency: Periodicidade carência
         amortization_period: Prazo de amortização
         amortization_type: Tipo de amortização
         amortization_frequency: Periodicidade da amortização

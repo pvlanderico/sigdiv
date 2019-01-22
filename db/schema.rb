@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_135605) do
+ActiveRecord::Schema.define(version: 2019_01_22_133844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_135605) do
     t.text "notes"
     t.integer "category"
     t.integer "currency_id"
+    t.integer "grace_period_rate_frequency"
+    t.string "interest_rate_formula"
   end
 
   create_table "withdraws", force: :cascade do |t|

@@ -35,12 +35,25 @@
     <div class="row">
       <div class="col-sm">
         <%= f.input :contract_value_cents %>
-      </div>
-      <div class="col-sm">
-        <%= f.input :grace_period %> 
-      </div>
+      </div>      
       <div class="col-sm">
         <%= f.association :currency %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :interest_rate_formula %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm">
+        <%= f.input :grace_period %>
+      </div>      
+      <div class="col-sm">
+        <%= f.input :grace_period_rate_frequency, as: :radio_buttons, collection: Debt.amortization_frequencies.keys, label_method: :titleize  %>
+      </div>
+      <div class="col-sm">        
       </div>
     </div>
 

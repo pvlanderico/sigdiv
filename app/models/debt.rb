@@ -77,8 +77,8 @@ class Debt < ApplicationRecord
 			Date.new(year)..(Date.new(year + 1) - 1.day)
 		end
 
-		def interest
-			#todo
+		def interest_rate
+			Dentaku(interest_rate_formula)
 		end
 
 		def amortization
