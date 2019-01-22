@@ -1,6 +1,6 @@
 <%= simple_form_for withdraw, url: debt_withdraws_path(debt) do |f| %>
   <div class="modal-body">
-    <%= f.input :value %>
+    <%= f.input :value, as: :float %>
     <%= f.input :exchange_rate %>
     <label>Valor em reais:</label>
     <input class="form-control" type="text" value="0,00" name="" id="withdraw_value_brl" disabled>
