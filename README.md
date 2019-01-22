@@ -23,6 +23,7 @@ Para atualizar o path e inicializar o ambiente na execução do shell é necess�
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 ```
+Após definir o path é necessário reiniciar o shell.
 
 A versão do Ruby utilizada é a 2.5.3. Para instalar e utilizá-la, execute os seguintes comandos:
 
