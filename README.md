@@ -45,15 +45,6 @@ Instale o bundler na versão especificada:
 $ gem install bundler -v 1.17.1
 ```
 
-Instalando as gems da aplicação:
-
-```
-$ bundle
-$ rbenv rehash
-```
-
-Para executar o sisteme é necessário definir um servidor de ftp no arquivo config/settings.yml. Um template se encontra em config/settings.yml.template.
-
 Para instalar o banco de dados PostgreSQL:
 
 ```
@@ -66,6 +57,15 @@ Criando o role utilizado pelo sistema:
 $ sudo -u postgres psql
 # create role sadp with createdb login password 'passwordDB';
 ```
+
+Instalando as gems da aplicação:
+
+```
+$ bundle
+$ rbenv rehash
+```
+
+Para executar o sisteme é necessário definir um servidor de ftp no arquivo config/settings.yml. Um template se encontra em config/settings.yml.template.
 
 Criando a base de dados e o schema:
 
