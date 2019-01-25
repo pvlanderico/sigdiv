@@ -23,7 +23,7 @@ class Debt < ApplicationRecord
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
 
-	def self.search code_query, name_query, creditor_query, signature_year_query
+	def self.search code_query, name_query, creditor_query, signature_year_query, status_query
 		result = Debt.all
 
 		if code_query.present? 
@@ -34,6 +34,8 @@ class Debt < ApplicationRecord
 
 		result = result.where("name ILIKE ?", "%#{name_query}%") if name_query.present?
 		result = result.where(signature_date: date_range_from_year(signature_year_query.to_i)) if signature_year_query.present?
+
+		result = result.select{ |debt| debt.status == status_query } if status_query.present?
 
 		result
 	end
