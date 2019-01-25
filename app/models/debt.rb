@@ -13,7 +13,8 @@ class Debt < ApplicationRecord
 
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
-	enum amortization_frequencies: [:mensal, :trimestral, :semestral]
+	enum amortization_frequency: [:mensal, :trimestral, :semestral]
+	# enum grace_period_rate_frequency: [:mensal, :trimestral, :semestral]
 	enum legislation_level: [:federal, :estadual, :municipal]
 	
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
