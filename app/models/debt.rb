@@ -2,7 +2,7 @@ class Debt < ApplicationRecord
 	monetize :contract_value_cents
 
 	belongs_to :creditor
-	belongs_to :financial_agent, class_name: :creditor, optional: true
+	belongs_to :financial_agent, class_name: 'Creditor', optional: true
 	belongs_to :currency
 
 	has_many :charges, inverse_of: :debt
