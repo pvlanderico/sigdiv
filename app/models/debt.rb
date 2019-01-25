@@ -32,7 +32,7 @@ class Debt < ApplicationRecord
 			result = result.where(creditor_id: creditor_query)
 		end
 
-		result = result.where("name LIKE ?", name_query) if name_query.present?
+		result = result.where("name ILIKE ?", "%#{name_query}%") if name_query.present?
 		result = result.where(signature_date: date_range_from_year(signature_year_query.to_i)) if signature_year_query.present?
 
 		result
