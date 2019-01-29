@@ -10,7 +10,9 @@
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-data-tab" data-toggle="tab" href="#nav-data" role="tab" aria-controls="nav-data" aria-selected="true">Dados</a>
-    <a class="nav-item nav-link" id="nav-ops-tab" data-toggle="tab" href="#nav-ops" role="tab" aria-controls="nav-ops" aria-selected="false">Desembolsos</a>
+    <a class="nav-item nav-link" id="nav-ops-tab" data-toggle="tab" href="#nav-withdraws" role="tab" aria-controls="nav-ops" aria-selected="false">Desembolsos</a>  
+    <a class="nav-item nav-link" id="nav-ops-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-ops" aria-selected="false">Movimentações</a>
+    <a class="nav-item nav-link" id="nav-ops-tab" data-toggle="tab" href="#nav-attachments" role="tab" aria-controls="nav-ops" aria-selected="false">Anexos</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -115,7 +117,7 @@
     </div>
 
   </div>
-  <div class="tab-pane fade" id="nav-ops" role="tabpanel" aria-labelledby="nav-ops-tab">
+  <div class="tab-pane fade" id="nav-withdraws" role="tabpanel" aria-labelledby="nav-withdraws-tab">
     <br>
 
     <p>
@@ -145,13 +147,15 @@
 
     <p>
       <span class="badge badge-danger badge-pill">D</span> Desembolso
-      <span class="badge badge-primary badge-pill">P</span> Pagamento
     </p>
 
     <hr>
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#withdrawModal">Registrar desembolso</button>
 
   </div>
+
+  <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab"></div>
+  <div class="tab-pane fade" id="nav-attachments" role="tabpanel" aria-labelledby="nav-attachments-tab"></div>
 </div>
 
 <%= link_to 'Editar', edit_debt_path(@debt), class: 'btn' %> |

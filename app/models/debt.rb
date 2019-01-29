@@ -42,7 +42,7 @@ class Debt < ApplicationRecord
 	end
 
 	def contract_value_brl
-		contract_value_cents / currency.to_brl		
+		contract_value_cents / currency.to_brl	
 	end
 
 	def status
