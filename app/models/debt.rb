@@ -2,7 +2,7 @@ class Debt < ApplicationRecord
 	monetize :contract_value_cents
 
 	belongs_to :creditor
-	belongs_to :financial_agent, class_name: :creditor, optional: true
+	belongs_to :financial_agent, class_name: 'Creditor', optional: true
 	belongs_to :currency
 
 	has_many :charges, inverse_of: :debt
@@ -13,7 +13,8 @@ class Debt < ApplicationRecord
 
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
-	enum amortization_frequencies: [:mensal, :trimestral, :semestral]
+	enum amortization_frequency: [:mensal, :trimestral, :semestral]
+	# enum grace_period_rate_frequency: [:mensal, :trimestral, :semestral]
 	enum legislation_level: [:federal, :estadual, :municipal]
 	
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
@@ -22,7 +23,7 @@ class Debt < ApplicationRecord
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
 
-	def self.search code_query, name_query, creditor_query, signature_year_query
+	def self.search code_query, name_query, creditor_query, signature_year_query, status_query
 		result = Debt.all
 
 		if code_query.present? 
@@ -31,8 +32,10 @@ class Debt < ApplicationRecord
 			result = result.where(creditor_id: creditor_query)
 		end
 
-		result = result.where("name LIKE ?", name_query) if name_query.present?
+		result = result.where("name ILIKE ?", "%#{name_query}%") if name_query.present?
 		result = result.where(signature_date: date_range_from_year(signature_year_query.to_i)) if signature_year_query.present?
+
+		result = result.select{ |debt| debt.status == status_query } if status_query.present?
 
 		result
 	end

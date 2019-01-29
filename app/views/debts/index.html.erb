@@ -8,9 +8,10 @@
   <input class="form-control mr-sm-2" type="search" placeholder="Código" aria-label="Search" name="code_query" value="<%= params[:code_query] %>">
   <span class="mr-sm-2" >ou</span>
   <input class="form-control mr-sm-2" type="search" placeholder="Identificador" aria-label="Search" name="name_query" value="<%= params[:name_query] %>">
-  <input class="form-control mr-sm-2" type="search" placeholder="Ano da assinatura" aria-label="Search" name="signature_year_query" value="<%= params[:signature_year_query] %>">
-  <%= select_tag "creditor_query", options_from_collection_for_select(Creditor.all, :id, :name, params[:creditor_query]), class: 'form-control select optional mr-sm-2 col-sm-3', prompt: 'Selecionar credor' %>
-  
+  <input class="form-control mr-sm-2 col-sm-2" type="search" placeholder="Ano da assinatura" aria-label="Search" name="signature_year_query" value="<%= params[:signature_year_query] %>">
+  <%= select_tag "creditor_query", options_from_collection_for_select(Creditor.all, :id, :name, params[:creditor_query]), class: 'form-control select optional mr-sm-2', prompt: 'Selecionar credor' %>
+  <%= select_tag "status_query", options_for_select(["Carência", "Amortização", "Finalizado"],
+ params[:status_query]), class: 'form-control select optional mr-sm-2' , prompt: 'Selecionar status' %>
   <button class="btn btn-light my-2 my-sm-0" type="submit"><%= fa_icon("search", title: "Buscar") %></button>
 </form>
 
