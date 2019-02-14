@@ -13,8 +13,8 @@ class Debt < ApplicationRecord
 
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
-	enum amortization_frequency: [:mensal, :trimestral, :semestral]
-	# enum grace_period_rate_frequency: [:mensal, :trimestral, :semestral]
+	enum amortization_frequency: [:mensal, :trimestral, :semestral], _prefix: :amortization_frequency
+	enum grace_period_rate_frequency: [:mensal, :trimestral, :semestral], _prefix: :grace_period_rate_frequency
 	enum legislation_level: [:federal, :estadual, :municipal]
 	
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
@@ -23,7 +23,7 @@ class Debt < ApplicationRecord
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
 
-	def self.search code_query, name_query, creditor_query, signature_year_query, status_query
+	def self.search code_query = '', name_query = '', creditor_query = '', signature_year_query = '', status_query = ''
 		result = Debt.all
 
 		if code_query.present? 
@@ -71,7 +71,7 @@ class Debt < ApplicationRecord
 	end
 
 	def balance
-		contract_value_brl - withdraws.sum(:value_cents)
+		#contract_value_brl - withdraws.sum(:value_cents)
 	end
 
 	private

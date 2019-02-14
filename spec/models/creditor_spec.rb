@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Creditor, type: :model do
-	
+
 	before do
   	create(:creditor)
   	create(:financial_agent)
