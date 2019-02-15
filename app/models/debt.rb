@@ -67,7 +67,8 @@ class Debt < ApplicationRecord
 	end
 
 	def finished?
-		balance == 0
+		#balance == 0
+		false
 	end
 
 	def balance
