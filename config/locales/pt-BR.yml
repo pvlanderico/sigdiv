@@ -5,7 +5,7 @@ pt-BR:
       debt: Operação
       creditor: Credor
       attachment: Anexo
-      withdraw: Desembolso
+      transaction: Movimentação
       currency: Moeda
     attributes:
       debt:
@@ -39,7 +39,7 @@ pt-BR:
         name: Nome
         description: Descrição
         file: Arquivo
-      withdraw:
+      transaction:
         value: Valor em unidade monetária
         date: Data de liberação
         internalization_date: Data de internalização

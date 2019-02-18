@@ -174,7 +174,7 @@
   <% end %>
 
   $('#withdrawModal').on('show.bs.modal', function (e) {
-    $.get('<%= new_debt_withdraw_path(@debt) %>')
+    $.get('<%= new_debt_transaction_path(@debt) %>')
     .done(function( data ) {
       $('#withdrawModal .modal-content').html(data);
       initSubmit();
@@ -186,7 +186,7 @@
     $('button.withdraw-save').on('click', function(e) {
       e.preventDefault();
 
-      $.post('<%= debt_withdraws_path(@debt) %>', getWithdraw())
+      $.post('<%= debt_transactions_path(@debt) %>', getWithdraw())
       .done(function(data) {
         $('#withdrawModal').modal('hide');        
       })

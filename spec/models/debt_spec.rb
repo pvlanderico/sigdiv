@@ -10,6 +10,18 @@ describe Debt, type: :model do
   	expect(@debt.valid?).to be true
   end
 
+  describe '#next_instalment' do
+  	it 'next instalment is correct' do  		
+  		@debt.transactions << Withdraw.new(value: 12908113.30625, date: Date.yesterday, exchange_rate: 1)
+  		expect(@debt.next_instalment.round 5).to eq(92477.73279)
+  	end
+  end
+
+  describe 'charges_total' do
+
+  	it 'charges sum is correct'
+  end
+
   describe '#status' do
   	context 'when debt is in grace period' do
   		before do 
@@ -39,9 +51,15 @@ describe Debt, type: :model do
   	end
 
   	context 'when debt is finished' do
-  		it 'is not in grace period'
-  		it 'is not is amortization period'
-  		it 'status returns finished'
+  		# it 'is not in grace period' do
+  		# 	expect(@debt.in_grace_period?).to be false
+  		# end
+  		# it 'is not is amortization period' do
+  		# 	expect(@debt_in_grace_period.in_amortization_period?).to be false
+  		# end
+  		# it 'status returns finished' do
+  		# 	expect(@debt.status).to eq('Finalizado')
+  		end
   	end
   end
 

@@ -21,6 +21,7 @@ module Sadp
     config.ftp = OpenStruct.new(YAML.load_file('config/settings.yml')['ftp'])
 
     config.autoload_paths += Dir["#{config.root}/lib/services/*"]
+    config.autoload_paths += Dir["#{config.root}/app/models/*"]
 
     # Don't generate system test files.
     config.generators.system_tests = nil

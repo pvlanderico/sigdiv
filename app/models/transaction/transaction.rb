@@ -1,6 +1,4 @@
-class Withdraw < ApplicationRecord
-	monetize :value_cents
-
+class Transaction < ApplicationRecord
 	belongs_to :debt
 
 	validates :value, presence: true

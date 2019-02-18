@@ -7,8 +7,8 @@ class Debt < ApplicationRecord
 
 	has_many :charges, inverse_of: :debt
 	has_many :attachments
-	has_many :withdraws
-
+	has_many :transactions
+	
 	accepts_nested_attributes_for :charges, reject_if: :all_blank, allow_destroy: true
 
 	enum category: [:interno, :externo]
@@ -22,6 +22,7 @@ class Debt < ApplicationRecord
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
+	validates :instalments_number, presence: true
 
 	def self.search code_query = '', name_query = '', creditor_query = '', signature_year_query = '', status_query = ''
 		result = Debt.all
@@ -40,8 +41,26 @@ class Debt < ApplicationRecord
 		result
 	end
 
+	def withdraws
+		transactions.where(type: 'Withdraw')
+	end
+
 	def next_instalment
-		Money.new charges_total # + interest + amortization
+		withdraws.sum(:value) * next_instalment_numerator / next_instalment_denominator
+		#Money.new charges_total # + interest + amortization
+	end
+
+	def next_instalment_numerator
+		( ( (1 + interest_rate_per_month) ** instalments_number ) * interest_rate_per_month )
+	end
+
+	def next_instalment_denominator
+		( ( ( 1 + interest_rate_per_month ) ** instalments_number ) - 1 )
+	end
+
+
+	def interest_rate_per_month
+		interest_rate_formula.to_f / 1200
 	end
 
 	def contract_value_brl
@@ -72,7 +91,7 @@ class Debt < ApplicationRecord
 	end
 
 	def balance
-		#contract_value_brl - withdraws.sum(:value_cents)
+		instalment_sum == payments.sum(:value_cents)
 	end
 
 	private
