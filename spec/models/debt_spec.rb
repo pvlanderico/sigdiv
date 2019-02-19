@@ -1,14 +1,36 @@
 require 'rails_helper'
 
 describe Debt, type: :model do
-  before do  	
+  before(:each) do  	
   	@debt = create(:cef, charges: [ build(:adm_tax), build(:credit_risk) ])
-  	@debt.transactions << Withdraw.new(value: 12908113.30625, date: Date.yesterday, exchange_rate: 1)
+  	@debt.transactions << Withdraw.new(value: 12908113.30625, date: 3.months.ago, exchange_rate: 1)
   	@debts = create_list(:debt, 30)
 	end
 
   it 'is valid' do
   	expect(@debt.valid?).to be true
+  end
+
+  describe '#reference_period' do
+    context 'when payment day is 1' do
+      before do
+        @debt = create(:debt, payment_day: 1)
+      end
+
+      it 'period is one month' do
+        expect(@debt.send(:reference_period).count).to be_between(30,31)
+      end
+    end
+
+    context 'when payment day is 30' do
+      before do
+        @debt = create(:debt, payment_day: 28)
+      end
+
+      it 'period is one month' do
+        expect(@debt.send(:reference_period).count).to be_between(30,31)
+      end
+    end
   end
 
   describe '#next_instalment' do
@@ -27,6 +49,15 @@ describe Debt, type: :model do
   	it 'interest value is correct' do
 			expect(@debt.interest.round 5).to eq(64540.56653)
   	end
+
+    context 'when there is a withdraw' do
+      before(:each) do
+        @debt.transactions << Withdraw.new(value: 208970.05587, date: 21.days.ago, exchange_rate: 1)
+      end
+      it 'interest value is correct' do
+        expect(@debt.interest.round 5).to eq(64863.68764)
+      end
+    end
   end
 
   describe '#charges_total' do

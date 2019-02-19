@@ -13,6 +13,7 @@ FactoryBot.define do
 		grace_period_rate_frequency { Debt.grace_period_rate_frequencies.values.sample }
 		interest_rate_formula { 0.1 }
 		loan_term { 120 }
+		payment_day { Date.tomorrow.day }
 		association :currency, factory: :uprd
   	
   	factory :cef do
@@ -27,6 +28,7 @@ FactoryBot.define do
 	    grace_period_rate_frequency  { 'mensal' }
 	    interest_rate_formula { 6 }
 	    loan_term { 240 }
+	    payment_day { 15 }
 	  end
   end
 end

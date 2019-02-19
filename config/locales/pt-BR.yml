@@ -28,6 +28,7 @@ pt-BR:
         legislation_level: Esfera
         notes: Observações
         contract: Contrato
+        payment_day: Dia do pagamento
       creditor:
         name: Nome
         financial_agent: Agente financeiro

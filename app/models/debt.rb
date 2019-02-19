@@ -23,6 +23,7 @@ class Debt < ApplicationRecord
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
 	validates :loan_term, presence: true
+	validates :payment_day, presence: true, :inclusion => 1..30
 
 	def self.search code_query = '', name_query = '', creditor_query = '', signature_year_query = '', status_query = ''
 		result = Debt.all
@@ -44,7 +45,7 @@ class Debt < ApplicationRecord
 	def withdraws
 		transactions.where(type: 'Withdraw')
 	end
-
+  # Próxima parcela
 	def next_instalment
 		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
 	end	
@@ -52,9 +53,13 @@ class Debt < ApplicationRecord
 	def amortization
 		next_instalment - interest
 	end
-
+	# Juros
 	def interest
-		outstanding_balance * interest_rate_per_month
+		withdraws_total = 0
+		withdraws.where(date: reference_period).each do |withdraw|
+			withdraws_total += withdraw.value * (Date.new(Date.today.year, Date.today.month, payment_day) - withdraw.date).to_i
+		end
+		(((outstanding_balance * interest_rate) / 360) * 30) - withdraws_total 
 	end
 
 	def contract_value_brl
@@ -85,7 +90,7 @@ class Debt < ApplicationRecord
 	end
 
 	def balance
-		instalment_sum == payments.sum(:value_cents)
+		# instalment_sum == payments.sum(:value_cents)
 	end
 
 	private
@@ -96,7 +101,7 @@ class Debt < ApplicationRecord
 
 		# Taxa de juros
 		def interest_rate
-			Dentaku(interest_rate_formula)
+			Dentaku(interest_rate_formula).to_f / 100
 		end
 
 		def charges_total
@@ -112,11 +117,16 @@ class Debt < ApplicationRecord
 		end
 
 		def interest_rate_per_month
-			interest_rate_formula.to_f / 1200
+			interest_rate.to_f / 12
 		end
 
 		# Saldo devedor
 		def outstanding_balance
 			withdraws.sum(:value)
+		end
+		# Periodo de referência para calculo de juros e taxas
+		def reference_period
+			final_date = Date.new(Date.today.year, Date.today.month, payment_day)
+			(final_date - 1.month + 1.day)..final_date
 		end
 end
