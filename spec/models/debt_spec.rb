@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Debt, type: :model do
   before do  	
   	@debt = create(:cef, charges: [ build(:adm_tax), build(:credit_risk) ])
+  	@debt.transactions << Withdraw.new(value: 12908113.30625, date: Date.yesterday, exchange_rate: 1)
   	@debts = create_list(:debt, 30)
 	end
 
@@ -12,13 +13,23 @@ describe Debt, type: :model do
 
   describe '#next_instalment' do
   	it 'next instalment is correct' do  		
-  		@debt.transactions << Withdraw.new(value: 12908113.30625, date: Date.yesterday, exchange_rate: 1)
   		expect(@debt.next_instalment.round 5).to eq(92477.73279)
   	end
   end
 
-  describe 'charges_total' do
+  describe '#amortization' do
+  	it 'amortization value is correct' do
+  		expect(@debt.amortization.round 5).to eq( 27937.16626)
+  	end
+  end
 
+  describe '#interest' do
+  	it 'interest value is correct' do
+			expect(@debt.interest.round 5).to eq(64540.56653)
+  	end
+  end
+
+  describe '#charges_total' do
   	it 'charges sum is correct'
   end
 
@@ -59,7 +70,7 @@ describe Debt, type: :model do
   		# end
   		# it 'status returns finished' do
   		# 	expect(@debt.status).to eq('Finalizado')
-  		end
+  		# end
   	end
   end
 

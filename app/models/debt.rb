@@ -22,7 +22,7 @@ class Debt < ApplicationRecord
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
-	validates :instalments_number, presence: true
+	validates :loan_term, presence: true
 
 	def self.search code_query = '', name_query = '', creditor_query = '', signature_year_query = '', status_query = ''
 		result = Debt.all
@@ -46,21 +46,15 @@ class Debt < ApplicationRecord
 	end
 
 	def next_instalment
-		withdraws.sum(:value) * next_instalment_numerator / next_instalment_denominator
-		#Money.new charges_total # + interest + amortization
+		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
+	end	
+
+	def amortization
+		next_instalment - interest
 	end
 
-	def next_instalment_numerator
-		( ( (1 + interest_rate_per_month) ** instalments_number ) * interest_rate_per_month )
-	end
-
-	def next_instalment_denominator
-		( ( ( 1 + interest_rate_per_month ) ** instalments_number ) - 1 )
-	end
-
-
-	def interest_rate_per_month
-		interest_rate_formula.to_f / 1200
+	def interest
+		outstanding_balance * interest_rate_per_month
 	end
 
 	def contract_value_brl
@@ -100,15 +94,29 @@ class Debt < ApplicationRecord
 			Date.new(year)..(Date.new(year + 1) - 1.day)
 		end
 
+		# Taxa de juros
 		def interest_rate
 			Dentaku(interest_rate_formula)
 		end
 
-		def amortization
-			#todo
-		end
-
 		def charges_total
 			charges.reduce(0) { |sum, charge| sum + charge.total }
+		end
+
+		def instalment_formula_numerator
+			( ( (1 + interest_rate_per_month) ** loan_term ) * interest_rate_per_month )
+		end
+
+		def instalment_formula_denominator
+			( ( ( 1 + interest_rate_per_month ) ** loan_term ) - 1 )
+		end
+
+		def interest_rate_per_month
+			interest_rate_formula.to_f / 1200
+		end
+
+		# Saldo devedor
+		def outstanding_balance
+			withdraws.sum(:value)
 		end
 end

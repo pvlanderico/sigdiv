@@ -12,7 +12,7 @@ FactoryBot.define do
 		category { Debt.categories.values.sample }
 		grace_period_rate_frequency { Debt.grace_period_rate_frequencies.values.sample }
 		interest_rate_formula { 0.1 }
-		instalments_number { 120 }
+		loan_term { 120 }
 		association :currency, factory: :uprd
   	
   	factory :cef do
@@ -26,7 +26,7 @@ FactoryBot.define do
 	    category  { 'interno' }
 	    grace_period_rate_frequency  { 'mensal' }
 	    interest_rate_formula { 6 }
-	    instalments_number { 240 }
+	    loan_term { 240 }
 	  end
   end
 end
