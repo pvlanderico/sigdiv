@@ -48,17 +48,29 @@ describe Debt, type: :model do
   describe '#interest' do
   	it 'interest value is correct' do
 			expect(@debt.interest.round 5).to eq(64540.56653)
-  	end
+  	end    
+  end
 
-    context 'when there is a withdraw' do
-      before(:each) do
-        @debt.transactions << Withdraw.new(value: 208970.05587, date: 21.days.ago, exchange_rate: 1)
-      end
+  context 'when there is a withdraw' do
+    before(:each) do
+      @debt = create(:cef)
+      @debt.transactions << Withdraw.new(value: 12905242.14372, date: 3.month.ago, exchange_rate: 1)
+      @debt.transactions << Withdraw.new(value: 208970.05587, date: Date.new(Date.today.year, Date.today.month, @debt.payment_day) - 15.days, exchange_rate: 1)
+      @debt.transactions << Payment.new(value: 30023.97424, date: Date.yesterday, exchange_rate: 1)
+    end
+    
+    describe '#interest' do
       it 'interest value is correct' do
         expect(@debt.interest.round 5).to eq(64863.68764)
       end
     end
-  end
+    
+    describe '#outstanding_balance' do 
+      it 'Returns the correct value' do
+        expect(@debt.send(:outstanding_balance)).to be_within(0.00001).of(13084188.22535)
+      end
+    end
+  end 
 
   describe '#charges_total' do
   	it 'charges sum is correct'

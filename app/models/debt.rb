@@ -41,10 +41,14 @@ class Debt < ApplicationRecord
 
 		result
 	end
-
+  # Desembolsos
 	def withdraws
 		transactions.where(type: 'Withdraw')
 	end
+	# Amortizações
+	def payments
+		transactions.where(type: 'Payment')
+	end 
   # Próxima parcela
 	def next_instalment
 		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
@@ -57,8 +61,9 @@ class Debt < ApplicationRecord
 	def interest
 		withdraws_total = 0
 		withdraws.where(date: reference_period).each do |withdraw|
-			withdraws_total += withdraw.value * (Date.new(Date.today.year, Date.today.month, payment_day) - withdraw.date).to_i
+			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(Date.today.year, Date.today.month, payment_day) - (withdraw.date - 1.day)).to_i
 		end
+		
 		(((outstanding_balance * interest_rate) / 360) * 30) - withdraws_total 
 	end
 
@@ -122,7 +127,7 @@ class Debt < ApplicationRecord
 
 		# Saldo devedor
 		def outstanding_balance
-			withdraws.sum(:value)
+			withdraws.sum(:value) - payments.sum(:value)
 		end
 		# Periodo de referência para calculo de juros e taxas
 		def reference_period
