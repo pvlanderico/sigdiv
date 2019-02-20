@@ -198,7 +198,9 @@
   }
 
   function getWithdraw() {
-    return { withdraw: { value: $('#withdraw_value').val(),
+    return { withdraw: { type: $('#withdraw_type').val(),
+                         value: $('#withdraw_value').val(),
+                         exchange_rate: $('#withdraw_exchange_rate').val(),
                          'date(3i)': $('#withdraw_date_3i').val(),
                          'date(2i)': $('#withdraw_date_2i').val(),
                          'date(1i)': $('#withdraw_date_1i').val() } }

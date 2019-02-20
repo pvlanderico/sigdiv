@@ -1,32 +1,33 @@
 <%= simple_form_for transaction, url: debt_transactions_path(debt) do |f| %>
   <div class="modal-body">
-    <%= f.input :value, as: :float %>
-    <%= f.input :exchange_rate %>
+    <%= f.input :type, as: :hidden %>
     <label>Valor em reais:</label>
-    <input class="form-control" type="text" value="0,00" name="" id="transaction_value_brl" disabled>
+    <input class="form-control" type="text" value="0,00" name="" id="withdraw_value_brl">
     <br>
+    <%= f.input :exchange_rate %>    
+    <%= f.input :value, as: :float %>
     <%= f.input :date, as: :date %>
-    <%= f.input :date, as: :date if debt.externo? %>
+    <%= f.input :internalization_date, as: :date if debt.externo? %>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-    <button type="button" class="btn btn-success transaction-save">Salvar</button>
+    <button type="button" class="btn btn-success withdraw-save">Salvar</button>
   </div>
 <% end %>
 
 <script type="text/javascript">
-	updateBrlValue();
+	updateValue();
 
-	$('#transaction_value').on('keyup', function(){
-		updateBrlValue();
+	$('#withdraw_value_brl').on('keyup', function(){
+		updateValue();
 	});
 
-	$('#transaction_exchange_rate').on('keyup', function(){
-		updateBrlValue();
+	$('#withdraw_exchange_rate').on('keyup', function(){
+		updateValue();
 	});
 
-	function updateBrlValue(){
-		brlValue = $('#transaction_value').val() * $('#transaction_exchange_rate').val();
-		$('#transaction_value_brl').val(brlValue);
+	function updateValue(){
+		value = $('#withdraw_value_brl').val() * $('#withdraw_exchange_rate').val();
+		$('#withdraw_value').val(value);
 	}
 </script>

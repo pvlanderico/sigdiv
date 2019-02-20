@@ -2,9 +2,9 @@ class TransactionsController < ApplicationController
   before_action :set_withdraw, only: [:edit, :update, :destroy]
   before_action :set_debt, only: [:new, :edit, :create]
 
-  # GET /withdraws/new
+  # GET /transaction/new
   def new  	
-    @transaction = Transaction.new
+    @transaction = Withdraw.new
     render :new, layout: false
   end
 
@@ -66,6 +66,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:value, :date, :debt_id)
+      params.require(:withdraw).permit(:type, :value, :date, :exchange_rate, :debt_id)
     end
 end
