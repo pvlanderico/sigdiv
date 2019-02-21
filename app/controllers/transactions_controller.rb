@@ -2,19 +2,26 @@ class TransactionsController < ApplicationController
   before_action :set_withdraw, only: [:edit, :update, :destroy]
   before_action :set_debt, only: [:new, :edit, :create]
 
-  # GET /transaction/new
+  # GET :debt_id/transactions/
+  def index
+    @debt = Debt.find(params[:debt_id])
+    @transactions = @debt.transactions.by_year
+    render :index, layout: false
+  end
+
+  # GET :debt_id/transaction/new
   def new  	
     @transaction = Withdraw.new
     render :new, layout: false
   end
 
-  # GET /transactions/1/edit
+  # GET :debt_id/transactions/1/edit
   def edit
   	render :edit, layout: false
   end
 
-  # POST /transactions
-  # POST /transactions.json
+  # POST :debt_id/transactions
+  # POST :debt_id/transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.debt = @debt
@@ -30,8 +37,8 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /transactions/1
-  # PATCH/PUT /transactions/1.json
+  # PATCH/PUT :debt_id/transactions/1
+  # PATCH/PUT :debt_id/transactions/1.json
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
@@ -44,8 +51,8 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # DELETE /transactions/1
-  # DELETE /transactions/1.json
+  # DELETE :debt_id/transactions/1
+  # DELETE :debt_id/transactions/1.json
   def destroy
     @transaction.destroy
     respond_to do |format|
