@@ -4,12 +4,12 @@
   <div class='col-1'>
     <nav class="nav flex-column">
       <% @transactions.keys.each do |year| %> 
-        <a class="nav-link active" href="#<%=year%>" data-turbolinks="false"><%= year %></a>
+        <a class="nav-link" href="#<%=year%>" data-turbolinks="false"><%= year %></a>
       <% end %>
     </nav>
   </div>
 
-  <div class='col-11'>
+  <div class='col-11 debt-ops'>
     <p>
       <strong>Valor do contrato em reais: </strong>
       <%= humanized_money_with_symbol @debt.contract_value_brl %>
@@ -18,31 +18,39 @@
     <% @transactions.keys.each do |year| %>
       <section id="<%= year %>">
         <h2><%= year %></h2>
-        <table class="table table-hover debt-ops">
-          <tbody>      
-            <% @transactions[year].each do |transaction| %>
-              <tr>
-                <td>      
-                  <span class="badge badge-danger badge-pill">D</span>
-                  <%= transaction.date.strftime("%d-%m-%Y") %>
-                </td>
-                <td class="text-right">
-                 <%= transaction.value %>
-                </td>
-              </tr>
-            <% end %>
-            <tr>
-              <td><strong>Saldo</strong></td>
-              <td class="text-right"><strong><%= humanized_money_with_symbol @debt.balance %></strong></td>
-            </tr>
-          </tbody>
-        </table>
 
-        <p>
-          <span class="badge badge-danger badge-pill">D</span> Desembolso
-        </p>
+        <% @transactions[year].each do |month, transaction_array| %>
+          <h3><%= I18n.t("date.month_names")[month] %></h3>
+
+          <table class="table table-hover">
+            <tbody>      
+              
+                <% transaction_array.each do |transaction|%>
+                  <tr>
+                    <td>      
+                      <span class="badge badge-danger badge-pill">D</span>
+                      <%= transaction.date.strftime("%d-%m-%Y") %>
+                    </td>
+                    <td class="text-right">
+                     <%= transaction.value %>
+                    </td>
+                  </tr>
+                <% end %>
+              
+                <tr>
+                  <td><strong>Saldo</strong></td>
+                  <td class="text-right"><strong><%= humanized_money_with_symbol @debt.balance %></strong></td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+
+          <p>
+            <span class="badge badge-danger badge-pill">D</span> Desembolso
+          </p>
+        
+        <% end %>
       </section>
-    <% end %>
 
     <hr>
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#transactionModal">Registrar desembolso</button>
