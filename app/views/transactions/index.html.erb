@@ -1,58 +1,79 @@
 <br>
 
-<div class="row">
-  <div class='col-1'>
-    <nav class="nav flex-column">
-      <% @transactions.keys.each do |year| %> 
-        <a class="nav-link" href="#<%=year%>" data-turbolinks="false"><%= year %></a>
-      <% end %>
-    </nav>
-  </div>
-
-  <div class='col-11 debt-ops'>
-    <p>
-      <strong>Valor do contrato em reais: </strong>
-      <%= humanized_money_with_symbol @debt.contract_value_brl %>
-    </p>
-
-    <% @transactions.keys.each do |year| %>
-      <section id="<%= year %>">
-        <h2><%= year %></h2>
-
-        <% @transactions[year].each do |month, transaction_array| %>
-          <h3><%= I18n.t("date.month_names")[month] %></h3>
-
-          <table class="table table-hover">
-            <tbody>      
-              
-                <% transaction_array.each do |transaction|%>
-                  <tr>
-                    <td>      
-                      <span class="badge badge-danger badge-pill">D</span>
-                      <%= transaction.date.strftime("%d-%m-%Y") %>
-                    </td>
-                    <td class="text-right">
-                     <%= transaction.value %>
-                    </td>
-                  </tr>
-                <% end %>
-              
-                <tr>
-                  <td><strong>Saldo</strong></td>
-                  <td class="text-right"><strong><%= humanized_money_with_symbol @debt.balance %></strong></td>
-                </tr>
-              </tbody>
-            </table>
-          <% end %>
-
-          <p>
-            <span class="badge badge-danger badge-pill">D</span> Desembolso
-          </p>
-        
-        <% end %>
-      </section>
-
-    <hr>
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#transactionModal">Registrar desembolso</button>
-  </div>
+<div class='position-fixed'>
+  <ul class="nav flex-column list-group">
+    <% @transactions.keys.each_with_index do |year, index| %> 
+      <li class="nav-item">
+        <a class="nav-link list-group-item list-group-item-action year-link <%= 'active' if index == 0 %>" href="#<%=year%>" data-turbolinks="false"><%= year %></a>
+      </li>
+    <% end %>
+  </ul>
 </div>
+
+<div class='pull-left debt-ops'>
+  <p>
+    <strong>Valor do contrato: </strong>
+    <%= humanized_money_with_symbol @debt.contract_value_brl %>
+  </p>
+  <p>
+    <strong>Valor do contrato em reais: </strong>
+    <%= humanized_money_with_symbol @debt.contract_value_brl %>
+  </p>
+
+  <% @transactions.keys.each do |year| %>
+    <section id="<%= year %>">
+      <h2 class="text-center alert alert-primary"><%= year %></h2>
+
+      <% @transactions[year].each do |month, transaction_array| %>
+        <h3 class="alert alert-secondary"><%= I18n.t("date.month_names")[month] %></h3>
+
+        <table class="table table-hover">
+          <tbody>      
+              <% month_balance = 0.0 %>
+              <% transaction_array.each do |transaction|%>
+                <tr>
+                  <td>
+                    <% if transaction.type == 'Withdraw' %>
+                      <span class="badge badge-primary badge-pill">D</span>
+                    <% else %>
+                      <span class="badge badge-warning badge-pill">PR</span>
+                    <% end %>
+                    <%= transaction.date.strftime("%d-%m-%Y") %>
+                  </td>
+                  <td class="text-right">
+                   <%= transaction.value %>
+                  </td>
+                </tr>
+                <% month_balance += transaction.value if transaction.type == 'Withdraw' %>
+                <% month_balance -= transaction.value if transaction.type == 'Payment' %>
+              <% end %>
+            
+              <tr>
+                <td><strong>Saldo devedor</strong></td>
+                <td class="text-right"><strong><%= month_balance %></strong></td>
+              </tr>
+              <tr>
+                <td><strong>Saldo devedor em reais</strong></td>
+                <td class="text-right"><strong><%= humanized_money_with_symbol month_balance/ @debt.currency.to_brl%></strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <span class="badge badge-primary badge-pill">D</span> Desembolso
+            <span class="badge badge-warning badge-pill">PR</span> Pagamento realizado
+            <span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro
+          </p>
+          <br>
+        <% end %>      
+      <% end %>
+    </section>
+
+  <hr>
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#transactionModal">Registrar desembolso</button>
+</div>
+
+<script type="text/javascript">
+  $('a.year-link').on('click', function(e){
+    $('a.year-link').toggleClass('active');
+  })
+</script>

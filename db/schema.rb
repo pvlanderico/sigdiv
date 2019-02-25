@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_174653) do
+ActiveRecord::Schema.define(version: 2019_02_25_153116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_174653) do
 
   create_table "debts", force: :cascade do |t|
     t.integer "code"
-    t.bigint "contract_value_cents"
+    t.float "contract_value"
     t.date "signature_date"
     t.integer "creditor_id"
     t.date "grace_period"

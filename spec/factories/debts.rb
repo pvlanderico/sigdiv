@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :debt do
   	code { Faker::Number.number(6) }
-		contract_value_cents { Faker::Number.number(8) }
+		contract_value { Faker::Number.number(8) }
 		signature_date { Faker::Date.between(Date.parse('01/01/2010'), Date.parse('01/01/2013')) }
 		creditor
 		grace_period { Faker::Date.between(Date.parse('01/01/2013'), Date.parse('01/12/2013')) }
@@ -17,7 +17,7 @@ FactoryBot.define do
 		association :currency, factory: :uprd
   	
   	factory :cef do
-	    contract_value_cents { 29232000000 }
+	    contract_value { 29232000000 }
 	    signature_date { Date.parse '19/11/2013' }	    
 	    grace_period { Date.parse '19/11/2017' }
 	    amortization_type { 'price' }

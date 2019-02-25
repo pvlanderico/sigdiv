@@ -12,7 +12,7 @@ pt-BR:
         code: Código
         name: Identificador
         category: Tipo
-        contract_value_cents: Valor do contrato
+        contract_value: Valor do contrato
         currency: Moeda
         interest_rate_formula: Fórmula da taxa de juros
         signature_date: Data da assinatura

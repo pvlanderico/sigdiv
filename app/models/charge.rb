@@ -10,7 +10,7 @@ class Charge < ApplicationRecord
 	private
 
 	def eval_formula
-		formula.gsub!('BASE', base.to_s).gsub!('SALDO', debt.contract_value_cents.to_s)
+		formula.gsub!('BASE', base.to_s).gsub!('SALDO', debt.contract_value.to_s)
 	end
 	
 end

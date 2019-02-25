@@ -1,6 +1,4 @@
 class Debt < ApplicationRecord	
-	monetize :contract_value_cents
-
 	belongs_to :creditor
 	belongs_to :financial_agent, class_name: 'Creditor', optional: true
 	belongs_to :currency
@@ -18,7 +16,7 @@ class Debt < ApplicationRecord
 	enum legislation_level: [:federal, :estadual, :municipal]
 	
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
-	validates :contract_value_cents, presence: true
+	validates :contract_value, presence: true
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
@@ -64,11 +62,16 @@ class Debt < ApplicationRecord
 			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(Date.today.year, Date.today.month, payment_day) - (withdraw.date - 1.day)).to_i
 		end
 		
-		(((outstanding_balance * interest_rate) / 360) * 30) - withdraws_total 
+		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total 
 	end
 
+	# Taxas
+	def charges_total
+		# TODO
+	end
+	
 	def contract_value_brl
-		contract_value_cents / currency.to_brl	
+		contract_value / currency.to_brl	
 	end
 
 	def status
@@ -98,6 +101,11 @@ class Debt < ApplicationRecord
 		# instalment_sum == payments.sum(:value_cents)
 	end
 
+	# Saldo devedor
+	def outstanding_balance
+		withdraws.sum(:value) - payments.sum(:value)
+	end
+
 	private
 
 		def self.date_range_from_year year
@@ -125,10 +133,6 @@ class Debt < ApplicationRecord
 			interest_rate.to_f / 12
 		end
 
-		# Saldo devedor
-		def outstanding_balance
-			withdraws.sum(:value) - payments.sum(:value)
-		end
 		# Periodo de referência para calculo de juros e taxas
 		def reference_period
 			final_date = Date.new(Date.today.year, Date.today.month, payment_day)
