@@ -1,5 +1,3 @@
-<br>
-
 <div class='position-fixed'>
   <ul class="nav flex-column list-group">
     <% @transactions.keys.each_with_index do |year, index| %> 
@@ -22,10 +20,10 @@
 
   <% @transactions.keys.each do |year| %>
     <section id="<%= year %>">
-      <h2 class="text-center alert alert-primary"><%= year %></h2>
+      <h4 class="text-center alert alert-primary"><%= year %></h4>
 
       <% @transactions[year].each do |month, transaction_array| %>
-        <h3 class="alert alert-secondary"><%= I18n.t("date.month_names")[month] %></h3>
+        <h5 class="alert alert-secondary"><%= I18n.t("date.month_names")[month] %></h5>
 
         <table class="table table-hover">
           <tbody>      

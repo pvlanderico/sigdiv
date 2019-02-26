@@ -16,6 +16,10 @@
 @import "bootstrap";
 @import "font-awesome";
 
+.main-content {
+	margin-top: 70px;
+}
+
 hr.dashed-hr {
   border: 0;
   border-bottom: 1px dashed #ccc;
@@ -28,8 +32,14 @@ hr.dashed-hr {
 }
 
 .debt-header{
-  margin-top: 65px;
   background-color: #fff;
+  top: 57px;
+  width: 61%;
+  z-index: 1030;
+}
+
+.debt-content{
+  margin-top: 200px;
 }
 
 .debt-withdraws {

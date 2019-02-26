@@ -1,4 +1,4 @@
-<div class="sticky-top debt-header">
+<div class="position-fixed debt-header">
   <% if notice.present? %>
     <div class="alert alert-success" role="alert">
       <p id="notice" class="mb-0" ><%= notice %></p>
@@ -17,7 +17,7 @@
     </div>
   </nav>
 </div>
-<div class="tab-content" id="nav-tabContent">
+<div class="tab-content debt-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">
     
     <div class="card-group">
@@ -120,8 +120,7 @@
 
   </div>
   <div class="tab-pane fade" id="nav-withdraws" role="tabpanel" aria-labelledby="nav-withdraws-tab">
-    <br>
-
+    
     <p>
       <strong>Valor do contrato: </strong>
       <%= humanized_money_with_symbol @debt.contract_value_brl %>
@@ -136,7 +135,7 @@
         <% @debt.withdraws.order(date: 'desc').each do |withdraw| %>
           <tr>
             <td>      
-              <span class="badge badge-danger badge-pill">D</span>
+              <span class="badge badge-primary badge-pill">D</span>
               <%= withdraw.date.strftime("%d-%m-%Y") %>
             </td>
             <td class="text-right">
@@ -156,7 +155,7 @@
     </table>
 
     <p>
-      <span class="badge badge-danger badge-pill">D</span> Desembolso
+      <span class="badge badge-primary badge-pill">D</span> Desembolso
     </p>
 
     <hr>
