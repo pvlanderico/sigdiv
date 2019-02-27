@@ -114,7 +114,7 @@ class Debt < ApplicationRecord
 
 		# Taxa de juros
 		def interest_rate
-			Dentaku(interest_rate_formula).to_f / 100
+			BigDecimal(Dentaku(interest_rate_formula)) / 100
 		end
 
 		def charges_total
@@ -130,7 +130,7 @@ class Debt < ApplicationRecord
 		end
 
 		def interest_rate_per_month
-			interest_rate.to_f / 12
+			interest_rate / 12
 		end
 
 		# Periodo de referência para calculo de juros e taxas

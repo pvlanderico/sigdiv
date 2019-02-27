@@ -35,7 +35,7 @@ describe Debt, type: :model do
 
   describe '#next_instalment' do
   	it 'next instalment is correct' do  		
-  		expect(@debt.next_instalment.round 5).to eq(92477.73279)
+  		expect(@debt.next_instalment.round(5)).to eq(BigDecimal '92477.73279')
   	end
   end
 

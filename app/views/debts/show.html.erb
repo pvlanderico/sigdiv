@@ -25,7 +25,7 @@
         <div class="card-header alert-primary"><strong>Valor do contrato</strong></div>
         <div class="card-body">
           <p class="card-text">
-            <%= @debt.contract_value %>
+            <%= number_to_currency @debt.contract_value %>
             <%= @debt.currency.name %>
           </p>
         </div>
@@ -123,11 +123,11 @@
 
     <p>
       <strong>Valor do contrato: </strong>
-      <%= humanized_money @debt.contract_value_brl %>
+      <%= big_decimal_to_currency @debt.contract_value_brl %>
     </p>
     <p>
       <strong>Valor do contrato em reais: </strong>
-      <%= humanized_money_with_symbol @debt.contract_value_brl %>
+      <%= number_to_currency @debt.contract_value_brl %>
     </p>
 
     <table class="table table-hover debt-withdraws">
@@ -139,17 +139,17 @@
               <%= withdraw.date.strftime("%d-%m-%Y") %>
             </td>
             <td class="text-right">
-             <%= humanized_money withdraw.value %>
+             <%= big_decimal_to_currency withdraw.value %>
             </td>
           </tr>
         <% end %>
         <tr>
           <td><strong>Saldo devedor</strong></td>
-          <td class="text-right"><strong><%= humanized_money @debt.outstanding_balance %></strong></td>
+          <td class="text-right"><strong><%= big_decimal_to_currency @debt.outstanding_balance %></strong></td>
         </tr>
         <tr>
           <td><strong>Saldo devedor em reais</strong></td>
-          <td class="text-right"><strong><%= humanized_money_with_symbol @debt.outstanding_balance / @debt.currency.to_brl%></strong></td>
+          <td class="text-right"><strong><%= number_to_currency(@debt.outstanding_balance / @debt.currency.to_brl) %></strong></td>
         </tr>
       </tbody>
     </table>
