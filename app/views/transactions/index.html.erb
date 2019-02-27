@@ -11,11 +11,15 @@
 <div class='pull-left debt-ops'>
   <p>
     <strong>Valor do contrato: </strong>
-    <%= humanized_money_with_symbol @debt.contract_value_brl %>
+    <%= humanized_money @debt.contract_value%>
   </p>
   <p>
     <strong>Valor do contrato em reais: </strong>
     <%= humanized_money_with_symbol @debt.contract_value_brl %>
+  </p>
+  <p>
+    <strong>Saldo devedor total: </strong>
+    <%= humanized_money @debt.outstanding_balance %>
   </p>
 
   <% @transactions.keys.each do |year| %>
@@ -39,7 +43,7 @@
                     <%= transaction.date.strftime("%d-%m-%Y") %>
                   </td>
                   <td class="text-right">
-                   <%= transaction.value %>
+                   <%= humanized_money transaction.value %>
                   </td>
                 </tr>
                 <% month_balance += transaction.value if transaction.type == 'Withdraw' %>
@@ -47,12 +51,12 @@
               <% end %>
             
               <tr>
-                <td><strong>Saldo devedor</strong></td>
-                <td class="text-right"><strong><%= month_balance %></strong></td>
+                <td><strong>Saldo devedor mensal</strong></td>
+                <td class="text-right"><strong><%= humanized_money month_balance %></strong></td>
               </tr>
               <tr>
-                <td><strong>Saldo devedor em reais</strong></td>
-                <td class="text-right"><strong><%= humanized_money_with_symbol month_balance/ @debt.currency.to_brl%></strong></td>
+                <td><strong>Saldo devedor mensal (R$)</strong></td>
+                <td class="text-right"><strong><%= humanized_money_with_symbol month_balance / @debt.currency.to_brl%></strong></td>
               </tr>
             </tbody>
           </table>

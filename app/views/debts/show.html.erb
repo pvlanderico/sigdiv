@@ -120,10 +120,10 @@
 
   </div>
   <div class="tab-pane fade" id="nav-withdraws" role="tabpanel" aria-labelledby="nav-withdraws-tab">
-    
+
     <p>
       <strong>Valor do contrato: </strong>
-      <%= humanized_money_with_symbol @debt.contract_value_brl %>
+      <%= humanized_money @debt.contract_value_brl %>
     </p>
     <p>
       <strong>Valor do contrato em reais: </strong>
@@ -139,13 +139,13 @@
               <%= withdraw.date.strftime("%d-%m-%Y") %>
             </td>
             <td class="text-right">
-             <%= withdraw.value %>
+             <%= humanized_money withdraw.value %>
             </td>
           </tr>
         <% end %>
         <tr>
           <td><strong>Saldo devedor</strong></td>
-          <td class="text-right"><strong><%= @debt.outstanding_balance %></strong></td>
+          <td class="text-right"><strong><%= humanized_money @debt.outstanding_balance %></strong></td>
         </tr>
         <tr>
           <td><strong>Saldo devedor em reais</strong></td>
