@@ -62,7 +62,7 @@ class Debt < ApplicationRecord
 			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(Date.today.year, Date.today.month, payment_day) - (withdraw.date - 1.day)).to_i
 		end
 		
-		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total 
+		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total
 	end
 
 	# Taxas
@@ -102,7 +102,7 @@ class Debt < ApplicationRecord
 	end
 
 	# Saldo devedor
-	def outstanding_balance
+	def outstanding_balance final_date = Date.today
 		withdraws.sum(:value) - payments.sum(:value)
 	end
 
@@ -134,8 +134,8 @@ class Debt < ApplicationRecord
 		end
 
 		# Periodo de referência para calculo de juros e taxas
-		def reference_period
-			final_date = Date.new(Date.today.year, Date.today.month, payment_day)
-			(final_date - 1.month + 1.day)..final_date
+		def reference_period final_date = Date.today
+			period_end = Date.new(final_date.year, final_date.month, payment_day)
+			(period_end - 1.month + 1.day)..period_end
 		end
 end

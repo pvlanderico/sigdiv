@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_191021) do
+ActiveRecord::Schema.define(version: 2019_02_27_195217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 2019_02_27_191021) do
     t.date "internalization_date"
     t.float "exchange_rate"
     t.string "type"
+    t.decimal "interest"
+    t.decimal "outstanding_balance"
   end
 
 end

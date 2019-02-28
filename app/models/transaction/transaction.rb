@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
 	validates :exchange_rate, presence: true
 	validates :date, presence: true
 
+	before_save :set_outstanding_balance
+
 	def self.by_year
 		order(date: :asc).reduce({}) do |result, transaction| 
 			result.update(transaction.date.year => { transaction.date.month => [transaction] }) do |year, old_month_hash, new_month_hash|
@@ -14,4 +16,10 @@ class Transaction < ApplicationRecord
 			end
 		end.reverse_each.to_h
 	end
+
+	private
+
+		def set_outstanding_balance
+			outstanding_balance = debt.outstanding_balance
+		end
 end

@@ -42,6 +42,14 @@
                     <% end %>
                     <%= transaction.date.strftime("%d-%m-%Y") %>
                   </td>
+                
+                  <td>
+                  <%= big_decimal_to_currency transaction.amortization if transaction.type == 'Payment' %>
+                  </td>
+                  <td>
+                  <%= big_decimal_to_currency transaction.interest if transaction.type == 'Payment' %>
+                  </td>
+                
                   <td class="text-right">
                    <%= big_decimal_to_currency transaction.value %>
                   </td>
@@ -52,10 +60,16 @@
             
               <tr>
                 <td><strong>Saldo devedor mensal</strong></td>
+
+                <td></td><td></td>
+
                 <td class="text-right"><strong><%= big_decimal_to_currency month_balance %></strong></td>
               </tr>
               <tr>
                 <td><strong>Saldo devedor mensal (R$)</strong></td>
+
+                <td></td><td></td>
+                
                 <td class="text-right"><strong><%= number_to_currency(month_balance / @debt.currency.to_brl) %></strong></td>
               </tr>
             </tbody>
