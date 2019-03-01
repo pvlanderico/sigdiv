@@ -48,18 +48,18 @@ class Debt < ApplicationRecord
 		transactions.where(type: 'Payment')
 	end 
   # Próxima parcela
-	def next_instalment
-		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
+	def next_instalment	
+		outstanding_balance * instalment_formula_numerator(payments.count) / instalment_formula_denominator(payments.count)
 	end	
 
 	def amortization
 		next_instalment - interest
 	end
 	# Juros
-	def interest
+	def interest final_date = Date.today
 		withdraws_total = 0
-		withdraws.where(date: reference_period).each do |withdraw|
-			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(Date.today.year, Date.today.month, payment_day) - (withdraw.date - 1.day)).to_i
+		withdraws.where(date: reference_period(final_date)).each do |withdraw|
+			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(final_date.year, final_date.month, payment_day) - (withdraw.date - 1.day)).to_i
 		end
 		
 		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total
@@ -103,7 +103,7 @@ class Debt < ApplicationRecord
 
 	# Saldo devedor
 	def outstanding_balance final_date = Date.today
-		withdraws.sum(:value) - payments.sum(:value)
+		withdraws.sum(:value) - payments.sum(:principal)
 	end
 
 	private
@@ -121,12 +121,12 @@ class Debt < ApplicationRecord
 			charges.reduce(0) { |sum, charge| sum + charge.total }
 		end
 
-		def instalment_formula_numerator
-			( ( (1 + interest_rate_per_month) ** loan_term ) * interest_rate_per_month )
+		def instalment_formula_numerator installment_count
+			( ( (1 + interest_rate_per_month) ** (loan_term - installment_count) ) * interest_rate_per_month )
 		end
 
-		def instalment_formula_denominator
-			( ( ( 1 + interest_rate_per_month ) ** loan_term ) - 1 )
+		def instalment_formula_denominator installment_count
+			( ( ( 1 + interest_rate_per_month ) ** (loan_term - installment_count) ) - 1 )
 		end
 
 		def interest_rate_per_month

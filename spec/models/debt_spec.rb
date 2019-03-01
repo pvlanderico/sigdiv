@@ -3,7 +3,46 @@ require 'rails_helper'
 describe Debt, type: :model do
   before(:each) do  	
   	@debt = create(:cef, charges: [ build(:adm_tax), build(:credit_risk) ])
-  	@debt.transactions << Withdraw.new(value: 12908113.30625, date: 3.months.ago, exchange_rate: 1)
+    create(:withdraw_0515, debt: @debt)
+    create(:withdraw_0615, debt: @debt)
+    create(:withdraw_0715, debt: @debt)
+    create(:withdraw_0815, debt: @debt)
+    create(:withdraw_0915, debt: @debt)
+    create(:withdraw_1015, debt: @debt)
+    create(:withdraw_1115, debt: @debt)
+    create(:withdraw_1215, debt: @debt)
+    create(:withdraw_0316, debt: @debt)
+    create(:withdraw_0516, debt: @debt)
+    create(:withdraw_0616, debt: @debt)
+    create(:withdraw_0716, debt: @debt)
+    create(:withdraw_0816, debt: @debt)
+    create(:withdraw_0916, debt: @debt)
+    create(:withdraw_1016, debt: @debt)
+    create(:withdraw_1116, debt: @debt)
+    create(:withdraw_1216, debt: @debt)
+    create(:withdraw_0117, debt: @debt)
+    create(:withdraw_0217, debt: @debt)
+    create(:withdraw_0317, debt: @debt)
+    create(:withdraw_0617, debt: @debt)
+    create(:withdraw_0917, debt: @debt)
+    create(:withdraw_1117, debt: @debt)
+    create(:withdraw_0218, debt: @debt)
+    create(:withdraw_1018, debt: @debt)
+    
+    create(:payment_1217, debt: @debt)
+    create(:payment_0118, debt: @debt)
+    create(:payment_0218, debt: @debt)
+    create(:payment_0318, debt: @debt)
+    create(:payment_0418, debt: @debt)
+    create(:payment_0518, debt: @debt)
+    create(:payment_0618, debt: @debt)
+    create(:payment_0718, debt: @debt)
+    create(:payment_0818, debt: @debt)
+    create(:payment_0918, debt: @debt)
+    create(:payment_1018, debt: @debt)
+    create(:payment_1118, debt: @debt)
+    create(:payment_1218, debt: @debt)
+
   	@debts = create_list(:debt, 30)
 	end
 
@@ -34,44 +73,37 @@ describe Debt, type: :model do
   end
 
   describe '#next_instalment' do
-  	it 'next instalment is correct' do  		
-  		expect(@debt.next_instalment.round(5)).to eq(BigDecimal '92477.73279')
+  	it 'next instalment is correct' do	
+  		expect(@debt.next_instalment.round(8)).to eq(BigDecimal('96084.7731203739').round(8))
   	end
   end
 
   describe '#amortization' do
   	it 'amortization value is correct' do
-  		expect(@debt.amortization.round 5).to eq( 27937.16626)
+  		expect(@debt.amortization.round(8)).to eq(BigDecimal('31582.0387819444').round(8))
   	end
   end
 
   describe '#interest' do
   	it 'interest value is correct' do
-			expect(@debt.interest.round 5).to eq(64540.56653)
-  	end    
+			expect(@debt.interest.round(8)).to eq(BigDecimal('66397.6783321109').round(8))
+  	end  
   end
 
-  context 'when there is a withdraw' do
-    before(:each) do
-      @debt = create(:cef)
-      @debt.transactions << Withdraw.new(value: 12905242.14372, date: 3.month.ago, exchange_rate: 1)
-      @debt.transactions << Withdraw.new(value: 208970.05587, date: Date.new(Date.today.year, Date.today.month, @debt.payment_day) - 15.days, exchange_rate: 1)
-      @debt.transactions << Payment.new(value: 30023.97424, date: Date.yesterday, exchange_rate: 1)
-    end
-    
-    describe '#interest' do
+  describe '#interest' do
+    context 'When there is a parameter' do
       it 'interest value is correct' do
-        expect(@debt.interest.round 5).to eq(64863.68764)
+        expect(@debt.interest(3.months.ago + 1.day).round 5).to eq(BigDecimal '64675.58372')
       end
+    end  
+  end
+  
+  describe '#outstanding_balance' do 
+    it 'Returns the correct value' do
+      expect(@debt.outstanding_balance).to be_within(BigDecimal '0.00001').of(BigDecimal '13084188.22535')
     end
-    
-    describe '#outstanding_balance' do 
-      it 'Returns the correct value' do
-        expect(@debt.send(:outstanding_balance)).to be_within(0.00001).of(13084188.22535)
-      end
-    end
-  end 
-
+  end
+   
   describe '#charges_total' do
   	it 'charges sum is correct'
   end

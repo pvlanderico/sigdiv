@@ -1,12 +1,8 @@
 class Payment < Transaction
 	before_save :set_interest
 
-	def amortization
-		if debt.category == 'PRICE'
-			value - interest
-		else
-			# TODO
-		end
+	def final_outstanding_balance
+		start_outstanding_balance - value
 	end
 
 	private

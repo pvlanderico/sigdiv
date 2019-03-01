@@ -17,7 +17,7 @@ FactoryBot.define do
 		association :currency, factory: :uprd
   	
   	factory :cef do
-	    contract_value { 29232000000 }
+	    contract_value { 292320000 }
 	    signature_date { Date.parse '19/11/2013' }	    
 	    grace_period { Date.parse '19/11/2017' }
 	    amortization_type { 'price' }
