@@ -44,7 +44,7 @@
                   </td>
                 
                   <td>
-                  <%= big_decimal_to_currency transaction.amortization if transaction.type == 'Payment' %>
+                  <%= big_decimal_to_currency transaction.principal if transaction.type == 'Payment' %>
                   </td>
                   <td>
                   <%= big_decimal_to_currency transaction.interest if transaction.type == 'Payment' %>

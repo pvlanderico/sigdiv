@@ -45,7 +45,13 @@
       <div class="card">
         <div class="card-header alert-primary"><strong>Agente Financeiro</strong></div>
         <div class="card-body">
-          <p class="card-text"><%= @debt.financial_agent.name %></p>      
+          <p class="card-text">
+            <% if (@debt.financial_agent.present?) %>
+              <%= @debt.financial_agent.name %>
+            <% else %>
+              <%= '-' %>
+            <% end %>
+          </p>      
         </div>
       </div> 
     </div>
