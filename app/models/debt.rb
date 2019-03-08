@@ -49,6 +49,7 @@ class Debt < ApplicationRecord
 	end 
   # Próxima parcela
 	def next_instalment	
+		outstanding_balance = payments.where(date: signature_date..Date.today).last.start_outstanding_balance
 		outstanding_balance * instalment_formula_numerator(payments.count) / instalment_formula_denominator(payments.count)
 	end	
 
@@ -61,7 +62,7 @@ class Debt < ApplicationRecord
 		withdraws.where(date: reference_period(final_date)).each do |withdraw|
 			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(final_date.year, final_date.month, payment_day) - (withdraw.date - 1.day)).to_i
 		end
-		
+		outstanding_balance = payments.where(date: signature_date..final_date).last.start_outstanding_balance
 		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total
 	end
 
@@ -102,8 +103,8 @@ class Debt < ApplicationRecord
 	end
 
 	# Saldo devedor
-	def outstanding_balance final_date = Date.today
-		withdraws.sum(:value) - payments.sum(:principal)
+	def outstanding_balance final_date = Date.today		
+		withdraws.where(date: signature_date..final_date).sum(:value) - payments.where(date: signature_date..final_date).sum(:principal)
 	end
 
 	private

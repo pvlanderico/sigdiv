@@ -146,27 +146,27 @@ FactoryBot.define do
  			end
 
  			factory :withdraw_0917 do
- 				value { BigDecimal('351624.161135471') }
+ 				value { BigDecimal('351624.1611354710') }
  				date { Date.new(2017, 9, 18) }
-				start_outstanding_balance { BigDecimal('12303950.9420062') }
+				start_outstanding_balance { BigDecimal('12303950.94200620') }
  			end
 
  			factory :withdraw_1117 do
- 				value { BigDecimal('252538.2031043') }
+ 				value { BigDecimal('252538.20310430') }
  				date { Date.new(2017, 11, 13) }
-				start_outstanding_balance { BigDecimal('12655575.1031416') }
+				start_outstanding_balance { BigDecimal('12655575.10314160') }
  			end
 
 			factory :withdraw_0218 do
-				value { BigDecimal('288019.18249') }
+				value { BigDecimal('288019.182490') }
 				date { Date.new(2018,2,15) }
-				start_outstanding_balance { BigDecimal('12852099.2878971') }
+				start_outstanding_balance { BigDecimal('12852099.28789710') }
 			end
 
 			factory :withdraw_1018 do
-				value { BigDecimal('208970.05587') }
+				value { BigDecimal('208970.05587000') }
 				date { Date.new(2018,10,31) }
-				start_outstanding_balance { BigDecimal('12905242.1437248') }
+				start_outstanding_balance { BigDecimal('12905242.143735600') }
 			end
 		end
 
@@ -176,79 +176,79 @@ FactoryBot.define do
 			factory :payment_1217 do
 	 			principal { BigDecimal '27937.1662582689' }
 	 			date { Date.new(2017, 12, 15) }
-				start_outstanding_balance { BigDecimal('12908113.3062459') }
+				start_outstanding_balance { BigDecimal('12908113.30624590') }
 	 		end
 	 		
 	 		factory :payment_0118 do	
 	 			principal { BigDecimal '28076.8520795603' }
 	 			date { Date.new(2018, 1, 15) }
-				start_outstanding_balance { BigDecimal('12880176.1399872') }
+				start_outstanding_balance { BigDecimal('12880176.13998770') }
 	 		end
 	 		
 	 		factory :payment_0218 do	
-	 			principal { BigDecimal '28849.5926027782' }
+	 			principal { BigDecimal '28849.5926027793' }
 	 			date { Date.new(2018, 2, 15) }
-				start_outstanding_balance { BigDecimal('12852099.2879076') }
+				start_outstanding_balance { BigDecimal('12852099.2879081') }
 	 		end
 	 		
 	 		factory :payment_0318 do	
-	 			principal { BigDecimal '28993.8405657921' }
+	 			principal { BigDecimal '28993.84056579320' }
 	 			date { Date.new(2018, 3, 15) }
-				start_outstanding_balance { BigDecimal('13111268.8777948') }
+				start_outstanding_balance { BigDecimal('13111268.87779530000') }
 	 		end
 	 		
 	 		factory :payment_0418 do	
-	 			principal { BigDecimal '29138.809768621' }
+	 			principal { BigDecimal '29138.8097686221' }
 	 			date { Date.new(2018, 4, 16) }
-				start_outstanding_balance { BigDecimal('13082275.037229') }
+				start_outstanding_balance { BigDecimal('13082275.03722950') }
 	 		end
 	 		
 	 		factory :payment_0518 do	
-	 			principal { BigDecimal '29284.5038174641' }
+	 			principal { BigDecimal '29284.5038174652' }
 	 			date { Date.new(2018, 5, 15) }
-				start_outstanding_balance { BigDecimal('13053136.2274604') }
+				start_outstanding_balance { BigDecimal('13053136.22746090000') }
 	 		end
 	 		
 	 		factory :payment_0618 do	
-	 			principal { BigDecimal '29430.9263365514' }
+	 			principal { BigDecimal '29430.92633655260' }
 	 			date { Date.new(2018, 6, 15) }
-				start_outstanding_balance { BigDecimal('13023851.723643') }
+				start_outstanding_balance { BigDecimal('13023851.72364340') }
 	 		end
 	 		
 	 		factory :payment_0718 do	
-	 			principal { BigDecimal '29578.0809682342' }
+	 			principal { BigDecimal '29578.08096823530' }
 	 			date { Date.new(2018, 7, 16) }
-				start_outstanding_balance { BigDecimal('12994420.7973064') }
+				start_outstanding_balance { BigDecimal('12994420.79730690') }
 	 		end
 	 		
 	 		factory :payment_0818 do	
-	 			principal { BigDecimal '29725.9713730754' }
+	 			principal { BigDecimal '29725.97137307650' }
 	 			date { Date.new(2018, 8, 15) }
-				start_outstanding_balance { BigDecimal('12964842.7163382') }
+				start_outstanding_balance { BigDecimal('12964842.71633870') }
 	 		end
 	 		
 	 		factory :payment_0918 do	
-	 			principal { BigDecimal '29874.6012299408' }
+	 			principal { BigDecimal '29874.60122994190' }
 	 			date { Date.new(2018, 9, 17) }
-				start_outstanding_balance { BigDecimal('12935116.7449651') }
+				start_outstanding_balance { BigDecimal('12935116.74496560') }
 	 		end
 	 		
 	 		factory :payment_1018 do	
-	 			principal { BigDecimal '30023.9742360904' }
+	 			principal { BigDecimal '30023.97423609160' }
 	 			date { Date.new(2018, 10, 15) }
-				start_outstanding_balance { BigDecimal('12905242.1437351') }
+				start_outstanding_balance { BigDecimal('12905242.14373560') }
 	 		end
 	 		
 	 		factory :payment_1118 do	
-	 			principal { BigDecimal '30663.8319935275' }
+	 			principal { BigDecimal '30663.83199352860' }
 	 			date { Date.new(2018, 11, 16) }
-				start_outstanding_balance { BigDecimal('13084188.2253691') }
+				start_outstanding_balance { BigDecimal('13084188.22536950') }
 	 		end
 	 		
 	 		factory :payment_1218 do	
-	 			principal { BigDecimal '30817.1511534962' }
+	 			principal { BigDecimal '30817.15115349740' }
 	 			date { Date.new(2018, 12, 15) }
-				start_outstanding_balance { BigDecimal('13053524.3933755') }
+				start_outstanding_balance { BigDecimal('13053524.3933760') }
 	 		end
 	 	end
 	end

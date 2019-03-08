@@ -51,51 +51,61 @@ describe Debt, type: :model do
   end
 
   describe '#reference_period' do
-    context 'when payment day is 1' do
-      before do
-        @debt = create(:debt, payment_day: 1)
-      end
-
-      it 'period is one month' do
-        expect(@debt.send(:reference_period).count).to be_between(30,31)
+    context 'when last month has 28 days' do
+      it 'period is correct' do
+        expect(@debt.send(:reference_period, Date.new(2019, 3, 1)).count).to eq 28
       end
     end
 
-    context 'when payment day is 30' do
-      before do
-        @debt = create(:debt, payment_day: 28)
+    context 'when last month has 29 days' do
+      it 'period is correct' do
+        expect(@debt.send(:reference_period, Date.new(2020, 3, 1)).count).to eq 29
       end
+    end
 
-      it 'period is one month' do
-        expect(@debt.send(:reference_period).count).to be_between(30,31)
+    context 'when last month has 30 days' do
+      it 'period is correct' do
+        expect(@debt.send(:reference_period, Date.new(2019, 5, 1)).count).to eq 30
+      end
+    end
+
+    context 'when last month has 31 days' do
+      it 'period is correct' do
+        expect(@debt.send(:reference_period, Date.new(2019, 6, 1)).count).to eq 31
       end
     end
   end
 
   describe '#next_instalment' do
   	it 'next instalment is correct' do	
-  		expect(@debt.next_instalment.round(8)).to eq(BigDecimal('96084.7731203739').round(8))
+  		expect(@debt.next_instalment.round(6)).to eq(BigDecimal('96084.7731203739').round(6))
   	end
   end
 
   describe '#amortization' do
   	it 'amortization value is correct' do
-  		expect(@debt.amortization.round(8)).to eq(BigDecimal('31582.0387819444').round(8))
+  		expect(@debt.amortization.round(8)).to eq(BigDecimal('31582.0387745490').round(8))
   	end
   end
 
   describe '#interest' do
   	it 'interest value is correct' do
-			expect(@debt.interest.round(8)).to eq(BigDecimal('66397.6783321109').round(8))
+			expect(@debt.interest(Date.new(2018, 12, 15)).round(8)).to eq(BigDecimal('65267.62196688010').round(8))
   	end  
   end
 
   describe '#interest' do
     context 'When there is a parameter' do
       it 'interest value is correct' do
-        expect(@debt.interest(3.months.ago + 1.day).round 5).to eq(BigDecimal '64675.58372')
+        expect(@debt.interest(Date.new(2018, 7, 16)).round(8)).to eq(BigDecimal('64972.10398653450').round(8))
       end
     end  
+
+    context 'When there is a withdraw' do
+      it 'interest value is correct' do
+        expect(@debt.interest(Date.new(2018, 11, 16)).round(8)).to eq(BigDecimal('64863.68764452770').round(8))
+      end
+    end
   end
   
   describe '#outstanding_balance' do 
