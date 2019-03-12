@@ -23,7 +23,7 @@
   </p>
 
   <% @transactions.keys.each do |year| %>
-    <section id="<%= year %>">
+    <section id="<%= year %>" class="year-transaction">
       <h4 class="text-center alert alert-primary"><%= year %></h4>
 
       <% @transactions[year].each do |month, transaction_array| %>
@@ -90,6 +90,7 @@
 
 <script type="text/javascript">
   $('a.year-link').on('click', function(e){
-    $('a.year-link').toggleClass('active');
+    $('a.year-link').removeClass('active');
+    $(e.currentTarget).addClass('active');
   })
 </script>
