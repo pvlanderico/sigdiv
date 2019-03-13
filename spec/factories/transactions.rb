@@ -105,43 +105,43 @@ FactoryBot.define do
 
  			factory :withdraw_1016 do
  				value { BigDecimal('508924.2218972') }
- 				date { Date.new(2016, 10, 15) }
+ 				date { Date.new(2016, 10, 28) }
 				start_outstanding_balance { BigDecimal('9566613.27340791') }
  			end
 
  			factory :withdraw_1116 do
  				value { BigDecimal('715325.306302176') }
- 				date { Date.new(2016, 11, 15) }
+ 				date { Date.new(2016, 11, 30) }
 				start_outstanding_balance { BigDecimal('10075537.4953051') }
  			end
 
  			factory :withdraw_1216 do
  				value { BigDecimal('550758.880241646') }
- 				date { Date.new(2016, 12, 15) }
+ 				date { Date.new(2016, 12, 22) }
 				start_outstanding_balance { BigDecimal('10790862.8016073') }
  			end
 
  			factory :withdraw_0117 do
  				value { BigDecimal('270839.770669423') }
- 				date { Date.new(2017, 1, 15) }
+ 				date { Date.new(2017, 1, 31) }
 				start_outstanding_balance { BigDecimal('11341621.6818489') }
  			end
 
  			factory :withdraw_0217 do
  				value { BigDecimal('286313.741213063') }
- 				date { Date.new(2017, 2, 15) }
+ 				date { Date.new(2017, 3, 2) }
 				start_outstanding_balance { BigDecimal('11612461.4525184') }
  			end
 
  			factory :withdraw_0317 do
  				value { BigDecimal('109984.5161992') }
- 				date { Date.new(2017, 3, 15) }
+ 				date { Date.new(2017, 5, 2) }
 				start_outstanding_balance { BigDecimal('11898775.1937314') }
  			end
 
  			factory :withdraw_0617 do
  				value { BigDecimal('295191.232075548') }
- 				date { Date.new(2017, 6, 15) }
+ 				date { Date.new(2017, 6, 30) }
 				start_outstanding_balance { BigDecimal('12008759.7099306') }
  			end
 
@@ -159,13 +159,13 @@ FactoryBot.define do
 
 			factory :withdraw_0218 do
 				value { BigDecimal('288019.182490') }
-				date { Date.new(2018,2,15) }
+				date { Date.new(2018, 2 ,5) }
 				start_outstanding_balance { BigDecimal('12852099.28789710') }
 			end
 
 			factory :withdraw_1018 do
 				value { BigDecimal('208970.05587000') }
-				date { Date.new(2018,10,31) }
+				date { Date.new(2018, 10, 31) }
 				start_outstanding_balance { BigDecimal('12905242.143735600') }
 			end
 		end
