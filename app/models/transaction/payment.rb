@@ -1,5 +1,6 @@
 class Payment < Transaction
 	# before_save :set_interest
+	# before_save :set_principal
 
 	def final_outstanding_balance
 		start_outstanding_balance - value
@@ -8,5 +9,9 @@ class Payment < Transaction
 	private
 		def set_interest
 			interest = debt.interest
+		end
+
+		def set_principal
+			principal = debt.next_installment - interest
 		end
 end
