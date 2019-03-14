@@ -84,13 +84,13 @@ describe Debt, type: :model do
 
   describe '#amortization' do
   	it 'amortization value is correct' do
-  		expect(@debt.amortization.round(8)).to eq(BigDecimal('31582.0387745490').round(8))
+  		expect(@debt.amortization.round(8)).to eq(BigDecimal('30817.1511534709').round(8))
   	end
   end
 
   describe '#interest' do
   	it 'interest value is correct' do
-			expect(@debt.interest(Date.new(2018, 12, 15)).round(8)).to eq(BigDecimal('65267.62196688010').round(8))
+			expect(@debt.interest(Date.new(2018, 12, 15)).round(8)).to eq(BigDecimal('65267.621966826300000').round(8))
   	end  
   end
 
@@ -110,7 +110,7 @@ describe Debt, type: :model do
   
   describe '#outstanding_balance' do 
     it 'Returns the correct value' do
-      expect(@debt.outstanding_balance).to be_within(BigDecimal '0.00001').of(BigDecimal '13084188.22535')
+      expect(@debt.outstanding_balance.round(5)).to be_within(BigDecimal '0.00001').of(BigDecimal '13022707.24221')
     end
   end
    

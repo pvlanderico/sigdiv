@@ -21,49 +21,49 @@ FactoryBot.define do
 
  			factory :withdraw_0515 do
  				value { BigDecimal('38267.1771676987') }
- 				date { Date.new(2015, 5, 15) }
+ 				date { Date.new(2015, 5, 8) }
 				start_outstanding_balance { BigDecimal('0') }
  			end
 
  			factory :withdraw_0615 do
  				value { BigDecimal('100178.304001591') }
- 				date { Date.new(2015, 6, 15) }
+ 				date { Date.new(2015, 6, 19) }
 				start_outstanding_balance { BigDecimal('38267.1771676987') }
  			end
 
  			factory :withdraw_0715 do
  				value { BigDecimal('269454.113840257') }
- 				date { Date.new(2015, 7, 15) }
+ 				date { Date.new(2015, 7, 24) }
 				start_outstanding_balance { BigDecimal('138445.48116929') }
  			end
 
  			factory :withdraw_0815 do
  				value { BigDecimal('172811.612402003') }
- 				date { Date.new(2015, 8 ,15) }
+ 				date { Date.new(2015, 8 ,21) }
 				start_outstanding_balance { BigDecimal('407899.595009547') }
  			end
 
  			factory :withdraw_0915 do
  				value { BigDecimal('388238.148837079') }
- 				date { Date.new(2015, 9, 15) }
+ 				date { Date.new(2015, 9, 22) }
 				start_outstanding_balance { BigDecimal('580711.20741155') }
  			end
 
  			factory :withdraw_1015 do
  				value { BigDecimal('180241.335471127') }
- 				date { Date.new(2015, 10, 15) }
+ 				date { Date.new(2015, 10, 22) }
 				start_outstanding_balance { BigDecimal('968949.356248629') }
  			end
 
  			factory :withdraw_1115 do
  				value { BigDecimal('776149.536786542') }
- 				date { Date.new(2015, 11, 15) }
+ 				date { Date.new(2015, 11, 23) }
 				start_outstanding_balance { BigDecimal('1149190.69171976') }
  			end
 
  			factory :withdraw_1215 do
  				value { BigDecimal('2027839.19399659') }
- 				date { Date.new(2015, 12, 15) }
+ 				date { Date.new(2015, 12, 17) }
 				start_outstanding_balance { BigDecimal('1925340.2285063') }
  			end
 
@@ -75,31 +75,31 @@ FactoryBot.define do
 
  			factory :withdraw_0516 do
  				value { BigDecimal('1986775.5527745') }
- 				date { Date.new(2016, 5, 15) }
+ 				date { Date.new(2016, 5, 6) }
 				start_outstanding_balance { BigDecimal('5433546.93772417') }
  			end
 
  			factory :withdraw_0616 do
  				value { BigDecimal('383515.163323288') }
- 				date { Date.new(2016, 6, 15) }
+ 				date { Date.new(2016, 6, 27) }
 				start_outstanding_balance { BigDecimal('7420322.49049867') }
  			end
 
  			factory :withdraw_0716 do
  				value { BigDecimal('611973.657811069') }
- 				date { Date.new(2016, 7, 15) }
+ 				date { Date.new(2016, 7, 29) }
 				start_outstanding_balance { BigDecimal('7803837.65382196') }
  			end
 
  			factory :withdraw_0816 do
  				value { BigDecimal('573211.706951141') }
- 				date { Date.new(2016, 8, 15) }
+ 				date { Date.new(2016, 8, 30) }
 				start_outstanding_balance { BigDecimal('8415811.31163303') }
  			end
 
  			factory :withdraw_0916 do
  				value { BigDecimal('577590.254823738') }
- 				date { Date.new(2016, 9, 15) }
+ 				date { Date.new(2016, 9, 30) }
 				start_outstanding_balance { BigDecimal('8989023.01858417') }
  			end
 
@@ -248,7 +248,7 @@ FactoryBot.define do
 	 		factory :payment_1218 do	
 	 			principal { BigDecimal '30817.15115349740' }
 	 			date { Date.new(2018, 12, 15) }
-				start_outstanding_balance { BigDecimal('13053524.3933760') }
+				start_outstanding_balance { BigDecimal('13053524.39336530') }
 	 		end
 	 	end
 	end
