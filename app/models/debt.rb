@@ -49,7 +49,7 @@ class Debt < ApplicationRecord
 	end 
   # Próxima parcela
 	def next_instalment	
-		outstanding_balance = payments.where(date: signature_date..Date.today).last.start_outstanding_balance
+		outstanding_balance = payments.last.start_outstanding_balance - payments.last.principal
 		outstanding_balance * instalment_formula_numerator(payments.count) / instalment_formula_denominator(payments.count)
 	end	
 
