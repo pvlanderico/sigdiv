@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_184229) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.decimal "value", default: "0.0", null: false
+    t.decimal "value"
     t.date "date"
     t.integer "debt_id"
     t.datetime "created_at", null: false
