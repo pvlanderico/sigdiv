@@ -78,39 +78,43 @@ describe Debt, type: :model do
 
   describe '#next_instalment' do
   	it 'next instalment is correct' do	
-  		expect(@debt.next_instalment).to eq(BigDecimal('96084.77312037640'))
+  		#expect(@debt.next_instalment).to eq(Decimal.new('96084.77312037640'))
   	end
+
+    it 'rounds to 15 digits when showed' do
+      expect(@debt.show_next_instalment).to eq(Decimal.new(96084.77312037640))
+    end
   end
 
   describe '#amortization' do
   	it 'amortization value is correct' do
-  		expect(@debt.amortization.round(8)).to eq(BigDecimal('30817.1511534709').round(8))
+  		expect(@debt.amortization).to eq(Decimal.new('30817.1511534709'))
   	end
   end
 
   describe '#interest' do
   	it 'interest value is correct' do
-			expect(@debt.interest(Date.new(2018, 12, 15)).round(8)).to eq(BigDecimal('65267.6219668263').round(8))
+			expect(@debt.interest(Date.new(2018, 12, 15))).to eq(Decimal.new('65267.6219668263'))
   	end  
   end
 
   describe '#interest' do
     context 'When there is a parameter' do
       it 'interest value is correct' do
-        expect(@debt.interest(Date.new(2018, 7, 16)).round(8)).to eq(BigDecimal('64972.1039865345').round(8))
+        expect(@debt.interest(Date.new(2018, 7, 16))).to eq(Decimal.new('64972.1039865345'))
       end
     end  
 
     context 'When there is a withdraw' do
       it 'interest value is correct' do
-        expect(@debt.interest(Date.new(2018, 11, 16)).round(8)).to eq(BigDecimal('64863.6876445277').round(8))
+        expect(@debt.interest(Date.new(2018, 11, 16))).to eq(Decimal.new('64863.6876445277'))
       end
     end
   end
   
   describe '#outstanding_balance' do 
     it 'Returns the correct value' do
-      expect(@debt.outstanding_balance).to eq(BigDecimal '13022707.24222250')
+      expect(@debt.outstanding_balance).to eq(Decimal.new('13022707.24222250'))
     end
   end
    

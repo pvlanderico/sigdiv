@@ -52,6 +52,12 @@ class Debt < ApplicationRecord
 		outstanding_balance = payments.last.start_outstanding_balance - payments.last.principal
 		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
 	end	
+    
+    ['next_instalment', 'amortization', 'interest', 'outstanding_balance'].each do |method_name|
+    	define_method :"show_#{method_name}" do 
+    		Decimal.new(self.send(method_name).to_f)
+    	end
+    end
 
 	def amortization
 		next_instalment - interest
