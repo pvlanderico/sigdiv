@@ -1,5 +1,5 @@
-# SADP
-Sistema de Análise da Dívida Pública. É uma iniciativa da prefeitura municipal de Niterói, através da Secretaria Municipal de Fazenda para desenvolver um sistema que controla as dívidas públicas de um município.
+# SIGDIV
+Sistema de Gestão da Dívida Pública. É uma iniciativa da prefeitura municipal de Niterói, através da Secretaria Municipal de Fazenda para desenvolver um sistema que controla as dívidas públicas de um município.
 
 # Instalação
 O presente guia de instalação assume que o Ubuntu 18.04 é o sistema operacional utilizado.
@@ -35,8 +35,8 @@ $ rbenv global 2.5.3
 Copiando o código fonte do sistema:
 
 ```
-$ git clone https://github.com/smfazendaniteroi/sadp.git
-$ cd sadp
+$ git clone https://github.com/smfazendaniteroi/sigdiv.git
+$ cd sigdiv
 ```
 
 Instale o bundler na versão especificada:
@@ -55,14 +55,14 @@ Criando o role utilizado pelo sistema:
 
 ```
 $ sudo -u postgres psql
-# create role sadp with createdb login password 'passwordDB';
+# create role sigdiv with createdb login password 'passwordDB';
 ```
 
-Para configurar a autenticação do usuário sadp no banco de dados, adicione no arquivo /etc/postgresql/10/main/pg_hba.conf
+Para configurar a autenticação do usuário sigdiv no banco de dados, adicione no arquivo /etc/postgresql/10/main/pg_hba.conf
 a seguinte linha: 
 
 ```
-local   all             sadp                                    md5
+local   all             sigdiv                                    md5
 ```
 Reinicie o servidor postgres:
 

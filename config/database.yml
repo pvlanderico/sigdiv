@@ -1,15 +1,15 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: sadp_development
+  database: sigdiv_development
   pool: 5
-  username: sadp
+  username: sigdiv
   password: passwordDB
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: sadp_test
+  database: sigdiv_test
   pool: 5
-  username: sadp
+  username: sigdiv
   password: passwordDB
