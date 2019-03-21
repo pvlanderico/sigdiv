@@ -48,9 +48,9 @@ class Debt < ApplicationRecord
 		transactions.where(type: 'Payment')
 	end 
   # Próxima parcela
-	def next_instalment	
+	def next_instalment
 		outstanding_balance = payments.last.start_outstanding_balance - payments.last.principal
-		outstanding_balance * instalment_formula_numerator(payments.count) / instalment_formula_denominator(payments.count)
+		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
 	end	
 
 	def amortization
@@ -122,12 +122,12 @@ class Debt < ApplicationRecord
 			charges.reduce(0) { |sum, charge| sum + charge.total }
 		end
 
-		def instalment_formula_numerator installment_count
-			( ( (1 + interest_rate_per_month) ** (loan_term - installment_count) ) * interest_rate_per_month )
+		def instalment_formula_numerator
+			( ( (1 + interest_rate_per_month) ** (loan_term - payments.count) ) * interest_rate_per_month )
 		end
 
-		def instalment_formula_denominator installment_count
-			( ( ( 1 + interest_rate_per_month ) ** (loan_term - installment_count) ) - 1 )
+		def instalment_formula_denominator
+			( ( ( 1 + interest_rate_per_month ) ** (loan_term - payments.count) ) - 1 )
 		end
 
 		def interest_rate_per_month

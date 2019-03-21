@@ -164,7 +164,7 @@ FactoryBot.define do
 			end
 
 			factory :withdraw_1018 do
-				value { BigDecimal('208970.05587000') }
+				value { BigDecimal('208970.055870') }
 				date { Date.new(2018, 10, 31) }
 				start_outstanding_balance { BigDecimal('12905242.143735600') }
 			end
@@ -246,9 +246,9 @@ FactoryBot.define do
 	 		end
 	 		
 	 		factory :payment_1218 do	
-	 			principal { BigDecimal '30817.15115349740' }
+	 			principal { BigDecimal '30817.15115349630' }	 			
 	 			date { Date.new(2018, 12, 15) }
-				start_outstanding_balance { BigDecimal('13053524.39336530') }
+				start_outstanding_balance { BigDecimal('13053524.3933760') }
 	 		end
 	 	end
 	end

@@ -78,7 +78,7 @@ describe Debt, type: :model do
 
   describe '#next_instalment' do
   	it 'next instalment is correct' do	
-  		expect(@debt.next_instalment.round(6)).to eq(BigDecimal('96084.7731203739').round(6))
+  		expect(@debt.next_instalment).to eq(BigDecimal('96084.77312037640'))
   	end
   end
 
@@ -90,27 +90,27 @@ describe Debt, type: :model do
 
   describe '#interest' do
   	it 'interest value is correct' do
-			expect(@debt.interest(Date.new(2018, 12, 15)).round(8)).to eq(BigDecimal('65267.621966826300000').round(8))
+			expect(@debt.interest(Date.new(2018, 12, 15)).round(8)).to eq(BigDecimal('65267.6219668263').round(8))
   	end  
   end
 
   describe '#interest' do
     context 'When there is a parameter' do
       it 'interest value is correct' do
-        expect(@debt.interest(Date.new(2018, 7, 16)).round(8)).to eq(BigDecimal('64972.10398653450').round(8))
+        expect(@debt.interest(Date.new(2018, 7, 16)).round(8)).to eq(BigDecimal('64972.1039865345').round(8))
       end
     end  
 
     context 'When there is a withdraw' do
       it 'interest value is correct' do
-        expect(@debt.interest(Date.new(2018, 11, 16)).round(8)).to eq(BigDecimal('64863.68764452770').round(8))
+        expect(@debt.interest(Date.new(2018, 11, 16)).round(8)).to eq(BigDecimal('64863.6876445277').round(8))
       end
     end
   end
   
   describe '#outstanding_balance' do 
     it 'Returns the correct value' do
-      expect(@debt.outstanding_balance.round(5)).to be_within(BigDecimal '0.00001').of(BigDecimal '13022707.24221')
+      expect(@debt.outstanding_balance).to eq(BigDecimal '13022707.24222250')
     end
   end
    
