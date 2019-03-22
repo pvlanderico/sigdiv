@@ -28,306 +28,313 @@ Debt.create!( "code" => 123456,
 					    "payment_day" => 15
 					    )
 
+def show_stats
+	puts "Saldo devedor: " + Debt.first.outstanding_balance.to_s
+	puts "Juros: " + Debt.first.interest.to_s
+	puts "Próxima parcela: " + Debt.first.show_next_instalment.to_s
+end
+
+show_stats
 Withdraw.create!(				
 	value: BigDecimal('38267.1771676987'),
-	date: Date.new(2015, 5, 15),
-	start_outstanding_balance: BigDecimal('0'),
+	date: Date.new(2015, 5, 8),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
-)
+) 
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('100178.304001591'),
-	date: Date.new(2015, 6, 15),
-	start_outstanding_balance: BigDecimal('38267.1771676987'),
+	date: Date.new(2015, 6, 19),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('269454.113840257'),
-	date: Date.new(2015, 7, 15),
-	start_outstanding_balance: BigDecimal('138445.48116929'),
+	date: Date.new(2015, 7, 24),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('172811.612402003'),
-	date: Date.new(2015, 8 ,15),
-	start_outstanding_balance: BigDecimal('407899.595009547'),
+	date: Date.new(2015, 8 ,21),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('388238.148837079'),
-	date: Date.new(2015, 9, 15),
-	start_outstanding_balance: BigDecimal('580711.20741155'),
+	date: Date.new(2015, 9, 22),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('180241.335471127'),
-	date: Date.new(2015, 10, 15),
-	start_outstanding_balance: BigDecimal('968949.356248629'),
+	date: Date.new(2015, 10, 22),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('776149.536786542'),
-	date: Date.new(2015, 11, 15),
-	start_outstanding_balance: BigDecimal('1149190.69171976'),
+	date: Date.new(2015, 11, 23),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('2027839.19399659'),
-	date: Date.new(2015, 12, 15),
-	start_outstanding_balance: BigDecimal('1925340.2285063'),
+	date: Date.new(2015, 12, 17),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('1480367.51522129'),
 	date: Date.new(2016, 3, 15),
-	start_outstanding_balance: BigDecimal('3953179.42250289'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('1986775.5527745'),
-	date: Date.new(2016, 5, 15),
-	start_outstanding_balance: BigDecimal('5433546.93772417'),
+	date: Date.new(2016, 5, 6),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('383515.163323288'),
-	date: Date.new(2016, 6, 15),
-	start_outstanding_balance: BigDecimal('7420322.49049867'),
+	date: Date.new(2016, 6, 27),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('611973.657811069'),
-	date: Date.new(2016, 7, 15),
-	start_outstanding_balance: BigDecimal('7803837.65382196'),
+	date: Date.new(2016, 7, 29),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('573211.706951141'),
-	date: Date.new(2016, 8, 15),
-	start_outstanding_balance: BigDecimal('8415811.31163303'),
+	date: Date.new(2016, 8, 30),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('577590.254823738'),
-	date: Date.new(2016, 9, 15),
-	start_outstanding_balance: BigDecimal('8989023.01858417'),
+	date: Date.new(2016, 9, 30),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('508924.2218972'),
-	date: Date.new(2016, 10, 15),
-	start_outstanding_balance: BigDecimal('9566613.27340791'),
+	date: Date.new(2016, 10, 28),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('715325.306302176'),
-	date: Date.new(2016, 11, 15),
-	start_outstanding_balance: BigDecimal('10075537.4953051'),
+	date: Date.new(2016, 11, 30),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('550758.880241646'),
-	date: Date.new(2016, 12, 15),
-	start_outstanding_balance: BigDecimal('10790862.8016073'),
+	date: Date.new(2016, 12, 22),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('270839.770669423'),
-	date: Date.new(2017, 1, 15),
-	start_outstanding_balance: BigDecimal('11341621.6818489'),
+	date: Date.new(2017, 1, 31),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('286313.741213063'),
-	date: Date.new(2017, 2, 15),
-	start_outstanding_balance: BigDecimal('11612461.4525184'),
+	date: Date.new(2017, 3, 2),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('109984.5161992'),
-	date: Date.new(2017, 3, 15),
-	start_outstanding_balance: BigDecimal('11898775.1937314'),
+	date: Date.new(2017, 5, 2),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('295191.232075548'),
-	date: Date.new(2017, 6, 15),
-	start_outstanding_balance: BigDecimal('12008759.7099306'),
+	date: Date.new(2017, 6, 30),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('351624.161135471'),
 	date: Date.new(2017, 9, 18),
-	start_outstanding_balance: BigDecimal('12303950.9420062'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Withdraw.create!(
 	value: BigDecimal('252538.2031043'),
 	date: Date.new(2017, 11, 13),
-	start_outstanding_balance: BigDecimal('12655575.1031416'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
-Withdraw.create!(
-	value: BigDecimal('288019.18249'),
-	date: Date.new(2018,2,15),
-	start_outstanding_balance: BigDecimal('12852099.2878971'),
-	exchange_rate: 1,
-	debt_id: Debt.first.id
-)
-
-Withdraw.create!(
-	value: BigDecimal('208970.05587'),
-	date: Date.new(2018,10,31),
-	start_outstanding_balance: BigDecimal('12905242.1437248'),
-	exchange_rate: 1,
-	debt_id: Debt.first.id
-)
-
+puts "Primeiro Pagamento"
+show_stats
 Payment.create!(
 	principal: BigDecimal('27937.1662582689'),
 	date: Date.new(2017, 12, 15),
-	start_outstanding_balance: BigDecimal('12908113.3062459'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
 	principal: BigDecimal('28076.8520795603'),
 	date: Date.new(2018, 1, 15),
-	start_outstanding_balance: BigDecimal('12880176.1399872'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
+Withdraw.create!(
+	value: BigDecimal('288019.18249'),
+	date: Date.new(2018, 2, 5),
+	exchange_rate: 1,
+	debt_id: Debt.first.id
+)
+
+show_stats
 Payment.create!(
-	principal: BigDecimal('28849.5926027782'),
+	principal: BigDecimal('28849.5926027793'),
 	date: Date.new(2018, 2, 15),
-	start_outstanding_balance: BigDecimal('12852099.2879076'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('28993.8405657921'),
+	principal: BigDecimal('28993.8405657932'),
 	date: Date.new(2018, 3, 15),
-	start_outstanding_balance: BigDecimal('13111268.8777948'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('29138.809768621'),
+	principal: BigDecimal('29138.80976862210'),
 	date: Date.new(2018, 4, 16),
-	start_outstanding_balance: BigDecimal('13082275.037229'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('29284.5038174641'),
+	principal: BigDecimal('29284.5038174652'),
 	date: Date.new(2018, 5, 15),
-	start_outstanding_balance: BigDecimal('13053136.2274604'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('29430.9263365514'),
+	principal: BigDecimal('29430.92633655260'),
 	date: Date.new(2018, 6, 15),
-	start_outstanding_balance: BigDecimal('13023851.723643'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('29578.0809682342'),
+	principal: BigDecimal('29578.08096823530'),
 	date: Date.new(2018, 7, 16),
-	start_outstanding_balance: BigDecimal('12994420.7973064'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('29725.9713730754'),
+	principal: BigDecimal('29725.97137307650'),
 	date: Date.new(2018, 8, 15),
-	start_outstanding_balance: BigDecimal('12964842.7163382'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('29874.6012299408'),
+	principal: BigDecimal('29874.60122994190'),
 	date: Date.new(2018, 9, 17),
-	start_outstanding_balance: BigDecimal('12935116.7449651'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('30023.9742360904'),
+	principal: BigDecimal('30023.97423609160'),
 	date: Date.new(2018, 10, 15),
-	start_outstanding_balance: BigDecimal('12905242.1437351'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
+Withdraw.create!(
+	value: BigDecimal('208970.05587'),
+	date: Date.new(2018, 10, 31),
+	exchange_rate: 1,
+	debt_id: Debt.first.id
+)
+
+show_stats
 Payment.create!(
-	principal: BigDecimal('30663.8319935275'),
+	principal: BigDecimal('30663.83199352860'),
 	date: Date.new(2018, 11, 16),
-	start_outstanding_balance: BigDecimal('13084188.2253691'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+show_stats
 Payment.create!(
-	principal: BigDecimal('30817.1511534962'),
+	principal: BigDecimal('30817.15115349630'),
 	date: Date.new(2018, 12, 15),
-	start_outstanding_balance: BigDecimal('13053524.3933755'),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )

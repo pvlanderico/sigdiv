@@ -2,6 +2,8 @@ class Payment < Transaction
 	# before_save :set_interest
 	# before_save :set_principal
 
+	validates :principal, presence: true
+
 	def final_outstanding_balance
 		start_outstanding_balance - value
 	end
