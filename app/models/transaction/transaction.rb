@@ -17,8 +17,7 @@ class Transaction < ApplicationRecord
 	end
 
 	private
-
 		def set_outstanding_balance
-			outstanding_balance = debt.outstanding_balance
+			self.start_outstanding_balance = debt.outstanding_balance
 		end
 end

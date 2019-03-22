@@ -30,59 +30,56 @@
         <h5 class="alert alert-secondary"><%= I18n.t("date.month_names")[month] %></h5>
 
         <table class="table table-hover">
-          <tbody>      
-              <% month_balance = 0.0 %>
-              <% transaction_array.each do |transaction|%>
-                <tr>
-                  <td>
-                    <% if transaction.type == 'Withdraw' %>
-                      <span class="badge badge-primary badge-pill">D</span>
-                    <% else %>
-                      <span class="badge badge-warning badge-pill">PR</span>
-                    <% end %>
-                    <%= transaction.date.strftime("%d-%m-%Y") %>
-                  </td>
-                
-                  <td>
-                  <%= big_decimal_to_currency transaction.principal if transaction.type == 'Payment' %>
-                  </td>
-                  <td>
-                  <%= big_decimal_to_currency transaction.interest if transaction.type == 'Payment' %>
-                  </td>
-                
-                  <td class="text-right">
-                   <%= big_decimal_to_currency transaction.value %>
-                  </td>
-                </tr>
-                <% month_balance += transaction.value if transaction.type == 'Withdraw' %>
-                <% month_balance -= transaction.value if transaction.type == 'Payment' %>
-              <% end %>
-            
+          <thead>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Juros</th>
+            <th>Saldo final</th>
+          </thead>
+          <tbody>              
+            <% transaction_array.each do |transaction| %>
               <tr>
-                <td><strong>Saldo devedor mensal</strong></td>
+                <td>
+                  <% if transaction.type == 'Withdraw' %>
+                    <span class="badge badge-primary badge-pill">D</span>
+                  <% else %>
+                    <span class="badge badge-warning badge-pill">PR</span>
+                  <% end %>
+                  <%= transaction.date.strftime("%d-%m-%Y") %>
+                </td>
+              
+                <td>
+                <%= big_decimal_to_currency transaction.principal if transaction.type == 'Payment' %>
+                </td>
+                <td>
+                <%= big_decimal_to_currency transaction.interest if transaction.type == 'Payment' %>
+                </td>
+              
+                <td class="text-right">
+                 <%= big_decimal_to_currency transaction.value if transaction.type == 'Withdraw' %>
+                 <%= big_decimal_to_currency transaction.principal if transaction.type == 'Payment' %>
+                </td>
 
-                <td></td><td></td>
+                <td>
+                <%= big_decimal_to_currency transaction.interest if transaction.type == 'Payment' %>
+                </td>
 
-                <td class="text-right"><strong><%= big_decimal_to_currency month_balance %></strong></td>
-              </tr>
-              <tr>
-                <td><strong>Saldo devedor mensal (R$)</strong></td>
-
-                <td></td><td></td>
-                
-                <td class="text-right"><strong><%= number_to_currency(month_balance / @debt.currency.to_brl) %></strong></td>
-              </tr>
-            </tbody>
-          </table>
-          <p>
-            <span class="badge badge-primary badge-pill">D</span> Desembolso
-            <span class="badge badge-warning badge-pill">PR</span> Pagamento realizado
-            <span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro
-          </p>
-          <br>
-        <% end %>      
-      <% end %>
-    </section>
+                <td>
+                <%= big_decimal_to_currency transaction.final_outstanding_balance %>
+                </td>
+              </tr>                
+            <% end %>              
+          </tbody>
+        </table>
+        <p>
+          <span class="badge badge-primary badge-pill">D</span> Desembolso
+          <span class="badge badge-warning badge-pill">PR</span> Pagamento realizado
+          <span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro
+        </p>
+        <br>
+      <% end %>      
+    <% end %>
+  </section>
 
   <hr>
   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#transactionModal">Registrar desembolso</button>

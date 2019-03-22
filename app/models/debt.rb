@@ -66,7 +66,7 @@ class Debt < ApplicationRecord
 		withdraws_total = 0
 		withdraws.where(date: reference_period(final_date)).each do |withdraw|
 			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(final_date.year, final_date.month, payment_day) - (withdraw.date - 1.day)).to_i
-		end		
+		end
 		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total
 	end
 

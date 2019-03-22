@@ -5,15 +5,15 @@ class Payment < Transaction
 	validates :principal, presence: true
 
 	def final_outstanding_balance
-		start_outstanding_balance - value
+		start_outstanding_balance - principal
 	end
 
 	private
 		def set_interest
-			interest = debt.interest
+			self.interest = debt.interest
 		end
 
 		def set_principal
-			principal = debt.next_installment - interest
+			self.principal = debt.next_instalment - debt.interest
 		end
 end
