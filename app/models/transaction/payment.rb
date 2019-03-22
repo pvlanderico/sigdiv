@@ -1,6 +1,6 @@
 class Payment < Transaction
-	# before_save :set_interest
-	# before_save :set_principal
+	before_save :set_interest
+	before_save :set_principal
 
 	validates :principal, presence: true
 

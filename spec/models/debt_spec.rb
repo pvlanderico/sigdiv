@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Debt, type: :model do
   before(:each) do  	
   	@debt = create(:cef, charges: [ build(:adm_tax), build(:credit_risk) ])
+    
     create(:withdraw_0515, debt: @debt)
     create(:withdraw_0615, debt: @debt)
     create(:withdraw_0715, debt: @debt)
@@ -25,12 +26,10 @@ describe Debt, type: :model do
     create(:withdraw_0317, debt: @debt)
     create(:withdraw_0617, debt: @debt)
     create(:withdraw_0917, debt: @debt)
-    create(:withdraw_1117, debt: @debt)
-    create(:withdraw_0218, debt: @debt)
-    create(:withdraw_1018, debt: @debt)
-    
+    create(:withdraw_1117, debt: @debt)        
     create(:payment_1217, debt: @debt)
     create(:payment_0118, debt: @debt)
+    create(:withdraw_0218, debt: @debt)    
     create(:payment_0218, debt: @debt)
     create(:payment_0318, debt: @debt)
     create(:payment_0418, debt: @debt)
@@ -40,6 +39,7 @@ describe Debt, type: :model do
     create(:payment_0818, debt: @debt)
     create(:payment_0918, debt: @debt)
     create(:payment_1018, debt: @debt)
+    create(:withdraw_1018, debt: @debt)
     create(:payment_1118, debt: @debt)
     create(:payment_1218, debt: @debt)
 
@@ -88,33 +88,19 @@ describe Debt, type: :model do
 
   describe '#amortization' do
   	it 'amortization value is correct' do
-  		expect(@debt.amortization).to eq(Decimal.new('30817.1511534709'))
+  		expect(@debt.show_amortization).to eq(Decimal.new(30971.2369092638))
   	end
   end
 
   describe '#interest' do
   	it 'interest value is correct' do
-			expect(@debt.interest(Date.new(2018, 12, 15))).to eq(Decimal.new('65267.6219668263'))
+			expect(@debt.show_interest).to eq(Decimal.new(65113.5362111126))
   	end  
-  end
-
-  describe '#interest' do
-    context 'When there is a parameter' do
-      it 'interest value is correct' do
-        expect(@debt.interest(Date.new(2018, 7, 16))).to eq(Decimal.new('64972.1039865345'))
-      end
-    end  
-
-    context 'When there is a withdraw' do
-      it 'interest value is correct' do
-        expect(@debt.interest(Date.new(2018, 11, 16))).to eq(Decimal.new('64863.6876445277'))
-      end
-    end
   end
   
   describe '#outstanding_balance' do 
     it 'Returns the correct value' do
-      expect(@debt.outstanding_balance).to eq(Decimal.new('13022707.24222250'))
+      expect(@debt.show_outstanding_balance).to eq(Decimal.new(13022707.24222250))
     end
   end
    
