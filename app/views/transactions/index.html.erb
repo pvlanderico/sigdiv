@@ -8,8 +8,6 @@
   </ul>
 </div>
 
-
-
 <div class='pull-left debt-ops'>
   <p>
     <strong>Valor do contrato: </strong>
@@ -26,13 +24,14 @@
 
   <% @transactions.keys.each do |year| %>
     <section id="<%= year %>" class="year-transaction">
-      <h4 class="text-center alert alert-primary"><%= year %></h4>
+      <h5 class="text-center alert alert-primary"><%= year %></h5>
 
       <% @transactions[year].each do |month, transaction_array| %>
-        <h5 class="alert alert-secondary"><%= I18n.t("date.month_names")[month] %></h5>
+        <h6 class="alert alert-secondary"><%= I18n.t("date.month_names")[month] %></h6>
 
         <table class="table table-hover">
           <thead>
+            <th></th>
             <th>Data</th>
             <th>Valor</th>
             <th>Juros</th>
@@ -47,6 +46,9 @@
                   <% else %>
                     <span class="badge badge-warning badge-pill">PR</span>
                   <% end %>
+                </td>
+                
+                <td>
                   <%= transaction.date.strftime("%d-%m-%Y") %>
                 </td>
               

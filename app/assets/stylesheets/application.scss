@@ -17,7 +17,11 @@
 @import "font-awesome";
 
 .main-content {
-	margin-top: 70px;
+	margin-top: 70px;  
+}
+
+.wide-container {
+  max-width: 80%;
 }
 
 hr.dashed-hr {
@@ -34,7 +38,7 @@ hr.dashed-hr {
 .debt-header{
   background-color: #fff;
   top: 57px;
-  width: 61%;
+  width: 75%;
   z-index: 1030;
 }
 
