@@ -53,25 +53,29 @@ describe Debt, type: :model do
   describe '#reference_period' do
     context 'when last month has 28 days' do
       it 'period is correct' do
-        expect(@debt.send(:reference_period, Date.new(2019, 3, 1)).count).to eq 28
+        travel_to  Date.new(2019, 3, 1)
+        expect(@debt.send(:reference_period).count).to eq 28
       end
     end
 
     context 'when last month has 29 days' do
       it 'period is correct' do
-        expect(@debt.send(:reference_period, Date.new(2020, 3, 1)).count).to eq 29
+        travel_to Date.new(2020, 3, 1)
+        expect(@debt.send(:reference_period).count).to eq 29
       end
     end
 
     context 'when last month has 30 days' do
       it 'period is correct' do
-        expect(@debt.send(:reference_period, Date.new(2019, 5, 1)).count).to eq 30
+        travel_to Date.new(2019, 5, 1)
+        expect(@debt.send(:reference_period).count).to eq 30
       end
     end
 
     context 'when last month has 31 days' do
       it 'period is correct' do
-        expect(@debt.send(:reference_period, Date.new(2019, 6, 1)).count).to eq 31
+        travel_to Date.new(2019, 6, 1)
+        expect(@debt.send(:reference_period).count).to eq 31
       end
     end
   end
@@ -91,7 +95,15 @@ describe Debt, type: :model do
   describe '#interest' do
   	it 'interest value is correct' do
 			expect(@debt.show_interest).to eq(Decimal.new(65113.5362111126))
-  	end  
+  	end
+
+    context 'when there is a withdraw' do
+      before { travel_to Date.new(2018, 11, 15) }
+
+      it 'interest value is correct' do
+        expect(@debt.show_interest).to eq(Decimal.new(64863.6876445277))
+      end
+    end
   end
   
   describe '#outstanding_balance' do 
@@ -130,17 +142,7 @@ describe Debt, type: :model do
   		it 'status returns amortization period' do
   			expect(@debt.status).to eq('Amortização')
   		end
-  	end
-
-    context 'when there is 2 charges' do
-      it 'first charge value is correct' do
-        expect(@debt.payment_charges.first.value).to eq('21704.51207')
-      end
-
-      it 'second charge value is correct' do
-        expect(@debt.payment_charges.last.value).to eq('7596.57922')
-      end
-    end
+  	end    
 
   	context 'when debt is finished' do
   		# it 'is not in grace period' do

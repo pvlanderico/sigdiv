@@ -61,11 +61,12 @@ class Debt < ApplicationRecord
 	def amortization
 		next_instalment - interest
 	end
+
 	# Juros
-	def interest final_date = Date.today
+	def interest interest_rate = self.interest_rate
 		withdraws_total = 0
-		withdraws.where(date: reference_period(final_date)).each do |withdraw|
-			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(final_date.year, final_date.month, payment_day) - (withdraw.date - 1.day)).to_i
+		withdraws.where(date: reference_period).each do |withdraw|
+			withdraws_total += withdraw.value * interest_rate / 360 * (payment_date - (withdraw.date - 1.day)).to_i
 		end
 
 		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total
@@ -111,15 +112,15 @@ class Debt < ApplicationRecord
 		Date.new(Date.today.year, Date.today.month, payment_day)
 	end
 
+	# Taxa de juros
+	def interest_rate
+		BigDecimal(Dentaku(interest_rate_formula)) / 100
+	end
+
 	private
 
 		def self.date_range_from_year year
 			Date.new(year)..(Date.new(year + 1) - 1.day)
-		end
-
-		# Taxa de juros
-		def interest_rate
-			BigDecimal(Dentaku(interest_rate_formula)) / 100
 		end
 
 		def charges_total
@@ -139,8 +140,7 @@ class Debt < ApplicationRecord
 		end
 
 		# Periodo de referência para calculo de juros e taxas
-		def reference_period final_date = Date.today
-			period_end = Date.new(final_date.year, final_date.month, payment_day)
-			(period_end - 1.month + 1.day)..period_end
+		def reference_period			
+			(payment_date - 1.month + 1.day)..payment_date
 		end
 end
