@@ -1,6 +1,7 @@
 Creditor.destroy_all
 Currency.destroy_all
 Transaction.destroy_all
+Charge.destroy_all
 Debt.destroy_all
 
 creditor1 = Creditor.create!(name: 'CAIXA ECONÔMICA FEDERAL', financial_agent: true)
@@ -25,12 +26,16 @@ Debt.create!( "code" => 123456,
 					    "currency_id" => currency1.id,
 					    "interest_rate_formula" => 6,
 					    "loan_term" => 240,
-					    "payment_day" => 15
+					    "payment_day" => 15					    
 					    )
 
+Charge.create!(name: 'Taxa administrativa', base: 2, debt: Debt.first, count_days: true)
+Charge.create!(name: 'Taxa de risco de crédito', base: 0.7, debt: Debt.first, count_days: false)
+
 def show_stats
-	puts "Saldo devedor: " + Debt.first.outstanding_balance.to_s
-	puts "Juros: " + Debt.first.interest.to_s
+	puts '*******************************************************'
+	puts "Saldo devedor: " + Debt.first.show_outstanding_balance.to_s
+	puts "Juros: " + Debt.first.show_interest.to_s
 	puts "Próxima parcela: " + Debt.first.show_next_instalment.to_s
 end
 

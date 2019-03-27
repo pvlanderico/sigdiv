@@ -36,6 +36,7 @@ pt-BR:
         name: Nome
         base: '%'
         formula: Fórmula
+        count_days: Contabilizar dias
       attachment:
         name: Nome
         description: Descrição

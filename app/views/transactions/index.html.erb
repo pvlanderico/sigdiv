@@ -35,7 +35,10 @@
             <th>Data</th>
             <th>Valor</th>
             <th>Juros</th>
-            <th>Saldo final</th>
+            <% @debt.charges.each do |charge| %>
+              <th><%= charge.name %></th>
+            <% end %>
+            <th>Saldo final</th>            
           </thead>
           <tbody>              
             <% transaction_array.each do |transaction| %>
@@ -60,6 +63,16 @@
                 <td>
                 <%= big_decimal_to_currency transaction.interest if transaction.type == 'Payment' %>
                 </td>
+
+                <% if transaction.type == 'Payment' %>
+                  <% transaction.payment_charges.each do |payment_charge| %>
+                    <td><%= payment_charge.show_value %></td>
+                  <% end %>
+                <% else %>
+                  <% @debt.charges.each do %>
+                    <td>-</td>
+                  <% end %>
+                <% end %>
 
                 <td>
                 <%= big_decimal_to_currency transaction.final_outstanding_balance %>

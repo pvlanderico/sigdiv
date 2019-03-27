@@ -77,11 +77,7 @@ describe Debt, type: :model do
   end
 
   describe '#next_instalment' do
-  	it 'next instalment is correct' do	
-  		#expect(@debt.next_instalment).to eq(Decimal.new('96084.77312037640'))
-  	end
-
-    it 'rounds to 15 digits when showed' do
+    it 'next instalment value is correct' do
       expect(@debt.show_next_instalment).to eq(Decimal.new(96084.77312037640))
     end
   end
@@ -135,6 +131,16 @@ describe Debt, type: :model do
   			expect(@debt.status).to eq('Amortização')
   		end
   	end
+
+    context 'when there is 2 charges' do
+      it 'first charge value is correct' do
+        expect(@debt.payment_charges.first.value).to eq('21704.51207')
+      end
+
+      it 'second charge value is correct' do
+        expect(@debt.payment_charges.last.value).to eq('7596.57922')
+      end
+    end
 
   	context 'when debt is finished' do
   		# it 'is not in grace period' do

@@ -67,14 +67,10 @@ class Debt < ApplicationRecord
 		withdraws.where(date: reference_period(final_date)).each do |withdraw|
 			withdraws_total += withdraw.value * interest_rate / 360 * (Date.new(final_date.year, final_date.month, payment_day) - (withdraw.date - 1.day)).to_i
 		end
+
 		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total
 	end
 
-	# Taxas
-	def charges_total
-		# TODO
-	end
-	
 	def contract_value_brl
 		contract_value / currency.to_brl	
 	end
@@ -109,6 +105,10 @@ class Debt < ApplicationRecord
 	# Saldo devedor
 	def outstanding_balance final_date = Date.today
 		withdraws.where(date: signature_date..final_date).sum(:value) - payments.where(date: signature_date..final_date).sum(:principal)
+	end
+
+	def payment_date
+		Date.new(Date.today.year, Date.today.month, payment_day)
 	end
 
 	private
