@@ -1,7 +1,6 @@
 class Transaction < ApplicationRecord
 	belongs_to :debt
-
-	validates :exchange_rate, presence: true
+	
 	validates :date, presence: true
 
 	before_save :set_outstanding_balance

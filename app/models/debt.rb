@@ -1,4 +1,4 @@
-class Debt < ApplicationRecord	
+class Debt < ApplicationRecord
 	belongs_to :creditor
 	belongs_to :financial_agent, class_name: 'Creditor', optional: true
 	belongs_to :currency
@@ -68,7 +68,7 @@ class Debt < ApplicationRecord
 		withdraws.where(date: reference_period).each do |withdraw|
 			withdraws_total += withdraw.value * interest_rate / 360 * (payment_date - (withdraw.date - 1.day)).to_i
 		end
-		
+
 		(30 * outstanding_balance * interest_rate / 360 ) - withdraws_total
 	end
 

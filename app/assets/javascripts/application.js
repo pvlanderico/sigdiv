@@ -17,6 +17,7 @@
 //= require activestorage
 //= require turbolinks
 //= require cocoon
+//= require big.min
 //= require_tree .
 
 $(function() {

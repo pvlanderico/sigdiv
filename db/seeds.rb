@@ -45,7 +45,6 @@ show_stats
 Withdraw.create!(				
 	value: BigDecimal('38267.1771676987'),
 	date: Date.new(2015, 5, 8),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 ) 
 
@@ -54,7 +53,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('100178.304001591'),
 	date: Date.new(2015, 6, 19),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -63,7 +61,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('269454.113840257'),
 	date: Date.new(2015, 7, 24),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -72,7 +69,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('172811.612402003'),
 	date: Date.new(2015, 8 ,21),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -81,7 +77,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('388238.148837079'),
 	date: Date.new(2015, 9, 22),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -90,7 +85,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('180241.335471127'),
 	date: Date.new(2015, 10, 22),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -99,7 +93,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('776149.536786542'),
 	date: Date.new(2015, 11, 23),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -108,7 +101,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('2027839.19399659'),
 	date: Date.new(2015, 12, 17),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -117,7 +109,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('1480367.51522129'),
 	date: Date.new(2016, 3, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -126,7 +117,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('1986775.5527745'),
 	date: Date.new(2016, 5, 6),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -135,7 +125,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('383515.163323288'),
 	date: Date.new(2016, 6, 27),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -144,7 +133,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('611973.657811069'),
 	date: Date.new(2016, 7, 29),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -153,7 +141,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('573211.706951141'),
 	date: Date.new(2016, 8, 30),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -162,7 +149,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('577590.254823738'),
 	date: Date.new(2016, 9, 30),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -171,7 +157,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('508924.2218972'),
 	date: Date.new(2016, 10, 28),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -180,7 +165,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('715325.306302176'),
 	date: Date.new(2016, 11, 30),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -189,7 +173,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('550758.880241646'),
 	date: Date.new(2016, 12, 22),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -198,7 +181,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('270839.770669423'),
 	date: Date.new(2017, 1, 31),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -207,7 +189,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('286313.741213063'),
 	date: Date.new(2017, 3, 2),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -216,7 +197,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('109984.5161992'),
 	date: Date.new(2017, 5, 2),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -225,7 +205,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('295191.232075548'),
 	date: Date.new(2017, 6, 30),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -234,7 +213,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('351624.161135471'),
 	date: Date.new(2017, 9, 18),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -243,7 +221,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('252538.2031043'),
 	date: Date.new(2017, 11, 13),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -252,7 +229,6 @@ puts Date.new(2017, 12, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2017, 12, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -260,7 +236,6 @@ puts Date.new(2018, 1, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 1, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -269,7 +244,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('288019.18249'),
 	date: Date.new(2018, 2, 5),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -277,7 +251,6 @@ puts Date.new(2018, 2, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 2, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -285,7 +258,6 @@ puts Date.new(2018, 3, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 3, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -293,7 +265,6 @@ puts Date.new(2018, 4, 16)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 4, 16),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -301,7 +272,6 @@ puts Date.new(2018, 5, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 5, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -309,7 +279,6 @@ puts Date.new(2018, 6, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 6, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -317,7 +286,6 @@ puts Date.new(2018, 7, 16)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 7, 16),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -325,7 +293,6 @@ puts Date.new(2018, 8, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 8, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -333,7 +300,6 @@ puts Date.new(2018, 9, 17)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 9, 17),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -341,7 +307,6 @@ puts Date.new(2018, 10, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 10, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -350,7 +315,6 @@ show_stats
 Withdraw.create!(
 	value: BigDecimal('208970.05587'),
 	date: Date.new(2018, 10, 31),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -358,7 +322,6 @@ puts Date.new(2018, 11, 16)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 11, 16),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
@@ -366,6 +329,5 @@ puts Date.new(2018, 12, 15)
 show_stats
 Payment.create!(	
 	date: Date.new(2018, 12, 15),
-	exchange_rate: 1,
 	debt_id: Debt.first.id
 )

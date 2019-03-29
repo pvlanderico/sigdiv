@@ -43,9 +43,12 @@ pt-BR:
         file: Arquivo
       transaction:
         value: Valor em unidade monetária
+        value_brl: Valor em unidade monetária (BRL)
         date: Data de liberação
         internalization_date: Data de internalização
-        exchange_rate: Taxa de conversão
+        principal: Principal
+        principal_brl: Principal (BRL)
+        start_outstanding_value: Saldo devedor inicial
       currency:
         name: Nome
         formula: Fórmula

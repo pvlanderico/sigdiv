@@ -139,7 +139,7 @@
     <table class="table table-hover debt-withdraws">
       <tbody>      
         <% @debt.withdraws.order(date: 'desc').each do |withdraw| %>
-          <tr>
+          <tr class='edit-withdraw' data-path='<%= edit_debt_transaction_path(@debt, withdraw) %>'>
             <td>      
               <span class="badge badge-primary badge-pill">D</span>
               <%= withdraw.date.strftime("%d-%m-%Y") %>
@@ -165,7 +165,7 @@
     </p>
 
     <hr>
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#withdrawModal">Registrar desembolso</button>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#withdrawModal">Registrar desembolso</button>
 
   </div>
 
@@ -191,7 +191,7 @@
     });
   })
 
-  $('#withdrawModal').on('show.bs.modal', function (e) {
+  $('.new-withdraw').on('click', function (e) {
     $.get('<%= new_debt_transaction_path(@debt) %>')
     .done(function( data ) {
       $('#withdrawModal .modal-content').html(data);
@@ -199,12 +199,22 @@
     });
   })
 
+  $('.edit-withdraw').on('click', function (e) {
+    $.get($(this).data('path'))
+    .done(function( data ) {
+      $('#withdrawModal .modal-content').html(data);
+      initSubmit();
+    });
+
+    $('#withdrawModal').modal('show');    
+  })
+
   function initSubmit(){
 
     $('button.withdraw-save').on('click', function(e) {
       e.preventDefault();
 
-      $.post('<%= debt_transactions_path(@debt) %>', getWithdraw())
+      $.post('', getWithdraw())
       .done(function(data) {
         $('#withdrawModal').modal('hide');        
       })
@@ -217,8 +227,8 @@
 
   function getWithdraw() {
     return { withdraw: { type: $('#withdraw_type').val(),
-                         value: $('#withdraw_value').val(),
-                         exchange_rate: $('#withdraw_exchange_rate').val(),
+                         value_brl: $('#withdraw_value_brl').val(),
+                         value: $('#withdraw_value').val(),                         
                          'date(3i)': $('#withdraw_date_3i').val(),
                          'date(2i)': $('#withdraw_date_2i').val(),
                          'date(1i)': $('#withdraw_date_1i').val() } }

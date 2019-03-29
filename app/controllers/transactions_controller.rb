@@ -1,10 +1,9 @@
 class TransactionsController < ApplicationController
-  before_action :set_withdraw, only: [:edit, :update, :destroy]
-  before_action :set_debt, only: [:new, :edit, :create]
+  before_action :set_transaction, only: [:edit, :update, :destroy]
+  before_action :set_debt, only: [:index, :new, :edit, :create]
 
   # GET :debt_id/transactions/
-  def index
-    @debt = Debt.find(params[:debt_id])
+  def index    
     @transactions = @debt.transactions.by_year
     render :index, layout: false
   end
@@ -73,6 +72,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:withdraw).permit(:type, :value, :date, :exchange_rate, :debt_id)
+      params.require(:withdraw).permit(:type, :value, :value_brl, :principal, :principal_brl, :date, :debt_id)
     end
 end
