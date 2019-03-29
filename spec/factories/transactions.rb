@@ -148,68 +148,55 @@ FactoryBot.define do
 		factory :payment do
 			type { 'Payment' }
 		
-			factory :payment_1217 do
-	 			principal { BigDecimal '27937.1662582689' }
+			factory :payment_1217 do	 			
 	 			date { Date.new(2017, 12, 15) }
 	 		end
 	 		
-	 		factory :payment_0118 do	
-	 			principal { BigDecimal '28076.8520795603' }
+	 		factory :payment_0118 do		 			
 	 			date { Date.new(2018, 1, 15) }
 	 		end
 	 		
-	 		factory :payment_0218 do	
-	 			principal { BigDecimal '28849.5926027793' }
+	 		factory :payment_0218 do		 			
 	 			date { Date.new(2018, 2, 15) }
 	 		end
 	 		
-	 		factory :payment_0318 do	
-	 			principal { BigDecimal '28993.84056579320' }
+	 		factory :payment_0318 do		 			
 	 			date { Date.new(2018, 3, 15) }
 	 		end
 	 		
-	 		factory :payment_0418 do	
-	 			principal { BigDecimal '29138.8097686221' }
+	 		factory :payment_0418 do		 			
 	 			date { Date.new(2018, 4, 16) }
 	 		end
 	 		
-	 		factory :payment_0518 do	
-	 			principal { BigDecimal '29284.5038174652' }
+	 		factory :payment_0518 do		 			
 	 			date { Date.new(2018, 5, 15) }
 	 		end
 	 		
-	 		factory :payment_0618 do	
-	 			principal { BigDecimal '29430.92633655260' }
+	 		factory :payment_0618 do		 			
 	 			date { Date.new(2018, 6, 15) }
 	 		end
 	 		
-	 		factory :payment_0718 do	
-	 			principal { BigDecimal '29578.08096823530' }
+	 		factory :payment_0718 do		 			
 	 			date { Date.new(2018, 7, 16) }
 	 		end
 	 		
-	 		factory :payment_0818 do	
-	 			principal { BigDecimal '29725.97137307650' }
+	 		factory :payment_0818 do		 			
 	 			date { Date.new(2018, 8, 15) }
 	 		end
 	 		
-	 		factory :payment_0918 do	
-	 			principal { BigDecimal '29874.60122994190' }
+	 		factory :payment_0918 do		 			
 	 			date { Date.new(2018, 9, 17) }
 	 		end
 	 		
-	 		factory :payment_1018 do	
-	 			principal { BigDecimal '30023.97423609160' }
+	 		factory :payment_1018 do		 			
 	 			date { Date.new(2018, 10, 15) }
 	 		end
 	 		
-	 		factory :payment_1118 do	
-	 			principal { BigDecimal '30663.83199352860' }
+	 		factory :payment_1118 do		 			
 	 			date { Date.new(2018, 11, 16) }
 	 		end
 	 		
-	 		factory :payment_1218 do	
-	 			principal { BigDecimal '30817.15115349630' }	 			
+	 		factory :payment_1218 do		 			
 	 			date { Date.new(2018, 12, 15) }
 	 		end
 	 	end

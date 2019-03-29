@@ -16,7 +16,7 @@ class Payment < Transaction
 			self.interest = debt.interest
 		end
 
-		def set_principal
+		def set_principal			
 			self.principal = debt.next_instalment - debt.interest
 		end
 

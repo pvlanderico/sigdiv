@@ -37,8 +37,10 @@ def show_stats
 	puts "Saldo devedor: " + Debt.first.show_outstanding_balance.to_s
 	puts "Juros: " + Debt.first.show_interest.to_s
 	puts "Próxima parcela: " + Debt.first.show_next_instalment.to_s
+	puts '*******************************************************'
 end
 
+puts Date.new(2015, 5, 8)
 show_stats
 Withdraw.create!(				
 	value: BigDecimal('38267.1771676987'),
@@ -47,6 +49,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 ) 
 
+puts Date.new(2015, 6, 19)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('100178.304001591'),
@@ -55,6 +58,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2015, 7, 24)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('269454.113840257'),
@@ -63,6 +67,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2015, 8 ,21)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('172811.612402003'),
@@ -71,6 +76,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2015, 9, 22)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('388238.148837079'),
@@ -79,6 +85,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2015, 10, 22)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('180241.335471127'),
@@ -87,6 +94,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2015, 11, 23)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('776149.536786542'),
@@ -95,6 +103,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2015, 12, 17)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('2027839.19399659'),
@@ -103,6 +112,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 3, 15)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('1480367.51522129'),
@@ -111,6 +121,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 5, 6)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('1986775.5527745'),
@@ -119,6 +130,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 6, 27)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('383515.163323288'),
@@ -127,6 +139,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 7, 29)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('611973.657811069'),
@@ -135,6 +148,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 8, 30)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('573211.706951141'),
@@ -143,6 +157,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 9, 30)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('577590.254823738'),
@@ -151,6 +166,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 10, 28)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('508924.2218972'),
@@ -159,6 +175,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 11, 30)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('715325.306302176'),
@@ -167,6 +184,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2016, 12, 22)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('550758.880241646'),
@@ -175,6 +193,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2017, 1, 31)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('270839.770669423'),
@@ -183,6 +202,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2017, 3, 2)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('286313.741213063'),
@@ -191,6 +211,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2017, 5, 2)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('109984.5161992'),
@@ -199,6 +220,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2017, 6, 30)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('295191.232075548'),
@@ -207,6 +229,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2017, 9, 18)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('351624.161135471'),
@@ -215,6 +238,7 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2017, 11, 13)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('252538.2031043'),
@@ -224,22 +248,23 @@ Withdraw.create!(
 )
 
 puts "Primeiro Pagamento"
+puts Date.new(2017, 12, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('27937.1662582689'),
+Payment.create!(	
 	date: Date.new(2017, 12, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 1, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('28076.8520795603'),
+Payment.create!(	
 	date: Date.new(2018, 1, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 2, 5)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('288019.18249'),
@@ -248,78 +273,79 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 2, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('28849.5926027793'),
+Payment.create!(	
 	date: Date.new(2018, 2, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 3, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('28993.8405657932'),
+Payment.create!(	
 	date: Date.new(2018, 3, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 4, 16)
 show_stats
-Payment.create!(
-	principal: BigDecimal('29138.80976862210'),
+Payment.create!(	
 	date: Date.new(2018, 4, 16),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 5, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('29284.5038174652'),
+Payment.create!(	
 	date: Date.new(2018, 5, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 6, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('29430.92633655260'),
+Payment.create!(	
 	date: Date.new(2018, 6, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 7, 16)
 show_stats
-Payment.create!(
-	principal: BigDecimal('29578.08096823530'),
+Payment.create!(	
 	date: Date.new(2018, 7, 16),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 8, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('29725.97137307650'),
+Payment.create!(	
 	date: Date.new(2018, 8, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 9, 17)
 show_stats
-Payment.create!(
-	principal: BigDecimal('29874.60122994190'),
+Payment.create!(	
 	date: Date.new(2018, 9, 17),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 10, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('30023.97423609160'),
+Payment.create!(	
 	date: Date.new(2018, 10, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 10, 31)
 show_stats
 Withdraw.create!(
 	value: BigDecimal('208970.05587'),
@@ -328,17 +354,17 @@ Withdraw.create!(
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 11, 16)
 show_stats
-Payment.create!(
-	principal: BigDecimal('30663.83199352860'),
+Payment.create!(	
 	date: Date.new(2018, 11, 16),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
 )
 
+puts Date.new(2018, 12, 15)
 show_stats
-Payment.create!(
-	principal: BigDecimal('30817.15115349630'),
+Payment.create!(	
 	date: Date.new(2018, 12, 15),
 	exchange_rate: 1,
 	debt_id: Debt.first.id
