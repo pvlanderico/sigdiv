@@ -13,7 +13,8 @@
       <a class="nav-item nav-link active" id="nav-data-tab" data-toggle="tab" href="#nav-data" role="tab" aria-controls="nav-data" aria-selected="true">Dados</a>
       <a class="nav-item nav-link" id="nav-withdraws-tab" data-toggle="tab" href="#nav-withdraws" role="tab" aria-controls="nav-ops" aria-selected="false">Desembolsos</a>  
       <a class="nav-item nav-link" id="nav-transactions-tab" data-toggle="tab" href="#nav-transactions" role="tab" aria-controls="nav-ops" aria-selected="false">Movimentações</a>
-      <a class="nav-item nav-link" id="nav-attachments-tab" data-toggle="tab" href="#nav-attachments" role="tab" aria-controls="nav-ops" aria-selected="false">Anexos</a>
+      <a class="nav-item nav-link" id="nav-future-payments-tab" data-toggle="tab" href="#nav-future-payments" role="tab" aria-controls="nav-future-payments" aria-selected="false">Pagamentos Futuros</a>
+      <a class="nav-item nav-link" id="nav-attachments-tab" data-toggle="tab" href="#nav-attachments" role="tab" aria-controls="nav-attachments" aria-selected="false">Anexos</a>
     </div>
   </nav>
 </div>
@@ -170,6 +171,7 @@
   </div>
 
   <div class="tab-pane fade" id="nav-transactions" role="tabpanel" aria-labelledby="nav-transactions-tab"></div>
+  <div class="tab-pane fade" id="nav-future-payments" role="tabpanel" aria-labelledby="nav-future-payments-tab"></div>
   <div class="tab-pane fade" id="nav-attachments" role="tabpanel" aria-labelledby="nav-attachments-tab"></div>
 </div>
 
@@ -188,6 +190,12 @@
   $('#nav-transactions-tab').on('click', function(){
     $.get('<%= debt_transactions_path(@debt) %>').done(function(data){
       $('#nav-transactions').html(data);
+    });
+  })
+
+  $('#nav-future-payments-tab').on('click', function(){
+    $.get('<%= debt_future_payments_path(@debt) %>').done(function(data){
+      $('#nav-future-payments').html(data);
     });
   })
 

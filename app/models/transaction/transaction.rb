@@ -12,7 +12,7 @@ class Transaction < ApplicationRecord
 					old_transactions_array + new_transactions_array
 				end
 			end
-		end.reverse_each.to_h
+		end.to_h
 	end
 
 	private

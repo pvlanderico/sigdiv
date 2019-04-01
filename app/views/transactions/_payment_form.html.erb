@@ -2,7 +2,7 @@
   <div class="modal-body">
     <%= f.input :id, as: :hidden %>
     <%= f.input :type, as: :hidden, input_html: {id: "transaction_type"} %>
-    <%= f.input :principal_brl, input_html: {value: f.object.value_brl || '0.00'} %>    
+    <%= f.input :principal_brl, input_html: {value: f.object.principal_brl || '0.00'} %>    
     <label>Taxa de conversão:</label>
     <input class="form-control" type="text" name="" id="transaction_exchange_rate">
     <br>    
