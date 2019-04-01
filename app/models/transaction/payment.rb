@@ -1,9 +1,9 @@
 class Payment < Transaction
 	has_many :payment_charges
 
-	before_save :set_interest
-	before_save :set_principal
-	before_save :set_payment_charges
+	before_validation :set_interest, if: :new_record?
+	before_validation :set_principal, if: :new_record?
+	before_validation :set_payment_charges, if: :new_record?
 
 	validates :principal, presence: true
 

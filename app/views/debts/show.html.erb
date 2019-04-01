@@ -173,7 +173,7 @@
   <div class="tab-pane fade" id="nav-attachments" role="tabpanel" aria-labelledby="nav-attachments-tab"></div>
 </div>
 
-<div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="CadastroDesembolso" aria-hidden="true">
+<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="CadastroDesembolso" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">      
     </div>
@@ -191,46 +191,4 @@
     });
   })
 
-  $('.new-withdraw').on('click', function (e) {
-    $.get('<%= new_debt_transaction_path(@debt) %>')
-    .done(function( data ) {
-      $('#withdrawModal .modal-content').html(data);
-      initSubmit();
-    });
-  })
-
-  $('.edit-withdraw').on('click', function (e) {
-    $.get($(this).data('path'))
-    .done(function( data ) {
-      $('#withdrawModal .modal-content').html(data);
-      initSubmit();
-    });
-
-    $('#withdrawModal').modal('show');    
-  })
-
-  function initSubmit(){
-
-    $('button.withdraw-save').on('click', function(e) {
-      e.preventDefault();
-
-      $.post('', getWithdraw())
-      .done(function(data) {
-        $('#withdrawModal').modal('hide');        
-      })
-      .fail(function(data) {
-        $('#withdrawModal .modal-content').html(data.responseText);
-        initSubmit();
-      });
-    });
-  }
-
-  function getWithdraw() {
-    return { withdraw: { type: $('#withdraw_type').val(),
-                         value_brl: $('#withdraw_value_brl').val(),
-                         value: $('#withdraw_value').val(),                         
-                         'date(3i)': $('#withdraw_date_3i').val(),
-                         'date(2i)': $('#withdraw_date_2i').val(),
-                         'date(1i)': $('#withdraw_date_1i').val() } }
-  }
 </script>

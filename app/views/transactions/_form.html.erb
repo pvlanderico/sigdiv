@@ -1,56 +1,15 @@
-<%= simple_form_for transaction, url: debt_transactions_path(debt) do |f| %>
-  <div class="modal-body">
-    <%= f.input :id, as: :hidden %>
-    <%= f.input :type, as: :hidden %>
-    <%= f.input :value_brl, input_html: {value: f.object.value_brl || '0.01'} %>    
-    <label>Taxa de conversão:</label>
-    <input class="form-control" type="text" name="" id="transaction_exchange_rate">
-    <br>    
-    <%= f.input :value %>
-    <%= f.input :date, as: :date %>
-    <%= f.input :internalization_date, as: :date if debt.externo? %>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+<%= render "#{transaction.type}_form".downcase, debt: debt, transaction: transaction %>
 
-    <% if transaction.new_record? %>
-      <% http_verb = 'post' %>
-      <% path = debt_transactions_path(@debt) %>
-    <% else %>
-      <% http_verb = 'patch' %>
-      <% path = debt_transaction_path(@debt, transaction) %>
-    <% end %>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
 
-    <button type="button" class="btn btn-success withdraw-save" data-http-verb="<%= http_verb %>" data-path='<%= path %>'>Salvar</button>
-  </div>
-<% end %>
+  <% if transaction.new_record? %>
+    <% http_verb = 'post' %>
+    <% path = debt_transactions_path(@debt) %>
+  <% else %>
+    <% http_verb = 'patch' %>
+    <% path = debt_transaction_path(@debt, transaction) %>
+  <% end %>
 
-<script type="text/javascript">
-  updateExchangeRate();
-
-	$('#withdraw_value_brl').on('keyup', function(){
-		updateValue();    
-	});
-
-	$('#transaction_exchange_rate').on('keyup', function(){
-		updateValue();
-	});
-
-  $('#withdraw_value').on('keyup', function(){
-    updateExchangeRate();
-  });
-
-	function updateValue(){    
-    if($.isNumeric($('#withdraw_value_brl').val())){
-      value = Big($('#withdraw_value_brl').val()) * $('#transaction_exchange_rate').val();
-		  $('#withdraw_value').val(value);
-    }
-	}
-
-  function updateExchangeRate(){
-    if($.isNumeric($('#withdraw_value').val())){
-      exchange_rate = Big($('#withdraw_value').val()) / $('#withdraw_value_brl').val();
-      $('#transaction_exchange_rate').val(exchange_rate);
-    }
-  }
-</script>
+  <button type="button" class="btn btn-success transaction-save" data-http-verb="<%= http_verb %>" data-path='<%= path %>'>Salvar</button>
+</div>

@@ -1,10 +1,10 @@
-class TransactionsController < ApplicationController
+class TransactionsController < ApplicationController  
   before_action :set_transaction, only: [:edit, :update, :destroy]
   before_action :set_debt, only: [:index, :new, :edit, :create]
+  before_action :set_transactions, only: [:index]
 
   # GET :debt_id/transactions/
   def index    
-    @transactions = @debt.transactions.by_year
     render :index, layout: false
   end
 
@@ -20,33 +20,24 @@ class TransactionsController < ApplicationController
   end
 
   # POST :debt_id/transactions
-  # POST :debt_id/transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.debt = @debt
-    respond_to do |format|
-      if @transaction.save
-      	params[:create] = true
-        format.html { redirect_to @debt, notice: 'O registro foi salvo com sucesso.' }
-        format.json { render :show, status: :created, location: @transaction }
-      else
-        format.html { render :new, layout: false, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
-      end
+    if @transaction.save
+      set_transactions
+      render :index, layout: false, notice: 'O registro foi salvo com sucesso.'        
+    else
+      render :new, layout: false, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT :debt_id/transactions/1
-  # PATCH/PUT :debt_id/transactions/1.json
   def update
-    respond_to do |format|
-      if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'O registro foi salvo com sucesso.' }
-        format.json { render :show, status: :ok, location: @transaction }
-      else
-        format.html { render :edit, layout: false, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
-      end
+    if @transaction.update(transaction_params)
+      set_transactions
+      render :index, layout: false, notice: 'O registro foi salvo com sucesso.'        
+    else
+      render :edit, layout: false, status: :unprocessable_entity        
     end
   end
 
@@ -70,8 +61,13 @@ class TransactionsController < ApplicationController
       @transaction = Transaction.find(params[:id])
     end
 
+    def set_transactions
+      set_debt
+      @transactions = @debt.transactions.by_year     
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:withdraw).permit(:type, :value, :value_brl, :principal, :principal_brl, :date, :debt_id)
+      params.require(:transaction).permit(:type, :value, :value_brl, :principal, :principal_brl, :interest, :date, :debt_id)
     end
 end

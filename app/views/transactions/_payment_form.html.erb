@@ -1,0 +1,43 @@
+<%= simple_form_for transaction, url: debt_transactions_path(debt) do |f| %>
+  <div class="modal-body">
+    <%= f.input :id, as: :hidden %>
+    <%= f.input :type, as: :hidden, input_html: {id: "transaction_type"} %>
+    <%= f.input :principal_brl, input_html: {value: f.object.value_brl || '0.00'} %>    
+    <label>Taxa de conversão:</label>
+    <input class="form-control" type="text" name="" id="transaction_exchange_rate">
+    <br>    
+    <%= f.input :principal %>
+    <%= f.input :interest %>
+    <%= f.input :date, as: :date %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  updateExchangeRate();
+
+    $('#payment_principal_brl').on('keyup', function(){
+        updateValue();    
+    });
+
+    $('#transaction_exchange_rate').on('keyup', function(){
+        updateValue();
+    });
+
+  $('#payment_principal').on('keyup', function(){
+    updateExchangeRate();
+  });
+
+    function updateValue(){    
+        if($.isNumeric($('#payment_principal_brl').val())){
+          principal = Big($('#payment_principal_brl').val()) * $('#transaction_exchange_rate').val();
+              $('#payment_principal').val(principal);
+        }
+    }
+
+  function updateExchangeRate(){
+    if($.isNumeric($('#payment_principal').val())){
+      exchange_rate = Big($('#payment_principal').val()) / $('#payment_principal_brl').val();
+      $('#transaction_exchange_rate').val(exchange_rate);
+    }
+  }
+</script>

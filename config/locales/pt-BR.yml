@@ -43,11 +43,12 @@ pt-BR:
         file: Arquivo
       transaction:
         value: Valor em unidade monetária
-        value_brl: Valor em unidade monetária (BRL)
-        date: Data de liberação
+        value_brl: Valor (BRL)
+        date: Data
         internalization_date: Data de internalização
-        principal: Principal
+        principal: Principal em unidade monetária
         principal_brl: Principal (BRL)
+        interest: Juros
         start_outstanding_value: Saldo devedor inicial
       currency:
         name: Nome

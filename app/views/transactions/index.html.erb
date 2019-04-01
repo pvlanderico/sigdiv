@@ -42,7 +42,7 @@
           </thead>
           <tbody>              
             <% transaction_array.each do |transaction| %>
-              <tr>
+              <tr class="edit-transaction" data-path='<%= edit_debt_transaction_path(@debt, transaction) %>'>
                 <td>
                   <% if transaction.type == 'Withdraw' %>
                     <span class="badge badge-primary badge-pill">D</span>
@@ -86,19 +86,26 @@
       <% end %>      
     <% end %>
   </section>
-
-  <hr>
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#transactionModal">Registrar desembolso</button>
+  
 </div>
 
 <div class="pull-left transactions-legend">
   <div class='position-fixed'>
-  <ul class="nav flex-column list-group">    
-    <li><span class="badge badge-primary badge-pill">D</span> Desembolso</li>
-    <li><span class="badge badge-warning badge-pill">PR</span> Pagamento realizado</li>
-    <li><span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro</li>    
-  </ul>
+    <ul class="nav flex-column list-group">    
+      <li><span class="badge badge-primary badge-pill">D</span> Desembolso</li>
+      <li><span class="badge badge-warning badge-pill">PR</span> Pagamento realizado</li>
+      <li><span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro</li>    
+    </ul>
+    <br>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal">Registrar desembolso</button>
+  </div>  
 </div>
+
+<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="EdiçãoTransação" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">      
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -106,4 +113,57 @@
     $('a.year-link').removeClass('active');
     $(e.currentTarget).addClass('active');
   })
+
+
+  $('.new-withdraw').on('click', function (e) {
+    $.get('<%= new_debt_transaction_path(@debt) %>')
+    .done(function( data ) {
+      $('#transactionModal .modal-content').html(data);
+      initSubmitTransaction();
+    });
+  });
+
+  $('.edit-transaction').on('click', function (e) {
+    $.get($(this).data('path'))
+    .done(function( data ) {
+      $('#transactionModal .modal-content').html(data);
+      initSubmitTransaction();
+    });
+
+    $('#transactionModal').modal('show');    
+  })
+
+  function initSubmitTransaction(){
+
+    $('button.transaction-save').on('click', function(e) {
+      e.preventDefault();
+
+      $.ajax({url: $(this).data('path'), 
+              method: $(this).data('http-verb'),
+              data: getTransaction()
+      })
+      .done(function(data) {
+        $('#transactionModal').modal('hide');
+        $('#transactionModal').on('hidden.bs.modal', function (e) {
+          $('#nav-transactions').html(data);
+        })        
+      })
+      .fail(function(data) {
+        $('#transactionModal .modal-content').html(data.responseText);
+        initSubmitTransaction();
+      });
+    });
+  }
+
+  function getTransaction() {
+    return { transaction: {type: $('#transaction_type').val(),
+                           value_brl: $('#withdraw_value_brl').val(),
+                           value: $('#withdraw_value').val(), 
+                           principal: $('#payment_principal').val(),                      
+                           principal_brl: $('#payment_principal_brl').val(),
+                           interest: $('#payment_interest').val(),
+                           'date(3i)': $('#withdraw_date_3i').val() || $('#payment_date_3i').val(),
+                           'date(2i)': $('#withdraw_date_2i').val() || $('#payment_date_2i').val(),
+                           'date(1i)': $('#withdraw_date_1i').val() || $('#payment_date_1i').val() } }
+  }
 </script>
