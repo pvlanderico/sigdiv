@@ -34,7 +34,7 @@
       <div class="card">
         <div class="card-header alert-primary"><strong>Data de assinatura</strong></div>
         <div class="card-body">
-          <p class="card-text"><%= @debt.signature_date.strftime("%d-%m-%Y") %></p>
+          <p class="card-text"><%= @debt.signature_date %></p>
         </div>
       </div>
       <div class="card">
@@ -143,7 +143,7 @@
           <tr class='edit-withdraw' data-path='<%= edit_debt_transaction_path(@debt, withdraw) %>'>
             <td>      
               <span class="badge badge-primary badge-pill">D</span>
-              <%= withdraw.date.strftime("%d-%m-%Y") %>
+              <%= withdraw.date %>
             </td>
             <td class="text-right">
              <%= big_decimal_to_currency withdraw.value %>
