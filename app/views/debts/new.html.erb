@@ -3,3 +3,10 @@
 <%= render 'form', debt: @debt %>
 
 <%= link_to t('back'), debts_path, class: 'btn pull-right' %>
+
+<script type="text/javascript">
+	
+	$('#debt_category_interno').attr('checked', true);
+	categoryInterno();
+	
+</script>
