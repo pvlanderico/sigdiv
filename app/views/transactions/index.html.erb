@@ -1,6 +1,7 @@
 <div class='position-fixed'>
   <ul class="nav flex-column list-group">
-    <% @transactions.keys.each_with_index do |year, index| %> 
+    <% transactions = order_by_year @transactions %>
+    <% transactions.keys.each_with_index do |year, index| %> 
       <li class="nav-item">
         <a class="nav-link list-group-item list-group-item-action year-link <%= 'active' if index == 0 %>" href="#<%=year%>" data-turbolinks="false"><%= year %></a>
       </li>
@@ -22,11 +23,11 @@
     <%= big_decimal_to_currency @debt.outstanding_balance %>
   </p>
 
-  <% @transactions.keys.each do |year| %>
+  <% transactions.keys.each do |year| %>
     <section id="<%= year %>" class="year-transaction">
       <h5 class="text-center alert alert-primary"><%= year %></h5>
 
-      <% @transactions[year].each do |month, transaction_array| %>
+      <% transactions[year].each do |month, transaction_array| %>
         <h6 class="alert alert-secondary"><%= I18n.t("date.month_names")[month] %></h6>
 
         <table class="table table-hover">
@@ -43,12 +44,16 @@
           </thead>
           <tbody>              
             <% transaction_array.each do |transaction| %>
-              <tr class="edit-transaction" data-path='<%= edit_debt_transaction_path(@debt, transaction) %>'>
+              <% transaction.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
+              <% transaction_edit_path = edit_debt_transaction_path(@debt, transaction) if transaction.editable? %>
+              <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
                 <td>
                   <% if transaction.type == 'Withdraw' %>
                     <span class="badge badge-primary badge-pill">D</span>
-                  <% else %>
+                  <% elsif transaction.type == 'Payment' %>
                     <span class="badge badge-warning badge-pill">PR</span>
+                  <% else %>
+                    <span class="badge badge-secondary badge-pill">PF</span>
                   <% end %>
                 </td>
                 
