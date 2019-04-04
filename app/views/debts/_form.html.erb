@@ -23,10 +23,10 @@
         <%= f.association :creditor %>
       </div>
       <div class="col-sm">
-        <%= f.input :financial_agent_id, collection: Creditor.financial_agents %>
+        <%= f.input :category, as: :radio_buttons, collection: Debt.categories.keys, label_method: :titleize %>      
       </div>
       <div class="col-sm">
-        <%= f.input :category, as: :radio_buttons, collection: Debt.categories.keys, label_method: :titleize %>      
+        <%= f.input :financial_agent_id, collection: Creditor.financial_agents %>
       </div>
     </div>  
 
@@ -103,3 +103,25 @@
     <%= f.button :submit, class: "btn btn-success pull-right" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+      $('#debt_category_interno').on( "click", function() {
+          categoryInterno();
+      });
+
+      $('#debt_category_externo').on( "click", function() {
+         categoryExterno();
+      });
+
+      function categoryInterno(){
+        $('#debt_financial_agent_id').val("");
+        $('#debt_financial_agent_id').attr('disabled', true);
+      }
+
+      function categoryExterno(){
+        $('#debt_financial_agent_id').attr('disabled', false);
+      }
+  
+
+</script>
