@@ -1,14 +1,18 @@
 class Payment < Transaction
 	has_many :payment_charges
 
-	before_validation :set_interest, if: :new_record?
-	before_validation :set_principal, if: :new_record?
-	before_validation :set_payment_charges, if: :new_record?
+	accepts_nested_attributes_for :payment_charges, reject_if: :all_blank
 
 	validates :principal, presence: true
 
 	def final_outstanding_balance
 		start_outstanding_balance - principal
+	end
+
+	def init
+		set_interest
+		set_principal
+		set_payment_charges
 	end
 
 	private

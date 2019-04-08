@@ -10,7 +10,9 @@ class TransactionsController < ApplicationController
 
   # GET :debt_id/transaction/new
   def new  	
-    @transaction = Withdraw.new
+    type = params[:type].constantize
+    @transaction = type.new(debt: @debt)
+    @transaction.init if @transaction.type == 'Payment'
     render :new, layout: false
   end
 
@@ -21,8 +23,9 @@ class TransactionsController < ApplicationController
 
   # POST :debt_id/transactions
   def create
-    @transaction = Transaction.new(transaction_params)
-    @transaction.debt = @debt
+    type = transaction_params[:type].constantize
+    @transaction = type.new(transaction_params)
+    
     if @transaction.save
       set_transactions
       render :index, layout: false, notice: 'O registro foi salvo com sucesso.'        
@@ -68,6 +71,19 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:type, :value, :value_brl, :principal, :principal_brl, :interest, :date, :debt_id)
+      params.require(:transaction).permit(:type, 
+                                          :value, 
+                                          :value_brl, 
+                                          :principal, 
+                                          :principal_brl, 
+                                          :interest, 
+                                          :date, 
+                                          :debt_id, 
+                                          :type, 
+                                          :id,
+                                          :exchange_rate,
+                                          payment_charges_attributes: [:id, 
+                                                                       :charge_id, 
+                                                                       :value])
     end
 end

@@ -29,7 +29,7 @@
 
     function updateValue(){    
     if($.isNumeric($('#withdraw_value_brl').val())){
-      value = Big($('#withdraw_value_brl').val()) * $('#transaction_exchange_rate').val();
+      value = Big($('#withdraw_value_brl').val()) / $('#transaction_exchange_rate').val();
           $('#withdraw_value').val(value);
     }
     }
