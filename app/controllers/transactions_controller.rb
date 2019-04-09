@@ -82,8 +82,10 @@ class TransactionsController < ApplicationController
                                           :type, 
                                           :id,
                                           :exchange_rate,
+                                          :interest_brl,
                                           payment_charges_attributes: [:id, 
                                                                        :charge_id, 
-                                                                       :value])
+                                                                       :value,
+                                                                       :value_brl])
     end
 end

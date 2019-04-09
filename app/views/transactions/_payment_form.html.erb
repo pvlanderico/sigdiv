@@ -6,7 +6,14 @@
     <%= f.input :principal_brl, input_html: {value: f.object.principal_brl || '0.00'} %>    
     <%= f.input :exchange_rate %>  
     <%= f.input :principal %>
-    <%= f.input :interest %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :interest %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :interest_brl %>
+      </div>
+    </div>
     <%= f.input :date, as: :date %>
     <div id='payment_charges'>
       <%= f.simple_fields_for :payment_charges do |payment_charge| %>
@@ -16,3 +23,16 @@
   </div>
 <% end %>
 
+<script type="text/javascript">
+  
+  $('#payment_exchange_rate').on('input', function(e) {
+      $('#payment_interest_brl').val(Big($('#payment_interest').val()) * $('#payment_exchange_rate').val());
+
+      $('#payment_payment_charges_attributes_0_value_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_payment_charges_attributes_0_value').val());
+
+      $('#payment_payment_charges_attributes_1_value_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_payment_charges_attributes_1_value').val());
+
+      $('#payment_principal_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_principal').val());
+  });
+
+</script>
