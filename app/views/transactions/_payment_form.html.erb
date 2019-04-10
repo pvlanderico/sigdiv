@@ -3,9 +3,15 @@
     <%= f.input :id, as: :hidden %>
     <%= f.input :debt_id, as: :hidden %>
     <%= f.input :type, as: :hidden, input_html: {id: "transaction_type"} %>
-    <%= f.input :principal_brl, input_html: {value: f.object.principal_brl || '0.00'} %>    
-    <%= f.input :exchange_rate %>  
-    <%= f.input :principal %>
+    <%= f.input :exchange_rate %> 
+    <div class="row">
+      <div class="col-sm-6"> 
+        <%= f.input :principal %>
+      </div>
+      <div class="col-sm-6"> 
+        <%= f.input :principal_brl, input_html: {value: f.object.principal_brl || '0.00'} %> 
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-6">
         <%= f.input :interest %>
