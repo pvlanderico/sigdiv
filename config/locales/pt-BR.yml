@@ -51,7 +51,9 @@ pt-BR:
         principal: Principal em unidade monetária
         principal_brl: Principal (BRL)
         interest: Juros
+        interest_brl: Juros (BRL)
         start_outstanding_value: Saldo devedor inicial
+        exchange_rate: Taxa de conversão
       currency:
         name: Nome
         formula: Fórmula
