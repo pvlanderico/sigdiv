@@ -1,5 +1,5 @@
-<div class='position-fixed'>
-  <ul class="nav flex-column list-group">
+<div class='nav transactions-year-list position-fixed'>
+  <ul class=" list-group">
     <% transactions = order_by_year @transactions %>
     <% transactions.keys.each_with_index do |year, index| %> 
       <li class="nav-item">
