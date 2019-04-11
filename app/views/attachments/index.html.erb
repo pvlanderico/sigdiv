@@ -23,7 +23,7 @@
             <%= fa_icon('external-link', title: 'Abrir') %>
           <% end %>
         </td>
-        <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_attachment_path(@debt, attachment) %></td>
+        <td><%= link_to(fa_icon("edit 2x", title: "Editar"), edit_debt_attachment_path(@debt, attachment), class: "edit-attachment" )%></td>
         <td><%= link_to(fa_icon("trash 2x", title: "Remover"), [@debt, attachment], class: "remove-attachment", data: { confirm: 'Tem certeza?' } ) %></td>
       </tr>
     <% end %>
@@ -42,20 +42,29 @@
 
 <script type="text/javascript">
 
-$('a.remove-attachment').on('click', function(e){
-  e.preventDefault();
-  $.ajax({ url: $(this).attr('href'), 
-           method: 'DELETE'
-    })
-    .done(function(data) {
-      console.log('AQUI');
-        $('#nav-attachments').html(data);
-            
+  $('a.remove-attachment').on('click', function(e){
+    e.preventDefault();
+    $.ajax({ url: $(this).attr('href'), 
+             method: 'DELETE'
+      })
+      .done(function(data) {
+        console.log('AQUI');
+          $('#nav-attachments').html(data);
+              
+      })
+  })
+
+  $('a.edit-attachment').on('click', function(e){
+    e.preventDefault();
+    $.get($(this).attr('href'))
+      .done(function( data ) {
+        $('#attachmentModal .modal-content').html(data);
+        initSubmitAttachment();
+        $('#attachmentModal').modal('show')
+      });
     })
 
-})
-
-$('.new-attachment').on('click', function (e) {
+  $('.new-attachment').on('click', function (e) {
     $.get($(this).data('path'))
     .done(function( data ) {
       $('#attachmentModal .modal-content').html(data);
@@ -69,7 +78,7 @@ $('.new-attachment').on('click', function (e) {
       e.preventDefault();
      
       $.ajax({url: $(this).data('path'), 
-              method: 'POST',
+              method: $(this).data('method'),
               data: new FormData($('form')[0]),
               contentType: false,
               processData: false

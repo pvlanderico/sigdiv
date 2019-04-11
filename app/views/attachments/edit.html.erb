@@ -1,5 +1,13 @@
-<h1>Editar anexo</h1>
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Editar anexo</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
 <%= render 'form', attachment: @attachment %>
 
-<%= link_to 'Voltar', debt_attachments_path, class: 'btn' %>
+<div class="modal-footer"> 
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+  <button type="button" data-path="<%= debt_attachment_path(@debt, @attachment) %>" data-method="PUT" class="btn btn-success attachment-save">Salvar</button>
+</div>

@@ -5,12 +5,8 @@
     <div class="form-inputs">
       <%= f.input :name %>
       <%= f.input :description %>
+      <h6><%= "Arquivo original: #{@attachment.file_identifier}" if @attachment.persisted?  %></h6>
       <%= f.input :file, as: :file %>
-    </div>
-  
-    <div class="modal-footer"> 
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-      <button type="button" data-path="<%= debt_attachments_path(@debt) %>" class="btn btn-success attachment-save">Salvar</button>
     </div>
   </div>
 <% end %>

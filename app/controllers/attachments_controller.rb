@@ -1,11 +1,11 @@
 class AttachmentsController < ApplicationController
   before_action :set_attachment, only: [:show, :edit, :update, :destroy]
-  before_action :set_debt, only: [:index, :new, :create, :edit, :destroy]
-
+  before_action :set_debt, only: [:index, :new, :create, :edit, :destroy, :update]
+  before_action :set_attachments, only: [:index, :create, :update, :destroy]
+  
   # GET /attachments
   # GET /attachments.json
   def index   
-    @attachments = Attachment.all.where(debt_id: @debt.id)
     render :index, layout: false
   end
 
@@ -22,6 +22,7 @@ class AttachmentsController < ApplicationController
 
   # GET /attachments/1/edit
   def edit   
+    render :edit, layout: false
   end
 
   # POST /attachments
@@ -33,7 +34,6 @@ class AttachmentsController < ApplicationController
     
     respond_to do |format|
       if @attachment.save
-        @attachments = Attachment.all.where(debt_id: @debt.id)
         format.html { render :index, layout: false, notice: 'O registro foi salvo com sucesso.' }
         format.json { render :show, status: :created, location: @attachment }
       else
@@ -48,7 +48,7 @@ class AttachmentsController < ApplicationController
   def update
     respond_to do |format|
       if @attachment.update(attachment_params)
-        format.html { redirect_to debt_attachments_path(@attachment.debt.id), notice: I18n.t(:save_success) }
+        format.html { render :index, layout: false, notice: 'O registro foi salvo com sucesso.' }
         format.json { render :show, status: :ok, location: @attachment }
       else
         format.html { render :edit }
@@ -61,7 +61,6 @@ class AttachmentsController < ApplicationController
   # DELETE /attachments/1.json
   def destroy
     @attachment.destroy
-    @attachments = Attachment.all.where(debt_id: @debt.id)
     respond_to do |format|
       format.html { render :index, layout: false, notice: 'O registro foi removido com sucesso.' }
       format.json { head :no_content }
@@ -72,6 +71,10 @@ class AttachmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_attachment
       @attachment = Attachment.find(params[:id])
+    end
+
+    def set_attachments
+      @attachments = Attachment.all.where(debt_id: @debt.id)
     end
 
     def set_debt
