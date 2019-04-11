@@ -192,4 +192,10 @@
     });
   })
 
+  $('#nav-attachments-tab').on('click', function(){
+    $.get('<%= debt_attachments_path(@debt) %>').done(function(data){
+      $('#nav-attachments').html(data);
+    });
+  })
+
 </script>

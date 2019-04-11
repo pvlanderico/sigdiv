@@ -1,11 +1,12 @@
 class AttachmentsController < ApplicationController
   before_action :set_attachment, only: [:show, :edit, :update, :destroy]
-  before_action :set_debt, only: [:index, :new, :create, :edit]
+  before_action :set_debt, only: [:index, :new, :create, :edit, :destroy]
 
   # GET /attachments
   # GET /attachments.json
   def index   
     @attachments = Attachment.all.where(debt_id: @debt.id)
+    render :index, layout: false
   end
 
   # GET /attachments/1
@@ -16,6 +17,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments/new
   def new
     @attachment = Attachment.new   
+    render :new, layout: false
   end
 
   # GET /attachments/1/edit
@@ -28,10 +30,11 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.new(attachment_params)
    
     @attachment.debt = @debt
-
+    
     respond_to do |format|
       if @attachment.save
-        format.html { redirect_to debt_attachments_path(@debt.id), notice: I18n.t(:save_success) }
+        @attachments = Attachment.all.where(debt_id: @debt.id)
+        format.html { render :index, layout: false, notice: 'O registro foi salvo com sucesso.' }
         format.json { render :show, status: :created, location: @attachment }
       else
         format.html { render :new }
@@ -58,8 +61,9 @@ class AttachmentsController < ApplicationController
   # DELETE /attachments/1.json
   def destroy
     @attachment.destroy
+    @attachments = Attachment.all.where(debt_id: @debt.id)
     respond_to do |format|
-      format.html { redirect_to debt_attachments_url, notice: I18n.t(:destroy_success) }
+      format.html { render :index, layout: false, notice: 'O registro foi removido com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -24,12 +24,68 @@
           <% end %>
         </td>
         <td><%= link_to fa_icon("edit 2x", title: "Editar"), edit_debt_attachment_path(@debt, attachment) %></td>
-        <td><%= link_to fa_icon("trash 2x", title: "Remover"), [@debt, attachment], method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+        <td><%= link_to(fa_icon("trash 2x", title: "Remover"), [@debt, attachment], class: "remove-attachment", data: { confirm: 'Tem certeza?' } ) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<button type="button" class="btn btn-success new-attachment pull-right" data-toggle="modal" data-target="#attachmentModal" data-path="<%= new_debt_attachment_path(@debt) %>">Novo anexo</button>
 
-<%= link_to 'Novo anexo', new_debt_attachment_path(params[:debt_id]), class: "btn btn-success pull-right" %>
+<div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="NovoAnexo" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">      
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+$('a.remove-attachment').on('click', function(e){
+  e.preventDefault();
+  $.ajax({ url: $(this).attr('href'), 
+           method: 'DELETE'
+    })
+    .done(function(data) {
+      console.log('AQUI');
+        $('#nav-attachments').html(data);
+            
+    })
+
+})
+
+$('.new-attachment').on('click', function (e) {
+    $.get($(this).data('path'))
+    .done(function( data ) {
+      $('#attachmentModal .modal-content').html(data);
+      initSubmitAttachment();
+    });
+  });
+
+ function initSubmitAttachment(){
+
+    $('button.attachment-save').on('click', function(e) {
+      e.preventDefault();
+     
+      $.ajax({url: $(this).data('path'), 
+              method: 'POST',
+              data: new FormData($('form')[0]),
+              contentType: false,
+              processData: false
+      })
+      .done(function(data) {
+        $('#attachmentModal').modal('hide');
+        $('#attachmentModal').on('hidden.bs.modal', function (e) {
+          $('#nav-attachments').html(data);
+        })        
+      })
+      .fail(function(data) {
+        $('#attachmentModal .modal-content').html(data.responseText);
+        initSubmitAttachment();
+      });
+    });
+  }
+
+</script>
+
