@@ -66,7 +66,7 @@ class TransactionsController < ApplicationController
 
     def set_transactions
       set_debt
-      @transactions = @debt.transactions.by_year     
+      @transactions = @debt.transactions.to_a + FuturePayment.list(@debt)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

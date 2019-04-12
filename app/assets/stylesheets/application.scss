@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.block-edit-transaction {
+  cursor: not-allowed;
+}
+
 .wide-container {
   max-width: 80%;
 }
@@ -61,4 +65,9 @@ hr.dashed-hr {
 
 .transactions-legend {
   margin-left: 30px;
+}
+
+.transactions-year-list{
+  overflow-y: scroll;
+  height: 100%;
 }
