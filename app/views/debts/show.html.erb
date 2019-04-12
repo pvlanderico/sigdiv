@@ -101,6 +101,19 @@
         </div>
       </div>  
     </div>
+    
+    <br>
+
+     <div class="card-group">
+      <div class="card">
+        <div class="card-header alert-primary"><strong>Encargos</strong></div>
+        <div class="card-body">
+          <% @debt.charges.order(name: 'desc').each do |charges| %>
+          <p class="card-text"><%= charges.name %> - <%= charges.base%> %</p>  
+          <% end %>    
+        </div>
+      </div>
+    </div>
 
     <br>
 
