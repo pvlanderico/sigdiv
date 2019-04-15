@@ -30,15 +30,17 @@
 <% end %>
 
 <script type="text/javascript">
-  
-  $('#payment_exchange_rate').on('input', function(e) {
-      $('#payment_interest_brl').val(Big($('#payment_interest').val()) * $('#payment_exchange_rate').val());
+ 
+$('#payment_exchange_rate').on('input', function(e) {
+  if($.isNumeric($('#payment_exchange_rate').val())){
+    $('#payment_interest_brl').val(Big($('#payment_interest').val()) * $('#payment_exchange_rate').val());
 
-      $('#payment_payment_charges_attributes_0_value_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_payment_charges_attributes_0_value').val());
+    $('.value_charge').each(function(index){
+      $('#payment_payment_charges_attributes_'+ index +'_value_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_payment_charges_attributes_'+ index +'_value').val());
+    })
 
-      $('#payment_payment_charges_attributes_1_value_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_payment_charges_attributes_1_value').val());
-
-      $('#payment_principal_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_principal').val());
-  });
+    $('#payment_principal_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_principal').val());
+  }
+});
 
 </script>
