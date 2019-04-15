@@ -12,8 +12,14 @@
 		<div class="col-sm">
 		  <%= f.input :count_days %>
 		</div>
+		<div class="col-sm">
+			<%= link_to_remove_association fa_icon("trash 2x", title: "Remover encargo") , f %>
+		</div>
 	</div>
 	
-  <%= link_to_remove_association "Remover encargo", f %>
+  
   <hr>
 </div>
+
+
+
