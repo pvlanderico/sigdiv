@@ -106,85 +106,12 @@
       <li><span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro</li>    
     </ul>
     <br>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal">Registrar desembolso</button>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Withdraw') %>">Registrar desembolso</button>
     <br><br>
-    <button type="button" class="btn btn-success new-payment" data-toggle="modal" data-target="#transactionModal">Registrar pagamento</button>
+    <button type="button" class="btn btn-success new-payment" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Payment') %>">Registrar pagamento</button>
   </div>  
 </div>
 
-<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="EdiçãoTransação" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">      
-    </div>
-  </div>
-</div>
-
 <script type="text/javascript">
-
-  $('a.year-link').on('click', function(e){
-    $('a.year-link').removeClass('active');
-    $(e.currentTarget).addClass('active');
-  })
-
-
-  $('.new-withdraw').on('click', function (e) {
-    $.get("<%= new_debt_transaction_path(@debt, type: 'Withdraw') %>")
-    .done(function( data ) {
-      $('#transactionModal .modal-content').html(data);
-      initSubmitTransaction();
-    });
-  });
-
-  $('.edit-transaction').on('click', function (e) {
-    $.get($(this).data('path'))
-    .done(function( data ) {
-      $('#transactionModal .modal-content').html(data);
-      initSubmitTransaction();
-    });
-
-    $('#transactionModal').modal('show');    
-  })
-
-  $('.new-payment').on('click', function (e) {
-    $.get('<%= new_debt_transaction_path(@debt, type: 'Payment') %>')
-    .done(function( data ) {
-      $('#transactionModal .modal-content').html(data);
-      initSubmitTransaction();
-    });
-  });
-
-  function initSubmitTransaction(){
-
-    $('button.transaction-save').on('click', function(e) {
-      e.preventDefault();
-     
-      $.ajax({url: $(this).data('path'), 
-              method: $(this).data('http-verb'),
-              data: getTransaction()
-      })
-      .done(function(data) {
-        $('#transactionModal').modal('hide');
-        $('#transactionModal').on('hidden.bs.modal', function (e) {
-          $('#nav-transactions').html(data);
-        })        
-      })
-      .fail(function(data) {
-        $('#transactionModal .modal-content').html(data.responseText);
-        initSubmitTransaction();
-      });
-    });
-  }
-
-  function getTransaction() {
-    var result = { };
-    $.each($('form').serializeArray(), function() {
-        result[this.name.replace("payment", "transaction")] = this.value;
-    });
-    
-    return result;
-  }
-
- 
-
+  initTransactionActions();
 </script>
-

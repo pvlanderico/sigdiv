@@ -1,4 +1,4 @@
-<%= simple_form_for transaction, url: debt_transactions_path(debt) do |f| %>
+<%= simple_form_for transaction, url: debt_transactions_path(debt), as: :transaction do |f| %>
   <div class="modal-body">
     <%= f.input :id, as: :hidden %>
     <%= f.input :debt_id, as: :hidden %>
@@ -31,15 +31,15 @@
 
 <script type="text/javascript">
  
-$('#payment_exchange_rate').on('input', function(e) {
-  if($.isNumeric($('#payment_exchange_rate').val())){
-    $('#payment_interest_brl').val(Big($('#payment_interest').val()) * $('#payment_exchange_rate').val());
+$('#transaction_exchange_rate').on('input', function(e) {
+  if($.isNumeric($('#transaction_exchange_rate').val())){
+    $('#transaction_interest_brl').val(Big($('#transaction_interest').val()) * $('#transaction_exchange_rate').val());
 
     $('.value_charge').each(function(index){
-      $('#payment_payment_charges_attributes_'+ index +'_value_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_payment_charges_attributes_'+ index +'_value').val());
+      $('#transaction_payment_charges_attributes_'+ index +'_value_brl').val(Big($('#transaction_exchange_rate').val()) * $('#transaction_payment_charges_attributes_'+ index +'_value').val());
     })
 
-    $('#payment_principal_brl').val(Big($('#payment_exchange_rate').val()) * $('#payment_principal').val());
+    $('#transaction_principal_brl').val(Big($('#transaction_exchange_rate').val()) * $('#transaction_principal').val());
   }
 });
 

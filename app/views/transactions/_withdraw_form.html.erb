@@ -1,10 +1,11 @@
-<%= simple_form_for transaction, url: debt_transactions_path(debt) do |f| %>
+<%= simple_form_for transaction, url: debt_transactions_path(debt), as: :transaction do |f| %>
   <div class="modal-body">
     <%= f.input :id, as: :hidden %>
+    <%= f.input :debt_id, as: :hidden %>
     <%= f.input :type, as: :hidden, input_html: {id: "transaction_type"} %>
     <%= f.input :value_brl, input_html: {value: f.object.value_brl || '0.00'} %>    
     <label>Taxa de conversão:</label>
-    <input class="form-control" type="text" name="" id="transaction_exchange_rate">
+    <input class="form-control" type="text" name="" id="withdraw_exchange_rate">
     <br>    
     <%= f.input :value %>
     <%= f.input :date, as: :date, label: 'Data de liberação' %>
@@ -15,29 +16,29 @@
 <script type="text/javascript">
   updateExchangeRate();
 
-    $('#withdraw_value_brl').on('keyup', function(){
+    $('#transaction_value_brl').on('keyup', function(){
         updateValue();    
     });
 
-    $('#transaction_exchange_rate').on('keyup', function(){
+    $('#withdraw_exchange_rate').on('keyup', function(){
         updateValue();
     });
 
-  $('#withdraw_value').on('keyup', function(){
+  $('#transaction_value').on('keyup', function(){
     updateExchangeRate();
   });
 
-    function updateValue(){    
-    if($.isNumeric($('#withdraw_value_brl').val())){
-      value = Big($('#withdraw_value_brl').val()) / $('#transaction_exchange_rate').val();
-          $('#withdraw_value').val(value);
+  function updateValue(){    
+    if($.isNumeric($('#transaction_value_brl').val())){
+      value = Big($('#transaction_value_brl').val()) / $('#withdraw_exchange_rate').val();
+          $('#transaction_value').val(value);
     }
-    }
+  }
 
   function updateExchangeRate(){
-    if($.isNumeric($('#withdraw_value').val())){
-      exchange_rate = Big($('#withdraw_value').val()) / $('#withdraw_value_brl').val();
-      $('#transaction_exchange_rate').val(exchange_rate);
+    if($.isNumeric($('#transaction_value').val())){
+      exchange_rate = Big($('#transaction_value').val()) / $('#transaction_value_brl').val();
+      $('#withdraw_exchange_rate').val(exchange_rate);
     }
   }
 </script>

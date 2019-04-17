@@ -196,12 +196,20 @@
     </p>
 
     <hr>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#withdrawModal">Registrar desembolso</button>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Withdraw') %>">Registrar desembolso</button>
 
   </div>
 
   <div class="tab-pane fade" id="nav-transactions" role="tabpanel" aria-labelledby="nav-transactions-tab"></div>
   <div class="tab-pane fade" id="nav-attachments" role="tabpanel" aria-labelledby="nav-attachments-tab"></div>
+
+  <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="EdiçãoTransação" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">      
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script type="text/javascript">
@@ -222,4 +230,5 @@
     });
   })
 
+  initTransactionActions();
 </script>
