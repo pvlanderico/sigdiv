@@ -150,15 +150,33 @@
     </p>
 
     <table class="table table-hover debt-withdraws">
+      <thead>
+        <tr>
+          <th scope="col">Data</th>
+          <th scope="col">Desembolso</th>
+          <th scope="col">Desembolso (BRL)</th>
+          <th scope="col">Saldo inicial</th>
+          <th scope="col">Saldo final</th>
+        </tr>
+      </thead>
       <tbody>      
-        <% @debt.withdraws.order(date: 'desc').each do |withdraw| %>
+        <% @debt.withdraws.order(date: 'asc').each.with_index do |withdraw, index| %>
           <tr class='edit-withdraw' data-path='<%= edit_debt_transaction_path(@debt, withdraw) %>'>
             <td>      
               <span class="badge badge-primary badge-pill">D</span>
               <%= withdraw.date %>
             </td>
-            <td class="text-right">
+            <td >
              <%= big_decimal_to_currency withdraw.value %>
+            </td>
+            <td >
+             <%= big_decimal_to_currency withdraw.value_brl %>
+            </td>
+            <td>
+              <%= big_decimal_to_currency withdraw.start_outstanding_balance  %>
+            </td>
+            <td>
+              <%= big_decimal_to_currency withdraw.final_outstanding_balance %>
             </td>
           </tr>
         <% end %>
