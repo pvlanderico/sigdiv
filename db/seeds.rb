@@ -250,19 +250,25 @@ Withdraw.create!(
 puts "Primeiro Pagamento"
 puts Date.new(2017, 12, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2017, 12, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('608067.11')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 1, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 1, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('611107.45')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 2, 5)
 show_stats
@@ -275,75 +281,102 @@ Withdraw.create!(
 
 puts Date.new(2018, 2, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 2, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('627926.55')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 3, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 3, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('631066.18')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 4, 16)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 4, 16),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('634221.51')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 5, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 5, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('637392.62')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 6, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 6, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('640579.58')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 7, 16)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 7, 16),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('643782.48')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 8, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 8, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('647001.40')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 9, 17)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 9, 17),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('650236.40')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 10, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 10, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('653487.58')
 )
+payment.init
+payment.save
+
 
 puts Date.new(2018, 10, 31)
 show_stats
@@ -356,16 +389,21 @@ Withdraw.create!(
 
 puts Date.new(2018, 11, 16)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 11, 16),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('667414.42')
 )
+payment.init
+payment.save
 
 puts Date.new(2018, 12, 15)
 show_stats
-Payment.create!(	
+payment = Payment.new(	
 	date: Date.new(2018, 12, 15),
 	debt_id: Debt.first.id,
 	principal_brl: BigDecimal('670751.50')
 )
+payment.init
+payment.save
+

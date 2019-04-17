@@ -6,7 +6,7 @@ class Transaction < ApplicationRecord
 	before_save :set_outstanding_balance
 
 	def editable?
-		date > Transaction.last.date
+		debt.transactions.last.id == id
 	end
 
 	private
