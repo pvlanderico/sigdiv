@@ -273,7 +273,7 @@ payment.save
 puts Date.new(2018, 2, 5)
 show_stats
 Withdraw.create!(
-	value: BigDecimal('288019.18249'),
+	value: BigDecimal('288019.182485412'),
 	date: Date.new(2018, 2, 5),
 	debt_id: Debt.first.id,
 	value_brl: BigDecimal('6268888.93')
@@ -381,7 +381,7 @@ payment.save
 puts Date.new(2018, 10, 31)
 show_stats
 Withdraw.create!(
-	value: BigDecimal('208970.05587'),
+	value: BigDecimal('208970.055873321'),
 	date: Date.new(2018, 10, 31),
 	debt_id: Debt.first.id,
 	value_brl: BigDecimal('4548343.13')
