@@ -3,10 +3,10 @@
 	<%= f.input :charge_id, as: :hidden %>
     <div class="row">
 		<div class="col-sm-6 value_charge">
-			<%= f.input :value, label: f.object.charge.name %>
+			<%= f.input :value, as: :string, label: f.object.charge.name, input_html: {class: 'currency'} %>
 		</div>
 		<div class="col-sm-6">
-        	<%= f.input :value_brl, label: f.object.charge.name + ' (BRL)'  %>
+        	<%= f.input :value_brl, label: f.object.charge.name + ' (BRL)', as: :string, input_html: {class: 'currency-brl'}  %>
       	</div>
 	</div>
 </div>

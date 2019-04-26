@@ -56,8 +56,11 @@ function initSubmitTransaction(){
 function getTransaction() {
   var result = { };
   $.each($('form').serializeArray(), function() {
-    result[this.name] = this.value;
+    result[this.name] = this.value.replace(/[.]/g, '');
   });
   
   return result;
 }
+
+$('.currency-brl').mask('#.##0,00', {reverse: true});
+$('.currency').mask('#.##0,00000', {reverse: true});

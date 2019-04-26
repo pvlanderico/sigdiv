@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.mask.min.js
 //= require jquery-ui
 //= require rails-ujs
 //= require bootstrap
@@ -30,5 +31,5 @@ $(function() {
     monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
     nextText: 'Próximo',
     prevText: 'Anterior'
-	});
+	});    
 });
