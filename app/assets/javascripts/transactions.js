@@ -56,7 +56,7 @@ function initSubmitTransaction(){
 function getTransaction() {
   var result = { };
   $.each($('form').serializeArray(), function() {
-    result[this.name] = this.value.replace(/[.]/g, '');
+    result[this.name] = this.value.replace(/[.]/g, '').replace(/[,]/g, '.');
   });
   
   return result;

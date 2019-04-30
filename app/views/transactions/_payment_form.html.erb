@@ -17,7 +17,7 @@
         <%= f.input :interest, as: :string, input_html: {class: 'currency'} %>
       </div>
       <div class="col-sm-6">
-        <%= f.input :interest_brl, as: :string, input_html: {class: 'currency-brl'} %>
+        <%= f.input :interest_brl, as: :string, input_html: {value: f.object.interest_brl || '0.00', class: 'currency-brl'} %>
       </div>
     </div>
     <%= f.input :date, as: :date %>
@@ -34,19 +34,16 @@
 $('#transaction_exchange_rate').on('input', function(e) {
   if($.isNumeric($('#transaction_exchange_rate').val())){
 
-    $('#transaction_principal_brl').val(Big($('#transaction_exchange_rate').val().replace(/[.]/g, '').replace(/[,]/g, '.')) * $('#transaction_principal').val().replace(/[.]/g, '').replace(/[,]/g, '.'));
+    $('#transaction_principal_brl').val((Big($('#transaction_exchange_rate').val().replace(/[.]/g, '').replace(/[,]/g, '.')) * $('#transaction_principal').val().replace(/[.]/g, '').replace(/[,]/g, '.')).toFixed(2));
 
-    $('#transaction_interest_brl').val(Big($('#transaction_interest').val().replace(/[.]/g, '').replace(/[,]/g, '.')) * $('#transaction_exchange_rate').val().replace(/[.]/g, '').replace(/[,]/g, '.'));
+    $('#transaction_interest_brl').val((Big($('#transaction_interest').val().replace(/[.]/g, '').replace(/[,]/g, '.')) * $('#transaction_exchange_rate').val().replace(/[.]/g, '').replace(/[,]/g, '.')).toFixed(2));
 
     $('.value_charge').each(function(index){
-      $('#transaction_payment_charges_attributes_'+ index +'_value_brl').val(Big($('#transaction_exchange_rate').val().replace(/[.]/g, '').replace(/[,]/g, '.')) * $('#transaction_payment_charges_attributes_'+ index +'_value').val().replace(/[.]/g, '').replace(/[,]/g, '.'));
+      $('#transaction_payment_charges_attributes_'+ index +'_value_brl').val((Big($('#transaction_exchange_rate').val().replace(/[.]/g, '').replace(/[,]/g, '.')) * $('#transaction_payment_charges_attributes_'+ index +'_value').val().replace(/[.]/g, '').replace(/[,]/g, '.')).toFixed(2));
     })
 
     $('.currency-brl').unmask();
     $('.currency-brl').mask('#.##0,00', {reverse: true});
   }
 });
-
-
-
 </script>
