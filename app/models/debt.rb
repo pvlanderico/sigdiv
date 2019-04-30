@@ -39,6 +39,10 @@ class Debt < ApplicationRecord
 
 		result
 	end
+
+	def self.next_payments		
+		all.select(&:in_amortization_period?)
+	end
   # Desembolsos
 	def withdraws
 		transactions.where(type: 'Withdraw')

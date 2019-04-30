@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'next_payments/index'
   resources :currencies
   resources :creditors
   
@@ -8,5 +9,5 @@ Rails.application.routes.draw do
   	resources :transactions, except: :show
   end
 
-  root 'debts#index'
+  root 'next_payments#index'
 end
