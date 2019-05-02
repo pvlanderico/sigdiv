@@ -38,7 +38,7 @@ pt-BR:
         name: Nome
         base: '%'
         formula: Fórmula
-        count_days: Contabilizar dias
+        count_days: Subtrair período de referência
       attachment:
         name: Nome
         description: Descrição

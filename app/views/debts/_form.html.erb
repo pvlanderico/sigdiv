@@ -72,16 +72,19 @@
     </div>
     <hr class="dashed-hr">
 
-    <h3>Encargos</h3>
-    <div id='charges'>
     
+    <div class='links'>
+      <h3>Encargos
+      <%= link_to_add_association fa_icon("plus-square", title: "Adicionar encargo"), f, :charges, 'data-association-insertion-method': :after, class: 'add-charge' %>
+      </h3>
+    </div>
+
+    <div id='charges'>    
       <%= f.simple_fields_for :charges do |charge| %>
         <%= render 'charge_fields', f: charge %>
       <% end %>      
     </div>
-    <div class='links'>
-      <%= link_to_add_association fa_icon("plus-square 2x", title: "Adicionar encargo"), f, :charges %>
-    </div>
+    
     <hr class="dashed-hr">
 
     <br>
