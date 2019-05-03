@@ -17,16 +17,16 @@ class Payment < Transaction
 
 	private
 		def set_interest
-			self.interest = debt.interest
+			self.interest = Decimal.new(debt.interest.to_f).round(5)
 		end
 
 		def set_principal			
-			self.principal = debt.next_instalment - debt.interest
+			self.principal = Decimal.new(debt.next_instalment - debt.interest).round(5)
 		end
 
 		def set_payment_charges
 			self.debt.charges.each do |charge|
-				payment_charge = PaymentCharge.new charge: charge, value: charge.value
+				payment_charge = PaymentCharge.new charge: charge, value: Decimal.new(charge.value.to_f).round(5)
 				self.payment_charges << payment_charge
 			end
 		end
