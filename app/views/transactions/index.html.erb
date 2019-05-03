@@ -106,9 +106,9 @@
       <li><span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro</li>    
     </ul>
     <br>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Withdraw') %>">Registrar desembolso</button>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Withdraw') %>" id="new-withdraw">Registrar desembolso</button>
     <br><br>
-    <button type="button" class="btn btn-success new-payment" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Payment') %>">Registrar pagamento</button>
+    <button type="button" class="btn btn-success new-payment" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Payment') %>" id="new-payment">Registrar pagamento</button>
   </div>  
 </div>
 
