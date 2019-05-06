@@ -1,13 +1,23 @@
 require 'rails_helper'
 
 RSpec.feature "Payments", type: :feature, js: true do
+	include ActionView::Helpers::NumberHelper
+  include ApplicationHelper
+
+	before do
+  	@debt = create(:debt, charges: [ build(:adm_tax), build(:credit_risk) ])
+  	create_list(:transaction_2019, 12)
+    @withdraw = create(:transaction_2019, date: Date.new(2019,12,31), debt: @debt)
+    create(:transaction_2018)
+    FactoryBot.rewind_sequences
+  end
+
   it 'Visit index page' do
   	visit(debts_path)
   	expect(page).to have_current_path(debts_path)
   end
 
   it 'Create a Payment' do
-  	@debt = create(:debt, charges: [ build(:adm_tax), build(:credit_risk) ])
   	visit(debts_path)
   	click_link("mostra-#{@debt.id}")
   	click_on('Movimentações')
@@ -26,7 +36,36 @@ RSpec.feature "Payments", type: :feature, js: true do
   	expect(find_field('Risco de crédito (BRL)').value).to eq('15.108,57')
 
   	click_on('Salvar')
+   
+  	t = Time.now
+   
+  	expect(find('.edit-transaction')).to have_content('PR ' + t.strftime("%d-%m-%Y"))
+  end
 
-  	#expect(find('.table-hover')).to have_content(date.today)
+  it 'Show the withdraw' do
+  	visit(debts_path)
+  	click_link("mostra-#{@debt.id}")
+  	click_on('Movimentações')
+   
+  	expect(page).to have_content('Registrar desembolso')
+  	expect(page).to have_content(big_decimal_to_currency @withdraw.value)
+  	date_payment = 'D 31-12-2019'
+  	page.find('.edit-transaction',text: date_payment).click
+    expect(page).to have_content('Registrar desembolso')
+  end
+
+  it 'Edit a Payment' do
+  	visit(debts_path)
+  	click_link("mostra-#{@debt.id}")
+  	click_on('Movimentações')
+
+  	#t = Time.now
+  	date_payment = 'PR 31-12-2019' 
+  	#t.strftime("%d-%m-%Y")
+  	expect(page).to have_content('Registrar pagamento')
+  	print page.html
+  
+    page.find('.edit-transaction',text: date_payment).click
+    expect(page).to have_content('Editar pagamento')
   end
 end
