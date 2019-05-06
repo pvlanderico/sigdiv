@@ -6,7 +6,7 @@ class Transaction < ApplicationRecord
 	before_save :set_outstanding_balance
 
 	def editable?
-		debt.transactions.last.id == id
+		Transaction.where(debt_id: debt.id).maximum(:id) == id
 	end
 
 	private
