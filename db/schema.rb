@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_180933) do
+ActiveRecord::Schema.define(version: 2019_05_09_190013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,36 @@ ActiveRecord::Schema.define(version: 2019_05_09_180933) do
     t.string "interest_rate_formula"
     t.integer "loan_term"
     t.integer "payment_day"
+  end
+
+  create_table "transaction_infos_tables", force: :cascade do |t|
+    t.string "formula"
+    t.boolean "pro_rata"
+    t.integer "payment_date"
+    t.text "description"
+    t.integer "debt_id"
+    t.integer "transaction_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transaction_items_tables", force: :cascade do |t|
+    t.decimal "value"
+    t.decimal "value_brl"
+    t.date "date"
+    t.decimal "exchange_rate"
+    t.decimal "start_outstanding_balance"
+    t.decimal "start_outstanding_balance_brl"
+    t.integer "transaction_info_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transaction_types_tables", force: :cascade do |t|
+    t.string "name"
+    t.string "operator"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
