@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_161126) do
+ActiveRecord::Schema.define(version: 2019_05_09_180933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,16 +22,6 @@ ActiveRecord::Schema.define(version: 2019_04_09_161126) do
     t.integer "debt_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "charges", force: :cascade do |t|
-    t.string "name"
-    t.decimal "base"
-    t.string "formula"
-    t.integer "debt_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "count_days"
   end
 
   create_table "creditors", force: :cascade do |t|
@@ -72,32 +62,6 @@ ActiveRecord::Schema.define(version: 2019_04_09_161126) do
     t.string "interest_rate_formula"
     t.integer "loan_term"
     t.integer "payment_day"
-  end
-
-  create_table "payment_charges", force: :cascade do |t|
-    t.integer "payment_id"
-    t.integer "charge_id"
-    t.decimal "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal "value_brl"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.decimal "value"
-    t.date "date"
-    t.integer "debt_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date "internalization_date"
-    t.string "type"
-    t.decimal "interest"
-    t.decimal "start_outstanding_balance"
-    t.decimal "principal"
-    t.decimal "value_brl"
-    t.decimal "principal_brl"
-    t.decimal "exchange_rate"
-    t.decimal "interest_brl"
   end
 
 end
