@@ -3,11 +3,11 @@ class Debt < ApplicationRecord
 	belongs_to :financial_agent, class_name: 'Creditor', optional: true
 	belongs_to :currency
 
-	has_many :charges, inverse_of: :debt
 	has_many :attachments
-	has_many :transactions
+	has_many :transaction_infos
+	has_many :transaction_items, through: :transaction_infos
 	
-	accepts_nested_attributes_for :charges, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :transaction_infos, reject_if: :all_blank, allow_destroy: true
 
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
@@ -39,6 +39,13 @@ class Debt < ApplicationRecord
 
 		result
 	end
+
+	def init		
+    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_by(name: TransactionType::BASIC_TYPES[1]))
+    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_by(name: TransactionType::BASIC_TYPES[2]))
+    transaction_infos.build.build_transaction_type
+	end
+
   # Desembolsos
 	def withdraws
 		transactions.where(type: 'Withdraw')

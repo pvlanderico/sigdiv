@@ -1,9 +1,9 @@
 class CreateTransactionInfosTable < ActiveRecord::Migration[5.2]
   def change
-    create_table :transaction_infos_tables do |t|
+    create_table :transaction_infos do |t|
       t.string :formula
       t.boolean :pro_rata
-      t.integer :payment_date
+      t.integer :payment_day
       t.text :description      
       t.integer :debt_id
       t.integer :transaction_type_id

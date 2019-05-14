@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 2019_05_09_190013) do
     t.integer "payment_day"
   end
 
-  create_table "transaction_infos_tables", force: :cascade do |t|
+  create_table "transaction_infos", force: :cascade do |t|
     t.string "formula"
     t.boolean "pro_rata"
-    t.integer "payment_date"
+    t.integer "payment_day"
     t.text "description"
     t.integer "debt_id"
     t.integer "transaction_type_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_190013) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transaction_items_tables", force: :cascade do |t|
+  create_table "transaction_items", force: :cascade do |t|
     t.decimal "value"
     t.decimal "value_brl"
     t.date "date"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_190013) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transaction_types_tables", force: :cascade do |t|
+  create_table "transaction_types", force: :cascade do |t|
     t.string "name"
     t.string "operator"
     t.datetime "created_at", null: false

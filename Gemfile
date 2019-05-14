@@ -70,7 +70,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  gem 'rspec-rails', '~> 3.6'  
+  gem 'rspec-rails', '~> 3.6' 
+  gem 'rspec-collection_matchers'
   gem 'faker'  
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'rails-controller-testing'

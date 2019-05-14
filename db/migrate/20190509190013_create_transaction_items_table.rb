@@ -1,6 +1,6 @@
 class CreateTransactionItemsTable < ActiveRecord::Migration[5.2]
   def change
-    create_table :transaction_items_tables do |t|
+    create_table :transaction_items do |t|
       t.decimal :value
       t.decimal :value_brl
       t.date :date

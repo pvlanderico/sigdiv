@@ -1,0 +1,27 @@
+<div class='nested-fields'>
+	<div class="row">
+		<%= f.simple_fields_for :transaction_type, f.object.type || TransactionType.new do |transaction_type| %>
+      <%= render 'transaction_type_fields', f: transaction_type %>
+    <% end %> 
+
+    <%= f.input(:transaction_type_id, as: :hidden) if f.object.type.try :persisted? %>
+		<div class="col-sm">
+			<%= f.input :formula %>
+		</div>
+		<div class="col-sm">
+		  <%= f.input :payment_day %>
+		</div>
+		<div class="col-sm">
+		  <%= f.input :description %>
+		</div>
+		<div class="col-sm count-days-container">			
+		  <%= f.input :pro_rata %>
+		</div>
+		<div class="col-sm trash-charge-container">
+			<%= link_to_remove_association fa_icon("trash 2x", title: "Remover encargo") , f %>
+		</div>
+	</div>
+</div>
+
+
+

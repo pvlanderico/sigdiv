@@ -16,7 +16,7 @@ class DebtsController < ApplicationController
   # GET /debts/new
   def new
     @debt = Debt.new
-    @debt.charges.build
+    @debt.init
   end
 
   # GET /debts/1/edit
@@ -32,7 +32,7 @@ class DebtsController < ApplicationController
       if @debt.save
         format.html { redirect_to @debt, notice: I18n.t(:save_success) }
         format.json { render :show, status: :created, location: @debt }
-      else
+      else        
         format.html { render :new }
         format.json { render json: @debt.errors, status: :unprocessable_entity }
       end
@@ -92,11 +92,19 @@ class DebtsController < ApplicationController
                                    :name,
                                    :category,
                                    :currency_id,
-                                   :notes,                                   
-                                   charges_attributes: [:id,
-                                                        :_destroy,
-                                                        :name,
-                                                        :base,
-                                                        :formula])
+                                   :notes,
+                                   :payment_day,
+                                   :loan_term,                       
+                                   transaction_infos_attributes: [:id,
+                                                                  :_destroy,
+                                                                  :formula,
+                                                                  :payment_day,
+                                                                  :description,
+                                                                  :pro_rata,
+                                                                  :transaction_type_id,
+                                                                  transaction_type_attributes: [:id,
+                                                                                                :_destroy,
+                                                                                                :name,
+                                                                                                :operator]])
     end
 end

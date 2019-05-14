@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @transaction_type.name %>
+</p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @transaction_type.operator %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_type_path(@transaction_type), class: 'btn' %> |
+<%= link_to 'Back', transaction_types_path, class: 'btn' %>
