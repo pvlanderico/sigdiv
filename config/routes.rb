@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   resources :debts do
   	resources :attachments, except: :show
-  	resources :transactions_items, except: :show
+  	resources :transaction_items, except: :show
   end
 
   root 'debts#index'

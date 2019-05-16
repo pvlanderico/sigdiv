@@ -1,7 +1,7 @@
-class TransactionsController < ApplicationController  
+class TransactionItemsController < ApplicationController  
   before_action :set_transaction, only: [:edit, :update, :destroy]
-  before_action :set_debt, only: [:index, :new, :edit, :create]
-  before_action :set_transactions, only: [:index]
+  before_action :set_debt, only: [:index, :new, :edit, :create, :update]
+  before_action :set_transaction_items, only: [:index, :create, :update]
 
   # GET :debt_id/transactions/
   def index    
@@ -27,7 +27,6 @@ class TransactionsController < ApplicationController
     @transaction = type.new(transaction_params)
     
     if @transaction.save
-      set_transactions
       render :index, layout: false, notice: 'O registro foi salvo com sucesso.'        
     else
       render :new, layout: false, status: :unprocessable_entity
@@ -37,7 +36,6 @@ class TransactionsController < ApplicationController
   # PATCH/PUT :debt_id/transactions/1
   def update
     if @transaction.update(transaction_params)
-      set_transactions
       render :index, layout: false, notice: 'O registro foi salvo com sucesso.'        
     else
       render :edit, layout: false, status: :unprocessable_entity        
@@ -64,9 +62,8 @@ class TransactionsController < ApplicationController
       @transaction = Transaction.find(params[:id])
     end
 
-    def set_transactions
-      set_debt
-      @transactions = @debt.transactions.to_a + FuturePayment.list(@debt)
+    def set_transaction_items
+      @transaction_items = @debt.transaction_items
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

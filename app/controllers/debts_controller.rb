@@ -1,7 +1,6 @@
 class DebtsController < ApplicationController
   before_action :set_debt, only: [:show, :edit, :update, :destroy]
-  before_action :set_charges, only: [:index, :show]
-
+ 
   # GET /debts
   # GET /debts.json
   def index
@@ -67,10 +66,6 @@ class DebtsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_debt
       @debt = Debt.find(params[:id])
-    end
-
-    def set_charges
-      @charges = Charge.all.where(debt_id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

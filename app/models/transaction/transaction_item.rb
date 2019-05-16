@@ -14,6 +14,10 @@ class TransactionItem < ApplicationRecord
 		Dentaku(start_outstanding_balance.to_s + transaction_info.type.operator + value.to_s)
 	end
 
+	def type
+		transaction_info.type
+	end
+
 	private
 		def set_outstanding_balance
 			self.start_outstanding_balance = debt.outstanding_balance

@@ -41,29 +41,29 @@ class Debt < ApplicationRecord
 	end
 
 	def init		
-    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_by(name: TransactionType::BASIC_TYPES[1]))
-    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_by(name: TransactionType::BASIC_TYPES[2]))
-    transaction_infos.build.build_transaction_type
+	    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[1]))
+	    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[2]))
+	    transaction_infos.build.build_transaction_type
 	end
 
   # Desembolsos
 	def withdraws
-		transactions.where(type: 'Withdraw')
+		transaction_items.where( transaction_infos: { transaction_type_id: TransactionType.find_by(TransactionType::BASIC_TYPES[1] ).id} )
 	end
 	# Amortizações
-	def payments
-		transactions.where(type: 'Payment')
+	def amortizations
+		transaction_items.where( transaction_infos: { transaction_type_id: TransactionType.find_by(TransactionType::BASIC_TYPES[2] ).id} )
 	end 
   # Próxima parcela
 	def next_instalment		
 		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
 	end	
     
-    ['next_instalment', 'amortization', 'interest', 'outstanding_balance'].each do |method_name|
-    	define_method :"show_#{method_name}" do 
-    		Decimal.new(self.send(method_name).to_f)
-    	end
-    end
+  ['next_instalment', 'amortization', 'interest', 'outstanding_balance'].each do |method_name|
+  	define_method :"show_#{method_name}" do 
+  		Decimal.new(self.send(method_name).to_f)
+  	end
+  end
 
 	def amortization
 		next_instalment - interest
@@ -107,12 +107,12 @@ class Debt < ApplicationRecord
 	end
 
 	def balance
-		# instalment_sum == payments.sum(:value_cents)
+		# instalment_sum == amortizations.sum(:value_cents)
 	end
 
 	# Saldo devedor
 	def outstanding_balance final_date = Date.today
-		withdraws.where(date: signature_date..final_date).sum(:value) - payments.where(date: signature_date..final_date).sum(:principal)
+		withdraws.where(date: signature_date..final_date).sum(:value) - amortizations.where(date: signature_date..final_date).sum(:value)
 	end
 
 	def payment_date
@@ -122,6 +122,10 @@ class Debt < ApplicationRecord
 	# Taxa de juros
 	def interest_rate
 		BigDecimal(Dentaku(interest_rate_formula)) / 100
+	end
+
+	def years_list
+		signature_date.year..(signature_date + loan_term.months).year
 	end
 
 	private
@@ -135,11 +139,11 @@ class Debt < ApplicationRecord
 		end
 
 		def instalment_formula_numerator
-			( ( (1 + interest_rate_per_month) ** (loan_term - payments.count) ) * interest_rate_per_month )
+			( ( (1 + interest_rate_per_month) ** (loan_term - amortizations.count) ) * interest_rate_per_month )
 		end
 
 		def instalment_formula_denominator
-			( ( ( 1 + interest_rate_per_month ) ** (loan_term - payments.count) ) - 1 )
+			( ( ( 1 + interest_rate_per_month ) ** (loan_term - amortizations.count) ) - 1 )
 		end
 
 		def interest_rate_per_month

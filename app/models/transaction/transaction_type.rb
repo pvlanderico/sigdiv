@@ -1,5 +1,5 @@
 class TransactionType < ApplicationRecord
-	BASIC_TYPES = {1 => 'Desembolso', 2 => 'Amortização'}
+	BASIC_TYPES = {1 => {name: 'Desembolso', operator: '+'}, 2 => {name: 'Amortização', operator: '-'}}
 
 	has_many :transaction_infos
 

@@ -1,0 +1,87 @@
+<div class='nav transactions-year-list position-fixed'>
+  <ul class=" list-group">
+    <% @debt.years_list.each do |year| %> 
+      <li class="nav-item">
+        <a class="nav-link list-group-item list-group-item-action year-link <%= 'active' if year == Date.today.year %>" href="#<%= year %>" data-turbolinks="false"><%= year %></a>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='pull-left debt-ops'>
+  <p>
+    <strong>Valor do contrato: </strong>
+    <%= big_decimal_to_currency @debt.contract_value%>
+  </p>
+  <p>
+    <strong>Valor do contrato em reais: </strong>
+    <%= number_to_currency @debt.contract_value_brl %>
+  </p>
+  <p>
+    <strong>Saldo devedor total: </strong>
+    <%= big_decimal_to_currency @debt.outstanding_balance %>
+  </p>
+  
+  <table class="table table-hover">
+    <thead>
+      <th></th>
+      <th>Data</th>
+      <th>Valor</th>
+      <th>Operação</th>        
+    </thead>
+    
+    <tbody>    
+      <% @transaction_items.each do |transaction_item| %>              
+          
+        <% transaction.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
+        <% transaction_edit_path = edit_debt_transaction_path(@debt, transaction) if transaction.editable? %>
+        <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
+          <td>
+            <% if transaction.type == 'Withdraw' %>
+              <span class="badge badge-primary badge-pill">D</span>
+            <% elsif transaction.type == 'Payment' %>
+              <span class="badge badge-warning badge-pill">PR</span>
+            <% else %>
+              <span class="badge badge-secondary badge-pill">PF</span>
+            <% end %>
+          </td>
+          
+          <td>
+            <%= transaction_item.date %>
+          </td>
+        
+          <td>
+           <%= big_decimal_to_currency(transaction_item.value) || '-'  %>                 
+          </td>
+
+          <td>
+            <%= big_decimal_to_currency(transaction_item.type.operation) %>
+          </td>        
+
+          <td>
+          <%= big_decimal_to_currency transaction.final_outstanding_balance %>
+          </td>
+        </tr>                
+      <% end %>              
+    </tbody>
+  </table>
+    
+  <br>
+      
+</div>
+
+<div class="pull-left transactions-legend">
+  <div class='position-fixed'>
+    <ul class="nav flex-column list-group">    
+      <li><span class="badge badge-primary badge-pill">D</span> Desembolso</li>
+      <li><span class="badge badge-warning badge-pill">PR</span> Pagamento realizado</li>
+      <li><span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro</li>    
+    </ul>
+    <br>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, type: 'Withdraw') %>">Registrar desembolso</button>
+  </div>  
+</div>
+
+<script type="text/javascript">
+  initTransactionActions();
+</script>
