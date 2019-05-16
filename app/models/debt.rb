@@ -7,7 +7,7 @@ class Debt < ApplicationRecord
 	has_many :transaction_infos
 	has_many :transaction_items, through: :transaction_infos
 	
-	accepts_nested_attributes_for :transaction_infos, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :transaction_infos, reject_if: :reject_conditions, allow_destroy: true
 
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
@@ -149,5 +149,9 @@ class Debt < ApplicationRecord
 		# Periodo de referência para calculo de juros e taxas
 		def reference_period			
 			(payment_date - 1.month + 1.day)..payment_date
+		end
+
+		def reject_conditions attributes
+			attributes.except("_destroy").except("pro_rata").except("transaction_type_attributes").values.reject(&:empty?).blank? && attributes["transaction_type_attributes"].values.reject(&:empty?).blank?
 		end
 end

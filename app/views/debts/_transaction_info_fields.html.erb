@@ -15,7 +15,7 @@
 		  <%= f.input :description %>
 		</div>
 		<div class="col-sm count-days-container">			
-		  <%= f.input :pro_rata %>
+		  <%= f.input :pro_rata, input_html: { value: '' } %>
 		</div>
 		<div class="col-sm trash-charge-container">
 			<%= link_to_remove_association fa_icon("trash 2x", title: "Remover encargo") , f %>
