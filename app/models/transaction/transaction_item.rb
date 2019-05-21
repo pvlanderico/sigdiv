@@ -1,5 +1,6 @@
 class TransactionItem < ApplicationRecord
 	belongs_to :transaction_info
+	has_one :debt, through: :transaction_info
 
 	before_save :set_outstanding_balance
 
@@ -11,7 +12,7 @@ class TransactionItem < ApplicationRecord
 	end
 
 	def final_outstanding_balance
-		Dentaku(start_outstanding_balance.to_s + transaction_info.type.operator + value.to_s)
+		Dentaku("#{start_outstanding_balance} + #{transaction_info.type.operator} + #{value}")
 	end
 
 	def type

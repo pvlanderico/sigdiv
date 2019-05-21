@@ -22,7 +22,7 @@
     <%= big_decimal_to_currency @debt.outstanding_balance %>
   </p>
   
-  <table class="table table-hover">
+  <table id="dttb-transaction-items" class="table table-hover">
     <thead>
       <th></th>
       <th>Data</th>
@@ -83,5 +83,6 @@
 </div>
 
 <script type="text/javascript">
+  $("#dttb-transaction-items").dataTable();
   initTransactionActions();
 </script>

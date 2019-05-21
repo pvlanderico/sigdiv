@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
 @import "/\*";
 @import "jquery-ui";
 @import "bootstrap";
@@ -83,3 +84,4 @@ hr.dashed-hr {
 .add-charge {
   margin-left: 10px;
 }
+@import "datatables";
