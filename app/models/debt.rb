@@ -41,9 +41,9 @@ class Debt < ApplicationRecord
 	end
 
 	def init		
-	    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[1]))
-	    transaction_infos << TransactionInfo.new( transaction_type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[2]))
-	    transaction_infos.build.build_transaction_type
+	    transaction_infos << TransactionInfo.new( type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[1]))
+	    transaction_infos << TransactionInfo.new( type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[2]))
+	    transaction_infos.build.build_type
 	end
 
   # Desembolsos
