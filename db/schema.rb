@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_161126) do
+ActiveRecord::Schema.define(version: 2019_05_09_190013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,16 +22,6 @@ ActiveRecord::Schema.define(version: 2019_04_09_161126) do
     t.integer "debt_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "charges", force: :cascade do |t|
-    t.string "name"
-    t.decimal "base"
-    t.string "formula"
-    t.integer "debt_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "count_days"
   end
 
   create_table "creditors", force: :cascade do |t|
@@ -74,30 +64,34 @@ ActiveRecord::Schema.define(version: 2019_04_09_161126) do
     t.integer "payment_day"
   end
 
-  create_table "payment_charges", force: :cascade do |t|
-    t.integer "payment_id"
-    t.integer "charge_id"
-    t.decimal "value"
+  create_table "transaction_infos", force: :cascade do |t|
+    t.string "formula"
+    t.boolean "pro_rata"
+    t.integer "payment_day"
+    t.text "description"
+    t.integer "debt_id"
+    t.integer "transaction_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "value_brl"
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "transaction_items", force: :cascade do |t|
     t.decimal "value"
+    t.decimal "value_brl"
     t.date "date"
-    t.integer "debt_id"
+    t.decimal "exchange_rate"
+    t.decimal "start_outstanding_balance"
+    t.decimal "start_outstanding_balance_brl"
+    t.integer "transaction_info_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "internalization_date"
-    t.string "type"
-    t.decimal "interest"
-    t.decimal "start_outstanding_balance"
-    t.decimal "principal"
-    t.decimal "value_brl"
-    t.decimal "principal_brl"
-    t.decimal "exchange_rate"
-    t.decimal "interest_brl"
+  end
+
+  create_table "transaction_types", force: :cascade do |t|
+    t.string "name"
+    t.string "operator"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

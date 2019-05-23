@@ -48,6 +48,19 @@
 
     <div class="row">
       <div class="col-sm">
+        <%= f.input :loan_term %>
+      </div>
+      <div class="col-sm">
+        <%= f.input :payment_day %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="col-sm">
+
+    <div class="row">
+      <div class="col-sm">
         <%= f.input :grace_period %>
       </div>      
       <div class="col-sm">
@@ -74,14 +87,15 @@
 
     
     <div class='links'>
-      <h3>Encargos
-      <%= link_to_add_association fa_icon("plus-square", title: "Adicionar encargo"), f, :charges, 'data-association-insertion-method': :after, class: 'add-charge' %>
+      <h3>Movimentações
+      <%= link_to_add_association fa_icon("plus-square", title: "Adicionar encargo"), f, :transaction_infos, 'data-association-insertion-method': :append, 'data-association-insertion-node': '#transaction_infos', class: 'add-charge' %>
       </h3>
+
     </div>
 
-    <div id='charges'>    
-      <%= f.simple_fields_for :charges do |charge| %>
-        <%= render 'charge_fields', f: charge %>
+    <div id='transaction_infos'>    
+      <%= f.simple_fields_for :transaction_infos do |transaction_info| %>
+        <%= render 'transaction_info_fields', f: transaction_info %>
       <% end %>      
     </div>
     

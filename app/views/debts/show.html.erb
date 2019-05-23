@@ -11,7 +11,6 @@
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-data-tab" data-toggle="tab" href="#nav-data" role="tab" aria-controls="nav-data" aria-selected="true">Dados</a>
-      <a class="nav-item nav-link" id="nav-withdraws-tab" data-toggle="tab" href="#nav-withdraws" role="tab" aria-controls="nav-ops" aria-selected="false">Desembolsos</a>  
       <a class="nav-item nav-link" id="nav-transactions-tab" data-toggle="tab" href="#nav-transactions" role="tab" aria-controls="nav-ops" aria-selected="false">Movimentações</a>
       <a class="nav-item nav-link" id="nav-attachments-tab" data-toggle="tab" href="#nav-attachments" role="tab" aria-controls="nav-attachments" aria-selected="false">Anexos</a>
     </div>
@@ -106,10 +105,10 @@
 
      <div class="card-group">
       <div class="card">
-        <div class="card-header alert-primary"><strong>Encargos</strong></div>
+        <div class="card-header alert-primary"><strong>Operações</strong></div>
         <div class="card-body">
-          <% @debt.charges.order(name: 'desc').each do |charges| %>
-          <p class="card-text"><%= charges.name %> - <%= charges.base%> %</p>  
+          <% @debt.transaction_infos.each do |transaction_info| %>
+          <p class="card-text"><%= transaction_info.type.name %> - <%= transaction_info.formula %> - <%= transaction_info.description %> - <%= transaction_info.pro_rata %> %</p>  
           <% end %>    
         </div>
       </div>
@@ -138,68 +137,7 @@
     </div>
 
   </div>
-  <div class="tab-pane fade" id="nav-withdraws" role="tabpanel" aria-labelledby="nav-withdraws-tab">
-
-    <p>
-      <strong>Valor do contrato: </strong>
-      <%= big_decimal_to_currency @debt.contract_value_brl %>
-    </p>
-    <p>
-      <strong>Valor do contrato em reais: </strong>
-      <%= number_to_currency @debt.contract_value_brl %>
-    </p>
-
-    <table class="table table-hover debt-withdraws">
-      <thead>
-        <tr>
-          <th scope="col">Data</th>
-          <th scope="col">Desembolso</th>
-          <th scope="col">Desembolso (BRL)</th>
-          <th scope="col">Saldo inicial</th>
-          <th scope="col">Saldo final</th>
-        </tr>
-      </thead>
-      <tbody>      
-        <% @debt.withdraws.order(date: 'asc').each.with_index do |withdraw, index| %>
-          <tr class='edit-withdraw' data-path='<%= edit_debt_transaction_path(@debt, withdraw) %>'>
-            <td>      
-              <span class="badge badge-primary badge-pill">D</span>
-              <%= withdraw.date %>
-            </td>
-            <td >
-             <%= big_decimal_to_currency withdraw.value %>
-            </td>
-            <td >
-             <%= big_decimal_to_currency withdraw.value_brl %>
-            </td>
-            <td>
-              <%= big_decimal_to_currency withdraw.start_outstanding_balance  %>
-            </td>
-            <td>
-              <%= big_decimal_to_currency withdraw.final_outstanding_balance %>
-            </td>
-          </tr>
-        <% end %>
-        <tr>
-          <td><strong>Saldo devedor</strong></td>
-          <td class="text-right"><strong><%= big_decimal_to_currency @debt.outstanding_balance %></strong></td>
-        </tr>
-        <tr>
-          <td><strong>Saldo devedor em reais</strong></td>
-          <td class="text-right"><strong><%= number_to_currency(@debt.outstanding_balance / @debt.currency.to_brl) %></strong></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>
-      <span class="badge badge-primary badge-pill">D</span> Desembolso
-    </p>
-
-    <hr>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_path(@debt, type: 'Withdraw') %>">Registrar desembolso</button>
-
-  </div>
-
+  
   <div class="tab-pane fade" id="nav-transactions" role="tabpanel" aria-labelledby="nav-transactions-tab"></div>
   <div class="tab-pane fade" id="nav-attachments" role="tabpanel" aria-labelledby="nav-attachments-tab"></div>
 
@@ -218,7 +156,7 @@
   <% end %>
 
   $('#nav-transactions-tab').on('click', function(){
-    $.get('<%= debt_transactions_path(@debt) %>').done(function(data){
+    $.get('<%= debt_transaction_items_path(@debt) %>').done(function(data){
       $('#nav-transactions').html(data);
     });
   })

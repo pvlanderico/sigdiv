@@ -7,8 +7,9 @@ pt-BR:
       attachment: Anexo
       transaction: Movimentação
       currency: Moeda
-      withdraw: desembolso
-      payment: pagamento
+      transaction_type: Tipo da transação
+      transaction_info: Informações da transação
+      transaction_item: Transação
     attributes:
       debt:
         code: Código
@@ -33,26 +34,23 @@ pt-BR:
         payment_day: Dia do pagamento
       creditor:
         name: Nome
-        financial_agent: Agente financeiro
-      charge:
-        name: Nome
-        base: '%'
-        formula: Fórmula
-        count_days: Subtrair período de referência
+        financial_agent: Agente financeiro      
       attachment:
         name: Nome
         description: Descrição
         file: Arquivo
-      transaction:
-        value: Valor em unidade monetária
+      transaction_type:
+        name: Nome
+        operator: Operador
+      transaction_info:
+        formula: Fórmula
+        pro_rata: Pro rata
+        payment_day: Dia de pagamento
+        description: Descrição
+      transaction_item:
+        value: Valor
         value_brl: Valor (BRL)
         date: Data
-        internalization_date: Data de internalização
-        principal: Principal em unidade monetária
-        principal_brl: Principal (BRL)
-        interest: Juros
-        interest_brl: Juros (BRL)
-        start_outstanding_value: Saldo devedor inicial
         exchange_rate: Taxa de conversão
       currency:
         name: Nome
