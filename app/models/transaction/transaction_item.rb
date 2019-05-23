@@ -8,7 +8,7 @@ class TransactionItem < ApplicationRecord
 	validates :value_brl, presence: true
 
 	def editable?
-		TransactionItem.where(debt_id: debt.id).maximum(:id) == id
+		true
 	end
 
 	def final_outstanding_balance

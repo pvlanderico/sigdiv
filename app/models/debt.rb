@@ -5,7 +5,7 @@ class Debt < ApplicationRecord
 
 	has_many :attachments
 	has_many :transaction_infos
-	has_many :transaction_items, through: :transaction_infos
+	has_many :transaction_items, through: :transaction_infos, source: :items
 	
 	accepts_nested_attributes_for :transaction_infos, reject_if: :reject_conditions, allow_destroy: true
 

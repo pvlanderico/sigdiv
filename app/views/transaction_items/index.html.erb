@@ -33,13 +33,13 @@
     <tbody>    
       <% @transaction_items.each do |transaction_item| %>              
           
-        <% transaction.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
-        <% transaction_edit_path = edit_debt_transaction_path(@debt, transaction) if transaction.editable? %>
+        <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
+        <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
         <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
           <td>
-            <% if transaction.type == 'Withdraw' %>
+            <% if transaction_item.type.name == TransactionType::BASIC_TYPES[1][:name] %>
               <span class="badge badge-primary badge-pill">D</span>
-            <% elsif transaction.type == 'Payment' %>
+            <% elsif transaction_item.type.name == TransactionType::BASIC_TYPES[2][:name] %>
               <span class="badge badge-warning badge-pill">PR</span>
             <% else %>
               <span class="badge badge-secondary badge-pill">PF</span>
@@ -55,11 +55,11 @@
           </td>
 
           <td>
-            <%= big_decimal_to_currency(transaction_item.type.operation) %>
+            <%= big_decimal_to_currency(transaction_item.type.operator) %>
           </td>        
 
           <td>
-          <%= big_decimal_to_currency transaction.final_outstanding_balance %>
+          <%= big_decimal_to_currency transaction_item.final_outstanding_balance %>
           </td>
         </tr>                
       <% end %>              
