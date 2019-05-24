@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_190013) do
+ActiveRecord::Schema.define(version: 2019_05_24_181004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2019_05_09_190013) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "amortization_type"
-    t.integer "amortization_frequency"
     t.integer "financial_agent_id"
     t.string "applicable_legislation"
     t.integer "legislation_level"
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(version: 2019_05_09_190013) do
     t.text "notes"
     t.integer "category"
     t.integer "currency_id"
-    t.integer "grace_period_rate_frequency"
     t.string "interest_rate_formula"
     t.integer "loan_term"
     t.integer "payment_day"
@@ -73,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_190013) do
     t.integer "transaction_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "frequency"
   end
 
   create_table "transaction_items", force: :cascade do |t|

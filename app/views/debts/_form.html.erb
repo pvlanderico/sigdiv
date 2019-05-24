@@ -1,4 +1,3 @@
-
 <%= simple_form_for(@debt, html: { multipart: true }) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -57,14 +56,11 @@
 
     <br>
 
-    <div class="col-sm">
-
     <div class="row">
       <div class="col-sm">
         <%= f.input :grace_period %>
       </div>      
-      <div class="col-sm">
-        <%= f.input :grace_period_rate_frequency, as: :radio_buttons, collection: Debt.amortization_frequencies.keys, label_method: :titleize  %>
+      <div class="col-sm">        
       </div>
       <div class="col-sm">        
       </div>
@@ -79,8 +75,7 @@
       <div class="col-sm">
         <%= f.input :amortization_type, as: :radio_buttons, collection: Debt.amortization_types.keys, label_method: :titleize %>
       </div>
-      <div class="col-sm">
-        <%= f.input :amortization_frequency, as: :radio_buttons, collection: Debt.amortization_frequencies.keys, label_method: :titleize %>
+      <div class="col-sm">        
       </div>
     </div>
     <hr class="dashed-hr">
