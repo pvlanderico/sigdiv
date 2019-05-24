@@ -10,9 +10,8 @@ class TransactionItemsController < ApplicationController
 
   # GET :debt_id/transaction/new
   def new  	
-    type = params[:type].constantize
-    @transaction = type.new(debt: @debt)
-    @transaction.init if @transaction.type == 'Payment'
+    @transaction_item = TransactionItem.new()
+    @transaction_item.init(@debt, params[:type])
     render :new, layout: false
   end
 
@@ -23,10 +22,9 @@ class TransactionItemsController < ApplicationController
 
   # POST :debt_id/transactions
   def create
-    type = transaction_params[:type].constantize
-    @transaction = type.new(transaction_params)
+    @transaction_item = TransactionItem.new(transaction_item_params)
     
-    if @transaction.save
+    if @transaction_item.save
       render :index, layout: false, notice: 'O registro foi salvo com sucesso.'        
     else
       render :new, layout: false, status: :unprocessable_entity
@@ -35,7 +33,7 @@ class TransactionItemsController < ApplicationController
 
   # PATCH/PUT :debt_id/transactions/1
   def update
-    if @transaction.update(transaction_params)
+    if @transaction_item.update(transaction_item_params)
       render :index, layout: false, notice: 'O registro foi salvo com sucesso.'        
     else
       render :edit, layout: false, status: :unprocessable_entity        
@@ -45,7 +43,7 @@ class TransactionItemsController < ApplicationController
   # DELETE :debt_id/transactions/1
   # DELETE :debt_id/transactions/1.json
   def destroy
-    @transaction.destroy
+    @transaction_item.destroy
     respond_to do |format|
       format.html { redirect_to transactions_url, notice: 'O registro foi removido com sucesso.' }
       format.json { head :no_content }
@@ -59,7 +57,7 @@ class TransactionItemsController < ApplicationController
     end
 
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+      @transaction_item = TransactionItem.find(params[:id])
     end
 
     def set_transaction_items
@@ -67,22 +65,12 @@ class TransactionItemsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def transaction_params
-      params.require(:transaction).permit(:type, 
-                                          :value, 
+    def transaction_item_params
+      params.require(:transaction_item).permit(:value, 
                                           :value_brl, 
-                                          :principal, 
-                                          :principal_brl, 
-                                          :interest, 
                                           :date, 
-                                          :debt_id, 
-                                          :type, 
-                                          :id,
-                                          :exchange_rate,
-                                          :interest_brl,
-                                          payment_charges_attributes: [:id, 
-                                                                       :charge_id, 
-                                                                       :value,
-                                                                       :value_brl])
+                                          :debt_id,
+                                          :transaction_info_id,  
+                                          :id)
     end
 end
