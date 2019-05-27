@@ -20,11 +20,9 @@ pt-BR:
         interest_rate_formula: Fórmula da taxa de juros
         signature_date: Data da assinatura
         creditor: Credor
-        grace_period: Prazo de carência
-        grace_period_rate_frequency: Periodicidade carência
+        grace_period: Prazo de carência        
         amortization_period: Prazo de amortização
-        amortization_type: Tipo de amortização
-        amortization_frequency: Periodicidade da amortização
+        amortization_type: Tipo de amortização        
         purpose: Objetivo da operação
         financial_agent_id: Agente financeiro
         applicable_legislation: Legislação aplicável
@@ -32,6 +30,7 @@ pt-BR:
         notes: Observações
         contract: Contrato
         payment_day: Dia do pagamento
+        loan_term: Número de parcelas
       creditor:
         name: Nome
         financial_agent: Agente financeiro      
@@ -46,6 +45,7 @@ pt-BR:
         formula: Fórmula
         pro_rata: Pro rata
         payment_day: Dia de pagamento
+        frequency: Periodicidade
         description: Descrição
       transaction_item:
         value: Valor

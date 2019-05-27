@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Charge, type: :model do
  	describe '#value' do
  		before do
- 			@debt = create(:cef)
+ 			@debt = create(:cef) 
  			create(:withdraw_0515, debt: @debt)
 	    create(:withdraw_0615, debt: @debt)
 	    create(:withdraw_0715, debt: @debt)
