@@ -3,11 +3,9 @@
     <%= f.input :id, as: :hidden %>
     <%= f.input :transaction_info_id, as: :hidden %>
     <%= f.input :type, as: :hidden, input_html: {name: "Desembolso"} %>
-    <%= f.input :value_brl, input_html: {value: f.object.value_brl || '0.00'} %>    
-    <label>Taxa de conversão:</label>
-    <input class="form-control" type="text" name="" id="withdraw_exchange_rate">
-    <br>    
-    <%= f.input :value %>
+    <%= f.input :value_brl, as: :string, input_html: {value: f.object.value_brl || '0.00', class: 'currency-brl'} %> 
+    <%= f.input :exchange_rate,  as: :string, input_html: {class: 'currency_exchange_rate'}%>
+    <%= f.input :value , as: :string, input_html: {class: 'currency'} %> 
     <%= f.input :date, as: :date, label: 'Data de liberação' %>
     <%= f.input :internalization_date, as: :date if debt.externo? %>
   </div>
@@ -21,38 +19,27 @@
     <% path = debt_transaction_items_path(@debt) %>
   <% else %>
     <% http_verb = 'patch' %>
-    <% path = debt_transaction_item_path(@debt, transaction) %>
+    <% path = debt_transaction_item_path(@debt, transaction_item) %>
   <% end %>
 
   <button type="button" class="btn btn-success transaction-save" data-http-verb="<%= http_verb %>" data-path='<%= path %>'>Salvar</button>
 </div>
 
 <script type="text/javascript">
-  updateExchangeRate();
+ 
+  $('#transaction_item_exchange_rate').on('keyup', function(e) {
 
-    $('#transaction_item_value_brl').on('keyup', function(){
-        updateValue();    
-    });
+    if($.isNumeric($('#transaction_item_exchange_rate').val())){
+      $('#transaction_item_value').val((Big($('#transaction_item_value_brl').val().replace(/[.]/g, '').replace(/[,]/g, '.')) / $('#transaction_item_exchange_rate').val().replace(/[,]/g, '.')).toFixed(5));
 
-    $('#withdraw_exchange_rate').on('keyup', function(){
-        updateValue();
-    });
-
-  $('#transaction_value').on('keyup', function(){
-    updateExchangeRate();
+      $('.currency').unmask();
+      $('.currency').mask('#.##0,00000', {reverse: true});
+    }
   });
 
-  function updateValue(){    
-    if($.isNumeric($('#transaction_item_value_brl').val())){
-      value = Big($('#transaction_item_value_brl').val()) / $('#withdraw_exchange_rate').val();
-          $('#transaction_item_value').val(value);
-    }
-  }
-
-  function updateExchangeRate(){
-    if($.isNumeric($('#transaction_item_value').val())){
-      exchange_rate = Big($('#transaction_item_value').val()) / $('#transaction_value_brl').val();
-      $('#withdraw_exchange_rate').val(exchange_rate);
-    }
-  }
 </script>
+
+
+
+
+

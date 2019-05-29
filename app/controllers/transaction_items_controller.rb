@@ -68,9 +68,11 @@ class TransactionItemsController < ApplicationController
     def transaction_item_params
       params.require(:transaction_item).permit(:value, 
                                           :value_brl, 
+                                          :exchange_rate,
                                           :date, 
                                           :debt_id,
                                           :transaction_info_id,  
-                                          :id)
+                                          :id,
+                                          :internalization_date)
     end
 end

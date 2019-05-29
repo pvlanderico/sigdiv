@@ -1,6 +1,6 @@
 FactoryBot.define do
 	factory :currency, aliases: [:uprd] do
 		name { 'UPRD' }
-		formula { 'TODO' }
+		formula { '0.5' }
 	end
 end

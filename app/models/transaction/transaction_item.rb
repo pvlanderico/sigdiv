@@ -4,9 +4,10 @@ class TransactionItem < ApplicationRecord
 
 	before_save :set_outstanding_balance
 
+    validates :value_brl, presence: true
+	validates :exchange_rate, presence: true
 	validates :value, presence: true
-	validates :value_brl, presence: true
-
+	
 	def editable?
 		true
 	end

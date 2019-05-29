@@ -52,6 +52,7 @@ pt-BR:
         value_brl: Valor (BRL)
         date: Data
         exchange_rate: Taxa de conversão
+        internalization_date: Data de internalização
       currency:
         name: Nome
         formula: Fórmula
