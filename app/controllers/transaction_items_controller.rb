@@ -63,7 +63,7 @@ class TransactionItemsController < ApplicationController
     end
 
     def set_transaction_items
-      @transaction_items = @debt.transaction_items
+      @transaction_items = @debt.transaction_items.order :date
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

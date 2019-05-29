@@ -40,9 +40,9 @@
             <% if transaction_item.type.name == TransactionType::BASIC_TYPES[1][:name] %>
               <span class="badge badge-primary badge-pill">D</span>
             <% elsif transaction_item.type.name == TransactionType::BASIC_TYPES[2][:name] %>
-              <span class="badge badge-warning badge-pill">PR</span>
+              <span class="badge badge-warning badge-pill">A</span>
             <% else %>
-              <span class="badge badge-secondary badge-pill">PF</span>
+              <span class="badge badge-secondary badge-pill">F</span>
             <% end %>
           </td>
           
@@ -71,11 +71,11 @@
   <div class='position-fixed'>
     <ul class="nav flex-column list-group">    
       <li><span class="badge badge-primary badge-pill">D</span> Desembolso</li>
-      <li><span class="badge badge-warning badge-pill">PR</span> Pagamento realizado</li>
-      <li><span class="badge badge-secondary badge-pill">PF</span> Pagamento futuro</li>    
+      <li><span class="badge badge-warning badge-pill">A</span> Amortização</li>
+      <li><span class="badge badge-secondary badge-pill">F</span> Operação futura</li>    
     </ul>
     <br>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, type: 'Withdraw') %>">Registrar desembolso</button>
+    <button type="button" class="btn btn-primary new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, type: 'Withdraw') %>">Registrar desembolso</button>
   </div>  
 </div>
 
