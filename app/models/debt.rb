@@ -154,6 +154,6 @@ class Debt < ApplicationRecord
 		end
 
 		def reject_conditions attributes
-			attributes.except("_destroy").except("pro_rata").except("transaction_type_attributes").values.reject(&:empty?).blank? && attributes["transaction_type_attributes"].values.reject(&:empty?).blank?
+			attributes.except("_destroy").except("pro_rata").except("type_attributes").values.reject(&:empty?).blank? && attributes["type_attributes"].values.reject(&:empty?).blank?
 		end
 end

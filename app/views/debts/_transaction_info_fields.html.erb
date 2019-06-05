@@ -1,6 +1,6 @@
 <div class='nested-fields'>
 	<div class="row">
-		<%= f.simple_fields_for :transaction_type, f.object.type || TransactionType.new do |transaction_type| %>
+		<%= f.simple_fields_for :type, f.object.type || TransactionType.new do |transaction_type| %>
       <%= render 'transaction_type_fields', f: transaction_type %>
     <% end %> 
 

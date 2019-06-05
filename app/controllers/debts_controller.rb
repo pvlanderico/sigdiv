@@ -24,7 +24,7 @@ class DebtsController < ApplicationController
 
   # POST /debts
   # POST /debts.json
-  def create
+  def create    
     @debt = Debt.new(debt_params)
 
     respond_to do |format|
@@ -96,9 +96,9 @@ class DebtsController < ApplicationController
                                                                   :pro_rata,
                                                                   :frequency,
                                                                   :transaction_type_id,
-                                                                  transaction_type_attributes: [:id,
-                                                                                                :_destroy,
-                                                                                                :name,
-                                                                                                :operator]])
+                                                                  type_attributes: [:id,
+                                                                                    :_destroy,
+                                                                                    :name,
+                                                                                    :operator]])
     end
 end
