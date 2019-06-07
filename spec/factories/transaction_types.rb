@@ -9,5 +9,10 @@ FactoryBot.define do
 		  name { TransactionType::BASIC_TYPES[2][:name] }
 		  operator { TransactionType::BASIC_TYPES[2][:operator] }
 		end
+
+		factory :interest do
+		  name { TransactionType::BASIC_TYPES[3][:name] }
+		  operator { TransactionType::BASIC_TYPES[3][:operator] }
+		end
 	end
 end

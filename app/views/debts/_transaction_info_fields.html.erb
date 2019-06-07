@@ -10,9 +10,6 @@
 		</div>
 		<div class="col-sm">
 		  <%= f.input :payment_day %>
-		</div>		
-		<div class="col-sm count-days-container">			
-		  <%= f.input :pro_rata, input_html: { value: '' } %>
 		</div>
 		<div class="col-sm">
 			<%= f.input :frequency, as: :radio_buttons, collection: TransactionInfo.frequencies.keys, label_method: :titleize %>

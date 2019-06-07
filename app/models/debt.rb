@@ -18,8 +18,7 @@ class Debt < ApplicationRecord
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
-	validates :loan_term, presence: true
-	validates :payment_day, presence: true, :inclusion => 1..30
+	validates :loan_term, presence: true	
 
 	def self.search code_query = '', name_query = '', creditor_query = '', signature_year_query = '', status_query = ''
 		result = Debt.all
@@ -38,10 +37,12 @@ class Debt < ApplicationRecord
 		result
 	end
 
-	def init		
-	    transaction_infos << TransactionInfo.new( type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[1]))
-	    transaction_infos << TransactionInfo.new( type: TransactionType.find_or_create_by(TransactionType::BASIC_TYPES[2]))
-	    transaction_infos.build.build_type
+	def init
+		TransactionType::BASIC_TYPES.each do |type|
+	    transaction_infos << TransactionInfo.new( type: TransactionType.find_or_create_by(type.last) )
+	   end
+	   
+	   transaction_infos.build.build_type
 	end
 
   # Desembolsos
@@ -113,10 +114,6 @@ class Debt < ApplicationRecord
 		withdraws.where(date: signature_date..final_date).sum(:value) - amortizations.where(date: signature_date..final_date).sum(:value)
 	end
 
-	def payment_date
-		Date.new(Date.today.year, Date.today.month, payment_day)
-	end
-
 	# Taxa de juros
 	def interest_rate
 		BigDecimal(Dentaku(interest_rate_formula)) / 100
@@ -130,10 +127,6 @@ class Debt < ApplicationRecord
 
 		def self.date_range_from_year year
 			Date.new(year)..(Date.new(year + 1) - 1.day)
-		end
-
-		def charges_total
-			charges.reduce(0) { |sum, charge| sum + charge.total }
 		end
 
 		def instalment_formula_numerator
@@ -154,6 +147,6 @@ class Debt < ApplicationRecord
 		end
 
 		def reject_conditions attributes
-			attributes.except("_destroy").except("pro_rata").except("type_attributes").values.reject(&:empty?).blank? && attributes["type_attributes"].values.reject(&:empty?).blank?
+			attributes.except("_destroy").except("type_attributes").values.reject(&:empty?).blank? && attributes["type_attributes"].values.reject(&:empty?).blank?
 		end
 end

@@ -34,23 +34,20 @@
     <div class="row">
       <div class="col-sm">
         <%= f.input :contract_value %>
-      </div>      
+      </div>
       <div class="col-sm">
         <%= f.association :currency %>
-      </div>
-      <div class="col-sm">
-        <%= f.input :interest_rate_formula %>
-      </div>
+      </div>      
     </div>
 
     <br>
 
     <div class="row">
       <div class="col-sm">
-        <%= f.input :loan_term %>
+        <%= f.input :interest_rate %>
       </div>
       <div class="col-sm">
-        <%= f.input :payment_day %>
+        <%= f.input :loan_term %>
       </div>
     </div>
 
@@ -59,27 +56,16 @@
     <div class="row">
       <div class="col-sm">
         <%= f.input :grace_period %>
-      </div>      
-      <div class="col-sm">        
-      </div>
-      <div class="col-sm">        
-      </div>
-    </div>
-
-    <br>
-
-    <div class="row">
+      </div>       
       <div class="col-sm">
         <%= f.input :amortization_period %>
       </div>
       <div class="col-sm">
         <%= f.input :amortization_type, as: :radio_buttons, collection: Debt.amortization_types.keys, label_method: :titleize %>
-      </div>
-      <div class="col-sm">        
-      </div>
+      </div>      
     </div>
-    <hr class="dashed-hr">
 
+    <hr class="dashed-hr">
     
     <div class='links'>
       <h3>Movimentações
@@ -118,22 +104,21 @@
 
 <script type="text/javascript">
 
-      $('#debt_category_interno').on( "click", function() {
-          categoryInterno();
-      });
+  $('#debt_category_interno').on( "click", function() {
+      categoryInterno();
+  });
 
-      $('#debt_category_externo').on( "click", function() {
-         categoryExterno();
-      });
+  $('#debt_category_externo').on( "click", function() {
+     categoryExterno();
+  });
 
-      function categoryInterno(){
-        $('#debt_financial_agent_id').val("");
-        $('#debt_financial_agent_id').attr('disabled', true);
-      }
+  function categoryInterno(){
+    $('#debt_financial_agent_id').val("");
+    $('#debt_financial_agent_id').attr('disabled', true);
+  }
 
-      function categoryExterno(){
-        $('#debt_financial_agent_id').attr('disabled', false);
-      }
-  
+  function categoryExterno(){
+    $('#debt_financial_agent_id').attr('disabled', false);
+  }  
 
 </script>
