@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Debt, type: :model do
   before(:each) do  	
-  	@debt = create(:debt, transaction_infos: [create(:debt_withdraw), create(:debt_amortization)])
+  	@debt = create(:debt, transaction_infos: [build(:debt_withdraw), build(:debt_amortization)])
 
   	@debts = create_list(:debt, 30)
 	end

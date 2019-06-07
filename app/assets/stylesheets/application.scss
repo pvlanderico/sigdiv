@@ -16,6 +16,7 @@
 @import "jquery-ui";
 @import "bootstrap";
 @import "font-awesome";
+@import "datatables";
 
 .logo {
   width: 51px;
@@ -79,10 +80,6 @@ hr.dashed-hr {
   height: 77%;
 }
 
-.count-days-container {
-  margin-top: 40px;
-}
-
 .trash-charge-container {
   margin-top: 30px;
 }
@@ -90,4 +87,3 @@ hr.dashed-hr {
 .add-charge {
   margin-left: 10px;
 }
-@import "datatables";

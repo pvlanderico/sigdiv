@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_181004) do
+ActiveRecord::Schema.define(version: 2019_06_07_182344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,14 +57,12 @@ ActiveRecord::Schema.define(version: 2019_05_24_181004) do
     t.text "notes"
     t.integer "category"
     t.integer "currency_id"
-    t.string "interest_rate_formula"
     t.integer "loan_term"
-    t.integer "payment_day"
+    t.decimal "interest_rate"
   end
 
   create_table "transaction_infos", force: :cascade do |t|
     t.string "formula"
-    t.boolean "pro_rata"
     t.integer "payment_day"
     t.text "description"
     t.integer "debt_id"
@@ -79,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_05_24_181004) do
     t.decimal "value_brl"
     t.date "date"
     t.decimal "exchange_rate"
-    t.decimal "start_outstanding_balance"
+    t.decimal "start_balance"
     t.decimal "start_outstanding_balance_brl"
     t.integer "transaction_info_id"
     t.datetime "created_at", null: false

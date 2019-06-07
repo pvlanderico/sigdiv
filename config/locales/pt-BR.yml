@@ -16,8 +16,7 @@ pt-BR:
         name: Identificador
         category: Tipo
         contract_value: Valor do contrato
-        currency: Moeda
-        interest_rate_formula: Fórmula da taxa de juros
+        currency: Moeda        
         signature_date: Data da assinatura
         creditor: Credor
         grace_period: Prazo de carência        
@@ -28,9 +27,9 @@ pt-BR:
         applicable_legislation: Legislação aplicável
         legislation_level: Esfera
         notes: Observações
-        contract: Contrato
-        payment_day: Dia do pagamento
+        contract: Contrato        
         loan_term: Número de parcelas
+        interest_rate: Taxa de juros
       creditor:
         name: Nome
         financial_agent: Agente financeiro      
@@ -42,8 +41,7 @@ pt-BR:
         name: Nome
         operator: Operador
       transaction_info:
-        formula: Fórmula
-        pro_rata: Pro rata
+        formula: Fórmula        
         payment_day: Dia de pagamento
         frequency: Periodicidade
         description: Descrição
