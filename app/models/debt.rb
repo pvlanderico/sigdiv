@@ -123,6 +123,13 @@ class Debt < ApplicationRecord
 		signature_date.year..(signature_date + loan_term.months).year
 	end
 
+	def withdraws_pro_rata
+		result = []
+		withdraws.where(date: reference_period).each do |withdraw|
+			result += result + [withdraw.value * withdraw.period]
+		end
+	end
+
 	private
 
 		def self.date_range_from_year year
