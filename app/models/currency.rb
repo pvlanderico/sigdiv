@@ -1,4 +1,4 @@
-require 'BNDES'
+require 'bndes'
 
 class Currency < ApplicationRecord
 	validates :name, presence: true
