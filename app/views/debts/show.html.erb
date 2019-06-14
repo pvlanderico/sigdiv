@@ -102,7 +102,7 @@
         <div class="card-header alert-primary"><strong>Operações</strong></div>
         <div class="card-body">
           <% @debt.transaction_infos.each do |transaction_info| %>
-          <p class="card-text"><%= transaction_info.type.name %> - <%= transaction_info.formula %> - <%= transaction_info.description %> - <%= transaction_info.pro_rata %> %</p>  
+          <p class="card-text"><%= transaction_info.type.name %> - <%= transaction_info.formula %> - <%= transaction_info.description %></p>  
           <% end %>    
         </div>
       </div>

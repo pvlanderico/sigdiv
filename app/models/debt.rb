@@ -114,11 +114,6 @@ class Debt < ApplicationRecord
 		withdraws.where(date: signature_date..final_date).sum(:value) - amortizations.where(date: signature_date..final_date).sum(:value)
 	end
 
-	# Taxa de juros
-	def interest_rate
-		BigDecimal(Dentaku(interest_rate_formula)) / 100
-	end
-
 	def years_list
 		signature_date.year..(signature_date + loan_term.months).year
 	end

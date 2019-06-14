@@ -5,16 +5,27 @@ class FormulaService
 								'PARCELAS' => :loan_term,
 								'DiNi' 	=> [:withdraw, :value, :period] }
 	class << self
-		#FormulaUtils::eval(formula, debt)
+		#FormulaService::eval(formula, debt)
 
-		def eval formula, debt
+		def eval formula, debt			
 			Dentaku(parse(formula, debt))
 		end
 
 		def parse formula, debt
-			VARIABLES.each do |key, value|
-byebug
-				if key == 'SUM' && formula.match(/SUM\(.*\)/)
+			result = formula.dup
+
+			formula.gsub(/\[(\w*)\]/) do
+				value = VARIABLES[$1]				
+				result.gsub!("[#{$1}]", debt.send(value).to_s)
+			end
+			
+			result
+		end
+
+		def sum objects
+
+VARIABLES.each do |key, value|
+				if formula.match(/\[\w*\(.*\)\]/)
 					sum_formula = formula.match(/SUM\((.*)\)/)
 
 					formula.gsub!(/SUM\(.*\)/, sum(collect(sum_formula, debt)))					
@@ -27,9 +38,8 @@ byebug
 				end
 
 			end
-		end
 
-		def sum objects
+
 			result = 0
 
 			objects.each do |object|

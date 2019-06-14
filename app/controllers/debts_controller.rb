@@ -86,7 +86,7 @@ class DebtsController < ApplicationController
                                    :currency_id,
                                    :notes,                                   
                                    :loan_term,
-                                   :interest_rate                     
+                                   :interest_rate,                     
                                    transaction_infos_attributes: [:id,
                                                                   :_destroy,
                                                                   :formula,
