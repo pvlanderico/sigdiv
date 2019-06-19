@@ -6,13 +6,13 @@ FactoryBot.define do
 		end
 
 		factory :amortization do
-		  name { TransactionType::BASIC_TYPES[2][:name] }
-		  operator { TransactionType::BASIC_TYPES[2][:operator] }
+		  name { TransactionType::BASIC_TYPES[3][:name] }
+		  operator { TransactionType::BASIC_TYPES[3][:operator] }
 		end
 
 		factory :interest do
-		  name { TransactionType::BASIC_TYPES[3][:name] }
-		  operator { TransactionType::BASIC_TYPES[3][:operator] }
+		  name { TransactionType::BASIC_TYPES[2][:name] }
+		  operator { TransactionType::BASIC_TYPES[2][:operator] }
 		end
 	end
 end

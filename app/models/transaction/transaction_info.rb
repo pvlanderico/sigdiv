@@ -10,5 +10,9 @@ class TransactionInfo < ApplicationRecord
 	def payment_date
 		Date.new(Date.today.year, Date.today.month, payment_day)
 	end
+
+	def reference_period			
+		(payment_date - 1.month + 1.day)..payment_date
+	end
 	
 end

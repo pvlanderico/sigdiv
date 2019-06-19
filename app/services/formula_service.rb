@@ -1,17 +1,19 @@
 class FormulaService
-	VARIABLES = { 'SUM'   => :sum,
-								'SALDO' => :outstanding_balance, 
+	VARIABLES = {	'SALDO' => :outstanding_balance, 
 								'JUROS' => :interest_rate,
 								'PARCELAS' => :loan_term,
 								'DiNi' 	=> [:withdraw, :value, :period] }
 	class << self
-		#FormulaService::eval(formula, debt)
-
+		
 		def eval formula, debt			
 			Dentaku(parse(formula, debt))
 		end
 
 		def parse formula, debt
+			if (formula.match(/\[SOMA\(.*\)\]/))				
+				formula.gsub!(/\[SOMA\(.*\)\]/, summation(formula.match(/\[SOMA\((.*)\)\]/).captures.first, debt).to_s)
+			end
+			
 			result = formula.dup
 
 			formula.gsub(/\[(\w*)\]/) do
@@ -22,25 +24,10 @@ class FormulaService
 			result
 		end
 
-		def sum objects
-
-VARIABLES.each do |key, value|
-				if formula.match(/\[\w*\(.*\)\]/)
-					sum_formula = formula.match(/SUM\((.*)\)/)
-
-					formula.gsub!(/SUM\(.*\)/, sum(collect(sum_formula, debt)))					
-				
-				elsif key == 'DiNi' && formula.match(/DiNi/)
-					return value
-
-				else
-					formula.gsub!(key, debt.send(value.to_s))
-				end
-
-			end
-
-
+		def summation formula, debt
 			result = 0
+
+			objects = collect(VARIABLES[formula], debt)
 
 			objects.each do |object|
 				result += object
@@ -51,14 +38,14 @@ VARIABLES.each do |key, value|
 
 		def collect formula_params, debt
 			
-			object_name = formula_params[0]
-			var1 = formula_params[1]
-			var2 = formula_params[2]
+			object_name = formula_params[0] #withdraw
+			var1 = formula_params[1] #value Dn
+			var2 = formula_params[2] #period Nn
 
 			result = []
 
-			debt.send(object_name.pluralize).each do |object|
-				result =+ var1 * var2
+			debt.send(object_name.to_s.pluralize).each do |object|
+				result << object.send(var1) * object.send(var2)
 			end
 
 			result

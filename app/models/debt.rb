@@ -51,7 +51,7 @@ class Debt < ApplicationRecord
 	end
 	# Amortizações
 	def amortizations
-		transaction_items.where( transaction_infos: { transaction_type_id: TransactionType.find_by(TransactionType::BASIC_TYPES[2] ).id} )
+		transaction_items.where( transaction_infos: { transaction_type_id: TransactionType.find_by(TransactionType::BASIC_TYPES[3] ).id} )
 	end 
   # Próxima parcela
 	def next_instalment		
@@ -141,11 +141,6 @@ class Debt < ApplicationRecord
 
 		def interest_rate_per_month
 			interest_rate / 12
-		end
-
-		# Periodo de referência para calculo de juros e taxas
-		def reference_period			
-			(payment_date - 1.month + 1.day)..payment_date
 		end
 
 		def reject_conditions attributes

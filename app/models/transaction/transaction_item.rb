@@ -2,7 +2,7 @@ class TransactionItem < ApplicationRecord
 	belongs_to :transaction_info
 	has_one :debt, through: :transaction_info
 
-	before_save :set_outstanding_balance
+	before_save :set_start_balance
 
 	validates :value, presence: true
 	validates :value_brl, presence: true
@@ -19,9 +19,15 @@ class TransactionItem < ApplicationRecord
 		transaction_info.type
 	end
 
+	def period
+		result = ((transaction_info.payment_date) - date).to_i
+		result = 30 if result == 31
+		result
+	end
+
 	private
-		def set_outstanding_balance
-			self.start_outstanding_balance = debt.outstanding_balance
+		def set_start_balance
+			self.start_balance = debt.outstanding_balance
 		end
 
 end
