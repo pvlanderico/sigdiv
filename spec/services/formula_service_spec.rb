@@ -57,7 +57,7 @@ RSpec.describe FormulaService, type: :model do
 	 		end
 
 	 		it 'evaluates a formula containing a summation function plus constants' do 				
-	 			expect(FormulaService::eval('30 * SALDO * JUROS * [SOMA(DiNi)]', @debt)).to eq (BigDecimal('850000'))
+	 			expect(FormulaService::eval('30 * [SALDO] * [JUROS] - [JUROS] * [SOMA(DiNi)]', @debt)).to eq (BigDecimal('25000'))
 	 		end
  		end
  	end

@@ -3,9 +3,10 @@ class FormulaService
 								'JUROS' => :interest_rate,
 								'PARCELAS' => :loan_term,
 								'DiNi' 	=> [:withdraw, :value, :period] }
+	
 	class << self
 		
-		def eval formula, debt			
+		def eval formula, debt
 			Dentaku(parse(formula, debt))
 		end
 
