@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_06_07_182344) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +81,7 @@ ActiveRecord::Schema.define(version: 2019_06_07_182344) do
     t.integer "transaction_info_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "internalization_date"
   end
 
   create_table "transaction_types", force: :cascade do |t|

@@ -4,9 +4,10 @@ class TransactionItem < ApplicationRecord
 
 	before_save :set_start_balance
 
+    validates :value_brl, presence: true
+	validates :exchange_rate, presence: true
 	validates :value, presence: true
-	validates :value_brl, presence: true
-
+	
 	def editable?
 		true
 	end
@@ -25,9 +26,13 @@ class TransactionItem < ApplicationRecord
 		result
 	end
 
+	def init(debt, type)
+		self.debt = debt
+		self.transaction_info = debt.transaction_infos.where(transaction_infos: { transaction_type_id: TransactionType.find_by(name: type).id} ).first
+	end
+
 	private
 		def set_start_balance
 			self.start_balance = debt.outstanding_balance
 		end
-
 end
