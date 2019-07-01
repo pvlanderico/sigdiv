@@ -69,7 +69,7 @@
     
     <div class='links'>
       <h3>Movimentações
-      <%= link_to_add_association fa_icon("plus-square", title: "Adicionar encargo"), f, :transaction_infos, 'data-association-insertion-method': :append, 'data-association-insertion-node': '#transaction_infos', class: 'add-charge' %>
+        <%= link_to_add_association fa_icon("plus-square", title: "Adicionar encargo"), f, :transaction_infos, 'data-association-insertion-method': :append, 'data-association-insertion-node': '#transaction_infos', class: 'add-charge' %>
       </h3>
 
     </div>
@@ -101,6 +101,77 @@
     <%= f.button :submit, class: "btn btn-success pull-right" %>
   </div>
 <% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="formula_modal" tabindex="-1" role="dialog" aria-labelledby="formulaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Váriaveis de fórmula</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-stripped table-dark ">
+          <thead>
+            <tr>
+              <th scope="col">Variável</th>
+              <th scope="col">Função do sistema</th>
+              <th scope="col">Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[AMT]</td>
+              <td>amortization</td>
+              <td>Valor da próxima amortização</td>
+            </tr>
+            <tr>
+              <td>[d]</td>
+              <td>payment_day</td>
+              <td>Dia do pagamento</td>
+            </tr>
+            <tr>
+              <td>[DiNi]</td>
+              <td>withdraws_pro_rata</td>
+              <td>Lista de desembolsos multiplicado pelo período de referência</td>
+            </tr>
+            <tr>
+              <td>[i]</td>
+              <td>interest_rate</td>
+              <td>Taxa de juros (%)</td>
+            </tr>
+            <tr>
+              <td>[n]</td>
+              <td>loan_term</td>
+              <td>Número de parcelas</td>
+            </tr>
+            <tr>
+              <td>[SD0]</td>
+              <td>balance</td>
+              <td>Valor do saldo inicial</td>
+            </tr>
+            <tr>
+              <td>[SDf]</td>
+              <td>outstanding_balance</td>
+              <td>Valor do saldo final</td>
+            </tr>
+            <tr>
+              <td>[VC]</td>
+              <td>contract_value</td>
+              <td>Valor total do contrato</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
 
