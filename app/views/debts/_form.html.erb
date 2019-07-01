@@ -69,7 +69,7 @@
     
     <div class='links'>
       <h3>Movimentações
-        <%= link_to_add_association fa_icon("plus-square", title: "Adicionar encargo"), f, :transaction_infos, 'data-association-insertion-method': :append, 'data-association-insertion-node': '#transaction_infos', class: 'add-charge' %>
+        <%= link_to_add_association fa_icon("plus-square", title: "Adicionar encargo"), f, :transaction_infos, 'data-association-insertion-method': :append, 'data-association-insertion-node': '#transaction_infos', class: 'add-charge text-primary' %>
       </h3>
 
     </div>
@@ -123,42 +123,42 @@
           </thead>
           <tbody>
             <tr>
-              <td>[AMT]</td>
+              <td><code>[AMT]</code></td>
               <td>amortization</td>
               <td>Valor da próxima amortização</td>
             </tr>
             <tr>
-              <td>[d]</td>
+              <td><code>[d]</code></td>
               <td>payment_day</td>
               <td>Dia do pagamento</td>
             </tr>
             <tr>
-              <td>[DiNi]</td>
+              <td><code>[DiNi]</code></td>
               <td>withdraws_pro_rata</td>
               <td>Lista de desembolsos multiplicado pelo período de referência</td>
             </tr>
             <tr>
-              <td>[i]</td>
+              <td><code>[i]</code></td>
               <td>interest_rate</td>
               <td>Taxa de juros (%)</td>
             </tr>
             <tr>
-              <td>[n]</td>
+              <td><code>[n]</code></td>
               <td>loan_term</td>
               <td>Número de parcelas</td>
             </tr>
             <tr>
-              <td>[SD0]</td>
+              <td><code>[SD0]</code></td>
               <td>balance</td>
               <td>Valor do saldo inicial</td>
             </tr>
             <tr>
-              <td>[SDf]</td>
+              <td><code>[SDf]</code></td>
               <td>outstanding_balance</td>
               <td>Valor do saldo final</td>
             </tr>
             <tr>
-              <td>[VC]</td>
+              <td><code>[VC]</code></td>
               <td>contract_value</td>
               <td>Valor total do contrato</td>
             </tr>
