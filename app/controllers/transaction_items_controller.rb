@@ -60,8 +60,7 @@ class TransactionItemsController < ApplicationController
       @transaction_item = TransactionItem.find(params[:id])
     end
 
-    def set_transaction_items
-      #byebug
+    def set_transaction_items      
       @transaction_items = @debt.transaction_items.order(:date)
     end
 

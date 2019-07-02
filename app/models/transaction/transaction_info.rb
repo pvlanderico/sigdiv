@@ -14,5 +14,9 @@ class TransactionInfo < ApplicationRecord
 	def reference_period			
 		(payment_date - 1.month + 1.day)..payment_date
 	end
+
+	def next_amount
+		FormulaService.eval formula, debt
+	end
 	
 end
