@@ -11,7 +11,7 @@
 <div class='pull-left debt-ops'>
   <p>
     <strong>Valor do contrato: </strong>
-    <%= big_decimal_to_currency @debt.contract_value%>
+    <%= big_decimal_to_currency @debt.contract_value %>
   </p>
   <p>
     <strong>Valor do contrato em reais: </strong>
@@ -29,9 +29,9 @@
       <th>Valor</th>
       <th>Operação</th>        
     </thead>
-    
+    <% transaction_items = FutureTransaction.list @debt%>
     <tbody>    
-      <% @transaction_items.each do |transaction_item| %>              
+      <% transaction_items.each do |transaction_item| %>              
           
         <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
