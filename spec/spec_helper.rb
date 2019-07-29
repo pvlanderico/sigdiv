@@ -1,6 +1,7 @@
 # JSON Schema
 require "json_matchers/rspec"
-
+# Capybara
+require 'capybara/rspec'
 # VCR
 require 'vcr'
 
