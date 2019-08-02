@@ -93,10 +93,7 @@ class DebtsController < ApplicationController
                                                                   :payment_day,
                                                                   :description,                                                                  
                                                                   :frequency,
-                                                                  :transaction_type_id,
-                                                                  type_attributes: [:id,
-                                                                                    :_destroy,
-                                                                                    :name,
-                                                                                    :operator]])
+                                                                  :transaction_type_id
+                                                                  ])
     end
 end

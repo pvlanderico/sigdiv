@@ -38,11 +38,9 @@ class Debt < ApplicationRecord
 	end
 
 	def init
-		TransactionType::BASIC_TYPES.each do |type|
-	    transaction_infos << TransactionInfo.new( type: TransactionType.find_or_create_by(type.last) )
+		TransactionInfo::BASIC_TYPES.values.map { |i| i[:name] }.each do |type|
+	    transaction_infos << TransactionInfo.new( name: type )
 	   end
-	   
-	   transaction_infos.build.build_type
 	end
 
   # Desembolsos

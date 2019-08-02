@@ -1,11 +1,14 @@
 class TransactionInfo < ApplicationRecord
+	BASIC_TYPES = { 1 => {name: 'Desembolso', operator: '+'}, 
+									2 => {name: 'Juros', operator: '-'},
+									3 => {name: 'Amortização', operator: '-'},
+									4 => {name: 'Encargos', operator: '-' } }
+
+	enum operation: [:debit, :credit]
 	enum frequency: [:mensal, :trimestral, :semestral]
 
-	belongs_to :debt
-	belongs_to :type, class_name: 'TransactionType', foreign_key: :transaction_type_id
+	belongs_to :debt	
 	has_many :items, class_name: 'TransactionItem', foreign_key: :transaction_info_id
-
-	accepts_nested_attributes_for :type, reject_if: :all_blank
 
 	def payment_date
 		Date.new(Date.today.year, Date.today.month, payment_day)

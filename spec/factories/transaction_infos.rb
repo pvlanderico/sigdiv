@@ -5,8 +5,7 @@ FactoryBot.define do
 			payment_day { 15 }
 			description { '' }
 			frequency { '' }
-			association :debt, factory: :debt
-			association :type, factory: :withdraw
+			association :debt, factory: :debt			
 	  end
 
 	  factory :debt_amortization do
@@ -14,8 +13,7 @@ FactoryBot.define do
 			payment_day { 15 }
 			description { '' }
 			frequency { TransactionInfo.frequencies[:mensal] }
-			association :debt, factory: :debt
-			association :type, factory: :amortization
+			association :debt, factory: :debt			
 	  end
 
 	  factory :debt_interest do
@@ -23,8 +21,7 @@ FactoryBot.define do
 			payment_day { 15 }
 			description { '' }
 			frequency { TransactionInfo.frequencies[:mensal] }
-			association :debt, factory: :debt
-			association :type, factory: :interest
+			association :debt, factory: :debt			
 		end
 	end
 end
