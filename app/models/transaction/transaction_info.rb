@@ -3,8 +3,7 @@ class TransactionInfo < ApplicationRecord
 									2 => {name: 'Juros', operator: '-'},
 									3 => {name: 'Amortização', operator: '-'},
 									4 => {name: 'Encargos', operator: '-' } }
-
-	enum operation: [:debit, :credit]
+	
 	enum frequency: [:mensal, :trimestral, :semestral]
 
 	belongs_to :debt	

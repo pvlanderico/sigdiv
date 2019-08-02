@@ -4,9 +4,6 @@
     <div class="col-sm">	
 		  <%= f.input :name, collection: TransactionInfo::BASIC_TYPES.values.map { |i| i[:name] }, selected: f.object.name %>
 		</div>
-		<div class="col-sm">			
-		  <%= f.input :operation %>
-		</div>
    	<div class="col-sm">
 			<%= f.input :formula %>
 		</div>
