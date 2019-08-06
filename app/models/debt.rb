@@ -7,7 +7,7 @@ class Debt < ApplicationRecord
 	has_many :transaction_infos
 	has_many :transaction_items, through: :transaction_infos, source: :items
 	
-	accepts_nested_attributes_for :transaction_infos, reject_if: :reject_conditions, allow_destroy: true
+	accepts_nested_attributes_for :transaction_infos, allow_destroy: true
 
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
@@ -18,7 +18,7 @@ class Debt < ApplicationRecord
 	validates :signature_date, presence: true
 	validates :amortization_period, presence: true
 	validates :currency, presence: true
-	validates :loan_term, presence: true	
+	validates :loan_term, presence: true
 
 	def self.search code_query = '', name_query = '', creditor_query = '', signature_year_query = '', status_query = ''
 		result = Debt.all
@@ -45,12 +45,14 @@ class Debt < ApplicationRecord
 
   # Desembolsos
 	def withdraws
-		transaction_items.where( transaction_infos: { transaction_type_id: TransactionType.find_by(TransactionType::BASIC_TYPES[1] ).id} )
+		transaction_items.where(transaction_infos: { category: 1 }) 
 	end
+
 	# Amortizações
 	def amortizations
-		transaction_items.where( transaction_infos: { transaction_type_id: TransactionType.find_by(TransactionType::BASIC_TYPES[3] ).id} )
+		transaction_items.where(transaction_info_id: 3)
 	end 
+
   # Próxima parcela
 	def next_instalment		
 		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
@@ -139,9 +141,5 @@ class Debt < ApplicationRecord
 
 		def interest_rate_per_month
 			interest_rate / 12
-		end
-
-		def reject_conditions attributes
-			attributes.except("_destroy").except("type_attributes").values.reject(&:empty?).blank? && attributes["type_attributes"].values.reject(&:empty?).blank?
 		end
 end

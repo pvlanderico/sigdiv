@@ -37,9 +37,9 @@
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
         <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
           <td>
-            <% if transaction_item.type.name == TransactionType::BASIC_TYPES[1][:name] %>
+            <% if transaction_item.transaction_info_id == 1 %>
               <span class="badge badge-primary badge-pill">D</span>
-            <% elsif transaction_item.type.name == TransactionType::BASIC_TYPES[3][:name] %>
+            <% elsif transaction_item.transaction_info_id == 3  %>
               <span class="badge badge-warning badge-pill">A</span>
             <% else %>
               <span class="badge badge-secondary badge-pill">F</span>
@@ -55,8 +55,8 @@
           </td>
 
           <td>
-            <%= big_decimal_to_currency(transaction_item.type.operator) %>
-          </td>        
+            
+          </td>
           
         </tr>                
       <% end %>              
