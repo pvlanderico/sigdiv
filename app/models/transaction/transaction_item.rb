@@ -16,10 +16,6 @@ class TransactionItem < ApplicationRecord
 		Dentaku("#{start_outstanding_balance} + #{transaction_info.type.operator} + #{value}")
 	end
 
-	def type
-		transaction_info.type
-	end
-
 	def period
 		result = ((transaction_info.payment_date) - date).to_i
 		result = 30 if result == 31

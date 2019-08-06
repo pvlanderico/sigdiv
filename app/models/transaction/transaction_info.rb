@@ -6,7 +6,8 @@ class TransactionInfo < ApplicationRecord
 	
 	enum frequency: [:mensal, :trimestral, :semestral]
 
-	belongs_to :debt	
+	belongs_to :debt
+
 	has_many :items, class_name: 'TransactionItem', foreign_key: :transaction_info_id
 
 	def payment_date
@@ -19,6 +20,10 @@ class TransactionInfo < ApplicationRecord
 
 	def next_amount
 		FormulaService.eval formula, debt
+	end
+	
+	def category
+		OpenStruct.new(BASIC_TYPES[1])
 	end
 	
 end
