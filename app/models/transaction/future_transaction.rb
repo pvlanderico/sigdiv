@@ -8,10 +8,9 @@ class FutureTransaction < TransactionItem
 		
 		(0..debt.loan_term - debt.amortizations.count - 1).each do |i|
 			debt.transaction_infos.each do |transaction_info|
-				byebug
 				i == 0 ? start_balance = debt.outstanding_balance : start_balance = result[i - 1].final_outstanding_balance
 				
-				if (transaction_info.type.name= 'amortization') && (debt.in_grace_period?) || transaction_info.type.name != 'amortization'
+				if (transaction_info.type.name = 'amortization') && (debt.in_grace_period?) || transaction_info.type.name != 'amortization'
 					
 					result << FutureTransaction.new(debt: debt,
 																					type: transaction_info.type, 
