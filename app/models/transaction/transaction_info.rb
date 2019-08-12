@@ -1,8 +1,8 @@
 class TransactionInfo < ApplicationRecord
-	BASIC_TYPES = { 1 => {name: 'Desembolso', operator: '+'}, 
-									2 => {name: 'Juros', operator: '-'},
-									3 => {name: 'Amortização', operator: '-'},
-									4 => {name: 'Encargos', operator: '-' } }
+	BASIC_TYPES = [ {name: 'Desembolso', operator: '+'}, 
+									{name: 'Juros', operator: '-'},
+									{name: 'Amortização', operator: '-'},
+									{name: 'Encargos', operator: '-' } ]
 	
 	enum frequency: [:mensal, :trimestral, :semestral]
 

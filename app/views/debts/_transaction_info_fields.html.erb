@@ -2,7 +2,7 @@
 	<div class="row">		
 
     <div class="col-sm">	
-		  <%= f.input :name, collection: TransactionInfo::BASIC_TYPES.values.map { |i| i[:name] }, selected: f.object.name %>
+		  <%= f.input :category, collection: TransactionInfo::BASIC_TYPES.each_with_index { |i, index| i[:index], i[:name] }, selected: f.object.name %>
 		</div>
    	<div class="col-sm">
 			<%= f.input :formula %>
@@ -26,6 +26,3 @@
 		</div>
 	</div>
 </div>
-
-
-
