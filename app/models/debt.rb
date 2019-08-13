@@ -38,8 +38,8 @@ class Debt < ApplicationRecord
 	end
 
 	def init
-		TransactionInfo::BASIC_TYPES.values.map { |i| i[:name] }.each do |type|
-	    transaction_infos << TransactionInfo.new( name: type )
+		TransactionInfo::BASIC_TYPES.keys.each do |category_number|
+	    transaction_infos << TransactionInfo.new( category_number: category_number )
 	   end
 	end
 
