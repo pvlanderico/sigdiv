@@ -27,6 +27,10 @@ class TransactionItem < ApplicationRecord
 		self.transaction_info = debt.transaction_infos.where(transaction_infos: { transaction_type_id: TransactionType.find_by(name: type).id} ).first
 	end
 
+	def future_transaction?
+		new_record? ? true : false
+	end
+
 	private
 		def set_start_balance
 			self.start_balance = debt.outstanding_balance

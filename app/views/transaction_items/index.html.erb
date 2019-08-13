@@ -37,16 +37,16 @@
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
         <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
           <td>
-            <% if transaction_item.transaction_info.category_number == 1 %>
+            <% if transaction_item.future_transaction? %>
+              <span class="badge badge-secondary badge-pill">F</span>
+            <% elsif transaction_item.transaction_info.category_number == 1 %>
               <span class="badge badge-primary badge-pill">D</span>
             <% elsif transaction_item.transaction_info.category_number == 2  %>
               <span class="badge badge-info badge-pill">J</span>
             <% elsif transaction_item.transaction_info.category_number == 3  %>
               <span class="badge badge-warning badge-pill">A</span>
             <% elsif transaction_item.transaction_info.category_number == 4  %>
-              <span class="badge badge-success badge-pill">E</span>
-            <% else %>
-              <span class="badge badge-secondary badge-pill">F</span>
+              <span class="badge badge-success badge-pill">E</span>            
             <% end %>
           </td>
           

@@ -1,4 +1,5 @@
-class FutureTransaction < TransactionItem		
+class FutureTransaction < TransactionItem
+
 	def editable?
 		false
 	end
