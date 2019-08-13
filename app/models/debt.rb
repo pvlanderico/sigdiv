@@ -45,12 +45,12 @@ class Debt < ApplicationRecord
 
   # Desembolsos
 	def withdraws
-		transaction_items.where(transaction_infos: { category: 1 }) 
+		transaction_items.where(transaction_infos: { category_number: 1 }) 
 	end
 
 	# Amortizações
 	def amortizations
-		transaction_items.where(transaction_info_id: 3)
+		transaction_items.where(transaction_infos: { category_number: 3 })
 	end 
 
   # Próxima parcela

@@ -1,8 +1,8 @@
 class TransactionInfo < ApplicationRecord
-	BASIC_TYPES = [ {name: 'Desembolso', operator: '+'}, 
-									{name: 'Juros', operator: '-'},
-									{name: 'Amortização', operator: '-'},
-									{name: 'Encargos', operator: '-' } ]
+	BASIC_TYPES = { 1 => {name: 'Desembolso', operator: '+'}, 
+									2 => {name: 'Juros', operator: '-'},
+									3 => {name: 'Amortização', operator: '-'},
+									4 => {name: 'Encargos', operator: '-' } }
 	
 	enum frequency: [:mensal, :trimestral, :semestral]
 
@@ -23,7 +23,7 @@ class TransactionInfo < ApplicationRecord
 	end
 	
 	def category
-		OpenStruct.new(BASIC_TYPES[1])
+		OpenStruct.new(BASIC_TYPES[category_number])
 	end
 	
 end
