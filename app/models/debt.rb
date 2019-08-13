@@ -43,6 +43,11 @@ class Debt < ApplicationRecord
 	   end
 	end
 
+	#Juros
+	def interest_amount
+		interest_rate * outstanding_balance
+	end
+	
   # Desembolsos
 	def withdraws
 		transaction_items.where(transaction_infos: { category_number: 1 }) 

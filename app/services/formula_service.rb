@@ -15,11 +15,12 @@ class FormulaService
 				formula.gsub!(/\[SOMA\(.*\)\]/, summation(formula.match(/\[SOMA\((.*)\)\]/).captures.first, debt).to_s)
 			end
 			
-			result = formula.dup
-
-			formula.gsub(/\[(\w*)\]/) do
-				value = VARIABLES[$1]				
-				result.gsub!("[#{$1}]", debt.send(value).to_s)
+			result = formula.dup			
+			formula.gsub(/\[(\w*)\]/) do	
+							
+				value = VARIABLES[$1]							
+				
+				result.gsub!("[#{$1}]", debt.send(value).to_s)		
 			end
 			
 			result

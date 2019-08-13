@@ -13,7 +13,7 @@ class TransactionItem < ApplicationRecord
 	end
 
 	def final_outstanding_balance
-		Dentaku("#{start_outstanding_balance} + #{transaction_info.type.operator} + #{value}")
+		Dentaku("#{start_balance} + #{transaction_info.category.operation} + #{value}")
 	end
 
 	def period

@@ -23,7 +23,8 @@ Debt.create!( "code" => 123456,
 					    "name" => "Caixa Transoceânica",
 					    "category" => 0,
 					    "currency_id" => currency1.id,
-					    "loan_term" => 240				    
+					    "loan_term" => 240,
+					    "interest_rate" => 0.005			    
 					    )
 
 #Charge.create!(name: 'Taxa administrativa', base: 2, debt: Debt.first, count_days: true)
