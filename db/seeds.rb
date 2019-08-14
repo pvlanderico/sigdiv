@@ -30,11 +30,11 @@ Debt.create!( "code" => 123456,
 #Charge.create!(name: 'Taxa administrativa', base: 2, debt: Debt.first, count_days: true)
 #Charge.create!(name: 'Taxa de risco de crédito', base: 0.7, debt: Debt.first, count_days: false)
 
-withdraw = TransactionInfo.create!(category_number: 1, debt: Debt.first, payment_day:'15')
-interest = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15')
-amortization =  TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15')
-charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Adm')
-charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Risco')
+withdraw = TransactionInfo.create!(category_number: 1, debt: Debt.first, payment_day:'15', slug: 'D')
+interest = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', slug: 'J')
+amortization =  TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', slug: 'A')
+charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Adm', slug: 'TA')
+charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Risco', slug: 'TR')
 
 puts Date.new(2015, 5, 8)
 
