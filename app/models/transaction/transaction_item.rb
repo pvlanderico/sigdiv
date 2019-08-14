@@ -22,9 +22,9 @@ class TransactionItem < ApplicationRecord
 		result
 	end
 
-	def init(debt, type)
+	def init(debt, category_number)
 		self.debt = debt
-		self.transaction_info = debt.transaction_infos.where(transaction_infos: { transaction_type_id: TransactionType.find_by(name: type).id} ).first
+		self.transaction_info = debt.transaction_infos.find_by(category_number: category_number)
 	end
 
 	def future_transaction?

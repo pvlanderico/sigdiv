@@ -42,11 +42,11 @@
             <% elsif transaction_item.transaction_info.category_number == 1 %>
               <span class="badge badge-primary badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 2  %>
-              <span class="badge badge-info badge-pill"><%= transaction_item.transaction_info.slug %></span>
+              <span class="badge badge-success badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 3  %>
               <span class="badge badge-warning badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 4  %>
-              <span class="badge badge-success badge-pill"><%= transaction_item.transaction_info.slug %></span>            
+              <span class="badge badge-info badge-pill"><%= transaction_item.transaction_info.slug %></span>            
             <% end %>
           </td>
           
@@ -88,7 +88,7 @@
           <li><span class="badge badge-secondary badge-pill">F</span> Operação futura</li>      
     </ul>
     <br>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, type: 'Desembolso') %>">Registrar desembolso</button>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 1) %>">Registrar desembolso</button>
   </div>  
 </div>
 

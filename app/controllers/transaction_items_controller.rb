@@ -11,7 +11,7 @@ class TransactionItemsController < ApplicationController
   # GET :debt_id/transaction/new
   def new  	
     @transaction_item = TransactionItem.new()
-    @transaction_item.init(@debt, params[:type])
+    @transaction_item.init(@debt, params[:category_number])
     render :new, layout: false
   end
 
