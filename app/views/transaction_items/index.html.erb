@@ -25,9 +25,9 @@
   <table id="dttb-transaction-items" class="table table-hover">
     <thead>
       <th></th>
-      <th>Data</th>
-      <th>Valor em moeda</th>
-      <th>Operação</th>        
+      <th class="td-right">Data</th>
+      <th class="td-right">Valor em moeda</th>
+      <th class="td-right">Operação</th>        
     </thead>
     <% #transaction_items = FutureTransaction.list @debt%>
     <tbody>    
@@ -36,7 +36,7 @@
         <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
         <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
-          <td>
+          <td class="td-right">
             <% if transaction_item.future_transaction? %>
               <span class="badge badge-secondary badge-pill">F</span>
             <% elsif transaction_item.transaction_info.category_number == 1 %>
@@ -50,15 +50,15 @@
             <% end %>
           </td>
           
-          <td>
+          <td class="td-right">
             <%= transaction_item.date %>
           </td>
         
-          <td>
+          <td class="td-right">
            <%= big_decimal_to_currency(transaction_item.value) || '-'  %>                 
           </td>
 
-          <td>
+          <td class="td-right">
             <%= transaction_item.transaction_info.category.name %>
           </td>
           
@@ -75,9 +75,9 @@
   <div class='position-fixed'>
     <ul class="nav flex-column list-group">    
       <li><span class="badge badge-primary badge-pill">D</span> Desembolso</li>
-      <li><span class="badge badge-success badge-pill">J</span> Juros</li>      
+      <li><span class="badge badge-info badge-pill">J</span> Juros</li>      
       <li><span class="badge badge-warning badge-pill">A</span> Amortização</li>
-      <li><span class="badge badge-info badge-pill">E</span> Encargos</li>
+      <li><span class="badge badge-success badge-pill">E</span> Encargos</li>
       <li><span class="badge badge-secondary badge-pill">F</span> Operação futura</li>    
     </ul>
     <br>

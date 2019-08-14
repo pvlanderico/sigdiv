@@ -12,7 +12,7 @@ class FutureTransaction < TransactionItem
 									
 			result << FutureTransaction.new(debt: debt,
 																			transaction_info: debt.transaction_infos.find_by(category_number: 2), 
-																			value: debt.interest_amount, 
+																			value: FormulaService.eval(debt.transaction_infos.find_by(category_number: 2).formula, debt), 
 																			value_brl: nil, 
 																			date: debt.transaction_infos.find_by(category_number: 2).payment_date + i.months, 
 																			start_balance: start_balance)

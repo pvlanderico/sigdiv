@@ -42,11 +42,6 @@ class Debt < ApplicationRecord
 	    transaction_infos << TransactionInfo.new( category_number: category_number )
 	   end
 	end
-
-	#Juros
-	def interest_amount
-		interest_rate * outstanding_balance
-	end
 	
   # Desembolsos
 	def withdraws
