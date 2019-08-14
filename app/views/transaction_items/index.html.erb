@@ -59,7 +59,11 @@
           </td>
 
           <td>
-            <%= transaction_item.transaction_info.category.name %>
+            <% if transaction_item.transaction_info.category.name == 'Encargos' %>
+              <%= transaction_item.transaction_info.description %>
+            <% else %>
+              <%= transaction_item.transaction_info.category.name %>
+            <% end %>
           </td>
           
         </tr>                
