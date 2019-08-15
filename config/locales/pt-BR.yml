@@ -46,6 +46,7 @@ pt-BR:
         payment_day: Dia de pagamento
         frequency: Periodicidade
         description: Descrição
+        slug: Sigla
       transaction_item:
         value: Valor
         value_brl: Valor (BRL)

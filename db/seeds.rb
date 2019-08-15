@@ -30,11 +30,11 @@ Debt.create!( "code" => 123456,
 #Charge.create!(name: 'Taxa administrativa', base: 2, debt: Debt.first, count_days: true)
 #Charge.create!(name: 'Taxa de risco de crédito', base: 0.7, debt: Debt.first, count_days: false)
 
-withdraw = TransactionInfo.create!(category_number: 1, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]")
-interest = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]")
-amortization = TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]")
-charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Adm', formula: "[SALDO] * [JUROS]")
-charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Risco', formula: "[SALDO] * [JUROS]")
+withdraw = TransactionInfo.create!(category_number: 1, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'D')
+interest = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'J')
+amortization = TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'A')
+charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Adm', formula: "[SALDO] * [JUROS]", slug: 'TA')
+charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Risco', formula: "[SALDO] * [JUROS]", slug: 'TR')
 
 puts Date.new(2015, 5, 8)
 

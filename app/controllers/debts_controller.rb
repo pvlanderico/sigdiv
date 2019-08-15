@@ -93,7 +93,8 @@ class DebtsController < ApplicationController
                                                                   :payment_day,
                                                                   :description,                                                                  
                                                                   :frequency,
-                                                                  :transaction_type_id
+                                                                  :slug,
+                                                                  :category_number
                                                                   ])
     end
 end

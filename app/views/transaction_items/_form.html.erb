@@ -2,7 +2,6 @@
   <div class="modal-body">
     <%= f.input :id, as: :hidden %>
     <%= f.input :transaction_info_id, as: :hidden %>
-    <%= f.input :type, as: :hidden, input_html: {name: "Desembolso"} %>
     <%= f.input :value_brl, as: :string, input_html: {value: f.object.value_brl || '0.00', class: 'currency-brl'} %> 
     <%= f.input :exchange_rate,  as: :string, input_html: {class: 'currency_exchange_rate'}%>
     <%= f.input :value , as: :string, input_html: {class: 'currency'} %> 

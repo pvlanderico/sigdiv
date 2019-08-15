@@ -40,13 +40,13 @@
             <% if transaction_item.future_transaction? %>
               <span class="badge badge-secondary badge-pill">F</span>
             <% elsif transaction_item.transaction_info.category_number == 1 %>
-              <span class="badge badge-primary badge-pill">D</span>
+              <span class="badge badge-primary badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 2  %>
-              <span class="badge badge-info badge-pill">J</span>
+              <span class="badge badge-success badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 3  %>
-              <span class="badge badge-warning badge-pill">A</span>
+              <span class="badge badge-warning badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 4  %>
-              <span class="badge badge-success badge-pill">E</span>            
+              <span class="badge badge-info badge-pill"><%= transaction_item.transaction_info.slug %></span>            
             <% end %>
           </td>
           
@@ -58,8 +58,12 @@
            <%= big_decimal_to_currency(transaction_item.value) || '-'  %>                 
           </td>
 
-          <td class="td-right">
-            <%= transaction_item.transaction_info.category.name %>
+          <td>
+            <% if transaction_item.transaction_info.category.name == 'Encargos' %>
+              <%= transaction_item.transaction_info.description %>
+            <% else %>
+              <%= transaction_item.transaction_info.category.name %>
+            <% end %>
           </td>
           
         </tr>                
@@ -73,15 +77,18 @@
 
 <div class="pull-left transactions-legend">
   <div class='position-fixed'>
-    <ul class="nav flex-column list-group">    
-      <li><span class="badge badge-primary badge-pill">D</span> Desembolso</li>
-      <li><span class="badge badge-info badge-pill">J</span> Juros</li>      
-      <li><span class="badge badge-warning badge-pill">A</span> Amortização</li>
-      <li><span class="badge badge-success badge-pill">E</span> Encargos</li>
-      <li><span class="badge badge-secondary badge-pill">F</span> Operação futura</li>    
+    <ul class="nav flex-column list-group">     
+          <li><span class="badge badge-primary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Desembolso</li>
+          <li><span class="badge badge-success badge-pill"><%= @debt.transaction_infos.find_by(category_number: 2).slug %></span> Juros</li> 
+          <li><span class="badge badge-warning badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Amortização</li>
+
+        <% @debt.transaction_infos.where(category_number: 4).each do |transaction_info| %>
+          <li><span class="badge badge-info badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description %></li>
+        <% end %>
+          <li><span class="badge badge-secondary badge-pill">F</span> Operação futura</li>      
     </ul>
     <br>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, type: 'Desembolso') %>">Registrar desembolso</button>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 1) %>">Registrar desembolso</button>
   </div>  
 </div>
 
