@@ -52,6 +52,17 @@ class Debt < ApplicationRecord
 	def amortizations
 		transaction_items.where(transaction_infos: { category_number: 3 })
 	end 
+    
+  # Juros
+	def interests
+		transaction_items.where(transaction_infos: { category_number: 2 })
+	end
+
+	def charges_grace_period
+    date_withdraw = transaction_items.where(transaction_infos: { category_number: 1 }).order("date").first.date
+
+    (grace_period.year * 12 + grace_period.month) - (date_withdraw.year * 12 + date_withdraw.month)
+  end
 
   # Próxima parcela
 	def next_instalment		

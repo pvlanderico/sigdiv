@@ -41,7 +41,7 @@ pt-BR:
         name: Nome
         operator: Operador
       transaction_info:
-        category: Tipo
+        category_number: Tipo
         formula: Fórmula        
         payment_day: Dia de pagamento
         frequency: Periodicidade
