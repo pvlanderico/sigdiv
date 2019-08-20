@@ -58,8 +58,8 @@
            <%= big_decimal_to_currency(transaction_item.value) || '-'  %>                 
           </td>
 
-          <td>
-            <% if transaction_item.transaction_info.category.name == 'Encargos' %>
+          <td class="td-right">
+            <% if transaction_item.transaction_info.category_number == 4 %>
               <%= transaction_item.transaction_info.description %>
             <% else %>
               <%= transaction_item.transaction_info.category.name %>
@@ -80,7 +80,7 @@
     <ul class="nav flex-column list-group">     
           <li><span class="badge badge-primary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Desembolso</li>
           <li><span class="badge badge-success badge-pill"><%= @debt.transaction_infos.find_by(category_number: 2).slug %></span> Juros</li> 
-          <li><span class="badge badge-warning badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Amortização</li>
+          <li><span class="badge badge-warning badge-pill"><%= @debt.transaction_infos.find_by(category_number: 3).slug %></span> Amortização</li>
 
         <% @debt.transaction_infos.where(category_number: 4).each do |transaction_info| %>
           <li><span class="badge badge-info badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description %></li>
