@@ -12,6 +12,8 @@ class Debt < ApplicationRecord
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
 	enum legislation_level: [:federal, :estadual, :municipal]
+
+	attr_accessor :balance_projection
 	
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
 	validates :contract_value, presence: true
@@ -65,7 +67,7 @@ class Debt < ApplicationRecord
   end
 
   # Próxima parcela
-	def next_instalment		
+	def next_instalment
 		outstanding_balance * instalment_formula_numerator / instalment_formula_denominator
 	end	
     
@@ -76,7 +78,7 @@ class Debt < ApplicationRecord
   end
 
 	def amortization
-		next_instalment - interest
+		next_instalment
 	end
 
 	# Juros

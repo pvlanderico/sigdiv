@@ -2,28 +2,37 @@ class FormulaService
 	VARIABLES = {	'SALDO' => :outstanding_balance, 
 								'JUROS' => :interest_rate,
 								'PARCELAS' => :loan_term,
+								'PGTO'	=> :amortization,
 								'DiNi' 	=> [:withdraw, :value, :period] }
 	
 	class << self
 		
-		def eval formula, debt
+		def eval formula, debt		
 			Dentaku(parse(formula, debt))
 		end
 
 		def parse formula, debt
-			if (formula.match(/\[SOMA\(.*\)\]/))				
+			if (formula.match(/\[SOMA\(.*\)\]/))
 				formula.gsub!(/\[SOMA\(.*\)\]/, summation(formula.match(/\[SOMA\((.*)\)\]/).captures.first, debt).to_s)
 			end
 			
 			result = formula.dup			
 			formula.gsub(/\[(\w*)\]/) do	
 							
-				value = VARIABLES[$1]							
+				method_name = VARIABLES[$1]							
 				
-				result.gsub!("[#{$1}]", debt.send(value).to_s)		
+				result.gsub!("[#{$1}]", send_method(debt, method_name))		
 			end
 			
 			result
+		end
+
+		def send_method debt, method_name
+			if debt.balance_projection.present? && method_name == :outstanding_balance 
+				debt.balance_projection.to_s
+			else
+				debt.send(method_name).to_s
+			end
 		end
 
 		def summation formula, debt

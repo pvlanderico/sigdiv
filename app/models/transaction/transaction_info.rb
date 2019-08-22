@@ -1,8 +1,8 @@
 class TransactionInfo < ApplicationRecord
-	BASIC_TYPES = { 1 => {name: 'Desembolso', operator: '+', slug: 'D'}, 
-				    2 => {name: 'Juros', operator: '-', slug: 'J'},
-					3 => {name: 'Amortização', operator: '-', slug: 'A'},
-					4 => {name: 'Encargos', operator: '-' , slug: 'E'} }
+	BASIC_TYPES = { 1 => {name: 'Desembolso', operation: '+', slug: 'D'}, 
+							    2 => {name: 'Juros', operation: '-', slug: 'J'},
+									3 => {name: 'Amortização', operation: '-', slug: 'A'},
+									4 => {name: 'Encargos', operation: '-' , slug: 'E'} }
 	
 	enum frequency: [:mensal, :trimestral, :semestral]
 
@@ -14,7 +14,7 @@ class TransactionInfo < ApplicationRecord
 		Date.new(Date.today.year, Date.today.month, payment_day)
 	end
 
-	def reference_period			
+	def reference_period
 		(payment_date - 1.month + 1.day)..payment_date
 	end
 
@@ -24,6 +24,10 @@ class TransactionInfo < ApplicationRecord
 	
 	def category
 		OpenStruct.new(BASIC_TYPES[category_number])
+	end
+
+	def withdraw?
+		category_number == 1 ? true : false
 	end
 	
 end

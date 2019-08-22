@@ -2,7 +2,7 @@ class TransactionItem < ApplicationRecord
 	belongs_to :transaction_info
 	has_one :debt, through: :transaction_info
 
-	before_save :set_start_balance
+	before_save :set_start_balance, if: :blank_start_balance?
 
   validates :value_brl, presence: true
 	validates :exchange_rate, presence: true
@@ -13,7 +13,11 @@ class TransactionItem < ApplicationRecord
 	end
 
 	def final_outstanding_balance
-		Dentaku("#{start_balance} + #{transaction_info.category.operation} + #{value}")
+		if amortization? || withdraw?
+			Dentaku("#{start_balance} #{transaction_info.category.operation} #{value}")
+		else
+			start_balance
+		end
 	end
 
 	def period
@@ -31,8 +35,21 @@ class TransactionItem < ApplicationRecord
 		new_record? ? true : false
 	end
 
+	def withdraw?
+		transaction_info.category_number == 1
+	end
+
+	def amortization?
+		transaction_info.category_number == 3
+	end
+
+
 	private
 		def set_start_balance
 			self.start_balance = debt.outstanding_balance
+		end
+
+		def blank_start_balance?
+			self.start_balance.blank?
 		end
 end

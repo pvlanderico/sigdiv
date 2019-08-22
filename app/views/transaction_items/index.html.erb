@@ -27,7 +27,8 @@
       <th></th>
       <th class="td-right">Data</th>
       <th class="td-right">Valor em moeda</th>
-      <th class="td-right">Operação</th>        
+      <th class="td-right">Operação</th>
+      <th class="td-right">Saldo</th>
     </thead>
     <% #transaction_items = FutureTransaction.list @debt%>
     <tbody>    
@@ -58,12 +59,12 @@
            <%= big_decimal_to_currency(transaction_item.value) || '-'  %>                 
           </td>
 
-          <td class="td-right">
-            <% if transaction_item.transaction_info.category_number == 4 %>
-              <%= transaction_item.transaction_info.description %>
-            <% else %>
-              <%= transaction_item.transaction_info.category.name %>
-            <% end %>
+          <td class="td-right">            
+            <%= transaction_item.transaction_info.category.name %>
+          </td>
+
+          <td class="td-right">            
+            <%= big_decimal_to_currency(transaction_item.final_outstanding_balance) %>
           </td>
           
         </tr>                
