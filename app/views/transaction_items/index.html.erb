@@ -9,6 +9,7 @@
 </div>
 
 <div class='pull-left debt-ops'>
+  <div class='pull-left'>
   <p>
     <strong>Valor do contrato: </strong>
     <%= big_decimal_to_currency @debt.contract_value %>
@@ -21,6 +22,11 @@
     <strong>Saldo devedor total: </strong>
     <%= big_decimal_to_currency @debt.outstanding_balance %>
   </p>
+</div>
+
+  <div class="pull-right">
+    <button type="button" class="btn btn-primary btn-converte">Converter Moeda</button>
+  </div>
   
   <table id="dttb-transaction-items" class="table table-hover">
     <thead>
@@ -96,8 +102,6 @@
     </ul>
     <br>
     <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 1) %>">Registrar desembolso</button>
-    <br><br>
-    <button type="button" class="btn btn-success btn-converte">Converter Moeda</button>
   </div>  
 </div>
 
