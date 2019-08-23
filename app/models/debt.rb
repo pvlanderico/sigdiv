@@ -78,7 +78,7 @@ class Debt < ApplicationRecord
   end
 
 	def amortization
-		next_instalment
+		balance_projection * instalment_formula_numerator / instalment_formula_denominator
 	end
 
 	# Juros
