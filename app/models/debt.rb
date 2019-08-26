@@ -147,6 +147,6 @@ class Debt < ApplicationRecord
 		end
 
 		def interest_rate_per_month
-			interest_rate / 12
+			interest_rate
 		end
 end

@@ -12,9 +12,13 @@ class FutureTransaction < TransactionItem
 
 		(0..(debt.loan_term + debt.charges_grace_period) - (debt.interests.count)).each do |future_transaction_count|
 
-			debt.transaction_infos.reject(&:withdraw?).each_with_index do |transaction_info, index|
+			debt.transaction_infos.sort_by(&:order).reject(&:withdraw?).each_with_index do |transaction_info, index|
 
-				future_transaction_count == 0 && index == 0 ? projection_debt.balance_projection = debt.outstanding_balance : projection_debt.balance_projection = result[future_transaction_count - 1].final_outstanding_balance
+				if future_transaction_count == 0 && index == 0 
+					projection_debt.balance_projection = debt.outstanding_balance
+				else 
+					projection_debt.balance_projection = result.last.final_outstanding_balance
+				end
 
 				result << FutureTransaction.new(debt: debt,
 																				projection_debt: projection_debt,
