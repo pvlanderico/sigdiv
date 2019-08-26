@@ -12,8 +12,6 @@ class Debt < ApplicationRecord
 	enum category: [:interno, :externo]
 	enum amortization_type: [:sac, :price, :single]
 	enum legislation_level: [:federal, :estadual, :municipal]
-
-	attr_accessor :balance_projection
 	
 	validates :code, presence: true, numericality: { only_integer: true }, length: { is: 6 }
 	validates :contract_value, presence: true
@@ -76,10 +74,6 @@ class Debt < ApplicationRecord
   		Decimal.new(self.send(method_name).to_f)
   	end
   end
-
-	def amortization
-		balance_projection * instalment_formula_numerator / instalment_formula_denominator
-	end
 
 	# Juros
 	def interest interest_rate = self.interest_rate

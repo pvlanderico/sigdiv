@@ -2,7 +2,7 @@ class FormulaService
 	VARIABLES = {	'SALDO' => :outstanding_balance, 
 								'JUROS' => :interest_rate,
 								'PARCELAS' => :loan_term,
-								'PGTO'	=> :amortization,
+								'PGTO'	=> :next_instalment,
 								'DiNi' 	=> [:withdraw, :value, :period] }
 	
 	class << self
@@ -27,12 +27,8 @@ class FormulaService
 			result
 		end
 
-		def send_method debt, method_name
-			if debt.balance_projection.present? && method_name == :outstanding_balance 
-				debt.balance_projection.to_s
-			else
-				debt.send(method_name).to_s
-			end
+		def send_method debt, method_name			
+			debt.send(method_name).to_s			
 		end
 
 		def summation formula, debt
