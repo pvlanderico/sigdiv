@@ -132,6 +132,14 @@ class Debt < ApplicationRecord
 		end
 	end
 
+	def withdraws_values_by_year
+		withdraws.order('extract(year from date)').group('extract(year from date)').pluck("extract(year from date), sum(value), sum(value_brl)")
+	end
+
+	def transaction_items_total_by month, year, category_number
+		transaction_items.where(transaction_infos: { category_number: category_number })	
+	end
+
 	private
 
 		def self.date_range_from_year year

@@ -1,8 +1,116 @@
-<p id="notice"><%= notice %></p>
+<div class="alert alert-dark" role="alert">
+  <%= image_tag 'logo_niteroi.jpg' %>
+  <h2>PREFEITURA NITERÓI</h2>
+  <h2>SECRETARIA MUNICIPAL DE FAZENDA</h2>
+</div>
+
+<h3>A - Identificação do Contrato</h3>
 
 <p>
-  <strong>Show:</strong>
-  <%= @debt.inspect %>
+  <strong>Tipo: </strong>
+  <%= @debt.category %>
+  <strong>Mutuário: </strong>
+  Prefeitura Municipal de Niterói
+  <strong>Credor: </strong>
+  <%= @debt.creditor.name %>
+  <strong>Valor do Contrato: </strong>
+  <%= @debt.contract_value %>
+  <strong>Fator de Conversão do Mês (moeda original) REAL </strong>
+  -
+  <strong>Fator de Conversão do Mês (em Real)</strong>
+  -
+  <strong>Taxa de Encargos: </strong>
+  <%= @debt.transaction_infos.each &:category %>
+  <strong>Taxa de juros:</strong>
+  <%= @debt.interest_rate %>
+  <strong>Forma de Pagamento: </strong>
+  <%= @debt.amortization_type %>
+  <strong>Objetivo da Operação: </strong>
+  <%= @debt.purpose %>
+  <strong>Posição em: </strong>
+  <%= Date.today %>
+  <strong>Data da Assinatura: </strong>
+  <%= @debt.signature_date %>
+  <strong>Agente Financeiro: </strong>
+  <%= @debt.creditor.name %>
+  <strong>Moeda Original: </strong>
+  <%= @debt.currency.name %>
+  <strong>Prazo de Carência: </strong>
+  <%= @debt.grace_period %>
+  <strong>Prazo de Amortização:</strong>
+  <%= @debt.amortization_period %>
 </p>
+
+<h3>B - Esquema de Liberação de Recursos</h3>
+<h4>1 - Parcelas Recebidas </h4>
+
+<table>
+	<th>Mês/Ano</th>
+	<th>Valores - Moeda Original</th>
+	<th>Valores em R$</th>
+	<tbody>
+		<% sum_values = 0 %>
+		<% sum_values_brl = 0 %>
+		<% @debt.withdraws_values_by_year.each do |year_values|%>
+			<tr>
+				<td><%= year_values[0] %></td>
+				<td><%= year_values[1] %></td>
+				<td><%= year_values[2] %></td>
+			</tr>
+			<% sum_values += year_values[1] %>
+			<% sum_values_brl += year_values[2] %>
+		<% end %>
+			<tr>
+				<td>TOTAL</td>
+				<td><%= sum_values %></td>
+				<td><%= sum_values_brl %></td>
+			</tr>
+	</tbody>
+</table>
+
+<h4>2 - Parcelas à Receber </h4>
+
+<table>
+	<th>Mês/Ano</th>
+	<th>Valores - Moeda Original</th>	
+	<tbody>
+			<tr>
+				<td></td>
+				<td></td>				
+			</tr>			
+	</tbody>
+</table>
+
+<h3>C - Esquema de Pagamentos</h3>
+<h4>1- Realizado no Exercício</h4>
+
+<table>
+	<th></th>
+	<th>Principal em Moeda Original</th>
+	<th>Principal em R$</th>
+	<th>Juros em R$</th>
+	<th>Outros encargos em R$</th>
+	<th>Total</th>
+	<tbody>
+		<tr>
+			<td>No mês:</td>
+			<td></td>
+			<td><%= @debt.withdraws_total_by 2, 2019, 2 %></td>
+			<td><%= @debt.withdraws_total_by 2, 2019, 3 %></td>
+			<td><%= @debt.withdraws_total_by 2, 2019, 4 %></td>
+			<td><%= @debt.withdraws_total_by 2, 2019 %></td>			
+		</tr>
+
+	</tbody>
+
+</table>
+
+<h3>D - Observações</h3>
+
+<h3>E - Local e Data</h3>
+
+<h3>F - Órgão</h3>
+
+<h3>G - Assinatura do Responsável</h3>
 
 <%= link_to 'Back', month_report_path(@debt.id), class: 'btn' %>
