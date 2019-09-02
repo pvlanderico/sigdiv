@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_164515) do
     t.integer "payment_day"
     t.text "description"
     t.integer "debt_id"
+    t.integer "transaction_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "frequency"
