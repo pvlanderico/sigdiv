@@ -27,7 +27,11 @@ class TransactionInfo < ApplicationRecord
 	end
 
 	def withdraw?
-		category_number == 1 ? true : false
+		category_number == 1
+	end
+
+	def amortization?
+		category_number == 3
 	end
 	
 	def order

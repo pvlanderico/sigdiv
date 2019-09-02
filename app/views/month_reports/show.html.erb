@@ -95,14 +95,138 @@
 		<tr>
 			<td>No mês:</td>
 			<td></td>
-			<td><%= @debt.withdraws_total_by 2, 2019, 2 %></td>
-			<td><%= @debt.withdraws_total_by 2, 2019, 3 %></td>
-			<td><%= @debt.withdraws_total_by 2, 2019, 4 %></td>
-			<td><%= @debt.withdraws_total_by 2, 2019 %></td>			
+			<td><%= @debt.transaction_items_total_by 2, 2019, 2 %></td>
+			<td><%= @debt.transaction_items_total_by 2, 2019, 3 %></td>
+			<td><%= @debt.transaction_items_total_by 2, 2019, 4 %></td>
+			<td><%= @debt.transaction_items_total_by 2, 2019 %></td>			
+		</tr>
+
+		<tr>
+			<td>Até o mês:</td>
+			<td></td>
+			<td><%= @debt.transaction_items_total_until 2, 2019, 2 %></td>
+			<td><%= @debt.transaction_items_total_until 2, 2019, 3 %></td>
+			<td><%= @debt.transaction_items_total_until 2, 2019, 4 %></td>
+			<td><%= @debt.transaction_items_total_until 2, 2019 %></td>			
 		</tr>
 
 	</tbody>
 
+</table>
+
+<h4>2- A Realizar no Exercício</h4>
+
+<table>
+	<th></th>
+	<th>Principal em Moeda Original</th>
+	<th>Principal em R$</th>
+	<th>Juros em R$</th>
+	<th>Outros encargos em R$</th>
+	<th>Total</th>
+	<tbody>
+		<tr>
+			<td>Vencido:</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>A Vencer:</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>Total:</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>3- A Realizar de Outros Exercícios</h4>
+
+<table>
+	<th></th>
+	<th>Principal em Moeda Original</th>
+	<th>Principal em R$</th>
+	<th>Juros em R$</th>
+	<th>Outros encargos em R$</th>
+	<th>Total</th>
+	<tbody>
+		<tr>
+			<td>Vencido:</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>A Vencer:</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>Total:</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>4- A Realizar nos Próximos Exercícios</h4>
+
+<table>
+	<th>Ano</th>
+	<th>Principal em Moeda Original</th>
+	<th>Principal em R$</th>
+	<th>Juros em R$</th>
+	<th>Outros encargos em R$</th>
+	<th>Total</th>
+	<tbody>
+
+		<% total_principal = 0 %>
+		<% total_principal_brl = 0 %>
+		<% total_interest_brl = 0 %>
+		<% total_charges_brl = 0 %>
+		<% total = 0 %>
+
+		<% ((Date.today.year + 1)..@debt.last_year).each do |year| %>
+			
+			<% list = FutureTransaction.list(@debt)%>
+			<% year_total_principal = FutureTransaction.total_by year, 3, list %>
+			<% year_total_principal_brl = FutureTransaction.total_by year, 3, list %>
+			<% year_total_interest_brl = FutureTransaction.total_by year, 2, list %>
+			<% year_total_charges_brl = FutureTransaction.total_by year, 4, list %>
+			<% year_total = year_total_principal_brl + year_total_interest_brl + year_total_charges_brl %>
+
+			<tr>			
+				<td><%= year %></td>
+				<td><%= big_decimal_to_currency(year_total_principal) %></td>
+				<td><%= big_decimal_to_currency(year_total_principal_brl) %></td>
+				<td><%= big_decimal_to_currency(year_total_interest_brl) %></td>
+				<td><%= big_decimal_to_currency(year_total_charges_brl) %></td>
+				<td><%= big_decimal_to_currency(year_total) %></td>
+			</tr>
+
+			<% total_principal += year_total_principal %>
+			<% total_principal_brl += year_total_principal_brl %>
+			<% total_interest_brl += year_total_interest_brl %>
+			<% total_charges_brl += year_total_charges_brl %>
+			<% total += year_total %>
+		<% end %>
+	</tbody>
+</table>
+
+<h4>5- Saldo Devedor</h4>
+
+<table>	
+	<th>Principal em Moeda Original</th>
+	<th>Principal em R$</th>
+	<th>Juros em R$</th>
+	<th>Outros encargos em R$</th>
+	<th>Total</th>
+	<tbody>
+		<tr>			
+			<td><%= big_decimal_to_currency(total_principal) %></td>
+			<td><%= big_decimal_to_currency(total_principal_brl) %></td>
+			<td><%= big_decimal_to_currency(total_interest_brl) %></td>
+			<td><%= big_decimal_to_currency(total_charges_brl) %></td>
+			<td><%= big_decimal_to_currency(total) %></td>
+		</tr>
+	</tbody>
 </table>
 
 <h3>D - Observações</h3>
