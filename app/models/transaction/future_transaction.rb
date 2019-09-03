@@ -15,7 +15,7 @@ class FutureTransaction < TransactionItem
 
 			debt.transaction_infos.sort_by(&:order).reject(&:withdraw?).each_with_index do |transaction_info, index|
 
-				if future_transaction_count == 0 && index == 0 
+				if (future_transaction_count == 0 && index == 0) 
 					projection_debt.balance_projection = debt.outstanding_balance
 				else 
 					projection_debt.balance_projection = result.last.final_outstanding_balance

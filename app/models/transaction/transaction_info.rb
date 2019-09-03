@@ -33,6 +33,10 @@ class TransactionInfo < ApplicationRecord
 	def amortization?
 		category_number == 3
 	end
+
+	def charge?
+		category_number == 4
+	end
 	
 	def order
 		category.order

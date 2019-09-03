@@ -1,53 +1,51 @@
-<div class="alert alert-dark" role="alert">
-  <%= image_tag 'logo_niteroi.jpg' %>
-  <h2>PREFEITURA NITERÓI</h2>
-  <h2>SECRETARIA MUNICIPAL DE FAZENDA</h2>
+<div class="pull-left"><%= image_tag 'logo_niteroi.jpg' %></div>
+<div class="pull-left">
+	<h2>PREFEITURA NITERÓI</h2>
+	<h2>SECRETARIA MUNICIPAL DE FAZENDA</h2>
 </div>
 
-<h3>A - Identificação do Contrato</h3>
+<div class="clearfix"></div>
 
-<p>
-  <strong>Tipo: </strong>
-  <%= @debt.category %>
-  <strong>Mutuário: </strong>
-  Prefeitura Municipal de Niterói
-  <strong>Credor: </strong>
-  <%= @debt.creditor.name %>
-  <strong>Valor do Contrato: </strong>
-  <%= @debt.contract_value %>
-  <strong>Fator de Conversão do Mês (moeda original) REAL </strong>
-  -
-  <strong>Fator de Conversão do Mês (em Real)</strong>
-  -
-  <strong>Taxa de Encargos: </strong>
-  <%= @debt.transaction_infos.each &:category %>
-  <strong>Taxa de juros:</strong>
-  <%= @debt.interest_rate %>
-  <strong>Forma de Pagamento: </strong>
-  <%= @debt.amortization_type %>
-  <strong>Objetivo da Operação: </strong>
-  <%= @debt.purpose %>
-  <strong>Posição em: </strong>
-  <%= Date.today %>
-  <strong>Data da Assinatura: </strong>
-  <%= @debt.signature_date %>
-  <strong>Agente Financeiro: </strong>
-  <%= @debt.creditor.name %>
-  <strong>Moeda Original: </strong>
-  <%= @debt.currency.name %>
-  <strong>Prazo de Carência: </strong>
-  <%= @debt.grace_period %>
-  <strong>Prazo de Amortização:</strong>
-  <%= @debt.amortization_period %>
-</p>
+<h3>A - Identificação do Contrato</h3>
+<div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><strong>Tipo: </strong><%= @debt.category %></p>
+      <p class="card-text"><strong>Mutuário: </strong>Prefeitura Municipal de Niterói</p>
+      <p class="card-text"><strong>Credor: </strong><%= @debt.creditor.name %></p>
+      <p class="card-text"><strong>Valor do Contrato: </strong><%= @debt.contract_value %></p>
+      <p class="card-text"><strong>Fator de Conversão do Mês (moeda original) REAL </strong>-</p>
+      <p class="card-text"><strong>Fator de Conversão do Mês (em Real)</strong>-</p>
+      <p class="card-text"><strong>Taxa de Encargos: </strong>
+      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.formula}. " : result } %></p>
+      <p class="card-text"><strong>Taxa de juros:</strong><%= @debt.interest_rate %></p>
+      <p class="card-text"><strong>Forma de Pagamento: </strong><%= @debt.amortization_type %></p>
+      <p class="card-text"><strong>Objetivo da Operação: </strong><%= @debt.purpose %></p>
+      <p class="card-text"><strong>Posição em: </strong><%= Date.today %></p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><strong>Data da Assinatura: </strong><%= @debt.signature_date %></p>
+      <p class="card-text"><strong>Agente Financeiro: </strong><%= @debt.creditor.name %></p>
+      <p class="card-text"><strong>Moeda Original: </strong><%= @debt.currency.name %></p>
+      <p class="card-text"><strong>Prazo de Carência: </strong><%= @debt.grace_period %></p>
+      <p class="card-text"><strong>Prazo de Amortização:</strong><%= @debt.amortization_period %></p>
+    </div>
+  </div>
+</div>
 
 <h3>B - Esquema de Liberação de Recursos</h3>
 <h4>1 - Parcelas Recebidas </h4>
 
-<table>
-	<th>Mês/Ano</th>
-	<th>Valores - Moeda Original</th>
-	<th>Valores em R$</th>
+<table class="table table-striped" class="table table-striped">
+	<thead>
+		<tr>
+			<th>Mês/Ano</th>
+			<th>Valores - Moeda Original</th>
+			<th>Valores em R$</th>
+		</tr>
+	</thead>
 	<tbody>
 		<% sum_values = 0 %>
 		<% sum_values_brl = 0 %>
@@ -70,9 +68,13 @@
 
 <h4>2 - Parcelas à Receber </h4>
 
-<table>
-	<th>Mês/Ano</th>
-	<th>Valores - Moeda Original</th>	
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Mês/Ano</th>
+			<th>Valores - Moeda Original</th>	
+		</tr>
+	</thead>
 	<tbody>
 			<tr>
 				<td></td>
@@ -84,13 +86,17 @@
 <h3>C - Esquema de Pagamentos</h3>
 <h4>1- Realizado no Exercício</h4>
 
-<table>
-	<th></th>
-	<th>Principal em Moeda Original</th>
-	<th>Principal em R$</th>
-	<th>Juros em R$</th>
-	<th>Outros encargos em R$</th>
-	<th>Total</th>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Principal em Moeda Original</th>
+			<th>Principal em R$</th>
+			<th>Juros em R$</th>
+			<th>Outros encargos em R$</th>
+			<th>Total</th>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>
 			<td>No mês:</td>
@@ -116,13 +122,17 @@
 
 <h4>2- A Realizar no Exercício</h4>
 
-<table>
-	<th></th>
-	<th>Principal em Moeda Original</th>
-	<th>Principal em R$</th>
-	<th>Juros em R$</th>
-	<th>Outros encargos em R$</th>
-	<th>Total</th>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Principal em Moeda Original</th>
+			<th>Principal em R$</th>
+			<th>Juros em R$</th>
+			<th>Outros encargos em R$</th>
+			<th>Total</th>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>
 			<td>Vencido:</td>
@@ -142,13 +152,17 @@
 
 <h4>3- A Realizar de Outros Exercícios</h4>
 
-<table>
-	<th></th>
-	<th>Principal em Moeda Original</th>
-	<th>Principal em R$</th>
-	<th>Juros em R$</th>
-	<th>Outros encargos em R$</th>
-	<th>Total</th>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Principal em Moeda Original</th>
+			<th>Principal em R$</th>
+			<th>Juros em R$</th>
+			<th>Outros encargos em R$</th>
+			<th>Total</th>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>
 			<td>Vencido:</td>
@@ -168,13 +182,17 @@
 
 <h4>4- A Realizar nos Próximos Exercícios</h4>
 
-<table>
-	<th>Ano</th>
-	<th>Principal em Moeda Original</th>
-	<th>Principal em R$</th>
-	<th>Juros em R$</th>
-	<th>Outros encargos em R$</th>
-	<th>Total</th>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Ano</th>
+			<th>Principal em Moeda Original</th>
+			<th>Principal em R$</th>
+			<th>Juros em R$</th>
+			<th>Outros encargos em R$</th>
+			<th>Total</th>
+		</tr>
+	</thead>
 	<tbody>
 
 		<% total_principal = 0 %>
@@ -212,12 +230,16 @@
 
 <h4>5- Saldo Devedor</h4>
 
-<table>	
-	<th>Principal em Moeda Original</th>
-	<th>Principal em R$</th>
-	<th>Juros em R$</th>
-	<th>Outros encargos em R$</th>
-	<th>Total</th>
+<table class="table table-striped">	
+	<thead>
+		<tr>
+			<th>Principal em Moeda Original</th>
+			<th>Principal em R$</th>
+			<th>Juros em R$</th>
+			<th>Outros encargos em R$</th>
+			<th>Total</th>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>			
 			<td><%= big_decimal_to_currency(total_principal) %></td>
