@@ -5,7 +5,7 @@ class FutureTransaction < TransactionItem
 		false
 	end
 
-	def self.list debt
+	def self.list debt		
 		result = []
 		projection_debt = ProjectionDebt.new(debt)
 		remaining_amortizations = debt.loan_term - debt.amortizations.count
@@ -40,8 +40,8 @@ class FutureTransaction < TransactionItem
 		result
 	end
 
-	def self.total_by year, category_number, list
-		list.reduce(0){ |sum, transaction| transaction.date.year == year && transaction.transaction_info.category_number == category_number ? sum + transaction.value_brl : sum }	
+	def self.total_by year, category_number, list		
+		list.reduce(0){ |sum, transaction| transaction.date.year == year && transaction.transaction_info.category_number == category_number ? sum + transaction.value_brl : sum }
 	end
 		
 end

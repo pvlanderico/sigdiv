@@ -1,12 +1,24 @@
-<div class="pull-left"><%= image_tag 'logo_niteroi.jpg' %></div>
-<div class="pull-left">
-	<h2>PREFEITURA NITERÓI</h2>
-	<h2>SECRETARIA MUNICIPAL DE FAZENDA</h2>
+<div class="card-group">
+  <div class="card col-2">
+  	<div class="card-body">
+			<%= image_tag 'logo_niteroi.jpg' %>
+		</div>
+	</div>
+	<div class="card col-4">
+		<div class="card-body align-items-center d-flex">
+			<h4><strong>PREFEITURA NITERÓI</strong></h4>
+		</div>
+	</div>
+ 	<div class="card col-6">
+		<div class="card-body align-items-center d-flex">
+			<h4><strong>SECRETARIA MUNICIPAL DE FAZENDA</strong></h4>
+		</div>
+	</div>
 </div>
 
-<div class="clearfix"></div>
-
-<h3>A - Identificação do Contrato</h3>
+<br>
+<h5><strong>A - Identificação do Contrato</strong></h5>
+<hr>
 <div class="card-group">
   <div class="card">
     <div class="card-body">
@@ -17,8 +29,8 @@
       <p class="card-text"><strong>Fator de Conversão do Mês (moeda original) REAL </strong>-</p>
       <p class="card-text"><strong>Fator de Conversão do Mês (em Real)</strong>-</p>
       <p class="card-text"><strong>Taxa de Encargos: </strong>
-      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.formula}. " : result } %></p>
-      <p class="card-text"><strong>Taxa de juros:</strong><%= @debt.interest_rate %></p>
+      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.formula} " : result } %></p>
+      <p class="card-text"><strong>Taxa de juros: </strong><%= @debt.interest_rate %></p>
       <p class="card-text"><strong>Forma de Pagamento: </strong><%= @debt.amortization_type %></p>
       <p class="card-text"><strong>Objetivo da Operação: </strong><%= @debt.purpose %></p>
       <p class="card-text"><strong>Posição em: </strong><%= Date.today %></p>
@@ -30,63 +42,76 @@
       <p class="card-text"><strong>Agente Financeiro: </strong><%= @debt.creditor.name %></p>
       <p class="card-text"><strong>Moeda Original: </strong><%= @debt.currency.name %></p>
       <p class="card-text"><strong>Prazo de Carência: </strong><%= @debt.grace_period %></p>
-      <p class="card-text"><strong>Prazo de Amortização:</strong><%= @debt.amortization_period %></p>
+      <p class="card-text"><strong>Prazo de Amortização: </strong><%= @debt.amortization_period %></p>
     </div>
   </div>
 </div>
 
-<h3>B - Esquema de Liberação de Recursos</h3>
-<h4>1 - Parcelas Recebidas </h4>
+<br>
 
-<table class="table table-striped" class="table table-striped">
-	<thead>
-		<tr>
-			<th>Mês/Ano</th>
-			<th>Valores - Moeda Original</th>
-			<th>Valores em R$</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% sum_values = 0 %>
-		<% sum_values_brl = 0 %>
-		<% @debt.withdraws_values_by_year.each do |year_values|%>
-			<tr>
-				<td><%= year_values[0] %></td>
-				<td><%= year_values[1] %></td>
-				<td><%= year_values[2] %></td>
-			</tr>
-			<% sum_values += year_values[1] %>
-			<% sum_values_brl += year_values[2] %>
-		<% end %>
-			<tr>
-				<td>TOTAL</td>
-				<td><%= sum_values %></td>
-				<td><%= sum_values_brl %></td>
-			</tr>
-	</tbody>
-</table>
+<h5><strong>B - Esquema de Liberação de Recursos</strong></h5>
+<hr>
 
-<h4>2 - Parcelas à Receber </h4>
+<div class="row">
+	<div class="col-7">
+		<h6><strong>1 - Parcelas Recebidas </strong></h6>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Mês/Ano</th>
-			<th>Valores - Moeda Original</th>	
-		</tr>
-	</thead>
-	<tbody>
-			<tr>
-				<td></td>
-				<td></td>				
-			</tr>			
-	</tbody>
-</table>
+		<table class="table table-striped text-right">
+			<thead>
+				<tr>
+					<th>Mês/Ano</th>
+					<th>Valores - Moeda Original</th>
+					<th>Valores em R$</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% sum_values = 0 %>
+				<% sum_values_brl = 0 %>
+				<% @debt.withdraws_values_by_year.each do |year_values|%>
+					<tr>
+						<td><%= year_values[0].to_i %></td>
+						<td><%= big_decimal_to_currency(year_values[1]) %></td>
+						<td><%= big_decimal_to_currency_cents(year_values[2]) %></td>
+					</tr>
+					<% sum_values += year_values[1] %>
+					<% sum_values_brl += year_values[2] %>
+				<% end %>
+					<tr>
+						<td>TOTAL</td>
+						<td><%= big_decimal_to_currency(sum_values) %></td>
+						<td><%= big_decimal_to_currency_cents(sum_values_brl) %></td>
+					</tr>
+			</tbody>
+		</table>
+	</div>
 
-<h3>C - Esquema de Pagamentos</h3>
-<h4>1- Realizado no Exercício</h4>
+	<div class="col-5">
+		<h6><strong>2 - Parcelas à Receber </strong></h6>
 
-<table class="table table-striped">
+		<table class="table table-striped text-right">
+			<thead>
+				<tr>
+					<th>Mês/Ano</th>
+					<th>Valores - Moeda Original</th>	
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td></td>
+						<td></td>				
+					</tr>			
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<br>
+
+<h5><strong>C - Esquema de Pagamentos</strong></h5>
+<hr>
+<h6><strong>1- Realizado no Exercício</strong></h6>
+
+<table class="table table-striped text-right">
 	<thead>
 		<tr>
 			<th></th>
@@ -101,28 +126,28 @@
 		<tr>
 			<td>No mês:</td>
 			<td></td>
-			<td><%= @debt.transaction_items_total_by 2, 2019, 2 %></td>
-			<td><%= @debt.transaction_items_total_by 2, 2019, 3 %></td>
-			<td><%= @debt.transaction_items_total_by 2, 2019, 4 %></td>
-			<td><%= @debt.transaction_items_total_by 2, 2019 %></td>			
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019, 2) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019, 3) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019, 4) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019) %></td>
 		</tr>
 
 		<tr>
 			<td>Até o mês:</td>
 			<td></td>
-			<td><%= @debt.transaction_items_total_until 2, 2019, 2 %></td>
-			<td><%= @debt.transaction_items_total_until 2, 2019, 3 %></td>
-			<td><%= @debt.transaction_items_total_until 2, 2019, 4 %></td>
-			<td><%= @debt.transaction_items_total_until 2, 2019 %></td>			
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019, 2) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019, 3) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019, 4) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019) %></td>			
 		</tr>
 
 	</tbody>
 
 </table>
 
-<h4>2- A Realizar no Exercício</h4>
+<h6><strong>2- A Realizar no Exercício</strong></h6>
 
-<table class="table table-striped">
+<table class="table table-striped text-right">
 	<thead>
 		<tr>
 			<th></th>
@@ -150,9 +175,9 @@
 	</tbody>
 </table>
 
-<h4>3- A Realizar de Outros Exercícios</h4>
+<h6><strong>3- A Realizar de Outros Exercícios</strong></h6>
 
-<table class="table table-striped">
+<table class="table table-striped text-right">
 	<thead>
 		<tr>
 			<th></th>
@@ -180,9 +205,9 @@
 	</tbody>
 </table>
 
-<h4>4- A Realizar nos Próximos Exercícios</h4>
+<h6><strong>4- A Realizar nos Próximos Exercícios</strong></h6>
 
-<table class="table table-striped">
+<table class="table table-striped text-right">
 	<thead>
 		<tr>
 			<th>Ano</th>
@@ -213,10 +238,10 @@
 			<tr>			
 				<td><%= year %></td>
 				<td><%= big_decimal_to_currency(year_total_principal) %></td>
-				<td><%= big_decimal_to_currency(year_total_principal_brl) %></td>
-				<td><%= big_decimal_to_currency(year_total_interest_brl) %></td>
-				<td><%= big_decimal_to_currency(year_total_charges_brl) %></td>
-				<td><%= big_decimal_to_currency(year_total) %></td>
+				<td><%= big_decimal_to_currency_cents(year_total_principal_brl) %></td>
+				<td><%= big_decimal_to_currency_cents(year_total_interest_brl) %></td>
+				<td><%= big_decimal_to_currency_cents(year_total_charges_brl) %></td>
+				<td><%= big_decimal_to_currency_cents(year_total) %></td>
 			</tr>
 
 			<% total_principal += year_total_principal %>
@@ -228,9 +253,9 @@
 	</tbody>
 </table>
 
-<h4>5- Saldo Devedor</h4>
+<h6><strong>5- Saldo Devedor</strong></h6>
 
-<table class="table table-striped">	
+<table class="table table-striped text-right">	
 	<thead>
 		<tr>
 			<th>Principal em Moeda Original</th>
@@ -243,20 +268,41 @@
 	<tbody>
 		<tr>			
 			<td><%= big_decimal_to_currency(total_principal) %></td>
-			<td><%= big_decimal_to_currency(total_principal_brl) %></td>
-			<td><%= big_decimal_to_currency(total_interest_brl) %></td>
-			<td><%= big_decimal_to_currency(total_charges_brl) %></td>
-			<td><%= big_decimal_to_currency(total) %></td>
+			<td><%= big_decimal_to_currency_cents(total_principal_brl) %></td>
+			<td><%= big_decimal_to_currency_cents(total_interest_brl) %></td>
+			<td><%= big_decimal_to_currency_cents(total_charges_brl) %></td>
+			<td><%= big_decimal_to_currency_cents(total) %></td>
 		</tr>
 	</tbody>
 </table>
 
-<h3>D - Observações</h3>
+<br>
 
-<h3>E - Local e Data</h3>
+<h5><strong>D - Observações</strong></h5>
+<hr>
+<div class="card">
+  <div class="card-body">        
+    <p class="card-text">
+    	<br>
+    	<br>
+    </p>
+  </div>
+</div>
 
-<h3>F - Órgão</h3>
+<br>
 
-<h3>G - Assinatura do Responsável</h3>
-
-<%= link_to 'Back', month_report_path(@debt.id), class: 'btn' %>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th><h5><strong>E - Local e Data</strong></h5></th>
+			<th><h5><strong>F - Órgão</strong></h5></th>
+			<th><h5><strong>G - Assinatura do Responsável</strong></h5></th>
+		</tr>
+	</thead>
+	<tbody>
+		<td>Niterói, 28 de fevereiro de 2019.</td>
+		<td>Secretaria Municipal de Fazenda de Niterói</td>
+		<td></td>
+	</tbody>
+</table>
+<br>
