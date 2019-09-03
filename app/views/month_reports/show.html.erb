@@ -4,14 +4,9 @@
 			<%= image_tag 'logo_niteroi.jpg' %>
 		</div>
 	</div>
-	<div class="card col-4">
+	<div class="card col-10">
 		<div class="card-body align-items-center d-flex">
-			<h4><strong>PREFEITURA NITERÓI</strong></h4>
-		</div>
-	</div>
- 	<div class="card col-6">
-		<div class="card-body align-items-center d-flex">
-			<h4><strong>SECRETARIA MUNICIPAL DE FAZENDA</strong></h4>
+			<h4><strong>PREFEITURA NITERÓI - SECRETARIA MUNICIPAL DE FAZENDA</strong></h4>
 		</div>
 	</div>
 </div>
@@ -22,27 +17,27 @@
 <div class="card-group">
   <div class="card">
     <div class="card-body">
-      <p class="card-text"><strong>Tipo: </strong><%= @debt.category %></p>
-      <p class="card-text"><strong>Mutuário: </strong>Prefeitura Municipal de Niterói</p>
-      <p class="card-text"><strong>Credor: </strong><%= @debt.creditor.name %></p>
-      <p class="card-text"><strong>Valor do Contrato: </strong><%= @debt.contract_value %></p>
-      <p class="card-text"><strong>Fator de Conversão do Mês (moeda original) REAL </strong>-</p>
-      <p class="card-text"><strong>Fator de Conversão do Mês (em Real)</strong>-</p>
-      <p class="card-text"><strong>Taxa de Encargos: </strong>
-      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.formula} " : result } %></p>
-      <p class="card-text"><strong>Taxa de juros: </strong><%= @debt.interest_rate %></p>
-      <p class="card-text"><strong>Forma de Pagamento: </strong><%= @debt.amortization_type %></p>
-      <p class="card-text"><strong>Objetivo da Operação: </strong><%= @debt.purpose %></p>
-      <p class="card-text"><strong>Posição em: </strong><%= Date.today %></p>
+      <strong>Tipo: </strong><%= @debt.category %><br>
+      <strong>Mutuário: </strong>Prefeitura Municipal de Niterói<br>
+      <strong>Credor: </strong><%= @debt.creditor.name %><br>
+      <strong>Valor do Contrato: </strong><%= @debt.contract_value %><br>
+      <strong>Fator de Conversão do Mês (moeda original) REAL </strong>-<br>
+      <strong>Fator de Conversão do Mês (em Real)</strong>-<br>
+      <strong>Taxa de Encargos: </strong>
+      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.formula} " : result } %><br>
+      <strong>Taxa de juros: </strong><%= @debt.interest_rate %><br>      
+      <strong>Posição em: </strong><%= Date.today %><br>
     </div>
   </div>
   <div class="card">
     <div class="card-body">
-      <p class="card-text"><strong>Data da Assinatura: </strong><%= @debt.signature_date %></p>
-      <p class="card-text"><strong>Agente Financeiro: </strong><%= @debt.creditor.name %></p>
-      <p class="card-text"><strong>Moeda Original: </strong><%= @debt.currency.name %></p>
-      <p class="card-text"><strong>Prazo de Carência: </strong><%= @debt.grace_period %></p>
-      <p class="card-text"><strong>Prazo de Amortização: </strong><%= @debt.amortization_period %></p>
+      <strong>Data da Assinatura: </strong><%= @debt.signature_date %><br>
+      <strong>Agente Financeiro: </strong><%= @debt.creditor.name %><br>
+      <strong>Moeda Original: </strong><%= @debt.currency.name %><br>
+      <strong>Prazo de Carência: </strong><%= @debt.grace_period %><br>
+      <strong>Prazo de Amortização: </strong><%= @debt.amortization_period %><br>
+      <strong>Forma de Pagamento: </strong><%= @debt.amortization_type %><br>
+      <strong>Objetivo da Operação: </strong><%= @debt.purpose %><br>
     </div>
   </div>
 </div>
@@ -56,7 +51,7 @@
 	<div class="col-7">
 		<h6><strong>1 - Parcelas Recebidas </strong></h6>
 
-		<table class="table table-striped text-right">
+		<table class="table table-sm table-striped text-right">
 			<thead>
 				<tr>
 					<th>Mês/Ano</th>
@@ -88,7 +83,7 @@
 	<div class="col-5">
 		<h6><strong>2 - Parcelas à Receber </strong></h6>
 
-		<table class="table table-striped text-right">
+		<table class="table table-sm table-striped text-right">
 			<thead>
 				<tr>
 					<th>Mês/Ano</th>
@@ -111,7 +106,7 @@
 <hr>
 <h6><strong>1- Realizado no Exercício</strong></h6>
 
-<table class="table table-striped text-right">
+<table class="table table-sm table-striped text-right">
 	<thead>
 		<tr>
 			<th></th>
@@ -147,7 +142,7 @@
 
 <h6><strong>2- A Realizar no Exercício</strong></h6>
 
-<table class="table table-striped text-right">
+<table class="table table-sm table-striped text-right">
 	<thead>
 		<tr>
 			<th></th>
@@ -177,7 +172,7 @@
 
 <h6><strong>3- A Realizar de Outros Exercícios</strong></h6>
 
-<table class="table table-striped text-right">
+<table class="table table-sm table-striped text-right">
 	<thead>
 		<tr>
 			<th></th>
@@ -207,7 +202,7 @@
 
 <h6><strong>4- A Realizar nos Próximos Exercícios</strong></h6>
 
-<table class="table table-striped text-right">
+<table class="table table-sm table-striped text-right">
 	<thead>
 		<tr>
 			<th>Ano</th>
@@ -255,7 +250,7 @@
 
 <h6><strong>5- Saldo Devedor</strong></h6>
 
-<table class="table table-striped text-right">	
+<table class="table table-sm table-striped text-right">	
 	<thead>
 		<tr>
 			<th>Principal em Moeda Original</th>
@@ -291,7 +286,7 @@
 
 <br>
 
-<table class="table table-bordered">
+<table class="table table-sm table-bordered">
 	<thead>
 		<tr>
 			<th><h5><strong>E - Local e Data</strong></h5></th>
