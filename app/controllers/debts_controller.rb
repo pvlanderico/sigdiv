@@ -89,6 +89,7 @@ class DebtsController < ApplicationController
                                    :interest_rate,                     
                                    transaction_infos_attributes: [:id,
                                                                   :_destroy,
+                                                                  :base,
                                                                   :formula,
                                                                   :payment_day,
                                                                   :description,                                                                  

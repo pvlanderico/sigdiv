@@ -1,3 +1,8 @@
+<h1 class="pull-left"> Relatório Mensal Fevereiro/2019 <h1>
+<div class="pull-right">
+	<%= link_to fa_icon("download 2x", title: "Baixar PDF"), month_report_path(debt_id: @debt.id, format: 'pdf')%>
+</div>
+<div class="clearfix"></div>
 <div class="card-group">
   <div class="card col-2">
   	<div class="card-body">
@@ -20,13 +25,12 @@
       <strong>Tipo: </strong><%= @debt.category %><br>
       <strong>Mutuário: </strong>Prefeitura Municipal de Niterói<br>
       <strong>Credor: </strong><%= @debt.creditor.name %><br>
-      <strong>Valor do Contrato: </strong><%= @debt.contract_value %><br>
+      <strong>Valor do Contrato: </strong><%= 'R$ ' + big_decimal_to_currency_cents(@debt.contract_value) %><br>
       <strong>Fator de Conversão do Mês (moeda original) REAL </strong>-<br>
       <strong>Fator de Conversão do Mês (em Real)</strong>-<br>
       <strong>Taxa de Encargos: </strong>
-      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.formula} " : result } %><br>
-      <strong>Taxa de juros: </strong><%= @debt.interest_rate %><br>      
-      <strong>Posição em: </strong><%= Date.today %><br>
+      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.base}% " : result } %><br>
+      <strong>Taxa de juros: </strong><%= @debt.interest_rate %><br>
     </div>
   </div>
   <div class="card">
@@ -41,8 +45,14 @@
     </div>
   </div>
 </div>
-
 <br>
+
+<div class="report-currency alert alert-primary text-center" role="alert">
+  <strong>
+	  UPR em <%= Date.new(2019, 2).end_of_month %>:	  
+	  21,76552574
+	</strong>
+</div>
 
 <h5><strong>B - Esquema de Liberação de Recursos</strong></h5>
 <hr>
@@ -110,7 +120,6 @@
 	<thead>
 		<tr>
 			<th></th>
-			<th>Principal em Moeda Original</th>
 			<th>Principal em R$</th>
 			<th>Juros em R$</th>
 			<th>Outros encargos em R$</th>
@@ -120,20 +129,18 @@
 	<tbody>
 		<tr>
 			<td>No mês:</td>
-			<td></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019, 2) %></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019, 3) %></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019, 4) %></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_by 2, 2019) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019, 3) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019, 2) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019, 4) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019) %></td>
 		</tr>
 
 		<tr>
 			<td>Até o mês:</td>
-			<td></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019, 2) %></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019, 3) %></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019, 4) %></td>
-			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_total_until 2, 2019) %></td>			
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019, 3) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019, 2) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019, 4) %></td>
+			<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019) %></td>			
 		</tr>
 
 	</tbody>
@@ -146,7 +153,6 @@
 	<thead>
 		<tr>
 			<th></th>
-			<th>Principal em Moeda Original</th>
 			<th>Principal em R$</th>
 			<th>Juros em R$</th>
 			<th>Outros encargos em R$</th>
@@ -154,6 +160,30 @@
 		</tr>
 	</thead>
 	<tbody>
+		<% total_principal_current_year = 0 %>		
+		<% total_interest_brl_current_year = 0 %>
+		<% total_charges_brl_current_yead = 0 %>
+		<% total_current_year = 0 %>		
+			
+			<% list = FutureTransaction.list(@debt, @debt.amortizations.count) %>
+			<% year_total_principal = FutureTransaction.total_by year, 3, list %>			
+			<% year_total_interest_brl = FutureTransaction.total_by year, 2, list %>
+			<% year_total_charges_brl = FutureTransaction.total_by year, 4, list %>
+			<% year_total = year_total_principal_brl + year_total_interest_brl + year_total_charges_brl %>
+
+			<tr>			
+				<td><%= year %></td>
+				<td><%= big_decimal_to_currency(year_total_principal) %></td>				
+				<td><%= big_decimal_to_currency_cents(year_total_interest_brl) %></td>
+				<td><%= big_decimal_to_currency_cents(year_total_charges_brl) %></td>
+				<td><%= big_decimal_to_currency_cents(year_total) %></td>
+			</tr>
+
+			<% total_principal += year_total_principal %>			
+			<% total_interest_brl += year_total_interest_brl %>
+			<% total_charges_brl += year_total_charges_brl %>
+			<% total += year_total %>
+		<% end %>
 		<tr>
 			<td>Vencido:</td>
 			<td></td>
@@ -176,7 +206,6 @@
 	<thead>
 		<tr>
 			<th></th>
-			<th>Principal em Moeda Original</th>
 			<th>Principal em R$</th>
 			<th>Juros em R$</th>
 			<th>Outros encargos em R$</th>
@@ -223,7 +252,7 @@
 
 		<% ((Date.today.year + 1)..@debt.last_year).each do |year| %>
 			
-			<% list = FutureTransaction.list(@debt)%>
+			<% list = FutureTransaction.list(@debt, @debt.amortizations.count) %>
 			<% year_total_principal = FutureTransaction.total_by year, 3, list %>
 			<% year_total_principal_brl = FutureTransaction.total_by year, 3, list %>
 			<% year_total_interest_brl = FutureTransaction.total_by year, 2, list %>
@@ -253,7 +282,6 @@
 <table class="table table-sm table-striped text-right">	
 	<thead>
 		<tr>
-			<th>Principal em Moeda Original</th>
 			<th>Principal em R$</th>
 			<th>Juros em R$</th>
 			<th>Outros encargos em R$</th>
@@ -261,8 +289,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>			
-			<td><%= big_decimal_to_currency(total_principal) %></td>
+		<tr>
 			<td><%= big_decimal_to_currency_cents(total_principal_brl) %></td>
 			<td><%= big_decimal_to_currency_cents(total_interest_brl) %></td>
 			<td><%= big_decimal_to_currency_cents(total_charges_brl) %></td>

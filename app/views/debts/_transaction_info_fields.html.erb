@@ -4,6 +4,9 @@
     <div class="col-sm">	
 		  <%= f.input :category_number, collection: TransactionInfo::BASIC_TYPES.map {|k, v| [k, v[:name]]}, label_method: :last, value_method: :first, selected: f.object.category_number, input_html: { class: 'category' } %>
 		</div>
+		<div class="col-1">
+			<%= f.input :base %>
+		</div>
    	<div class="col-sm">
 			<%= f.input :formula %>
 		</div>
@@ -21,11 +24,11 @@
 		<div class="col-sm">
 		  <%= f.input :description %>
 		</div>
-		<div class="col-sm">
+		<div class="col-1">
 		  <% f.object.new_record? ? slug = f.object.category.slug : slug = f.object.slug %>
 		  <%= f.input :slug, input_html: {value: slug} %>
 		</div>
-		<div class="col-sm trash-charge-container">
+		<div class="col-1 trash-charge-container">
 			<%= link_to_remove_association fa_icon("times-circle 2x", title: "Remover encargo") , f, class: 'text-danger' %>
 		</div>
 	</div>

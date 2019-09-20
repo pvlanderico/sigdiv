@@ -36,6 +36,9 @@ gem 'jquery-ui-rails'
 gem 'jquery-validation-rails'
 gem 'jquery-mask-plugin'
 gem 'jquery-datatables'
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

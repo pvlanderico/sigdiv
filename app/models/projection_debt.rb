@@ -1,11 +1,63 @@
 class ProjectionDebt
 	attr_accessor :balance_projection
-	attr_accessor :debt
+	attr_accessor :debt	
 	attr_accessor :amortizations_count
 
-	def initialize debt
+	def initialize debt, start_date, end_date
 		self.debt = debt
-		self.amortizations_count = debt.amortizations.count
+		self.amortizations_count = amortizations_count
+		self.loan_term = amortizations_total
+		self.transaction_items = build_transaction_items start_date, end_date
+	end
+
+	def build_transaction_items start_date, end_date
+		result = []
+		
+		remaining_amortizations = debt.loan_term - amortizations_count
+		exchange_rate = debt.transaction_items.last.exchange_rate
+		
+		(0..(amortizations_total + debt.charges_grace_period) - (debt.interests.count)).each do |future_transaction_count|
+
+			debt.transaction_infos.sort_by(&:order).reject(&:withdraw?).each_with_index do |transaction_info, index|
+
+				if (future_transaction_count == 0 && index == 0) 
+					balance_projection = debt.outstanding_balance
+				else 
+					balance_projection = result.last.final_outstanding_balance
+				end
+
+				value = FormulaService.eval(transaction_info.formula, self)
+
+				result << FutureTransaction.new(debt: debt,
+																				projection_debt: self,
+																				transaction_info: transaction_info,
+																				value: value,
+																				value_brl: value * exchange_rate, 
+																				date: transaction_info.payment_date + future_transaction_count.months, 
+																				start_balance: balance_projection) unless transaction_info.amortization? && remaining_amortizations < future_transaction_count
+				
+				amortizations_count += 1 if transaction_info.amortization?
+			end
+
+		end
+
+		result
+	end
+
+	def self.total_by year, category_number, list		
+		list.reduce(0){ |sum, transaction| transaction.date.year == year && transaction.transaction_info.category_number == category_number ? sum + transaction.value_brl : sum }
+	end
+
+	def projection_period debt, start_date, end_date
+		if debt.in_grace_period? 
+			amortizations_total = debt.loan_term
+		elsif debt.in_amortization_period?
+			amortizations_total = X
+		else
+			amortizations_total = 0
+		end
+			
+		(0..(amortizations_total + debt.charges_grace_period) - (debt.interests.count))
 	end
 	
   # Desembolsos

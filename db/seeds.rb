@@ -18,7 +18,7 @@ Debt.create!( "code" => 123456,
 					    "creditor_id" => creditor1.id,
 					    "grace_period" => Date.parse('19/11/2017'),
 					    "amortization_period" => Date.parse('19/11/2033'),
-					    "purpose" => "Construção Trans Oceanica",
+					    "purpose" => "Programa destinado à Implantação do Corredor BRT TransOcênica - Charitas/Centro",
 					    "amortization_type" => 1,
 					    "name" => "Caixa Transoceânica",
 					    "category" => 0,
@@ -33,8 +33,8 @@ Debt.create!( "code" => 123456,
 withdraw = TransactionInfo.create!(category_number: 1, debt: Debt.first, payment_day:'15', formula: "", slug: 'D')
 interest = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'J')
 amortization = TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', formula: "[PGTO] - [SALDO] * [JUROS]", slug: 'A')
-charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Adm', formula: "[SALDO] * (0.02 / 12)", slug: 'TA')
-charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', description:'Taxa Risco', formula: "[SALDO] * (0.007 / 12)", slug: 'TR')
+charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 2, description:'Taxa Adm', formula: "[SALDO] * (0.02 / 12)", slug: 'TA')
+charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 0.7, description:'Taxa Risco', formula: "[SALDO] * (0.007 / 12)", slug: 'TR')
 
 puts Date.new(2015, 5, 8)
 
