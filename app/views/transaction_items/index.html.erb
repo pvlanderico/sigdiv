@@ -32,8 +32,8 @@
       <th class="td-right">Saldo</th>
     </thead>
     <% #transaction_items = FutureTransaction.list @debt%>
-    <tbody>    
-      <% (@transaction_items.includes(:transaction_info) + FutureTransaction.list(@debt, @debt.amortizations.count)).each do |transaction_item| %>
+    <tbody>
+      <% (@transaction_items.includes(:transaction_info) + ProjectionDebt.new(@debt).transaction_items).each do |transaction_item| %>
           
         <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
@@ -91,7 +91,7 @@
         <% @debt.transaction_infos.where(category_number: 4).each do |transaction_info| %>
           <li><span class="badge badge-info badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description %></li>
         <% end %>
-          <li><span class="badge badge-secondary badge-pill">F</span> Operação futura</li>
+          <li><span class="badge badge-secondary badge-pill">&nbsp;&nbsp;</span> Operação futura</li>
           <span hidden class="currency-name"><%= @debt.currency.name %></span>      
     </ul>
     <br>

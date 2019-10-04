@@ -153,6 +153,10 @@ class Debt < ApplicationRecord
 		(grace_period + loan_term.months).year
 	end
 
+	def amortizations_count
+		amortizations.count
+	end
+
 	private
 
 		def self.date_range_from_year year
@@ -160,11 +164,11 @@ class Debt < ApplicationRecord
 		end
 
 		def instalment_formula_numerator
-			( ( (1 + interest_rate_per_month) ** (loan_term - amortizations.count) ) * interest_rate_per_month )
+			( ( (1 + interest_rate_per_month) ** (loan_term - amortizations_count) ) * interest_rate_per_month )
 		end
 
 		def instalment_formula_denominator
-			( ( ( 1 + interest_rate_per_month ) ** (loan_term - amortizations.count) ) - 1 )
+			( ( ( 1 + interest_rate_per_month ) ** (loan_term - amortizations_count) ) - 1 )
 		end
 
 		def interest_rate_per_month
