@@ -40,7 +40,7 @@
         <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
           <td class="td-right">
             <% if transaction_item.future_transaction? %>
-              <span class="badge badge-secondary badge-pill">F</span>
+              <span class="badge badge-secondary badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 1 %>
               <span class="badge badge-primary badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 2  %>
@@ -69,7 +69,7 @@
           </td>
 
           <td class="td-right">            
-            <%= big_decimal_to_currency(transaction_item.final_outstanding_balance) %>
+            <%= big_decimal_to_currency(transaction_item.final_outstanding_balance) if transaction_item.final_outstanding_balance != 0 %>
           </td>
           
         </tr>                
@@ -91,8 +91,12 @@
         <% @debt.transaction_infos.where(category_number: 4).each do |transaction_info| %>
           <li><span class="badge badge-info badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description %></li>
         <% end %>
-          <li><span class="badge badge-secondary badge-pill">&nbsp;&nbsp;</span> Operação futura</li>
-          <span hidden class="currency-name"><%= @debt.currency.name %></span>      
+        <li>&nbsp</li>
+        <li>Operações futuras:</li>
+        <% @debt.transaction_infos.where(category_number: 2..4).each do |transaction_info| %>
+          <li><span class="badge badge-secondary badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description.blank? ? transaction_info.name : transaction_info.description %></li>
+        <% end %>          
+        <span hidden class="currency-name"><%= @debt.currency.name %></span>      
     </ul>
     <br>
     <button type="button" class="btn btn-primary btn-converte">Converter Moeda</button>
@@ -122,7 +126,7 @@
     } else if($('.val_brl').is( ":hidden" )){
       $('.val_brl').show();
       $('.val_moeda').hide();
-      $('.btn-converte').text('Converter para UM');
+      $('.btn-converte').text('Converter para ' + '<%= @debt.currency.name %>');
     }
   })
 </script>

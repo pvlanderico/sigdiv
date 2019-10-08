@@ -10,6 +10,10 @@ class TransactionInfo < ApplicationRecord
 
 	has_many :items, class_name: 'TransactionItem', foreign_key: :transaction_info_id
 
+	def name
+		BASIC_TYPES[category_number][:name]	
+	end
+
 	def payment_date
 		Date.new(Date.today.year, Date.today.month, payment_day)
 	end
