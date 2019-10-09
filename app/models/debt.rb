@@ -123,7 +123,7 @@ class Debt < ApplicationRecord
 	end
 
 	def years_list
-		signature_date.year..(signature_date + loan_term.months).year
+		signature_date.year..(grace_period + loan_term.months).year
 	end
 
 	def withdraws_pro_rata
@@ -137,7 +137,7 @@ class Debt < ApplicationRecord
 		withdraws.order('extract(year from date)').group('extract(year from date)').pluck("extract(year from date), sum(value), sum(value_brl)")
 	end
 
-	def transaction_items_month_total month, year, category_number = nil		
+	def transaction_items_month_total month, year, category_number = nil	
 		result = transaction_items.where('extract(month from date) = ?', month).where('extract(year from date) = ?', year)
 		result = result.where(transaction_infos: { category_number: category_number }) if category_number.present? && category_number != 1
 		result = result.sum(:value_brl)
@@ -155,6 +155,10 @@ class Debt < ApplicationRecord
 
 	def amortizations_count
 		amortizations.count
+	end
+
+	def grace_period_payments_number
+		(grace_period.year * 12 + grace_period.month) - (signature_date.year * 12 + signature_date.month)
 	end
 
 	private

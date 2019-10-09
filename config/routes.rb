@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   get 'reports/index', to: 'reports#index', as: 'reports'
-	get '/month_reports/:debt_id', to: 'month_reports#show', as: 'month_report'
+	get '/month_report/', to: 'month_reports#show', as: 'month_report'
   resources :transaction_types
   resources :currencies
   resources :creditors

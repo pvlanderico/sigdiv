@@ -1016,16 +1016,16 @@ TransactionItem.create!(
 
 puts Date.new(2019, 07, 15)
 
-value = BigDecimal('65456.84928')
+value = BigDecimal('64172.70717')
 exchange_rate = BigDecimal('21.76552574')
 
 TransactionItem.create!(
-	value: BigDecimal('65456.84928'),
+	value: BigDecimal('64172.70717'),
 	date: Date.new(2019, 07, 15),
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13091369.85527')
+	start_balance: BigDecimal('12834541.43418')
 )
 
 puts "Taxa Administrativa"
@@ -1731,16 +1731,16 @@ TransactionItem.create!(
 
 puts Date.new(2019, 07, 15)
 
-value = BigDecimal('21818.94976')
+value = BigDecimal('21390.90239')
 exchange_rate = BigDecimal('21.76552574')
 
 TransactionItem.create!(
-	value: BigDecimal('21818.94976'),
+	value: BigDecimal('21390.90239'),
 	date: Date.new(2019, 07, 15),
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13091369.85527')
+	start_balance: BigDecimal('12834541.43418')
 )
 
 
@@ -2447,16 +2447,16 @@ TransactionItem.create!(
 
 puts Date.new(2019, 07, 15)
 
-value = BigDecimal('7636.63242')
+value = BigDecimal('7486.81584')
 exchange_rate = BigDecimal('21.76552574')
 
 TransactionItem.create!(
-	value: BigDecimal('7636.63242'),
+	value: BigDecimal('7486.81584'),
 	date: Date.new(2019, 07, 15),
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13091369.85527')
+	start_balance: BigDecimal('12834541.43418')
 )
 
 puts "Amortização"
@@ -2729,14 +2729,14 @@ TransactionItem.create!(
 
 puts Date.new(2019, 07, 15)
 
-value = BigDecimal('32550.64938')
+value = BigDecimal('31912.06595')
 exchange_rate = BigDecimal('21.76552574')
 
 TransactionItem.create!(
-	value: BigDecimal('32550.64938'),
+	value: BigDecimal('31912.06595'),
 	date: Date.new(2019, 07, 15),
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13091369.85527')
+	start_balance: BigDecimal('12834541.43418')
 )

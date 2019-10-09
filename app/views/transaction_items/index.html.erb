@@ -93,7 +93,7 @@
         <% end %>
         <li>&nbsp</li>
         <li>Operações futuras:</li>
-        <% @debt.transaction_infos.where(category_number: 2..4).each do |transaction_info| %>
+        <% @debt.transaction_infos.where(category_number: 2..4).order(:category_number).each do |transaction_info| %>
           <li><span class="badge badge-secondary badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description.blank? ? transaction_info.name : transaction_info.description %></li>
         <% end %>          
         <span hidden class="currency-name"><%= @debt.currency.name %></span>      

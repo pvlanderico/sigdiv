@@ -13,27 +13,26 @@
     <tbody>
       <tr>
         <td>Mensal</td>
-        <td><%= select_tag 'debt', options_for_select(Debt.all.collect { |debt| [debt.name, month_report_path(debt.id)] } ), class: 'form-control select month_report_path', prompt: 'Contrato:' %></td>
+        <td><%= select_tag 'debt', options_for_select(Debt.all.collect { |debt| [debt.name, debt.id] } ), class: 'form-control select month-report-param month_report_debt', prompt: 'Contrato:' %></td>
         <td>
-        	<%= select_tag 'month_report_month', options_for_select(01..12), class: 'form-control select month_report_month', prompt: 'Mês' %>
-        	<%= select_tag 'month_report_year', options_for_select(Debt.first.signature_date.year..Date.today.year), class: 'form-control select month_report_year', prompt: 'Ano:' %>        	
+        	<%= select_tag 'month_report_month', options_for_select(01..12), class: 'form-control select month-report-param month_report_month', prompt: 'Mês' %>
+        	<%= select_tag 'month_report_year', options_for_select(Debt.first.signature_date.year..Date.today.year), class: 'form-control select month-report-param month_report_year', prompt: 'Ano:' %>        	
         </td>
-        <td><%= button_tag 'Gerar relatório', class: 'btn btn-success show-month-report'  %></td>        
+        <td>
+          <a href="<%= month_report_path %>" class="btn btn-success show-month-report" target="_blank"> Gerar Relatório</a>     
       </tr>    
     </tbody>
   </table>
 
   <script type="text/javascript">
-  	$('td').on('click', '.show-month-report', function(e){
-  		e.preventDefault()
-  		self = this
-  		
-  		$.get(
-  			$(self).parents('tr').find('.month_report_path').val(),
-  			{
-  			 month: $(self).parents('tr').find('.month_report_month').val(),
-  			 year: $(self).parents('tr').find('.month_report_year').val()
-  			}
-  		)
+  	$('.month-report-param').on('change', function(e){
+      let monthReportParams = {
+        debt_id: $(this).parents('tr').find('.month_report_debt').val(),
+        month: $(this).parents('tr').find('.month_report_month').val(),
+        year: $(this).parents('tr').find('.month_report_year').val(),
+        format: 'pdf'
+      }
+
+  		$('.show-month-report').attr("href", '<%= month_report_path %>' + '?' + $.param(monthReportParams));  		
   	})
   </script>

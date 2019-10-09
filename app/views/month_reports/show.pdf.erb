@@ -27,24 +27,24 @@
 		<table style="width:100%;">
 		  <tr>
 		    <td style="width:50%;">
-		      <strong>Tipo: </strong><%= @debt.category %><br>
+		      <strong>Tipo: </strong><%= @projection_debt.category %><br>
 		      <strong>Mutuário: </strong>Prefeitura Municipal de Niterói<br>
-		      <strong>Credor: </strong><%= @debt.creditor.name %><br>
-		      <strong>Valor do Contrato: </strong><%= 'R$ ' + big_decimal_to_currency_cents(@debt.contract_value) %><br>
+		      <strong>Credor: </strong><%= @projection_debt.creditor.name %><br>
+		      <strong>Valor do Contrato: </strong><%= 'R$ ' + big_decimal_to_currency_cents(@projection_debt.contract_value) %><br>
 		      <strong>Fator de Conversão do Mês (moeda original) REAL </strong>-<br>
 		      <strong>Fator de Conversão do Mês (em Real)</strong>-<br>
 		      <strong>Taxa de Encargos: </strong>
-		      	<%= @debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.base}% " : result } %><br>
-		      <strong>Taxa de juros: </strong><%= @debt.interest_rate %>%<br>
+		      	<%= @projection_debt.transaction_infos.reduce('') { |result, info| info.charge? ? result + "#{info.description}: #{info.base}% " : result } %><br>
+		      <strong>Taxa de juros: </strong><%= @projection_debt.interest_rate %>%<br>
 		    </td>
 		    <td style="width:50%;">
-		      <strong>Data da Assinatura: </strong><%= @debt.signature_date %><br>
-		      <strong>Agente Financeiro: </strong><%= @debt.creditor.name %><br>
-		      <strong>Moeda Original: </strong><%= @debt.currency.name %><br>
-		      <strong>Prazo de Carência: </strong><%= @debt.grace_period %><br>
-		      <strong>Prazo de Amortização: </strong><%= @debt.amortization_period %><br>
-		      <strong>Forma de Pagamento: </strong><%= @debt.amortization_type %><br>
-		      <strong>Objetivo da Operação: </strong><%= @debt.purpose %><br>
+		      <strong>Data da Assinatura: </strong><%= @projection_debt.signature_date %><br>
+		      <strong>Agente Financeiro: </strong><%= @projection_debt.creditor.name %><br>
+		      <strong>Moeda Original: </strong><%= @projection_debt.currency.name %><br>
+		      <strong>Prazo de Carência: </strong><%= @projection_debt.grace_period %><br>
+		      <strong>Prazo de Amortização: </strong><%= @projection_debt.amortization_period %><br>
+		      <strong>Forma de Pagamento: </strong><%= @projection_debt.amortization_type %><br>
+		      <strong>Objetivo da Operação: </strong><%= @projection_debt.purpose %><br>
 		    </td>
 		  </tr>
 		</table>
@@ -73,7 +73,7 @@
 						<tbody>
 							<% sum_values = 0 %>
 							<% sum_values_brl = 0 %>
-							<% @debt.withdraws_values_by_year.each do |year_values|%>
+							<% @projection_debt.withdraws_values_by_year.each do |year_values|%>
 								<tr>
 									<td><%= year_values[0].to_i %></td>
 									<td><%= big_decimal_to_currency(year_values[1]) %></td>
@@ -131,18 +131,18 @@
 			<tbody>
 				<tr>
 					<td>No mês:</td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019, 3) %></td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019, 2) %></td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019, 4) %></td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_month_total 2, 2019) %></td>
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_month_total(2, 2019, 3)) %></td>					
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_month_total 2, 2019, 2) %></td>
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_month_total 2, 2019, 4) %></td>
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_month_total 2, 2019) %></td>
 				</tr>
 
 				<tr>
 					<td>Até o mês:</td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019, 3) %></td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019, 2) %></td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019, 4) %></td>
-					<td><%= big_decimal_to_currency_cents(@debt.transaction_items_year_total 2, 2019) %></td>			
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total 2, 2019, 3) %></td>
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total 2, 2019, 2) %></td>
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total 2, 2019, 4) %></td>
+					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total 2, 2019) %></td>			
 				</tr>
 
 			</tbody>
@@ -228,13 +228,12 @@
 				<% total_charges_brl = 0 %>
 				<% total = 0 %>
 
-				<% ((Date.today.year + 1)..@debt.last_year).each do |year| %>
-					
-					<% list = FutureTransaction.list(@debt, @debt.amortizations.count) %>
-					<% year_total_principal = FutureTransaction.total_by year, 3, list %>
-					<% year_total_principal_brl = FutureTransaction.total_by year, 3, list %>
-					<% year_total_interest_brl = FutureTransaction.total_by year, 2, list %>
-					<% year_total_charges_brl = FutureTransaction.total_by year, 4, list %>
+				<% ((Date.today.year + 1)..@projection_debt.last_year).each do |year| %>
+										
+					<% year_total_principal = ProjectionDebt.total_by year, 3, @future_transactions %>
+					<% year_total_principal_brl = ProjectionDebt.total_by year, 3, @future_transactions %>
+					<% year_total_interest_brl = ProjectionDebt.total_by year, 2, @future_transactions %>
+					<% year_total_charges_brl = ProjectionDebt.total_by year, 4, @future_transactions %>
 					<% year_total = year_total_principal_brl + year_total_interest_brl + year_total_charges_brl %>
 
 					<tr>			
