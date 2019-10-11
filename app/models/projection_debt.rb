@@ -32,7 +32,7 @@ class ProjectionDebt
 																				transaction_info: transaction_info,
 																				value: value,
 																				value_brl: value * exchange_rate, 
-																				date: transaction_info.payment_date + future_transaction_count.months, 
+																				date: transaction_info.payment_date(start_date) + future_transaction_count.months, 
 																				start_balance: balance_projection)
 				
 				self.amortizations_count += 1 if transaction_info.amortization?
