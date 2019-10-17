@@ -161,6 +161,10 @@ class Debt < ApplicationRecord
 		(grace_period.year * 12 + grace_period.month) - (signature_date.year * 12 + signature_date.month)
 	end
 
+	def paid_payments_count payment_type, end_date
+		send(payment_type).where('date <= ?', end_date).count
+	end
+
 	private
 
 		def self.date_range_from_year year

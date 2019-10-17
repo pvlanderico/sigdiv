@@ -31,9 +31,11 @@
       <th class="td-right">Operação</th>
       <th class="td-right">Saldo</th>
     </thead>
-    <% #transaction_items = FutureTransaction.list @debt%>
+    
     <tbody>
-      <% (@transaction_items.includes(:transaction_info) + ProjectionDebt.new(@debt).transaction_items).each do |transaction_item| %>
+      <% future_transactions = ProjectionDebt.new(@debt, @start_date).transaction_items %>
+
+      <% (@transaction_items.includes(:transaction_info) + future_transactions).each do |transaction_item| %>
           
         <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>

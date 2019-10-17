@@ -13,11 +13,12 @@ class TransactionItem < ApplicationRecord
 	end
 
 	def final_outstanding_balance
+		result = start_balance
 		if amortization? || withdraw?
-			Dentaku("#{start_balance} #{transaction_info.category.operation} #{value}")
-		else
-			start_balance
+			result = Dentaku("#{start_balance} #{transaction_info.category.operation} #{value}")
 		end
+		
+		result
 	end
 
 	def period

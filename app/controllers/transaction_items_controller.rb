@@ -4,7 +4,8 @@ class TransactionItemsController < ApplicationController
   before_action :set_transaction_items, only: [:index, :create, :update]
 
   # GET :debt_id/transactions/
-  def index    
+  def index
+    @start_date = @debt.amortizations.last.date
     render :index, layout: false
   end
 

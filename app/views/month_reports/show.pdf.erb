@@ -229,11 +229,11 @@
 				<% total = 0 %>
 
 				<% ((Date.today.year + 1)..@projection_debt.last_year).each do |year| %>
-										
-					<% year_total_principal = ProjectionDebt.total_by year, 3, @future_transactions %>
-					<% year_total_principal_brl = ProjectionDebt.total_by year, 3, @future_transactions %>
-					<% year_total_interest_brl = ProjectionDebt.total_by year, 2, @future_transactions %>
-					<% year_total_charges_brl = ProjectionDebt.total_by year, 4, @future_transactions %>
+					
+					<% year_total_principal = @projection_debt.brl_total_by year, 3 %>
+					<% year_total_principal_brl = @projection_debt.brl_total_by year, 3 %>
+					<% year_total_interest_brl = @projection_debt.brl_total_by year, 2 %>
+					<% year_total_charges_brl = @projection_debt.brl_total_by year, 4 %>
 					<% year_total = year_total_principal_brl + year_total_interest_brl + year_total_charges_brl %>
 
 					<tr>			
