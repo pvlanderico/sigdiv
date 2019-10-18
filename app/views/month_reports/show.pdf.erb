@@ -138,11 +138,16 @@
 				</tr>
 
 				<tr>
+					<% paid_principal_year_amount =  @projection_debt.debt.transaction_items_year_total @start_date, 3 %>
+					<% paid_interest_year_amount =  @projection_debt.debt.transaction_items_year_total @start_date, 2 %>
+					<% paid_charges_year_amount =  @projection_debt.debt.transaction_items_year_total @start_date, 4 %>
+					<% paid_total_year_amount =  @projection_debt.debt.transaction_items_year_total @start_date %>
+
 					<td>Até o mês:</td>
-					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total @start_date, 3) %></td>
-					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total @start_date, 2) %></td>
-					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total @start_date, 4) %></td>
-					<td><%= big_decimal_to_currency_cents(@projection_debt.debt.transaction_items_year_total @start_date) %></td>			
+					<td><%= big_decimal_to_currency_cents(paid_principal_year_amount) %></td>
+					<td><%= big_decimal_to_currency_cents(paid_interest_year_amount) %></td>
+					<td><%= big_decimal_to_currency_cents(paid_charges_year_amount) %></td>
+					<td><%= big_decimal_to_currency_cents(paid_total_year_amount) %></td>			
 				</tr>
 
 			</tbody>
@@ -167,26 +172,26 @@
 					<td></td>
 				</tr>
 
-				<% year_total_principal = @projection_debt.brl_total_by @start_date.year, 3 %>
-				<% year_total_principal_brl = @projection_debt.brl_total_by @start_date.year, 3 %>
-				<% year_total_interest_brl = @projection_debt.brl_total_by @start_date.year, 2 %>
-				<% year_total_charges_brl = @projection_debt.brl_total_by @start_date.year, 4 %>
-				<% year_total = year_total_principal_brl + year_total_interest_brl + year_total_charges_brl %>
+				<% current_year_lacking_principal = @projection_debt.brl_lacking_total_by @start_date, 3 %>
+				<% current_year_lacking_principal_brl = @projection_debt.brl_lacking_total_by  @start_date, 3 %>
+				<% current_year_lacking_interest_brl = @projection_debt.brl_lacking_total_by @start_date, 2 %>
+				<% current_year_lacking_charges_brl = @projection_debt.brl_lacking_total_by @start_date, 4 %>
+				<% current_year_lacking = current_year_lacking_principal_brl + current_year_lacking_interest_brl + current_year_lacking_charges_brl %>
 
 				<tr>
 					<td>A Vencer:</td>
-					<td><%= big_decimal_to_currency_cents  year_total_principal_brl %></td>
-					<td><%= big_decimal_to_currency_cents year_total_interest_brl %></td>
-					<td><%= big_decimal_to_currency_cents year_total_charges_brl %></td>
-					<td><%= big_decimal_to_currency_cents year_total %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking_principal_brl %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking_interest_brl %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking_charges_brl %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking %></td>
 				</tr>				
 
 				<tr>
 					<td>Total:</td>					
-					<td><%= big_decimal_to_currency_cents  year_total_principal_brl %></td>
-					<td><%= big_decimal_to_currency_cents year_total_interest_brl %></td>
-					<td><%= big_decimal_to_currency_cents year_total_charges_brl %></td>
-					<td><%= big_decimal_to_currency_cents year_total %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking_principal_brl %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking_interest_brl %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking_charges_brl %></td>
+					<td><%= big_decimal_to_currency_cents current_year_lacking %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -280,10 +285,10 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><%= big_decimal_to_currency_cents(total_principal_brl) %></td>
-					<td><%= big_decimal_to_currency_cents(total_interest_brl) %></td>
-					<td><%= big_decimal_to_currency_cents(total_charges_brl) %></td>
-					<td><%= big_decimal_to_currency_cents(total) %></td>
+					<td><%= big_decimal_to_currency_cents(total_principal_brl + current_year_lacking_principal) %></td>
+					<td><%= big_decimal_to_currency_cents(total_interest_brl + current_year_lacking_interest_brl) %></td>
+					<td><%= big_decimal_to_currency_cents(total_charges_brl + current_year_lacking_charges_brl) %></td>
+					<td><%= big_decimal_to_currency_cents(total + current_year_lacking) %></td>
 				</tr>
 			</tbody>
 		</table>

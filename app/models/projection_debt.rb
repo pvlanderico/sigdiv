@@ -34,7 +34,7 @@ class ProjectionDebt
 																				transaction_info: transaction_info,
 																				value: value,
 																				value_brl: value * exchange_rate, 
-																				date: transaction_info.payment_date(self.start_date) + future_transaction_count.months, 
+																				date: transaction_info.payment_date(self.start_date) + future_transaction_count.months - 1.month, 
 																				start_balance: balance_projection)
 				
 				self.amortizations_count += 1 if transaction_info.amortization?
@@ -43,6 +43,10 @@ class ProjectionDebt
 		end
 
 		result
+	end
+
+	def brl_lacking_total_by date, category_number
+		self.transaction_items.reduce(0){ |sum, transaction| transaction.date.year == date.year && transaction.date > (date + 1.month) && transaction.transaction_info.category_number == category_number ? sum + transaction.value_brl : sum }
 	end
 
 	def brl_total_by year, category_number
