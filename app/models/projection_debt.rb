@@ -1,26 +1,28 @@
 class ProjectionDebt
 	attr_accessor :balance_projection
-	attr_accessor :debt	
+	attr_accessor :debt
+	attr_accessor :start_date
 	attr_accessor :amortizations_count
 	attr_accessor :transaction_items
 
 	def initialize debt, start_date
 		self.debt = debt
-		self.amortizations_count = start_date_to_amortizations_count start_date		
-		self.transaction_items = build_transaction_items(start_date)
+		self.start_date = start_date
+		self.amortizations_count = start_date_to_amortizations_count
+		self.transaction_items = build_transaction_items
 	end
 
-	def build_transaction_items start_date
+	def build_transaction_items
 		result = []
 
-		exchange_rate = debt.amortizations.where('date <= ?', start_date).last.exchange_rate
+		exchange_rate = debt.amortizations.where('date <= ?', self.start_date).last.exchange_rate
 
-		projection_period(start_date).each do |future_transaction_count|
+		projection_period.each do |future_transaction_count|
 
 			debt.transaction_infos.sort_by(&:order).reject(&:withdraw?).each do |transaction_info|
 
 				if (result.empty?) 
-					self.balance_projection = debt.amortizations.where('date <= ?', start_date).last.final_outstanding_balance
+					self.balance_projection = debt.amortizations.where('date <= ?', self.start_date).last.final_outstanding_balance
 				else 
 					self.balance_projection = result.last.final_outstanding_balance
 				end
@@ -32,7 +34,7 @@ class ProjectionDebt
 																				transaction_info: transaction_info,
 																				value: value,
 																				value_brl: value * exchange_rate, 
-																				date: transaction_info.payment_date(start_date) + future_transaction_count.months, 
+																				date: transaction_info.payment_date(self.start_date) + future_transaction_count.months, 
 																				start_balance: balance_projection)
 				
 				self.amortizations_count += 1 if transaction_info.amortization?
@@ -47,11 +49,11 @@ class ProjectionDebt
 		self.transaction_items.reduce(0){ |sum, transaction| transaction.date.year == year && transaction.transaction_info.category_number == category_number ? sum + transaction.value_brl : sum }
 	end
 
-	def projection_period start_date
+	def projection_period
 		if debt.in_grace_period? 
-			1..grace_period_in_months(start_date)
+			1..grace_period_in_months(self.start_date)
 		elsif debt.in_amortization_period?
-			1..(debt.loan_term - debt.paid_payments_count(:amortizations, start_date))
+			1..(debt.loan_term - debt.paid_payments_count(:amortizations, self.start_date))
 		else debt.done?
 			0..0
 		end		
@@ -61,8 +63,8 @@ class ProjectionDebt
 		(debt.grace_period_payments_number + debt.loan_term - debt.paid_payments_count(:interests, end_date))
 	end
 
-	def start_date_to_amortizations_count start_date		
-		(start_date.year * 12 + start_date.month) - (grace_period.year * 12 + grace_period.month)
+	def start_date_to_amortizations_count		
+		(self.start_date.year * 12 + self.start_date.month) - (grace_period.year * 12 + grace_period.month)
 	end
 
 	def outstanding_balance
