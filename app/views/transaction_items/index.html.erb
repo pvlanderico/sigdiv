@@ -24,18 +24,20 @@
   
   <table id="dttb-transaction-items" class="table table-hover">
     <thead>
-      <th></th>
-      <th class="td-right">Data</th>
-      <th class="td-right val_moeda">Valor em moeda</th>
-      <th class="td-right val_brl">Valor em moeda (BRL)</th>
-      <th class="td-right">Operação</th>
-      <th class="td-right">Saldo</th>
+      <tr class="table-primary">
+        <th></th>
+        <th class="td-right">Data</th>
+        <th class="td-right val_moeda">Valor em moeda</th>
+        <th class="td-right val_brl">Valor em moeda (BRL)</th>
+        <th class="td-right">Operação</th>
+      </tr>
     </thead>
     
     <tbody>
       <% future_transactions = ProjectionDebt.new(@debt, @start_date).transaction_items %>
 
-      <% (@transaction_items.includes(:transaction_info) + future_transactions).each do |transaction_item| %>
+      <% all_transactions = @transaction_items.includes(:transaction_info) + future_transactions %>
+      <% all_transactions.each_with_index do |transaction_item, index| %>
           
         <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
@@ -68,13 +70,15 @@
 
           <td class="td-right">            
             <%= transaction_item.transaction_info.category.name %>
-          </td>
-
-          <td class="td-right">            
-            <%= big_decimal_to_currency(transaction_item.final_outstanding_balance) if transaction_item.final_outstanding_balance != 0 %>
-          </td>
+          </td>     
           
-        </tr>                
+        </tr>        
+        <% if all_transactions[index + 1].present? && (transaction_item.date + 1.month).month ==all_transactions[index + 1].date.month %>
+          <tr class="table-info">
+            <td class="td-right" colspan="3"><strong>Saldo em <%= transaction_item.date.end_of_month %>:</strong></td>
+            <td class="td-right"><strong><%= big_decimal_to_currency(transaction_item.final_outstanding_balance) if transaction_item.final_outstanding_balance != 0 %></strong></td>
+          </tr>
+        <% end %>
       <% end %>              
     </tbody>
   </table>
@@ -85,6 +89,8 @@
 
 <div class="pull-left transactions-legend">
   <div class='position-fixed'>
+    <button type="button" class="btn btn-primary btn-converte">Converter Moeda</button>
+    <br><br>
     <ul class="nav flex-column list-group">     
           <li><span class="badge badge-primary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Desembolso</li>
           <li><span class="badge badge-success badge-pill"><%= @debt.transaction_infos.find_by(category_number: 2).slug %></span> Juros</li> 
@@ -101,9 +107,9 @@
         <span hidden class="currency-name"><%= @debt.currency.name %></span>      
     </ul>
     <br>
-    <button type="button" class="btn btn-primary btn-converte">Converter Moeda</button>
-    <br><br>
     <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 1) %>">Registrar desembolso</button>
+    <br><br>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 3) %>">Registrar movimentação</button>
   </div>  
 </div>
 

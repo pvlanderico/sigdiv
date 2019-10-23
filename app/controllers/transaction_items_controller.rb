@@ -5,7 +5,7 @@ class TransactionItemsController < ApplicationController
 
   # GET :debt_id/transactions/
   def index
-    @start_date = @debt.amortizations.last.date
+    @start_date = @debt.amortizations.last.date + 1.month
     render :index, layout: false
   end
 
