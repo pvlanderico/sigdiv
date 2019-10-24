@@ -37,7 +37,7 @@
       <% future_transactions = ProjectionDebt.new(@debt, @start_date).transaction_items %>
 
       <% all_transactions = @transaction_items.includes(:transaction_info) + future_transactions %>
-      <% all_transactions.each_with_index do |transaction_item, index| %>
+      <% all_transactions.sort_by {|t| [t.date, t.transaction_info.category_number, t.transaction_info.slug] }.each_with_index do |transaction_item, index| %>
           
         <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
@@ -48,9 +48,9 @@
             <% elsif transaction_item.transaction_info.category_number == 1 %>
               <span class="badge badge-primary badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 2  %>
-              <span class="badge badge-success badge-pill"><%= transaction_item.transaction_info.slug %></span>
-            <% elsif transaction_item.transaction_info.category_number == 3  %>
               <span class="badge badge-warning badge-pill"><%= transaction_item.transaction_info.slug %></span>
+            <% elsif transaction_item.transaction_info.category_number == 3  %>
+              <span class="badge badge-success badge-pill"><%= transaction_item.transaction_info.slug %></span>
             <% elsif transaction_item.transaction_info.category_number == 4  %>
               <span class="badge badge-info badge-pill"><%= transaction_item.transaction_info.slug %></span>            
             <% end %>
@@ -75,8 +75,9 @@
         </tr>        
         <% if all_transactions[index + 1].present? && (transaction_item.date + 1.month).month ==all_transactions[index + 1].date.month %>
           <tr class="table-info">
-            <td class="td-right" colspan="3"><strong>Saldo em <%= transaction_item.date.end_of_month %>:</strong></td>
+            <td class="td-right" colspan="2"><strong>Saldo em <%= transaction_item.date.end_of_month %>:</strong></td>
             <td class="td-right"><strong><%= big_decimal_to_currency(transaction_item.final_outstanding_balance) if transaction_item.final_outstanding_balance != 0 %></strong></td>
+            <td></td>
           </tr>
         <% end %>
       <% end %>              
@@ -92,24 +93,27 @@
     <button type="button" class="btn btn-primary btn-converte">Converter Moeda</button>
     <br><br>
     <ul class="nav flex-column list-group">     
-          <li><span class="badge badge-primary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Desembolso</li>
-          <li><span class="badge badge-success badge-pill"><%= @debt.transaction_infos.find_by(category_number: 2).slug %></span> Juros</li> 
-          <li><span class="badge badge-warning badge-pill"><%= @debt.transaction_infos.find_by(category_number: 3).slug %></span> Amortização</li>
+      <li><span class="badge badge-primary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Desembolso</li>           
+      <li><span class="badge badge-warning badge-pill"><%= @debt.transaction_infos.find_by(category_number: 2).slug %></span> Amortização</li>
+      <li><span class="badge badge-success badge-pill"><%= @debt.transaction_infos.find_by(category_number: 3).slug %></span> Juros</li>
 
-        <% @debt.transaction_infos.where(category_number: 4).each do |transaction_info| %>
-          <li><span class="badge badge-info badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description %></li>
-        <% end %>
-        <li>&nbsp</li>
-        <li>Operações futuras:</li>
-        <% @debt.transaction_infos.where(category_number: 2..4).order(:category_number).each do |transaction_info| %>
-          <li><span class="badge badge-secondary badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description.blank? ? transaction_info.name : transaction_info.description %></li>
-        <% end %>          
-        <span hidden class="currency-name"><%= @debt.currency.name %></span>      
+      <% @debt.transaction_infos.where(category_number: 4).order(:slug).each do |transaction_info| %>
+        <li><span class="badge badge-info badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description %></li>
+      <% end %>
+      <li>&nbsp</li>
+      <li>Operações futuras:</li>
+      <li><span class="badge badge-secondary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 1).slug %></span> Desembolso</li>           
+      <li><span class="badge badge-secondary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 2).slug %></span> Amortização</li>
+      <li><span class="badge badge-secondary badge-pill"><%= @debt.transaction_infos.find_by(category_number: 3).slug %></span> Juros</li>
+      <% @debt.transaction_infos.where(category_number: 4).order(:slug).each do |transaction_info| %>
+        <li><span class="badge badge-secondary badge-pill"><%= transaction_info.slug %></span> <%= transaction_info.description %></li>
+      <% end %>              
+      <span hidden class="currency-name"><%= @debt.currency.name %></span>      
     </ul>
     <br>
     <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 1) %>">Registrar desembolso</button>
     <br><br>
-    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 3) %>">Registrar movimentação</button>
+    <button type="button" class="btn btn-success new-withdraw" data-toggle="modal" data-target="#transactionModal" data-path="<%= new_debt_transaction_item_path(@debt, category_number: 2) %>">Registrar movimentação</button>
   </div>  
 </div>
 

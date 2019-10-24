@@ -50,12 +50,12 @@ class Debt < ApplicationRecord
 
 	# Amortizações
 	def amortizations
-		transaction_items.where(transaction_infos: { category_number: 3 })
+		transaction_items.where(transaction_infos: { category_number: 2 })
 	end 
     
   # Juros
 	def interests
-		transaction_items.where(transaction_infos: { category_number: 2 })
+		transaction_items.where(transaction_infos: { category_number: 3 })
 	end
 
 	def charges_grace_period

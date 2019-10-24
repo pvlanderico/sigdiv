@@ -31,8 +31,8 @@ Debt.create!( "code" => 123456,
 #Charge.create!(name: 'Taxa de risco de crédito', base: 0.7, debt: Debt.first, count_days: false)
 
 withdraw = TransactionInfo.create!(category_number: 1, debt: Debt.first, payment_day:'15', formula: "", slug: 'D')
-interest = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'J')
-amortization = TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', formula: "[PGTO] - [SALDO] * [JUROS]", slug: 'A')
+amortization = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', formula: "[PGTO] - [SALDO] * [JUROS]", slug: 'A')
+interest = TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'J')
 charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 2, description:'Taxa Adm', formula: "[SALDO] * (0.02 / 12)", slug: 'TA')
 charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 0.7, description:'Taxa Risco', formula: "[SALDO] * (0.007 / 12)", slug: 'TR')
 

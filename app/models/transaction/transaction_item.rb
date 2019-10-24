@@ -41,9 +41,8 @@ class TransactionItem < ApplicationRecord
 	end
 
 	def amortization?
-		transaction_info.category_number == 3
+		transaction_info.category_number == 2
 	end
-
 
 	private
 		def set_start_balance
