@@ -44,7 +44,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('800224.90'),
 	exchange_rate: BigDecimal('20.91152155'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('0')
+	start_balance: BigDecimal('0'),
+	confirmed: true
 ) 
 
 puts Date.new(2015, 6, 19)
@@ -55,7 +56,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('2099165.37'),
 	exchange_rate: BigDecimal('20.95429136'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('38267.17717')
+	start_balance: BigDecimal('38267.17717'),
+	confirmed: true
 )
 
 puts Date.new(2015, 7, 24)
@@ -66,7 +68,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('5659740.67'),
 	exchange_rate: BigDecimal('21.00446933'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('138445.48117')
+	start_balance: BigDecimal('138445.48117'),
+	confirmed: true
 )
 
 puts Date.new(2015, 8 ,21)
@@ -77,7 +80,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('3636516.20'),
 	exchange_rate: BigDecimal('21.04323980'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('407899.59501')
+	start_balance: BigDecimal('407899.59501'),
+	confirmed: true
 )
 
 puts Date.new(2015, 9, 22)
@@ -88,7 +92,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('8185330.12'),
 	exchange_rate: BigDecimal('21.08327104'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('580711.20741')
+	start_balance: BigDecimal('580711.20741'),
+	confirmed: true
 )
 
 puts Date.new(2015, 10, 22)
@@ -99,7 +104,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('3807043.73'),
 	exchange_rate: BigDecimal('21.12192367'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('968949.35625')
+	start_balance: BigDecimal('968949.35625'),
+	confirmed: true
 )
 
 puts Date.new(2015, 11, 23)
@@ -110,7 +116,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('16418436.94'),
 	exchange_rate: BigDecimal('21.15370320'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('1149190.69172')
+	start_balance: BigDecimal('1149190.69172'),
+	confirmed: true
 )
 
 puts Date.new(2015, 12, 17)
@@ -121,7 +128,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('42965630.86'),
     exchange_rate: BigDecimal('21.18788856'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('1925340.22851')
+	start_balance: BigDecimal('1925340.22851'),
+	confirmed: true
 )
 
 puts Date.new(2016, 3, 15)
@@ -132,7 +140,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('31500447.14'),
 	exchange_rate: BigDecimal('21.27880193'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 
 )
 
@@ -144,7 +153,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('42393733.38'),
 	exchange_rate: BigDecimal('21.33795804'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('5433546.93772')
+	start_balance: BigDecimal('5433546.93772'),
+	confirmed: true
 
 )
 
@@ -156,7 +166,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('8207278.03'),
 	exchange_rate: BigDecimal('21.40013959'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('7420322.49050')
+	start_balance: BigDecimal('7420322.49050'),
+	confirmed: true
 )
 
 puts Date.new(2016, 7, 29)
@@ -167,7 +178,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('13121407.28'),
 	exchange_rate: BigDecimal('21.44113086'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('7803837.65382')
+	start_balance: BigDecimal('7803837.65382'),
+	confirmed: true
 )
 
 puts Date.new(2016, 8, 30)
@@ -178,7 +190,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('12319813.16'),
 	exchange_rate: BigDecimal('21.49260563'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('8415811.31163')
+	start_balance: BigDecimal('8415811.31163'),
+	confirmed: true
 )
 
 puts Date.new(2016, 9, 30)
@@ -189,7 +202,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('12435287.93'),
 	exchange_rate: BigDecimal('21.52960135'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('8989023.01858')
+	start_balance: BigDecimal('8989023.01858'),
+	confirmed: true
 )
 
 puts Date.new(2016, 10, 28)
@@ -200,7 +214,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('10973544.54'),
 	exchange_rate: BigDecimal('21,56223671'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('9566613.27341')
+	start_balance: BigDecimal('9566613.27341'),
+	confirmed: true
 )
 
 puts Date.new(2016, 11, 30)
@@ -211,7 +226,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('15447408.00'),
 	exchange_rate: BigDecimal('21.59494130'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('10075537.49531')
+	start_balance: BigDecimal('10075537.49531'),
+	confirmed: true
 )
 
 puts Date.new(2016, 12, 22)
@@ -222,7 +238,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('11909445.03'),
 	exchange_rate: BigDecimal('21.62370042'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('10790862.80161')
+	start_balance: BigDecimal('10790862.80161'),
+	confirmed: true
 )
 
 puts Date.new(2017, 1, 31)
@@ -233,7 +250,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('5869510.23'),
 	exchange_rate: BigDecimal('21.67152267'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('11341621.68185')
+	start_balance: BigDecimal('11341621.68185'),
+	confirmed: true
 )
 
 puts Date.new(2017, 3, 2)
@@ -244,7 +262,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('6207267.82'),
 	exchange_rate: BigDecimal('21.67995079'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('11612461.45252')
+	start_balance: BigDecimal('11612461.45252'),
+	confirmed: true
 )
 
 puts Date.new(2017, 5, 2)
@@ -255,7 +274,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('2388057.81'),
 	exchange_rate: BigDecimal('21.71267277'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('11898775.19373')
+	start_balance: BigDecimal('11898775.19373'),
+	confirmed: true
 )
 
 puts Date.new(2017, 6, 30)
@@ -266,7 +286,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('6417561.70'),
 	exchange_rate: BigDecimal('21.74035338'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 9, 18)
@@ -277,7 +298,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('7653284.73'),
 	exchange_rate: BigDecimal('21.76552574'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 11, 13)
@@ -288,7 +310,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('5496626.76'),
 	exchange_rate: BigDecimal('21,76552574'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('12655575.10314')
+	start_balance: BigDecimal('12655575.10314'),
+	confirmed: true
 )
 
 puts Date.new(2018, 2, 15)
@@ -299,7 +322,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('5496626.76'),
 	exchange_rate: BigDecimal('1'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('12852099.28790')
+	start_balance: BigDecimal('12852099.28790'),
+	confirmed: true
 )
 
 puts Date.new(2018, 10, 31)
@@ -310,7 +334,8 @@ TransactionItem.create!(
 	value_brl: BigDecimal('5496626.76'),
 	exchange_rate: BigDecimal('1'),
 	transaction_info: withdraw,
-	start_balance: BigDecimal('12905242.14372')
+	start_balance: BigDecimal('12905242.14372'),
+	confirmed: true
 )
 
 puts "Juros"
@@ -325,7 +350,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('0')
+	start_balance: BigDecimal('0'),
+	confirmed: true
 )
 
 puts Date.new(2015, 06, 15)
@@ -339,7 +365,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('38267.17717')
+	start_balance: BigDecimal('38267.17717'),
+	confirmed: true
 )
 
 puts Date.new(2015, 07, 15)
@@ -353,7 +380,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('138445.48117')
+	start_balance: BigDecimal('138445.48117'),
+	confirmed: true
 )
 
 puts Date.new(2015, 8, 15)
@@ -367,7 +395,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('407899.59501')
+	start_balance: BigDecimal('407899.59501'),
+	confirmed: true
 )
 
 puts Date.new(2015, 9, 15)
@@ -381,7 +410,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('580711.20741')
+	start_balance: BigDecimal('580711.20741'),
+	confirmed: true
 )
 
 puts Date.new(2015, 10, 15)
@@ -395,7 +425,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('968949.35625')
+	start_balance: BigDecimal('968949.35625'),
+	confirmed: true
 )
 
 puts Date.new(2015, 11, 15)
@@ -409,7 +440,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('1149190.69172')
+	start_balance: BigDecimal('1149190.69172'),
+	confirmed: true
 )
 
 puts Date.new(2015, 12, 15)
@@ -423,7 +455,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('1925340.22851')
+	start_balance: BigDecimal('1925340.22851'),
+	confirmed: true
 )
 
 puts Date.new(2016, 01, 15)
@@ -437,7 +470,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 02, 15)
@@ -451,7 +485,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 03, 15)
@@ -465,7 +500,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 04, 15)
@@ -479,7 +515,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('5433546.93772')
+	start_balance: BigDecimal('5433546.93772'),
+	confirmed: true
 )
 
 puts Date.new(2016, 05, 15)
@@ -493,7 +530,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('5433546.93772')
+	start_balance: BigDecimal('5433546.93772'),
+	confirmed: true
 )
 
 puts Date.new(2016, 06, 15)
@@ -507,7 +545,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('7420322.49050')
+	start_balance: BigDecimal('7420322.49050'),
+	confirmed: true
 )
 
 puts Date.new(2016, 07, 15)
@@ -521,7 +560,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('7803837.65382')
+	start_balance: BigDecimal('7803837.65382'),
+	confirmed: true
 )
 
 puts Date.new(2016, 8, 15)
@@ -535,7 +575,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('8415811.31163')
+	start_balance: BigDecimal('8415811.31163'),
+	confirmed: true
 )
 
 puts Date.new(2016, 9, 15)
@@ -549,7 +590,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('8989023.01858')
+	start_balance: BigDecimal('8989023.01858'),
+	confirmed: true
 )
 
 puts Date.new(2016, 10, 15)
@@ -563,7 +605,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('9566613.27341')
+	start_balance: BigDecimal('9566613.27341'),
+	confirmed: true
 )
 
 puts Date.new(2016, 11, 15)
@@ -577,7 +620,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('10075537.49531')
+	start_balance: BigDecimal('10075537.49531'),
+	confirmed: true
 )
 
 puts Date.new(2016, 12, 15)
@@ -591,7 +635,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('10790862.80161')
+	start_balance: BigDecimal('10790862.80161'),
+	confirmed: true
 )
 
 puts Date.new(2017, 01, 15)
@@ -605,7 +650,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('11341621.68185')
+	start_balance: BigDecimal('11341621.68185'),
+	confirmed: true
 )
 
 puts Date.new(2017, 02, 15)
@@ -619,7 +665,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('11612461.45252')
+	start_balance: BigDecimal('11612461.45252'),
+	confirmed: true
 )
 
 puts Date.new(2017, 03, 15)
@@ -633,7 +680,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('11898775.19373')
+	start_balance: BigDecimal('11898775.19373'),
+	confirmed: true
 )
 
 puts Date.new(2017, 04, 15)
@@ -647,7 +695,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 05, 15)
@@ -661,7 +710,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 06, 15)
@@ -675,7 +725,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 07, 17)
@@ -689,7 +740,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 8, 15)
@@ -703,7 +755,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 9, 15)
@@ -717,7 +770,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 10, 16)
@@ -731,7 +785,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12655575.10314')
+	start_balance: BigDecimal('12655575.10314'),
+	confirmed: true
 )
 
 puts Date.new(2017, 11, 16)
@@ -745,7 +800,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12655575.10314')
+	start_balance: BigDecimal('12655575.10314'),
+	confirmed: true
 )
 
 puts Date.new(2017, 12, 15)
@@ -759,7 +815,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12908113.30625')
+	start_balance: BigDecimal('12908113.30625'),
+	confirmed: true
 )
 
 puts Date.new(2018, 01, 15)
@@ -773,7 +830,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12880176.13999')
+	start_balance: BigDecimal('12880176.13999'),
+	confirmed: true
 )
 
 puts Date.new(2018, 02, 15)
@@ -787,7 +845,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12852099.28790')
+	start_balance: BigDecimal('12852099.28790'),
+	confirmed: true
 )
 
 puts Date.new(2018, 03, 15)
@@ -801,7 +860,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13111268.87778')
+	start_balance: BigDecimal('13111268.87778'),
+	confirmed: true
 )
 
 puts Date.new(2018, 04, 15)
@@ -815,7 +875,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13082275.03721')
+	start_balance: BigDecimal('13082275.03721'),
+	confirmed: true
 )
 
 puts Date.new(2018, 05, 15)
@@ -829,7 +890,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13053136.22745')
+	start_balance: BigDecimal('13053136.22745'),
+	confirmed: true
 )
 
 puts Date.new(2018, 06, 15)
@@ -843,7 +905,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13023851.72363')
+	start_balance: BigDecimal('13023851.72363'),
+	confirmed: true
 )
 
 puts Date.new(2018, 07, 16)
@@ -857,7 +920,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12994420.79729')
+	start_balance: BigDecimal('12994420.79729'),
+	confirmed: true
 )
 
 puts Date.new(2018, 8, 15)
@@ -871,7 +935,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12964842.71632')
+	start_balance: BigDecimal('12964842.71632'),
+	confirmed: true
 )
 
 puts Date.new(2018, 9, 17)
@@ -885,7 +950,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12935116.74495')
+	start_balance: BigDecimal('12935116.74495'),
+	confirmed: true
 )
 
 puts Date.new(2018, 10, 15)
@@ -899,7 +965,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12905242.14372')
+	start_balance: BigDecimal('12905242.14372'),
+	confirmed: true
 )
 
 puts Date.new(2018, 11, 16)
@@ -913,7 +980,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13084188.22536')
+	start_balance: BigDecimal('13084188.22536'),
+	confirmed: true
 )
 
 puts Date.new(2018, 12, 15)
@@ -927,7 +995,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13053524.39336')
+	start_balance: BigDecimal('13053524.39336'),
+	confirmed: true
 )
 
 puts Date.new(2019, 01, 15)
@@ -941,7 +1010,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('13022707.24221')
+	start_balance: BigDecimal('13022707.24221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 02, 15)
@@ -955,7 +1025,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12991736.00530')
+	start_balance: BigDecimal('12991736.00530'),
+	confirmed: true
 )
 
 puts Date.new(2019, 03, 15)
@@ -969,7 +1040,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12960609.91221')
+	start_balance: BigDecimal('12960609.91221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 04, 15)
@@ -983,7 +1055,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12929328.18865')
+	start_balance: BigDecimal('12929328.18865'),
+	confirmed: true
 )
 
 puts Date.new(2019, 05, 15)
@@ -997,7 +1070,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12897890.05647')
+	start_balance: BigDecimal('12897890.05647'),
+	confirmed: true
 )
 
 puts Date.new(2019, 06, 15)
@@ -1011,7 +1085,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12866294.73363')
+	start_balance: BigDecimal('12866294.73363'),
+	confirmed: true
 )
 
 puts Date.new(2019, 07, 15)
@@ -1025,7 +1100,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: interest,
-	start_balance: BigDecimal('12834541.43418')
+	start_balance: BigDecimal('12834541.43418'),
+	confirmed: true
 )
 
 puts "Taxa Administrativa"
@@ -1040,7 +1116,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('0')
+	start_balance: BigDecimal('0'),
+	confirmed: true
 )
 
 puts Date.new(2015, 06, 15)
@@ -1054,7 +1131,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('38267.17717')
+	start_balance: BigDecimal('38267.17717'),
+	confirmed: true
 )
 
 puts Date.new(2015, 07, 15)
@@ -1068,7 +1146,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('138445.48117')
+	start_balance: BigDecimal('138445.48117'),
+	confirmed: true
 )
 
 puts Date.new(2015, 8, 15)
@@ -1082,7 +1161,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('407899.59501')
+	start_balance: BigDecimal('407899.59501'),
+	confirmed: true
 )
 
 puts Date.new(2015, 9, 15)
@@ -1096,7 +1176,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('580711.20741')
+	start_balance: BigDecimal('580711.20741'),
+	confirmed: true
 )
 
 puts Date.new(2015, 10, 15)
@@ -1110,7 +1191,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('968949.35625')
+	start_balance: BigDecimal('968949.35625'),
+	confirmed: true
 )
 
 puts Date.new(2015, 11, 15)
@@ -1124,7 +1206,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('1149190.69172')
+	start_balance: BigDecimal('1149190.69172'),
+	confirmed: true
 )
 
 puts Date.new(2015, 12, 15)
@@ -1138,7 +1221,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('1925340.22851')
+	start_balance: BigDecimal('1925340.22851'),
+	confirmed: true
 )
 
 puts Date.new(2016, 01, 15)
@@ -1152,7 +1236,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 02, 15)
@@ -1166,7 +1251,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 03, 15)
@@ -1180,7 +1266,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 04, 15)
@@ -1194,7 +1281,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('5433546.93772')
+	start_balance: BigDecimal('5433546.93772'),
+	confirmed: true
 )
 
 puts Date.new(2016, 05, 15)
@@ -1208,7 +1296,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('5433546.93772')
+	start_balance: BigDecimal('5433546.93772'),
+	confirmed: true
 )
 
 puts Date.new(2016, 06, 15)
@@ -1222,7 +1311,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('7420322.49050')
+	start_balance: BigDecimal('7420322.49050'),
+	confirmed: true
 )
 
 puts Date.new(2016, 07, 15)
@@ -1236,7 +1326,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('7803837.65382')
+	start_balance: BigDecimal('7803837.65382'),
+	confirmed: true
 )
 
 puts Date.new(2016, 8, 15)
@@ -1250,7 +1341,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('8415811.31163')
+	start_balance: BigDecimal('8415811.31163'),
+	confirmed: true
 )
 
 puts Date.new(2016, 9, 15)
@@ -1264,7 +1356,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('8989023.01858')
+	start_balance: BigDecimal('8989023.01858'),
+	confirmed: true
 )
 
 puts Date.new(2016, 10, 15)
@@ -1278,7 +1371,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('9566613.27341')
+	start_balance: BigDecimal('9566613.27341'),
+	confirmed: true
 )
 
 puts Date.new(2016, 11, 15)
@@ -1292,7 +1386,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('10075537.49531')
+	start_balance: BigDecimal('10075537.49531'),
+	confirmed: true
 )
 
 puts Date.new(2016, 12, 15)
@@ -1306,7 +1401,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('10790862.80161')
+	start_balance: BigDecimal('10790862.80161'),
+	confirmed: true
 )
 
 puts Date.new(2017, 01, 15)
@@ -1320,7 +1416,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('11341621.68185')
+	start_balance: BigDecimal('11341621.68185'),
+	confirmed: true
 )
 
 puts Date.new(2017, 02, 15)
@@ -1334,7 +1431,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('11612461.45252')
+	start_balance: BigDecimal('11612461.45252'),
+	confirmed: true
 )
 
 puts Date.new(2017, 03, 15)
@@ -1348,7 +1446,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('11898775.19373')
+	start_balance: BigDecimal('11898775.19373'),
+	confirmed: true
 )
 
 puts Date.new(2017, 04, 15)
@@ -1362,7 +1461,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 05, 15)
@@ -1376,7 +1476,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 06, 15)
@@ -1390,7 +1491,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 07, 17)
@@ -1404,7 +1506,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 8, 15)
@@ -1418,7 +1521,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 9, 15)
@@ -1432,7 +1536,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 10, 16)
@@ -1446,7 +1551,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12655575.10314')
+	start_balance: BigDecimal('12655575.10314'),
+	confirmed: true
 )
 
 puts Date.new(2017, 11, 16)
@@ -1460,7 +1566,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12655575.10314')
+	start_balance: BigDecimal('12655575.10314'),
+	confirmed: true
 )
 
 puts Date.new(2017, 12, 15)
@@ -1474,7 +1581,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12908113.30625')
+	start_balance: BigDecimal('12908113.30625'),
+	confirmed: true
 )
 
 puts Date.new(2018, 01, 15)
@@ -1488,7 +1596,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12880176.13999')
+	start_balance: BigDecimal('12880176.13999'),
+	confirmed: true
 )
 
 puts Date.new(2018, 02, 15)
@@ -1502,7 +1611,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12852099.28790')
+	start_balance: BigDecimal('12852099.28790'),
+	confirmed: true
 )
 
 puts Date.new(2018, 03, 15)
@@ -1516,7 +1626,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13111268.87778')
+	start_balance: BigDecimal('13111268.87778'),
+	confirmed: true
 )
 
 puts Date.new(2018, 04, 15)
@@ -1530,7 +1641,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13082275.03721')
+	start_balance: BigDecimal('13082275.03721'),
+	confirmed: true
 )
 
 puts Date.new(2018, 05, 15)
@@ -1544,7 +1656,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13053136.22745')
+	start_balance: BigDecimal('13053136.22745'),
+	confirmed: true
 )
 
 puts Date.new(2018, 06, 15)
@@ -1558,7 +1671,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13023851.72363')
+	start_balance: BigDecimal('13023851.72363'),
+	confirmed: true
 )
 
 puts Date.new(2018, 07, 16)
@@ -1572,7 +1686,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12994420.79729')
+	start_balance: BigDecimal('12994420.79729'),
+	confirmed: true
 )
 
 puts Date.new(2018, 8, 15)
@@ -1586,7 +1701,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12964842.71632')
+	start_balance: BigDecimal('12964842.71632'),
+	confirmed: true
 )
 
 puts Date.new(2018, 9, 17)
@@ -1600,7 +1716,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12935116.74495')
+	start_balance: BigDecimal('12935116.74495'),
+	confirmed: true
 )
 
 puts Date.new(2018, 10, 15)
@@ -1614,7 +1731,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12905242.14372')
+	start_balance: BigDecimal('12905242.14372'),
+	confirmed: true
 )
 
 puts Date.new(2018, 11, 16)
@@ -1628,7 +1746,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13084188.22536')
+	start_balance: BigDecimal('13084188.22536'),
+	confirmed: true
 )
 
 puts Date.new(2018, 12, 15)
@@ -1642,7 +1761,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13053524.39336')
+	start_balance: BigDecimal('13053524.39336'),
+	confirmed: true
 )
 
 puts Date.new(2019, 01, 15)
@@ -1656,7 +1776,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('13022707.24221')
+	start_balance: BigDecimal('13022707.24221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 02, 15)
@@ -1670,7 +1791,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12991736.00530')
+	start_balance: BigDecimal('12991736.00530'),
+	confirmed: true
 )
 
 puts Date.new(2019, 03, 15)
@@ -1684,7 +1806,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12960609.91221')
+	start_balance: BigDecimal('12960609.91221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 04, 15)
@@ -1698,7 +1821,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12929328.18865')
+	start_balance: BigDecimal('12929328.18865'),
+	confirmed: true
 )
 
 puts Date.new(2019, 05, 15)
@@ -1712,7 +1836,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12897890.05647')
+	start_balance: BigDecimal('12897890.05647'),
+	confirmed: true
 )
 
 puts Date.new(2019, 06, 15)
@@ -1726,7 +1851,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12866294.73363')
+	start_balance: BigDecimal('12866294.73363'),
+	confirmed: true
 )
 
 puts Date.new(2019, 07, 15)
@@ -1740,7 +1866,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_adm,
-	start_balance: BigDecimal('12834541.43418')
+	start_balance: BigDecimal('12834541.43418'),
+	confirmed: true
 )
 
 
@@ -1756,7 +1883,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('0')
+	start_balance: BigDecimal('0'),
+	confirmed: true
 )
 
 puts Date.new(2015, 06, 15)
@@ -1770,7 +1898,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('38267.17717')
+	start_balance: BigDecimal('38267.17717'),
+	confirmed: true
 )
 
 puts Date.new(2015, 07, 15)
@@ -1784,7 +1913,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('138445.48117')
+	start_balance: BigDecimal('138445.48117'),
+	confirmed: true
 )
 
 puts Date.new(2015, 8, 15)
@@ -1798,7 +1928,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('407899.59501')
+	start_balance: BigDecimal('407899.59501'),
+	confirmed: true
 )
 
 puts Date.new(2015, 9, 15)
@@ -1812,7 +1943,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('580711.20741')
+	start_balance: BigDecimal('580711.20741'),
+	confirmed: true
 )
 
 puts Date.new(2015, 10, 15)
@@ -1826,7 +1958,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('968949.35625')
+	start_balance: BigDecimal('968949.35625'),
+	confirmed: true
 )
 
 puts Date.new(2015, 11, 15)
@@ -1840,7 +1973,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('1149190.69172')
+	start_balance: BigDecimal('1149190.69172'),
+	confirmed: true
 )
 
 puts Date.new(2015, 12, 15)
@@ -1854,7 +1988,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('1925340.22851')
+	start_balance: BigDecimal('1925340.22851'),
+	confirmed: true
 )
 
 puts Date.new(2016, 01, 15)
@@ -1868,7 +2003,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 02, 15)
@@ -1882,7 +2018,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 03, 15)
@@ -1896,7 +2033,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('3953179.42250')
+	start_balance: BigDecimal('3953179.42250'),
+	confirmed: true
 )
 
 puts Date.new(2016, 04, 15)
@@ -1910,7 +2048,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('5433546.93772')
+	start_balance: BigDecimal('5433546.93772'),
+	confirmed: true
 )
 
 puts Date.new(2016, 05, 15)
@@ -1924,7 +2063,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('5433546.93772')
+	start_balance: BigDecimal('5433546.93772'),
+	confirmed: true
 )
 
 puts Date.new(2016, 06, 15)
@@ -1938,7 +2078,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('7420322.49050')
+	start_balance: BigDecimal('7420322.49050'),
+	confirmed: true
 )
 
 puts Date.new(2016, 07, 15)
@@ -1952,7 +2093,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('7803837.65382')
+	start_balance: BigDecimal('7803837.65382'),
+	confirmed: true
 )
 
 puts Date.new(2016, 8, 15)
@@ -1966,7 +2108,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('8415811.31163')
+	start_balance: BigDecimal('8415811.31163'),
+	confirmed: true
 )
 
 puts Date.new(2016, 9, 15)
@@ -1980,7 +2123,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('8989023.01858')
+	start_balance: BigDecimal('8989023.01858'),
+	confirmed: true
 )
 
 puts Date.new(2016, 10, 15)
@@ -1994,7 +2138,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('9566613.27341')
+	start_balance: BigDecimal('9566613.27341'),
+	confirmed: true
 )
 
 puts Date.new(2016, 11, 15)
@@ -2008,7 +2153,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('10075537.49531')
+	start_balance: BigDecimal('10075537.49531'),
+	confirmed: true
 )
 
 puts Date.new(2016, 12, 15)
@@ -2022,7 +2168,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('10790862.80161')
+	start_balance: BigDecimal('10790862.80161'),
+	confirmed: true
 )
 
 puts Date.new(2017, 01, 15)
@@ -2036,7 +2183,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('11341621.68185')
+	start_balance: BigDecimal('11341621.68185'),
+	confirmed: true
 )
 
 puts Date.new(2017, 02, 15)
@@ -2050,7 +2198,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('11612461.45252')
+	start_balance: BigDecimal('11612461.45252'),
+	confirmed: true
 )
 
 puts Date.new(2017, 03, 15)
@@ -2064,7 +2213,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('11898775.19373')
+	start_balance: BigDecimal('11898775.19373'),
+	confirmed: true
 )
 
 puts Date.new(2017, 04, 15)
@@ -2078,7 +2228,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 05, 15)
@@ -2092,7 +2243,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 06, 15)
@@ -2106,7 +2258,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12008759.70993')
+	start_balance: BigDecimal('12008759.70993'),
+	confirmed: true
 )
 
 puts Date.new(2017, 07, 17)
@@ -2120,7 +2273,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 8, 15)
@@ -2134,7 +2288,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 9, 15)
@@ -2148,7 +2303,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12303950.94201')
+	start_balance: BigDecimal('12303950.94201'),
+	confirmed: true
 )
 
 puts Date.new(2017, 10, 16)
@@ -2162,7 +2318,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12655575.10314')
+	start_balance: BigDecimal('12655575.10314'),
+	confirmed: true
 )
 
 puts Date.new(2017, 11, 16)
@@ -2176,7 +2333,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12655575.10314')
+	start_balance: BigDecimal('12655575.10314'),
+	confirmed: true
 )
 
 puts Date.new(2017, 12, 15)
@@ -2190,7 +2348,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12908113.30625')
+	start_balance: BigDecimal('12908113.30625'),
+	confirmed: true
 )
 
 puts Date.new(2018, 01, 15)
@@ -2204,7 +2363,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12880176.13999')
+	start_balance: BigDecimal('12880176.13999'),
+	confirmed: true
 )
 
 puts Date.new(2018, 02, 15)
@@ -2218,7 +2378,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12852099.28790')
+	start_balance: BigDecimal('12852099.28790'),
+	confirmed: true
 )
 
 puts Date.new(2018, 03, 15)
@@ -2232,7 +2393,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13111268.87778')
+	start_balance: BigDecimal('13111268.87778'),
+	confirmed: true
 )
 
 puts Date.new(2018, 04, 15)
@@ -2246,7 +2408,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13082275.03721')
+	start_balance: BigDecimal('13082275.03721'),
+	confirmed: true
 )
 
 puts Date.new(2018, 05, 15)
@@ -2260,7 +2423,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13053136.22745')
+	start_balance: BigDecimal('13053136.22745'),
+	confirmed: true
 )
 
 puts Date.new(2018, 06, 15)
@@ -2274,7 +2438,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13023851.72363')
+	start_balance: BigDecimal('13023851.72363'),
+	confirmed: true
 )
 
 puts Date.new(2018, 07, 16)
@@ -2288,7 +2453,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12994420.79729')
+	start_balance: BigDecimal('12994420.79729'),
+	confirmed: true
 )
 
 puts Date.new(2018, 8, 15)
@@ -2302,7 +2468,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12964842.71632')
+	start_balance: BigDecimal('12964842.71632'),
+	confirmed: true
 )
 
 puts Date.new(2018, 9, 17)
@@ -2316,7 +2483,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12935116.74495')
+	start_balance: BigDecimal('12935116.74495'),
+	confirmed: true
 )
 
 puts Date.new(2018, 10, 15)
@@ -2330,7 +2498,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12905242.14372')
+	start_balance: BigDecimal('12905242.14372'),
+	confirmed: true
 )
 
 puts Date.new(2018, 11, 16)
@@ -2344,7 +2513,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13084188.22536')
+	start_balance: BigDecimal('13084188.22536'),
+	confirmed: true
 )
 
 puts Date.new(2018, 12, 15)
@@ -2358,7 +2528,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13053524.39336')
+	start_balance: BigDecimal('13053524.39336'),
+	confirmed: true
 )
 
 puts Date.new(2019, 01, 15)
@@ -2372,7 +2543,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('13022707.24221')
+	start_balance: BigDecimal('13022707.24221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 02, 15)
@@ -2386,7 +2558,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12991736.00530')
+	start_balance: BigDecimal('12991736.00530'),
+	confirmed: true
 )
 
 puts Date.new(2019, 03, 15)
@@ -2400,7 +2573,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12960609.91221')
+	start_balance: BigDecimal('12960609.91221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 04, 15)
@@ -2414,7 +2588,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12929328.18865')
+	start_balance: BigDecimal('12929328.18865'),
+	confirmed: true
 )
 
 puts Date.new(2019, 05, 15)
@@ -2428,7 +2603,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12897890.05647')
+	start_balance: BigDecimal('12897890.05647'),
+	confirmed: true
 )
 
 puts Date.new(2019, 06, 15)
@@ -2442,7 +2618,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12866294.73363')
+	start_balance: BigDecimal('12866294.73363'),
+	confirmed: true
 )
 
 puts Date.new(2019, 07, 15)
@@ -2456,7 +2633,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: charges_risc,
-	start_balance: BigDecimal('12834541.43418')
+	start_balance: BigDecimal('12834541.43418'),
+	confirmed: true
 )
 
 puts "Amortização"
@@ -2472,7 +2650,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12908113.30625')
+	start_balance: BigDecimal('12908113.30625'),
+	confirmed: true
 )
 
 puts Date.new(2018, 01, 15)
@@ -2486,7 +2665,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12880176.13999')
+	start_balance: BigDecimal('12880176.13999'),
+	confirmed: true
 )
 
 puts Date.new(2018, 02, 15)
@@ -2500,7 +2680,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12852099.28790')
+	start_balance: BigDecimal('12852099.28790'),
+	confirmed: true
 )
 
 puts Date.new(2018, 03, 15)
@@ -2514,7 +2695,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13111268.87778')
+	start_balance: BigDecimal('13111268.87778'),
+	confirmed: true
 )
 
 puts Date.new(2018, 04, 15)
@@ -2528,7 +2710,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13082275.03721')
+	start_balance: BigDecimal('13082275.03721'),
+	confirmed: true
 )
 
 puts Date.new(2018, 05, 15)
@@ -2542,7 +2725,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13053136.22745')
+	start_balance: BigDecimal('13053136.22745'),
+	confirmed: true
 )
 
 puts Date.new(2018, 06, 15)
@@ -2556,7 +2740,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13023851.72363')
+	start_balance: BigDecimal('13023851.72363'),
+	confirmed: true
 )
 
 puts Date.new(2018, 07, 16)
@@ -2570,7 +2755,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12994420.79729')
+	start_balance: BigDecimal('12994420.79729'),
+	confirmed: true
 )
 
 puts Date.new(2018, 8, 15)
@@ -2584,7 +2770,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12964842.71632')
+	start_balance: BigDecimal('12964842.71632'),
+	confirmed: true
 )
 
 puts Date.new(2018, 9, 17)
@@ -2598,7 +2785,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12935116.74495')
+	start_balance: BigDecimal('12935116.74495'),
+	confirmed: true
 )
 
 puts Date.new(2018, 10, 15)
@@ -2612,7 +2800,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12905242.14372')
+	start_balance: BigDecimal('12905242.14372'),
+	confirmed: true
 )
 
 puts Date.new(2018, 11, 16)
@@ -2626,7 +2815,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13084188.22536')
+	start_balance: BigDecimal('13084188.22536'),
+	confirmed: true
 )
 
 puts Date.new(2018, 12, 15)
@@ -2640,7 +2830,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13053524.39336')
+	start_balance: BigDecimal('13053524.39336'),
+	confirmed: true
 )
 
 puts Date.new(2019, 01, 15)
@@ -2654,7 +2845,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('13022707.24221')
+	start_balance: BigDecimal('13022707.24221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 02, 15)
@@ -2668,7 +2860,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12991736.00530')
+	start_balance: BigDecimal('12991736.00530'),
+	confirmed: true
 )
 
 puts Date.new(2019, 03, 15)
@@ -2682,7 +2875,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12960609.91221')
+	start_balance: BigDecimal('12960609.91221'),
+	confirmed: true
 )
 
 puts Date.new(2019, 04, 15)
@@ -2696,7 +2890,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12929328.18865')
+	start_balance: BigDecimal('12929328.18865'),
+	confirmed: true
 )
 
 puts Date.new(2019, 05, 15)
@@ -2710,7 +2905,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12897890.05647')
+	start_balance: BigDecimal('12897890.05647'),
+	confirmed: true
 )
 
 puts Date.new(2019, 06, 15)
@@ -2724,7 +2920,8 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12866294.73363')
+	start_balance: BigDecimal('12866294.73363'),
+	confirmed: true
 )
 
 puts Date.new(2019, 07, 15)
@@ -2738,5 +2935,6 @@ TransactionItem.create!(
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: amortization,
-	start_balance: BigDecimal('12834541.43418')
+	start_balance: BigDecimal('12834541.43418'),
+	confirmed: true
 )

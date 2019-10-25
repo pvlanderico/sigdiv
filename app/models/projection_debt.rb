@@ -67,8 +67,8 @@ class ProjectionDebt
 		(debt.grace_period_payments_number + debt.loan_term - debt.paid_payments_count(:interests, end_date))
 	end
 
-	def start_date_to_amortizations_count		
-		(self.start_date.year * 12 + self.start_date.month) - (grace_period.year * 12 + grace_period.month)
+	def start_date_to_amortizations_count
+		(self.start_date.year * 12 + self.start_date.month) - (debt.grace_period.year * 12 + debt.grace_period.month)
 	end
 
 	def outstanding_balance

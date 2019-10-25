@@ -2,10 +2,10 @@ class TransactionItemsController < ApplicationController
   before_action :set_transaction, only: [:edit, :update, :destroy]
   before_action :set_debt, only: [:index, :new, :edit, :create, :update]
   before_action :set_transaction_items, only: [:index, :create, :update]
+  before_action :set_start_date, only: [:index, :create, :update]
 
   # GET :debt_id/transactions/
   def index
-    @start_date = @debt.amortizations.last.date + 1.month
     render :index, layout: false
   end
 
@@ -65,6 +65,10 @@ class TransactionItemsController < ApplicationController
       @transaction_items = @debt.transaction_items.order(:date)
     end
 
+    def set_start_date
+      @start_date = @debt.amortizations.last.date + 1.month
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_item_params
       params.require(:transaction_item).permit(:value, 
@@ -74,6 +78,7 @@ class TransactionItemsController < ApplicationController
                                           :debt_id,
                                           :transaction_info_id,  
                                           :id,
-                                          :internalization_date)
+                                          :internalization_date,
+                                          :confirmed)
     end
 end

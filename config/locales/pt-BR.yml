@@ -54,6 +54,7 @@ pt-BR:
         date: Data
         exchange_rate: Taxa de conversão
         internalization_date: Data de internalização
+        confirmed: Confirmar
       currency:
         name: Nome
         formula: Fórmula

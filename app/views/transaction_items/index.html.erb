@@ -37,21 +37,24 @@
       <% future_transactions = ProjectionDebt.new(@debt, @start_date).transaction_items %>
 
       <% all_transactions = @transaction_items.includes(:transaction_info) + future_transactions %>
-      <% all_transactions.sort_by {|t| [t.date, t.transaction_info.category_number, t.transaction_info.slug] }.each_with_index do |transaction_item, index| %>
+      <% all_transactions = all_transactions.sort_by {|t| [t.date, t.transaction_info.category_number, t.transaction_info.slug] } %>
+
+      <% all_transactions.each_with_index do |transaction_item, index| %>
           
         <% transaction_item.editable? ? transaction_class = 'edit-transaction' : transaction_class = 'block-edit-transaction' %>
         <% transaction_edit_path = edit_debt_transaction_item_path(@debt, transaction_item) if transaction_item.editable? %>
-        <tr class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
+        <% transaction_class = transaction_class + ' table-danger' if transaction_item.withdraw? && transaction_item.date < Date.today && !transaction_item.confirmed? %>
+        <tr id="ti_<%= transaction_item.id %>" class="<%= transaction_class %>" data-path='<%= transaction_edit_path %>'>
           <td class="td-right">
             <% if transaction_item.future_transaction? %>
               <span class="badge badge-secondary badge-pill"><%= transaction_item.transaction_info.slug %></span>
-            <% elsif transaction_item.transaction_info.category_number == 1 %>
+            <% elsif transaction_item.withdraw? %>
               <span class="badge badge-primary badge-pill"><%= transaction_item.transaction_info.slug %></span>
-            <% elsif transaction_item.transaction_info.category_number == 2  %>
+            <% elsif transaction_item.amortization?  %>
               <span class="badge badge-warning badge-pill"><%= transaction_item.transaction_info.slug %></span>
-            <% elsif transaction_item.transaction_info.category_number == 3  %>
+            <% elsif transaction_item.interest?  %>
               <span class="badge badge-success badge-pill"><%= transaction_item.transaction_info.slug %></span>
-            <% elsif transaction_item.transaction_info.category_number == 4  %>
+            <% elsif transaction_item.charge?  %>
               <span class="badge badge-info badge-pill"><%= transaction_item.transaction_info.slug %></span>            
             <% end %>
           </td>
@@ -72,7 +75,8 @@
             <%= transaction_item.transaction_info.category.name %>
           </td>     
           
-        </tr>        
+        </tr>
+
         <% if all_transactions[index + 1].present? && (transaction_item.date + 1.month).month ==all_transactions[index + 1].date.month %>
           <tr class="table-info">
             <td class="td-right" colspan="2"><strong>Saldo em <%= transaction_item.date.end_of_month %>:</strong></td>
@@ -80,6 +84,7 @@
             <td></td>
           </tr>
         <% end %>
+
       <% end %>              
     </tbody>
   </table>

@@ -33,7 +33,11 @@ class TransactionItem < ApplicationRecord
 	end
 
 	def future_transaction?
-		new_record? ? true : false
+		if new_record? || (withdraw? && !confirmed?)
+			true
+		else
+			false
+		end		
 	end
 
 	def withdraw?
@@ -42,6 +46,14 @@ class TransactionItem < ApplicationRecord
 
 	def amortization?
 		transaction_info.category_number == 2
+	end
+
+	def interest?
+		transaction_info.category_number == 3
+	end
+
+	def charge?
+		transaction_info.category_number == 4
 	end
 
 	private

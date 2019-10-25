@@ -7,6 +7,7 @@
     <%= f.input :value , as: :string, input_html: {class: 'currency'} %> 
     <%= f.input :date, as: :date, label: 'Data de liberação' %>
     <%= f.input :internalization_date, as: :date if debt.externo? %>
+    <%= f.input :confirmed, wrapper_html: {class: 'pull-right'} if transaction_item.withdraw? %>
   </div>
 <% end %>
 
