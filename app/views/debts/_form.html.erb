@@ -11,7 +11,7 @@
         <%= f.input :name %>
       </div>
       <div class="col-sm">
-        <%= f.input :signature_date %>
+        <%= f.input :signature_date, start_year: Date.today.year - 20, end_year: Date.today.year + 40 %>
       </div>
     </div>
 
@@ -55,10 +55,10 @@
 
     <div class="row">
       <div class="col-sm">
-        <%= f.input :grace_period %>
+        <%= f.input :grace_period, start_year: Date.today.year - 20, end_year: Date.today.year + 40 %>
       </div>       
       <div class="col-sm">
-        <%= f.input :amortization_period %>
+        <%= f.input :amortization_period, start_year: Date.today.year - 20, end_year: Date.today.year + 40  %>
       </div>
       <div class="col-sm">
         <%= f.input :amortization_type, as: :radio_buttons, collection: Debt.amortization_types.keys, label_method: :titleize %>
