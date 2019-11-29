@@ -12,32 +12,44 @@ class ProjectionDebt
 		self.transaction_items = build_transaction_items
 	end
 
+	def self.start_date debt
+		if debt.in_grace_period? 
+			debt.grace_period
+		elsif debt.in_amortization_period?
+			debt.amortizations.last.date + 1.month
+		else debt.done?
+			false
+		end
+	end
+
 	def build_transaction_items
 		result = []
 
-		exchange_rate = debt.amortizations.where('date <= ?', self.start_date).last.exchange_rate
+		exchange_rate = debt.interests.where('date <= ?', self.start_date).last.exchange_rate
 
-		projection_period.each do |future_transaction_count|
+		projection_period.each_with_index do |future_transaction_count, index|
 
 			debt.transaction_infos.sort_by(&:order).reject(&:withdraw?).each do |transaction_info|
 
 				if (result.empty?) 
-					self.balance_projection = debt.amortizations.where('date <= ?', self.start_date).last.final_outstanding_balance
+					self.balance_projection = debt.transaction_items.where('date <= ?', self.start_date).last.final_outstanding_balance
 				else 
 					self.balance_projection = result.last.final_outstanding_balance
 				end
 
-				value = FormulaService.eval(transaction_info.formula, self)
+				if index % TransactionInfo.frequencies[transaction_info.frequency] == 0
+					value = FormulaService.eval(transaction_info.formula, self)
 
-				result << FutureTransaction.new(debt: debt,
-																				projection_debt: self,
-																				transaction_info: transaction_info,
-																				value: value,
-																				value_brl: value * exchange_rate, 
-																				date: transaction_info.payment_date(self.start_date) + future_transaction_count.months - 1.month, 
-																				start_balance: balance_projection)
-				
-				self.amortizations_count += 1 if transaction_info.amortization?
+					result << FutureTransaction.new(debt: debt,
+																					projection_debt: self,
+																					transaction_info: transaction_info,
+																					value: value,
+																					value_brl: value * exchange_rate, 
+																					date: transaction_info.payment_date(self.start_date) + future_transaction_count.months - 1.month, 
+																					start_balance: balance_projection) 
+					
+					self.amortizations_count += 1 if transaction_info.amortization?
+				end
 			end
 
 		end

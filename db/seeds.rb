@@ -48,15 +48,15 @@ Debt.create!( code: 123789,
 #Charge.create!(name: 'Taxa de risco de crédito', base: 0.7, debt: Debt.first, count_days: false)
 
 withdraw = TransactionInfo.create!(category_number: 1, debt: Debt.first, payment_day:'15', formula: "", slug: 'D')
-amortization = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', formula: "[PGTO] - [SALDO] * [JUROS]", slug: 'A', frequency: 0)
-interest = TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'J', frequency: 0)
-charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 2, description:'Taxa Adm', formula: "[SALDO] * (0.02 / 12)", slug: 'TA', frequency: 0)
-charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 0.7, description:'Taxa Risco', formula: "[SALDO] * (0.007 / 12)", slug: 'TR', frequency: 0)
+amortization = TransactionInfo.create!(category_number: 2, debt: Debt.first, payment_day:'15', formula: "[PGTO] - [SALDO] * [JUROS]", slug: 'A', frequency: 1)
+interest = TransactionInfo.create!(category_number: 3, debt: Debt.first, payment_day:'15', formula: "[SALDO] * [JUROS]", slug: 'J', frequency: 1)
+charges_adm = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 2, description:'Taxa Adm', formula: "[SALDO] * (0.02 / 12)", slug: 'TA', frequency: 1)
+charges_risc = TransactionInfo.create!(category_number: 4, debt: Debt.first, payment_day:'15', base: 0.7, description:'Taxa Risco', formula: "[SALDO] * (0.007 / 12)", slug: 'TR', frequency: 1)
 
 withdraw_caf = TransactionInfo.create!(category_number: 1, debt: Debt.last, payment_day:'30', formula: "", slug: 'D')
-amortization_caf = TransactionInfo.create!(category_number: 2, debt: Debt.last, payment_day:'30', formula: "[PGTO] - [SALDO] * [JUROS]", slug: 'A', frequency: 2)
-interest_caf = TransactionInfo.create!(category_number: 3, debt: Debt.last, payment_day:'30', formula: "[SALDO] * [JUROS]", slug: 'J', frequency: 2)
-charges_cc_caf = TransactionInfo.create!(category_number: 4, debt: Debt.last, payment_day:'30', base: 0.35, description:'Comissão de crédito', formula: "", slug: 'CC', frequency: 2)
+amortization_caf = TransactionInfo.create!(category_number: 2, debt: Debt.last, payment_day:'30', formula: "[PGTO] - [SALDO] * [JUROS]", slug: 'A', frequency: 6)
+interest_caf = TransactionInfo.create!(category_number: 3, debt: Debt.last, payment_day:'30', formula: "[SALDO] * [JUROS]", slug: 'J', frequency: 6)
+charges_cc_caf = TransactionInfo.create!(category_number: 4, debt: Debt.last, payment_day:'30', base: 0.35, description:'Comissão de crédito', formula: "", slug: 'CC', frequency: 6)
 
 puts Date.new(2015, 5, 8)
 

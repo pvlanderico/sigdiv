@@ -4,7 +4,9 @@ class TransactionInfo < ApplicationRecord
 									3 => {name: 'Juros', operation: '-', slug: 'J', order: 2},
 									4 => {name: 'Encargos', operation: '-' , slug: 'E', order: 3} }
 	
-	enum frequency: [:mensal, :trimestral, :semestral]
+	enum frequency: { mensal: 1, 
+										trimestral: 3, 
+										semestral: 6 }
 
 	belongs_to :debt
 

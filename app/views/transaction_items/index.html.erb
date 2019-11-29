@@ -34,7 +34,7 @@
     </thead>
     
     <tbody>
-      <% future_transactions = ProjectionDebt.new(@debt, @start_date).transaction_items %>
+      <% @start_date ? future_transactions = ProjectionDebt.new(@debt, @start_date).transaction_items : [] %>
 
       <% all_transactions = @transaction_items.includes(:transaction_info) + future_transactions %>
       <% all_transactions = all_transactions.sort_by {|t| [t.date, t.transaction_info.category_number, t.transaction_info.slug] } %>
