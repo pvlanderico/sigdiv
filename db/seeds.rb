@@ -3034,7 +3034,7 @@ exchange_rate = BigDecimal('3.5930')
 TransactionItem.create!(
 	value: value,
 	date: Date.new(2018, 05, 04),
-	internalization_date: Date.new(2018, 05, 09),
+	internalization_date: Date.new(2018, 05, 9),
 	value_brl: value * exchange_rate,
 	exchange_rate: exchange_rate,
 	transaction_info: withdraw_caf,
@@ -3085,7 +3085,7 @@ TransactionItem.create!(
 )
 
 value = BigDecimal('215629.57')
-exchange_rate = BigDecimal('')
+exchange_rate = BigDecimal('3.2330')
 
 TransactionItem.create!(
 	value: value,
@@ -3098,7 +3098,7 @@ TransactionItem.create!(
 )
 
 value = BigDecimal('434329.90')
-exchange_rate = BigDecimal('')
+exchange_rate = BigDecimal('3.7230')
 
 TransactionItem.create!(
 	value: value,
@@ -3111,7 +3111,7 @@ TransactionItem.create!(
 )
 
 value = BigDecimal('638654.30')
-exchange_rate = BigDecimal('')
+exchange_rate = BigDecimal('3.8705')
 
 TransactionItem.create!(
 	value: value,
@@ -3124,7 +3124,7 @@ TransactionItem.create!(
 )
 
 value = BigDecimal('914022.69')
-exchange_rate = BigDecimal('')
+exchange_rate = BigDecimal('4.0370')
 
 TransactionItem.create!(
 	value: value,
