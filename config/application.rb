@@ -18,7 +18,7 @@ module Sigdiv
 
     config.i18n.default_locale = "pt-BR"
     
-    config.ftp = OpenStruct.new(YAML.load_file('config/settings.yml')['ftp'])
+    #config.ftp = OpenStruct.new(YAML.load_file('config/settings.yml')['ftp'])
 
     config.autoload_paths += Dir["#{config.root}/lib/services/*"]
     config.autoload_paths += Dir["#{config.root}/app/models/*"]
