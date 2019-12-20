@@ -59,6 +59,9 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.0'
   gem "capistrano", "~> 3.11", require: false
   gem "capistrano-rails", "~> 1.4", require: false
+  gem 'capistrano-passenger'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
 end
 
 group :development do

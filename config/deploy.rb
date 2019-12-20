@@ -2,8 +2,12 @@
 lock "~> 3.11.2"
 
 set :application, "sigdiv"
-set :repo_url, "git@https://github.com/smfazendaniteroi/sigdiv.git"
+set :repo_url, "https://github.com/smfazendaniteroi/sigdiv.git"
 
+set :user, "sigdiv"
+set :use_sudo, false
+
+set :passenger_restart_with_touch, true
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

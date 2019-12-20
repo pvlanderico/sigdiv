@@ -1,3 +1,9 @@
+set :stage, :production
+set :rails_env, :production
+set :branch, "master"
+
+server "192.168.15.238", user: "sigdiv", roles: %w{app db web}
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
