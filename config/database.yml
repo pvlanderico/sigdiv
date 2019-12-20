@@ -9,7 +9,7 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: sigdiv_test
+  database: sigdiv_production
   pool: 5
   username: sigdiv
   password: passwordDB
