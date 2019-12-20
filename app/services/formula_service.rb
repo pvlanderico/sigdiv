@@ -1,7 +1,9 @@
 class FormulaService
-	VARIABLES = {	'SALDO' => :outstanding_balance, 
+	VARIABLES = {	'SALDO' => :outstanding_balance,
+								'VALOR_CONTRATO' => :contract_value,
 								'JUROS' => :interest_rate,
 								'PARCELAS' => :loan_term,
+								'N_PARCELA' => :instalment_number,
 								'PGTO'	=> :next_instalment,
 								'DiNi' 	=> [:withdraw, :value, :period] }
 	

@@ -164,6 +164,20 @@ class Debt < ApplicationRecord
 		send(payment_type).where('date <= ?', end_date).count
 	end
 
+	def projection_start_date
+		if in_grace_period? 
+			grace_period
+		elsif in_amortization_period?
+			amortizations.last.date + 1.month
+		else done?
+			false
+		end
+	end
+
+	def instalment_number
+		loan_term - amortizations.count
+	end
+
 	private
 
 		def self.date_range_from_year year

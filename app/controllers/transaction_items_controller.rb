@@ -66,7 +66,7 @@ class TransactionItemsController < ApplicationController
     end
 
     def set_start_date
-      @start_date = ProjectionDebt.start_date(@debt)
+      @start_date = @debt.projection_start_date
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -12,16 +12,6 @@ class ProjectionDebt
 		self.transaction_items = build_transaction_items
 	end
 
-	def self.start_date debt
-		if debt.in_grace_period? 
-			debt.grace_period
-		elsif debt.in_amortization_period?
-			debt.amortizations.last.date + 1.month
-		else debt.done?
-			false
-		end
-	end
-
 	def build_transaction_items
 		result = []
 
@@ -37,7 +27,7 @@ class ProjectionDebt
 					self.balance_projection = result.last.final_outstanding_balance
 				end
 
-				if index % TransactionInfo.frequencies[transaction_info.frequency] == 0
+				if index % TransactionInfo.frequencies[transaction_info.frequency] == 0					
 					value = FormulaService.eval(transaction_info.formula, self)
 
 					result << FutureTransaction.new(debt: debt,

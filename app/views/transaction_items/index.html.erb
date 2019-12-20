@@ -77,12 +77,17 @@
           
         </tr>
 
-        <% if (all_transactions[index + 1].present? && (transaction_item.date + 1.month).month ==all_transactions[index + 1].date.month) || all_transactions[index + 1].blank? %>
-          <tr class="table-info">
-            <td class="td-right" colspan="2"><strong>Saldo em <%= transaction_item.date.end_of_month %>:</strong></td>
-            <td class="td-right"><strong><%= big_decimal_to_currency(transaction_item.final_outstanding_balance) if transaction_item.final_outstanding_balance != 0 %></strong></td>
-            <td></td>
-          </tr>
+        <% if (all_transactions[index + 1].present? && (transaction_item.date).month != all_transactions[index + 1].date.month) %>
+         
+          <% (0..(all_transactions[index + 1].date.month - transaction_item.date.month).abs - 1).each do |month| %>
+
+            <tr class="table-info">
+              <td class="td-right" colspan="2"><strong>Saldo em <%= (transaction_item.date + month.month).end_of_month %>:</strong></td>
+              <td class="td-right"><strong><%= big_decimal_to_currency(transaction_item.final_outstanding_balance) if transaction_item.final_outstanding_balance != 0 %></strong></td>
+              <td></td>
+            </tr>
+
+          <% end %>
         <% end %>
 
       <% end %>              
