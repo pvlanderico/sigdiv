@@ -17,8 +17,6 @@ module Sigdiv
     # the framework and any gems in your application.
 
     config.i18n.default_locale = "pt-BR"
-    
-    config.ftp = nil #OpenStruct.new(YAML.load_file('config/settings.yml')['ftp'])
 
     config.autoload_paths += Dir["#{config.root}/lib/services/*"]
     config.autoload_paths += Dir["#{config.root}/app/models/*"]
