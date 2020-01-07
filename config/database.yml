@@ -12,7 +12,7 @@ production:
   database: sigdiv_production
   pool: 5
   username: sigdiv
-  password: passwordDB
+  password: <%= Rails.application.credentials.pg_production_passwd %>
 
 test:
   adapter: postgresql
