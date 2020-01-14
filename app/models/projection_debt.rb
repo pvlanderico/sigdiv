@@ -29,12 +29,12 @@ class ProjectionDebt
 
 				if index % TransactionInfo.frequencies[transaction_info.frequency] == 0					
 					value = FormulaService.eval(transaction_info.formula, self)
-
+#byebug if transaction_info.amortization?
 					result << FutureTransaction.new(debt: debt,
 																					projection_debt: self,
 																					transaction_info: transaction_info,
 																					value: value,
-																					value_brl: value * exchange_rate, 
+																					value_brl: value, #* exchange_rate, 
 																					date: transaction_info.payment_date(self.start_date) + future_transaction_count.months - 1.month, 
 																					start_balance: balance_projection) 
 					

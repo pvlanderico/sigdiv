@@ -174,10 +174,6 @@ class Debt < ApplicationRecord
 		end
 	end
 
-	def instalment_number
-		loan_term - amortizations.count
-	end
-
 	private
 
 		def self.date_range_from_year year

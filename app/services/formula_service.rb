@@ -3,7 +3,7 @@ class FormulaService
 								'VALOR_CONTRATO' => :contract_value,
 								'JUROS' => :interest_rate,
 								'PARCELAS' => :loan_term,
-								'N_PARCELA' => :instalment_number,
+								'N_PARCELA' => :amortizations_count,
 								'PGTO'	=> :next_instalment,
 								'DiNi' 	=> [:withdraw, :value, :period] }
 	
