@@ -15,8 +15,6 @@ class ProjectionDebt
 	def build_transaction_items
 		result = []
 
-		exchange_rate = debt.interests.where('date <= ?', self.start_date).last.exchange_rate
-
 		projection_period.each_with_index do |future_transaction_count, index|
 
 			debt.transaction_infos.sort_by(&:order).reject(&:withdraw?).each do |transaction_info|
@@ -29,13 +27,13 @@ class ProjectionDebt
 
 				if index % TransactionInfo.frequencies[transaction_info.frequency] == 0					
 					value = FormulaService.eval(transaction_info.formula, self)
-#byebug if transaction_info.amortization?
+
 					result << FutureTransaction.new(debt: debt,
 																					projection_debt: self,
 																					transaction_info: transaction_info,
 																					value: value,
-																					value_brl: value, #* exchange_rate, 
-																					date: transaction_info.payment_date(self.start_date) + future_transaction_count.months - 1.month, 
+																					value_brl: value * exchange_rate, 
+																					date: transaction_info.payment_date(self.start_date) + future_transaction_count.months - 2.months, 
 																					start_balance: balance_projection) 
 					
 					self.amortizations_count += 1 if transaction_info.amortization?
@@ -45,6 +43,14 @@ class ProjectionDebt
 		end
 
 		result
+	end
+
+	def exchange_rate
+		if debt.interests.where('date <= ?', self.start_date).last.present?
+		 	debt.interests.where('date <= ?', self.start_date).last.exchange_rate
+		else debt.withdraws.where('date <= ?', self.start_date).last.present?
+			debt.withdraws.where('date <= ?', self.start_date).last.exchange_rate
+		end
 	end
 
 	def brl_lacking_total_by date, category_number
