@@ -13,6 +13,41 @@ class ProjectionDebt
 	end
 
 	def build_transaction_items
+		debt.amortization_type == 'sac' ? build_projection_sac : build_projection_price
+	end
+
+	def build_projection_price
+		result = []		
+
+		projection_period.each do |future_transaction_count|
+
+			debt.transaction_infos.sort_by(&:order).reject(&:withdraw?).each do |transaction_info|
+
+				if (result.empty?) 
+					self.balance_projection = debt.amortizations.where('date <= ?', self.start_date).last.final_outstanding_balance
+				else 
+					self.balance_projection = result.last.final_outstanding_balance
+				end
+
+				value = FormulaService.eval(transaction_info.formula, self)
+
+				result << FutureTransaction.new(debt: debt,
+																				projection_debt: self,
+																				transaction_info: transaction_info,
+																				value: value,
+																				value_brl: value * exchange_rate, 
+																				date: transaction_info.payment_date(self.start_date) + future_transaction_count.months - 1.month, 
+																				start_balance: balance_projection)
+				
+				self.amortizations_count += 1 if transaction_info.amortization?
+			end
+
+		end
+
+		result
+	end
+
+	def build_projection_sac		
 		result = []
 
 		projection_period.each_with_index do |future_transaction_count, index|
